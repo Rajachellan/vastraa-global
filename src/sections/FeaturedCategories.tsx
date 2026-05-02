@@ -8,13 +8,13 @@ import { motion } from "framer-motion";
 const categories = [
   {
     name: "Organic Cotton",
-    image: "/images/cotton.png",
+    image: "/images/fabric_cotton_texture.png",
     href: "/fabrics?type=cotton",
     description: "Breathable and versatile"
   },
   {
     name: "Mulberry Silk",
-    image: "/images/silk.png",
+    image: "/images/mulberry_silk_texture.png",
     href: "/fabrics?type=silk",
     description: "Luxurious and elegant"
   },

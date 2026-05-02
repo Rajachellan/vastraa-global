@@ -38,68 +38,122 @@ export default function AboutPage() {
               About <span className="text-secondary">Vastraa Global</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
-              "Vastraa Global is a leading textile printing company specializing in digital fabric solutions for fashion, interiors, and lifestyle industries."
+              "Precision in Print, Excellence in Fabric. Turning your creative visions into reality, one print at a time."
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="py-32 bg-white">
+      {/* Our Story & Digital Evolution */}
+      <section className="py-24 md:py-32 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-5xl font-serif text-accent">
-              Our <span className="text-secondary">Expertise</span>
-            </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-12 h-[1px] bg-secondary" />
+                <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Heritage</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-serif text-accent mb-8">
+                Since <span className="text-secondary">1975</span>
+              </h2>
+              <div className="space-y-6 text-accent/70 leading-relaxed text-lg">
+                <p>
+                  Our journey began in 1975, rooted in the rich traditions of screen printing. Over four decades, we honed our craft, developing a deep understanding of fabric behavior, color chemistry, and textile art.
+                </p>
+                <p>
+                  In 2018, we embraced the future of fabric printing by integrating advanced digital technologies into our operations. This evolution allowed us to achieve unparalleled precision, vibrant colors, and intricate designs that were previously impossible.
+                </p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative h-[400px] md:h-[500px] rounded-[3rem] overflow-hidden shadow-2xl"
+            >
+              <Image
+                src="/images/digital_printing_closeup.png"
+                alt="Digital Printing Evolution"
+                fill
+                className="object-cover"
+              />
+            </motion.div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="p-10 rounded-[2.5rem] bg-bg-ivory border border-accent/5 flex flex-col items-center text-center group hover:bg-accent hover:text-white transition-all duration-500 hover:shadow-2xl"
-            >
-              <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-8 group-hover:bg-secondary/20 transition-colors">
-                <MapPin size={32} className="text-secondary" />
-              </div>
-              <h3 className="text-2xl font-serif mb-4 group-hover:text-white text-accent">UK Expertise</h3>
-              <p className="text-accent/60 group-hover:text-white/70 leading-relaxed">
-                Strategic insights and market understanding driven by our deep-rooted presence in the United Kingdom.
+      {/* ISC & VastraaGlobal Link */}
+      <section className="py-24 bg-bg-ivory border-y border-accent/5">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-serif text-accent mb-8">
+              Trust & <span className="text-secondary">Transparency</span>
+            </h2>
+            <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-secondary/20">
+              <p className="text-accent/80 text-lg md:text-xl leading-relaxed mb-8">
+                VastraaGlobal is the export-focused identity of <strong>Indian Soft Colours (ISC)</strong>. While VastraaGlobal spearheads our international partnerships, all our industry certifications, technical audits, and four decades of manufacturing legacy are registered under our parent name, <strong>ISC</strong>.
               </p>
+              <div className="flex flex-wrap justify-center gap-4 text-sm font-bold uppercase tracking-widest text-secondary">
+                <span className="px-6 py-3 bg-secondary/5 rounded-full">GOTS Certified</span>
+                <span className="px-6 py-3 bg-secondary/5 rounded-full">ISO 9001:2015</span>
+                <span className="px-6 py-3 bg-secondary/5 rounded-full">Sedex Member</span>
+                <span className="px-6 py-3 bg-secondary/5 rounded-full">OEKO-TEX 100</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Manufacturing Excellence */}
+      <section className="py-24 md:py-32 bg-white overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2"
+            >
+              <h2 className="text-3xl md:text-5xl font-serif text-accent mb-8">
+                Manufacturing <span className="text-secondary">Excellence</span>
+              </h2>
+              <div className="space-y-8">
+                <div className="flex gap-6">
+                  <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
+                    <MapPin className="text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-serif text-accent mb-2">Erode Facility</h4>
+                    <p className="text-accent/60 leading-relaxed">
+                      74A, Attayampalayam, East Colony, <br />
+                      Gangapuram Post, Chithode, <br />
+                      Erode 638102, Tamil Nadu, India
+                    </p>
+                  </div>
+                </div>
+                <p className="text-accent/70 leading-relaxed italic">
+                  "At VastraaGlobal, we believe in turning your creative visions into reality, focusing on perfection, one print at a time."
+                </p>
+              </div>
             </motion.div>
-
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-10 rounded-[2.5rem] bg-bg-ivory border border-accent/5 flex flex-col items-center text-center group hover:bg-accent hover:text-white transition-all duration-500 hover:shadow-2xl"
+              className="lg:w-1/2 relative h-[400px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl"
             >
-              <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-8 group-hover:bg-secondary/20 transition-colors">
-                <Printer size={32} className="text-secondary" />
-              </div>
-              <h3 className="text-2xl font-serif mb-4 group-hover:text-white text-accent">Digital Specialization</h3>
-              <p className="text-accent/60 group-hover:text-white/70 leading-relaxed">
-                State-of-the-art digital pigment printing technology for unparalleled detail and vibrant color reproduction.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="p-10 rounded-[2.5rem] bg-bg-ivory border border-accent/5 flex flex-col items-center text-center group hover:bg-accent hover:text-white transition-all duration-500 hover:shadow-2xl"
-            >
-              <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-8 group-hover:bg-secondary/20 transition-colors">
-                <Layers size={32} className="text-secondary" />
-              </div>
-              <h3 className="text-2xl font-serif mb-4 group-hover:text-white text-accent">Wide Fabric Range</h3>
-              <p className="text-accent/60 group-hover:text-white/70 leading-relaxed">
-                An extensive portfolio of natural, semi-synthetic, and blended fabrics curated for diverse applications.
-              </p>
+              <Image
+                src="/images/textile_gallery_showroom.png"
+                alt="Factory Location"
+                fill
+                className="object-cover"
+              />
             </motion.div>
           </div>
         </div>

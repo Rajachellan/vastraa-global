@@ -16,8 +16,8 @@ const slides = [
   },
   {
     id: 2,
-    title: "Bring Your Custom Designs to Life",
-    image: "/images/print-sublimation.png",
+    title: "Precision Digital Printing on Premium Textiles",
+    image: "/images/mulberry_silk_texture.png",
     ctaText: "Explore Our Premium Collection",
     ctaLink: "/fabrics",
   },
@@ -101,8 +101,8 @@ export const B2BHero = () => {
                 ))}
               </h1>
 
-              <p className="text-lg sm:text-xl md:text-xl text-white/70 mb-12 leading-relaxed max-w-2xl font-light">
-                Elevating global brands with 40+ years of textile heritage and state-of-the-art digital printing. Precision in every fiber.
+              <p className="text-lg sm:text-xl md:text-xl text-white/90 mb-12 leading-relaxed max-w-2xl font-medium">
+                Precision in Print, Excellence in Fabric. Elevating global brands with 40+ years of textile heritage and state-of-the-art digital printing.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6">

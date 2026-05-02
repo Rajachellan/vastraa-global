@@ -8,25 +8,25 @@ const certifications = [
   {
     name: "GOTS",
     fullName: "Global Organic Textile Standard",
-    description: "Certified organic textiles from harvesting to manufacturing, ensuring environmental and social responsibility.",
+    description: "The world's leading processing standard for textiles made from organic fibers.",
     color: "#4CAF50",
   },
   {
-    name: "GRS",
-    fullName: "Global Recycle Standard",
-    description: "Verifies the recycled content of products and sets stringent environmental and social criteria.",
+    name: "ISO 9001:2015",
+    fullName: "Quality Management Systems",
+    description: "International standard that specifies requirements for a quality management system.",
     color: "#2196F3",
   },
   {
     name: "Sedex",
-    fullName: "Supplier Ethical Data Exchange",
-    description: "Ethical trade membership ensuring responsible and sustainable business practices across the supply chain.",
+    fullName: "Empowering Responsible Supply Chains",
+    description: "Ensuring ethical and responsible business practices across the global supply chain.",
     color: "#FF9800",
   },
   {
     name: "OEKO-TEX",
     fullName: "Standard 100",
-    description: "Tested for harmful substances — every component meets stringent human-ecological requirements.",
+    description: "Tested for harmful substances to ensure textile safety and consumer confidence.",
     color: "#00BCD4",
   },
 ];

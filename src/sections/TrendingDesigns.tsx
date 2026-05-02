@@ -1,3 +1,5 @@
+"use client";
+
 import { Heart, ShoppingBag } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
@@ -31,7 +33,7 @@ const designs = [
     id: "td4",
     title: "Heritage Motifs",
     designer: "Anita Rao",
-    image: "/images/trending4.png",
+    image: "/images/trending_textile_design_4.png",
     price: "$48.00"
   }
 ];

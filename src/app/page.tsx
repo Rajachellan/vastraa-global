@@ -9,18 +9,27 @@ import { HowWePrint } from "@/sections/HowWePrint";
 import { QuoteForm } from "@/sections/QuoteForm";
 import { GlobalPresence } from "@/sections/GlobalPresence";
 
+import { FeaturedCategories } from "@/sections/FeaturedCategories";
+import { TrendingDesigns } from "@/sections/TrendingDesigns";
+import { Testimonials } from "@/sections/Testimonials";
+import { CTASection } from "@/sections/CTASection";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
       <Navbar />
       <B2BHero />
       <B2BAbout />
+      <FeaturedCategories />
+      <TrendingDesigns />
       <Certifications />
       <ProductCategories />
       <ManufacturingCapabilities />
       <HowWePrint />
+      <Testimonials />
       <QuoteForm />
       <GlobalPresence />
+      <CTASection />
       <Footer />
     </main>
   );

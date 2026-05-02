@@ -76,7 +76,7 @@ export const Footer = () => {
                 <MapPin size={18} className="text-secondary shrink-0" />
                 <span>
                   <strong>UK:</strong> Derby, DE22 3FE <br />
-                  <strong>India:</strong> Erode, Tamil Nadu 638107
+                  <strong>India:</strong> 74A, Attayampalayam, Chithode, Erode 638102
                 </span>
               </li>
               <li className="flex items-center gap-4">

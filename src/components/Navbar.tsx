@@ -106,14 +106,16 @@ export const Navbar = () => {
                 <Menu size={24} />
               </button>
 
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="flex flex-col items-center">
                 <Image
                   src="/images/logo3.png"
                   alt="Vastraa Global"
-                  width={90}
-                  height={90}
-                 
+                  width={80}
+                  height={80}
                 />
+                <span className={`text-[8px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-primary/60" : "text-white/60"}`}>
+                  Precision in Print
+                </span>
               </Link>
             </div>
 
