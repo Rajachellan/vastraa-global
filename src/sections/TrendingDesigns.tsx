@@ -2,6 +2,8 @@ import { Heart, ShoppingBag } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const designs = [
   {
