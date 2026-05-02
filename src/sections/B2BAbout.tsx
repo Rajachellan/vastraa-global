@@ -52,20 +52,29 @@ export const B2BAbout = () => {
             </div>
           </motion.div>
 
-          {/* Optional right side image or graphic */}
+          {/* Overlapping Image Collage */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[300px] sm:h-[400px] md:h-[500px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl"
+            className="relative h-[400px] md:h-[600px] flex items-center justify-center lg:justify-end"
           >
-            <div className="absolute inset-0 bg-accent/5 backdrop-blur-3xl z-10" />
-            <Image
-              src="/images/warehouse.png"
-              alt="Vastraa Global Facility"
-              fill
-              className="object-cover"
-            />
+            <div className="relative w-full max-w-[450px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-8 border-white hidden md:block">
+              <Image
+                src="/images/warehouse.png"
+                alt="Vastraa Global Facility"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute -left-10 bottom-0 w-[60%] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-8 border-white hidden md:block">
+              <Image
+                src="/images/textile_gallery_showroom.png"
+                alt="Showroom"
+                fill
+                className="object-cover"
+              />
+            </div>
           </motion.div>
         </div>
 

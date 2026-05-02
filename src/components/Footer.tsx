@@ -11,15 +11,23 @@ export const Footer = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           <div className="space-y-8">
-            <Link href="/" className="inline-block">
+            <div className="grid grid-cols-2">
+              <div>
+                <Link href="/" className="inline-block">
               <Image
-                src="/images/logo2.png"
+                src="/images/logo3.png"
                 alt="Vastraa Global"
                 width={140}
                 height={140}
-                className="scale-110"
+                className=""
                 />
             </Link>
+              </div>
+              <div>
+                <p>Vastraa Global</p>
+              </div>
+            </div>
+            
             <p className="text-sm text-primary/50 leading-relaxed max-w-xs">
               Global leaders in digital fabric printing and sustainable textile manufacturing. Decades of expertise, precision quality, and ethical production.
             </p>

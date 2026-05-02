@@ -108,11 +108,11 @@ export const Navbar = () => {
 
               <Link href="/" className="flex items-center">
                 <Image
-                  src="/images/logo2.png"
+                  src="/images/logo3.png"
                   alt="Vastraa Global"
-                  width={140}
-                  height={140}
-                  className="scale-110"
+                  width={90}
+                  height={90}
+                 
                 />
               </Link>
             </div>

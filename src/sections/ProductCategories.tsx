@@ -12,7 +12,7 @@ const categories = [
     items: [
       {
         name: "Cotton",
-        image: "/images/fabric_cotton.png",
+        image: "/images/fabric-cotton.png",
         description: "Premium organic cotton ideal for fashion apparel and home textiles. Soft, breathable, and sustainable.",
       },
       {
