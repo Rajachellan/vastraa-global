@@ -41,8 +41,8 @@ export default function LinenPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Premium <span className="text-secondary">Linen</span></h1>
-            <p className="text-lg text-white/70 leading-relaxed mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Premium <span className="text-secondary">Linen</span></h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed mb-8">
               Timeless, durable, and naturally cool. Sourced from the finest flax fields in Belgium and France. The ultimate choice for sustainable luxury.
             </p>
             <motion.button

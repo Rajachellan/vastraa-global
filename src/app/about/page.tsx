@@ -34,10 +34,10 @@ export default function AboutPage() {
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Identity</span>
               <span className="w-12 h-[1px] bg-secondary" />
             </div>
-            <h1 className="text-5xl md:text-7xl font-serif mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-8 leading-tight">
               About <span className="text-secondary">Vastraa Global</span>
             </h1>
-            <p className="text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
               "Vastraa Global is a leading textile printing company specializing in digital fabric solutions for fashion, interiors, and lifestyle industries."
             </p>
           </motion.div>

@@ -43,11 +43,11 @@ export const GlobalPresence = () => {
               <span className="w-12 h-[1px] bg-secondary" />
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Global Reach</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-8 leading-tight">
               Exporting Excellence <br />
               <span className="text-secondary">Worldwide</span>
             </h2>
-            <p className="text-primary/60 text-lg mb-10 leading-relaxed">
+            <p className="text-primary/60 text-base md:text-lg mb-10 leading-relaxed">
               With our roots in India's textile capital and a strategic presence in the UK, we bridge the gap between world-class manufacturing and international design standards.
             </p>
 

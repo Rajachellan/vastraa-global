@@ -56,10 +56,10 @@ export const HowWePrint = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Process</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-serif text-accent mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-6">
             How We <span className="text-secondary">Print</span>
           </h2>
-          <p className="text-accent/60 text-lg leading-relaxed">
+          <p className="text-accent/60 text-base md:text-lg leading-relaxed">
             From your design file to delivered fabric — a streamlined, transparent process built for global brands.
           </p>
         </motion.div>

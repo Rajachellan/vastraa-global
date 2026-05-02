@@ -73,16 +73,16 @@ export const ManufacturingCapabilities = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Services</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-serif text-primary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-primary mb-6">
             Comprehensive <span className="text-secondary">Capabilities</span>
           </h2>
-          <p className="text-primary/50 text-lg leading-relaxed">
+          <p className="text-primary/50 text-base md:text-lg leading-relaxed">
             From initial sampling to full-scale garment production, we offer end-to-end solutions.
           </p>
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, i) => (
             <motion.div
               key={i}

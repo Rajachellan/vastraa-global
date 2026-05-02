@@ -21,10 +21,10 @@ export default function ContactPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-6xl md:text-8xl font-serif text-accent mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif text-accent mb-8 leading-tight">
                 Global <span className="text-secondary">Partnerships</span> <br />Start Here
               </h1>
-              <p className="text-xl text-accent/60 leading-relaxed max-w-2xl">
+              <p className="text-lg sm:text-xl text-accent/60 leading-relaxed max-w-2xl">
                 From technical fabric specifications to bulk export logistics, our team of textile experts is ready to support your brand's growth.
               </p>
             </motion.div>

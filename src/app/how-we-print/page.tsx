@@ -67,10 +67,10 @@ export default function HowWePrintPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">
               Our Fabric Printing <span className="text-secondary">Journey</span>
             </h1>
-            <p className="text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
               A transparent, meticulous, and collaborative approach to bringing your textile visions to life.
             </p>
           </motion.div>

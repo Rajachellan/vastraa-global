@@ -27,8 +27,8 @@ export default function SustainableFabricsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Sustainable <span className="text-secondary">Innovation</span></h1>
-            <p className="text-lg text-white/70 leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Sustainable <span className="text-secondary">Innovation</span></h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
               Redefining the future of textiles. From recycled ocean plastics to hemp and bamboo, our sustainable collection is designed for a circular fashion economy.
             </p>
           </motion.div>

@@ -92,10 +92,10 @@ export default function FabricsMainPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">
               Explore Our <span className="text-secondary">Collection</span>
             </h1>
-            <p className="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto font-light">
+            <p className="text-lg sm:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto font-light">
               A curated selection of premium textiles, meticulously prepared for high-fidelity digital printing.
             </p>
           </motion.div>

@@ -27,8 +27,8 @@ export default function QualityControlPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Quality <span className="text-secondary">Excellence</span></h1>
-            <p className="text-lg text-white/70 leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Quality <span className="text-secondary">Excellence</span></h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
               Precision is our religion. Explore our rigorous 4-stage audit system and technical standards that ensure zero defects for every meter.
             </p>
           </motion.div>

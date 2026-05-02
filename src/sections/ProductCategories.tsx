@@ -73,10 +73,10 @@ export const ProductCategories = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Fabrics</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-serif text-accent mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-6">
             Exploring the Variety and Quality of <span className="text-secondary">Our Fabrics</span>
           </h2>
-          <p className="text-accent/60 text-lg leading-relaxed">
+          <p className="text-accent/60 text-base md:text-lg leading-relaxed">
             From organic naturals to engineered blends — every fabric in our portfolio is curated for digital printing excellence.
           </p>
         </motion.div>

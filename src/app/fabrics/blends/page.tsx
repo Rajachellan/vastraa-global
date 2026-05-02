@@ -27,8 +27,8 @@ export default function BlendsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Engineered <span className="text-secondary">Blends</span></h1>
-            <p className="text-lg text-white/70 leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Engineered <span className="text-secondary">Blends</span></h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
               The best of both worlds. Combining natural luxury with technical performance. Explore our proprietary blends designed for the next generation of fashion.
             </p>
           </motion.div>

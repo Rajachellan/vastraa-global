@@ -27,8 +27,8 @@ export default function ScreenPrintingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Master <span className="text-secondary">Screen</span> Printing</h1>
-            <p className="text-lg text-white/70 leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Master <span className="text-secondary">Screen</span> Printing</h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
               Heritage meets high-volume efficiency. Our industrial screen printing facility bridges the gap between artisanal texture and global scale.
             </p>
           </motion.div>

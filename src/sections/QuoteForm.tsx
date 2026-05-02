@@ -62,10 +62,10 @@ export const QuoteForm = () => {
               <span className="w-12 h-[1px] bg-secondary" />
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Partner With Us</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif text-accent mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-8 leading-tight">
               Request a <span className="text-secondary">Custom Quote</span>
             </h2>
-            <p className="text-accent/60 text-lg mb-10 leading-relaxed">
+            <p className="text-accent/60 text-base md:text-lg mb-10 leading-relaxed">
               Ready to bring your fabric designs to life? Fill out the form with your project details, and our export specialists will provide a tailored solution for your brand.
             </p>
             

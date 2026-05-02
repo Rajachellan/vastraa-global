@@ -9,7 +9,7 @@ import { ArrowRight, Globe, Shield, Zap } from "lucide-react";
 const slides = [
   {
     id: 1,
-    title: "Experience Cutting-Edge Printing with Unmatched Quality",
+    title: "Where Innovation Meets Fabric Excellence",
     image: "/images/hero-b2b-new.png",
     ctaText: "Explore Our Designs",
     ctaLink: "/design-studio",
@@ -41,7 +41,7 @@ export const B2BHero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-accent">
+    <section className="relative h-screen min-h-[1000px] md:min-h-[1200px] xl:min-h-[800px] flex items-center overflow-hidden bg-accent">
       {/* Background Images Carousel */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -81,19 +81,19 @@ export const B2BHero = () => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="inline-flex items-center gap-4 mb-8"
               >
-                <div className="flex -space-x-2">
+                <div className="flex -space-x-2 mt-20 md:mt-10 xl:mt-30">
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="w-8 h-8 rounded-full border-2 border-accent bg-secondary flex items-center justify-center text-[10px] font-bold text-white shadow-lg">
                       {i === 1 ? <Shield size={12} /> : i === 2 ? <Globe size={12} /> : <Zap size={12} />}
                     </div>
                   ))}
                 </div>
-                <span className="text-secondary font-bold tracking-[0.3em] uppercase text-[10px]">
+                <span className="text-secondary mt-20 md:mt-10 xl:mt-30 font-bold tracking-[0.3em] uppercase text-[10px]">
                   Global Manufacturing Excellence
                 </span>
               </motion.div>
 
-              <h1 className="text-5xl md:text-7xl font-serif text-white mb-8 leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl  font-serif text-white mb-8 leading-[1.1]">
                 {slides[current].title.split(' ').map((word, i) => (
                   <span key={i}>
                     {i === 3 || i === 4 ? <span className="text-secondary">{word} </span> : `${word} `}
@@ -101,7 +101,7 @@ export const B2BHero = () => {
                 ))}
               </h1>
 
-              <p className="text-xl md:text-2xl text-white/70 mb-12 leading-relaxed max-w-2xl font-light">
+              <p className="text-lg sm:text-xl md:text-xl text-white/70 mb-12 leading-relaxed max-w-2xl font-light">
                 Elevating global brands with 40+ years of textile heritage and state-of-the-art digital printing. Precision in every fiber.
               </p>
 
@@ -124,7 +124,7 @@ export const B2BHero = () => {
           </AnimatePresence>
 
           {/* Carousel Indicators */}
-          <div className="flex items-center gap-4 mt-16">
+          <div className="flex items-center gap-4 mt-10">
             {slides.map((_, idx) => (
               <button
                 key={idx}
@@ -136,7 +136,7 @@ export const B2BHero = () => {
           </div>
 
           {/* Metrics */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-12 border-t border-white/10 pt-12">
+          <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 border-t border-white/10 pt-12">
             {[
               { label: "Legacy", val: "40+ Years" },
               { label: "Capacity", val: "75K Meters" },
@@ -144,8 +144,8 @@ export const B2BHero = () => {
               { label: "Lead Time", val: "4-7 Days" }
             ].map((item, i) => (
               <div key={i} className="space-y-2">
-                <div className="text-secondary font-bold uppercase tracking-widest text-[10px] opacity-80">{item.label}</div>
-                <div className="text-2xl font-serif text-white">{item.val}</div>
+                <div className="text-secondary font-bold uppercase tracking-widest text-[9px] md:text-[10px] opacity-80">{item.label}</div>
+                <div className="text-xl md:text-2xl font-serif text-white">{item.val}</div>
               </div>
             ))}
           </div>

@@ -27,8 +27,8 @@ export default function ReactivePrintingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Reactive <span className="text-secondary">Digital</span> Printing</h1>
-            <p className="text-lg text-white/70 leading-relaxed">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Reactive <span className="text-secondary">Digital</span> Printing</h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
               Deep fiber penetration for unrivaled color depth and softness. The gold standard for natural textiles like silk, cotton, and linen.
             </p>
           </motion.div>

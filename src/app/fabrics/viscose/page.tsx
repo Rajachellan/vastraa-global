@@ -41,8 +41,8 @@ export default function ViscosePage() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-2xl"
           >
-            <h1 className="text-5xl md:text-7xl font-serif mb-6">Sustainable <span className="text-secondary">Viscose</span></h1>
-            <p className="text-lg text-white/70 leading-relaxed mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Sustainable <span className="text-secondary">Viscose</span></h1>
+            <p className="text-lg sm:text-xl text-white/70 leading-relaxed mb-8">
               The silky touch of nature. Derived from certified wood pulp, our viscose offers a luxurious drape and vibrant color clarity for the modern wardrobe.
             </p>
             <motion.button
