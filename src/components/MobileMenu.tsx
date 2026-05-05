@@ -31,7 +31,7 @@ const menuData = [
       { name: "Sustainable", href: "/fabrics/sustainable" },
     ]
   },
-  { title: "Design Studio", href: "/design-studio" },
+  { title: "Printable Designs", href: "/designs" },
   { title: "Blogs", href: "/blogs" },
   { title: "About Us", href: "/about" },
   { title: "Contact", href: "/contact" },

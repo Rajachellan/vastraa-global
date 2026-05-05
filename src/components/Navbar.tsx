@@ -60,7 +60,7 @@ export const Navbar = () => {
         { name: "Sustainable", href: "/fabrics/sustainable" },
       ],
     },
-    { name: "Designs", href: "/design-studio" },
+    { name: "Printable Designs", href: "/designs" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact" },
     { name: "About", href: "/about" },

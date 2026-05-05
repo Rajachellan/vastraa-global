@@ -71,7 +71,7 @@ export const MegaMenu = () => {
       {/* Featured Banner in Mega Menu (Optional Premium Touch) */}
       <div className="container mx-auto mt-12 pt-8 border-t border-accent/5 flex justify-between items-center">
         <p className="text-xs text-accent/40">
-          Free Swatch Pack on orders over $50. <Link href="/about" className="text-secondary underline">Learn more</Link>
+          Free Swatch Pack on orders over ₹5,000. <Link href="/about" className="text-secondary underline">Learn more</Link>
         </p>
         <div className="flex gap-4">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />

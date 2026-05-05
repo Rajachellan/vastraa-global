@@ -9,18 +9,27 @@ import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/Button";
 import Link from "next/link";
+import { Toast } from "@/components/Toast";
+import { useState } from "react";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity } = useStore();
+  const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
 
   const subtotal = cart.reduce((acc, item) => {
-    const price = parseFloat(item.price.replace("$", "").split("/")[0]);
-    return acc + price * item.quantity;
+    const price = parseFloat(item.price.replace(/[₹,]/g, "").split("/")[0]);
+    return acc + (isNaN(price) ? 0 : price) * item.quantity;
   }, 0);
 
   return (
     <main className="flex min-h-screen flex-col pt-32">
       <Navbar />
+
+      <Toast 
+        isVisible={toast.show} 
+        message={toast.message} 
+        onClose={() => setToast({ ...toast, show: false })} 
+      />
 
       <section className="flex-1 py-16 bg-bg-ivory/30">
         <div className="container mx-auto px-6">
@@ -88,7 +97,7 @@ export default function CartPage() {
                   <div className="space-y-4 mb-8">
                     <div className="flex justify-between text-accent/60">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>₹{new Intl.NumberFormat('en-IN').format(subtotal)}</span>
                     </div>
                     <div className="flex justify-between text-accent/60">
                       <span>Shipping</span>
@@ -96,11 +105,14 @@ export default function CartPage() {
                     </div>
                     <div className="border-t border-accent/5 pt-4 flex justify-between text-xl text-accent">
                       <span className="font-serif">Total</span>
-                      <span className="font-bold">${subtotal.toFixed(2)}</span>
+                      <span className="font-bold">₹{new Intl.NumberFormat('en-IN').format(subtotal)}</span>
                     </div>
                   </div>
 
-                  <Button className="w-full group">
+                  <Button 
+                    className="w-full group"
+                    onClick={() => setToast({ show: true, message: "Proceeding to secure checkout..." })}
+                  >
                     Checkout Now
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                   </Button>

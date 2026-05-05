@@ -14,26 +14,26 @@ const categories = [
     id: "natural",
     name: "Natural Fabrics",
     items: [
-      { id: "f1", name: "Cotton", description: "Soft, breathable, and highly durable for versatile applications.", image: "/images/fabric_cotton.png", price: "$12.00/m" },
-      { id: "f2", name: "Linen", description: "Strong, cool, and undeniably premium with a natural texture.", image: "/images/fabric-linen.png", price: "$18.00/m" }
+      { id: "f1", name: "Cotton", description: "Soft, breathable, and highly durable for versatile applications.", image: "/images/fabric_cotton.png", price: "₹1,000/m" },
+      { id: "f2", name: "Linen", description: "Strong, cool, and undeniably premium with a natural texture.", image: "/images/fabric-linen.png", price: "₹1,500/m" }
     ]
   },
   {
     id: "semi-synthetic",
     name: "Semi-Synthetic",
     items: [
-      { id: "f3", name: "Viscose", description: "Silky, smooth, and excellent at holding vibrant digital prints.", image: "/images/fabric-viscose.png", price: "$15.00/m" },
-      { id: "f4", name: "Modal", description: "Incredibly soft and durable, perfect for luxurious drapes.", image: "/images/silk-close-up.png", price: "$16.00/m" }
+      { id: "f3", name: "Viscose", description: "Silky, smooth, and excellent at holding vibrant digital prints.", image: "/images/fabric-viscose.png", price: "₹1,250/m" },
+      { id: "f4", name: "Modal", description: "Incredibly soft and durable, perfect for luxurious drapes.", image: "/images/silk-close-up.png", price: "₹1,350/m" }
     ]
   },
   {
     id: "blended",
     name: "Blended",
     items: [
-      { id: "f5", name: "Cotton-Linen", description: "Combining cotton's softness with linen's structured elegance.", image: "/images/fabric-blends.png", price: "$20.00/m" },
-      { id: "f6", name: "Cotton-Viscose", description: "Breathable and luminous, ideal for high-end fashion garments.", image: "/images/fabric-viscose.png", price: "$19.00/m" },
-      { id: "f7", name: "Cotton-Silk", description: "The ultimate luxury blend offering durability and a lustrous finish.", image: "/images/silk-close-up.png", price: "$28.00/m" },
-      { id: "f8", name: "Linen-Viscose", description: "A beautifully textured fabric with a smooth, flowing drape.", image: "/images/fabric-linen.png", price: "$22.00/m" }
+      { id: "f5", name: "Cotton-Linen", description: "Combining cotton's softness with linen's structured elegance.", image: "/images/fabric-blends.png", price: "₹1,700/m" },
+      { id: "f6", name: "Cotton-Viscose", description: "Breathable and luminous, ideal for high-end fashion garments.", image: "/images/fabric-viscose.png", price: "₹1,600/m" },
+      { id: "f7", name: "Cotton-Silk", description: "The ultimate luxury blend offering durability and a lustrous finish.", image: "/images/silk-close-up.png", price: "₹2,350/m" },
+      { id: "f8", name: "Linen-Viscose", description: "A beautifully textured fabric with a smooth, flowing drape.", image: "/images/fabric-linen.png", price: "₹1,850/m" }
     ]
   }
 ];

@@ -13,28 +13,28 @@ const designs = [
     title: "Ethereal Florals",
     designer: "Sarah Jenkins",
     image: "/images/trending1.png",
-    price: "$45.00"
+    price: "₹3,750"
   },
   {
     id: "td2",
     title: "Golden Hour",
     designer: "Studio Luxe",
     image: "/images/trending2.png",
-    price: "$52.00"
+    price: "₹4,350"
   },
   {
     id: "td3",
     title: "Abstract Geometry",
     designer: "Marcello V.",
     image: "/images/trending3.png",
-    price: "$38.00"
+    price: "₹3,200"
   },
   {
     id: "td4",
     title: "Heritage Motifs",
     designer: "Anita Rao",
     image: "/images/trending_textile_design_4.png",
-    price: "$48.00"
+    price: "₹4,000"
   }
 ];
 
