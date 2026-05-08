@@ -23,9 +23,11 @@ export const Footer = () => {
                 />
             </Link>
               </div>
-              <div>
-                <p>Vastraa Global</p>
-              </div>
+              <div className="flex items-center justify-center h-full">
+  <p className="text-2xl text-primary/50 leading-relaxed font-bold">
+    Vastraa  <br />Global
+  </p>
+</div>
             </div>
             
             <p className="text-sm text-primary/50 leading-relaxed max-w-xs">
