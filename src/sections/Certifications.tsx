@@ -11,6 +11,13 @@ import { image } from "framer-motion/client";
 import { ok } from "node:assert";
 import Image from "next/image";
 const certifications = [
+   {
+    name: "OEKO-TEX",
+    image: oeko,
+    fullName: "Standard 100",
+    description: "Tested for harmful substances to ensure textile safety and consumer confidence.",
+    color: "#00BCD4",
+  },
   {
     image:gots,
     name: "GOTS",
@@ -33,13 +40,7 @@ const certifications = [
     description: "Ensuring ethical and responsible business practices across the global supply chain.",
     color: "#FF9800",
   },
-  {
-    name: "OEKO-TEX",
-    image: oeko,
-    fullName: "Standard 100",
-    description: "Tested for harmful substances to ensure textile safety and consumer confidence.",
-    color: "#00BCD4",
-  },
+ 
 ];
 
 export const Certifications = () => {

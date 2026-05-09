@@ -86,9 +86,9 @@ export const Navbar = () => {
           setIsHovered(false);
           setActiveDropdown(null);
         }}
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-in-out ${
           isSolid
-            ? "bg-white/70 backdrop-blur-lg py-3 shadow-sm border-b border-neutral-200"
+            ? "bg-white/80 backdrop-blur-xl py-3 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-neutral-200/50"
             : "bg-transparent py-5"
         }`}
       >
@@ -108,13 +108,13 @@ export const Navbar = () => {
 
               <Link href="/" className="flex flex-col items-center">
                 <Image
-                  src="/images/logo3.png"
+                  src="/images/vastraa-global-logo.png"
                   alt="Vastraa Global"
                   width={80}
                   height={80}
                 />
-                <span className={`text-[8px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-primary/60" : "text-white/60"}`}>
-                  Precision in Print
+                <span className={`text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
+                 Global Print Experts
                 </span>
               </Link>
             </div>
@@ -133,20 +133,20 @@ export const Navbar = () => {
                 >
                   <Link
                     href={item.href}
-                    className={`relative text-[13px] uppercase tracking-[0.18em] font-semibold transition-all flex items-center gap-1 ${
+                    className={`relative text-[20px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${
                       pathname === item.href ||
                       (item.subItems && pathname.startsWith(item.href))
                         ? "text-secondary"
                         : isSolid
-                        ? "text-black"
-                        : "text-white/80"
-                    } hover:text-secondary`}
+                        ? "text-black/80"
+                        : "text-white/90"
+                    } hover:text-secondary group-hover:scale-105 transition-transform`}
                   >
                     {item.name}
                     {item.subItems && (
                       <ChevronDown
                         size={14}
-                        className={`transition-transform duration-300 ${
+                        className={`transition-transform duration-500 ${
                           activeDropdown === item.name ? "rotate-180" : ""
                         }`}
                       />
@@ -154,7 +154,7 @@ export const Navbar = () => {
 
                     {/* UNDERLINE */}
                     <span
-                      className={`absolute -bottom-1 left-0 h-[1.5px] bg-secondary transition-all duration-300 ease-out ${
+                      className={`absolute -bottom-1 left-0 h-[2px] bg-secondary transition-all duration-500 ease-out rounded-full ${
                         pathname === item.href
                           ? "w-full"
                           : "w-0 group-hover:w-full"
@@ -166,17 +166,18 @@ export const Navbar = () => {
                   <AnimatePresence>
                     {item.subItems && activeDropdown === item.name && (
                       <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-white shadow-xl rounded-2xl border border-neutral-200 overflow-hidden"
+                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl border border-neutral-100 overflow-hidden"
                       >
                         <div className="p-4">
                           {item.subItems.map((sub) => (
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className="block px-5 py-3 text-[12px] uppercase tracking-wider font-medium text-gray-600 hover:text-secondary hover:bg-gray-50 rounded-lg transition-all"
+                              className="block px-5 py-3 text-[15px] font-vollkorn font-medium text-gray-600 hover:text-secondary hover:bg-secondary/5 rounded-xl transition-all duration-300"
                               onClick={() => setActiveDropdown(null)}
                             >
                               {sub.name}
@@ -192,31 +193,31 @@ export const Navbar = () => {
 
             {/* RIGHT ICONS */}
             <div
-              className={`flex items-center gap-3 md:gap-5 ${
-                isSolid ? "text-black" : "text-white"
+              className={`flex items-center gap-2 md:gap-4 ${
+                isSolid ? "text-black/70" : "text-white/90"
               }`}
             >
-              <button className="p-2 hover:text-secondary hidden md:block">
-                <Search size={20} />
+              <button className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110 hidden md:block">
+                <Search size={21} />
               </button>
 
-              <Link href="/signin" className="p-2 hover:text-secondary">
-                <User size={20} />
+              <Link href="/signin" className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110">
+                <User size={21} />
               </Link>
 
-              <Link href="/wishlist" className="p-2 relative hover:text-secondary">
-                <Heart size={20} />
+              <Link href="/wishlist" className="p-2.5 relative hover:text-secondary transition-all duration-300 hover:scale-110">
+                <Heart size={21} />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute top-1 right-1 bg-secondary text-white text-[9px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-lg">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
 
-              <Link href="/cart" className="p-2 relative hover:text-secondary">
-                <ShoppingBag size={20} />
+              <Link href="/cart" className="p-2.5 relative hover:text-secondary transition-all duration-300 hover:scale-110">
+                <ShoppingBag size={21} />
                 {cartCount > 0 && (
-                  <span className="absolute top-1 right-1 bg-secondary text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center">
+                  <span className="absolute top-1 right-1 bg-secondary text-white text-[9px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-lg">
                     {cartCount}
                   </span>
                 )}

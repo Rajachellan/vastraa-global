@@ -24,15 +24,15 @@ export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
                 href={item.href}
                 className="relative group whitespace-nowrap"
               >
-                <span className={`text-[11px] uppercase tracking-[0.2em] font-bold transition-colors duration-300 ${
-                  isActive ? "text-secondary" : "text-accent/40 group-hover:text-accent"
+                <span className={`text-[14px] font-vollkorn font-semibold transition-colors duration-300 ${
+                  isActive ? "text-secondary" : "text-accent/50 group-hover:text-accent"
                 }`}>
                   {item.name}
                 </span>
                 {isActive && (
                   <motion.div
                     layoutId="subnav-active"
-                    className="absolute -bottom-[13px] left-0 right-0 h-[2px] bg-secondary"
+                    className="absolute -bottom-[13px] left-0 right-0 h-[3px] bg-secondary rounded-full"
                   />
                 )}
               </Link>

@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Montserrat, Playfair_Display } from "next/font/google";
+import { Outfit, Playfair_Display, Vollkorn } from "next/font/google";
 import "./globals.css";
 
-const sans = Montserrat({
+const sans = Outfit({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const serif = Playfair_Display({
   variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const vollkorn = Vollkorn({
+  variable: "--font-vollkorn",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
@@ -28,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${sans.variable} ${serif.variable} font-sans min-h-full flex flex-col antialiased`}>
+      <body className={`${sans.variable} ${serif.variable} ${vollkorn.variable} font-sans min-h-full flex flex-col antialiased`}>
         <StoreProvider>
           {children}
         </StoreProvider>

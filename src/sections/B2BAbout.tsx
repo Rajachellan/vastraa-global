@@ -57,9 +57,9 @@ export const B2BAbout = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[400px] md:h-[600px] flex items-center justify-center lg:justify-end"
+            className="relative h-[300px] sm:h-[400px] md:h-[600px] flex items-center justify-center lg:justify-end mt-12 lg:mt-0"
           >
-            <div className="relative w-full max-w-[450px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-8 border-white hidden md:block">
+            <div className="relative w-[80%] md:w-full max-w-[320px] md:max-w-[450px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-4 md:border-8 border-white">
               <Image
                 src="/images/warehouse.png"
                 alt="Vastraa Global Facility"
@@ -67,7 +67,7 @@ export const B2BAbout = () => {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -left-10 bottom-0 w-[60%] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-8 border-white hidden md:block">
+            <div className="absolute left-0 sm:-left-10 bottom-0 w-[50%] md:w-[60%] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-4 md:border-8 border-white">
               <Image
                 src="/images/textile_gallery_showroom.png"
                 alt="Showroom"
