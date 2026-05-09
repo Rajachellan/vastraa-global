@@ -112,6 +112,8 @@ export const Navbar = () => {
                   alt="Vastraa Global"
                   width={70}
                   height={70}
+                  priority
+                  unoptimized
                 />
                 <span className={`text-[7px] md:text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
                  Global Print Experts
