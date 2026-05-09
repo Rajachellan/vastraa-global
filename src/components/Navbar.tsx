@@ -108,12 +108,12 @@ export const Navbar = () => {
 
               <Link href="/" className="flex flex-col items-center">
                 <Image
-                  src="/images/vastraa-global-logo.png"
+                  src="/images/vastraalogo.png"
                   alt="Vastraa Global"
-                  width={80}
-                  height={80}
+                  width={70}
+                  height={70}
                 />
-                <span className={`text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
+                <span className={`text-[7px] md:text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
                  Global Print Experts
                 </span>
               </Link>
