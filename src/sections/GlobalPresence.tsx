@@ -35,6 +35,7 @@ const globalLocations = [
   { name: "Australia", top: "62%", left: "77%", label: "Oceania Reach" },
 ];
 
+
 export const GlobalPresence = () => {
   return (
     <section id="global-presence" className="py-24 bg-accent text-primary relative overflow-hidden">
