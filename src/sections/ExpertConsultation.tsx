@@ -4,7 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Users, Calendar, ArrowRight } from "lucide-react";
 import Image from "next/image";
-
+import Link from "next/link";
+import { Button } from "@/components/Button";
 export const ExpertConsultation = () => {
   return (
     <section className="py-24 bg-accent relative overflow-hidden">
@@ -57,10 +58,11 @@ export const ExpertConsultation = () => {
               </div>
             </div>
 
-            <button className="bg-secondary text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-white hover:text-accent transition-all duration-500 shadow-2xl flex items-center gap-3">
-              Book a Free Consultation
+            <Button  className="bg-secondary text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-white hover:text-accent transition-all duration-500 shadow-2xl flex items-center gap-3">
+            <Link href="/contact">Book a Free Consultation</Link>
+              
               <ArrowRight size={18} />
-            </button>
+            </Button>
           </motion.div>
 
           <motion.div

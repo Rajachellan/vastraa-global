@@ -16,54 +16,42 @@ import { useStore } from "@/context/StoreContext";
 
 const menuData = [
   { title: "Home", href: "/" },
-
-  {
-    title: "How We Print",
-    href: "/how-we-print",
-    subItems: [
-      {
-        name: "Digital Pigment",
-        href: "/how-we-print/digital-pigment",
-      },
-      {
-        name: "Reactive",
-        href: "/how-we-print/reactive",
-      },
-      {
-        name: "Sublimation",
-        href: "/how-we-print/sublimation",
-      },
-      {
-        name: "Screen",
-        href: "/how-we-print/screen",
-      },
-      {
-        name: "Quality Control",
-        href: "/how-we-print/quality-control",
-      },
-    ],
-  },
-
   {
     title: "Our Fabrics",
     href: "/fabrics",
     subItems: [
+      { name: "All Fabrics", href: "/fabrics" },
       { name: "Cotton", href: "/fabrics/cotton" },
       { name: "Linen", href: "/fabrics/linen" },
       { name: "Viscose", href: "/fabrics/viscose" },
-      { name: "Silk", href: "/fabrics/silk" },
       { name: "Blends", href: "/fabrics/blends" },
-      {
-        name: "Sustainable",
-        href: "/fabrics/sustainable",
-      },
+      { name: "Silk", href: "/fabrics/silk" },
+      { name: "Sustainable", href: "/fabrics/sustainable" },
     ],
   },
-
-  { title: "Printable Designs", href: "/designs" },
-  { title: "Blogs", href: "/blogs" },
-  { title: "About Us", href: "/about" },
-  { title: "Contact", href: "/contact" },
+  {
+    title: "How We Print",
+    href: "/how-we-print",
+    subItems: [
+      { name: "Printing Overview", href: "/how-we-print" },
+      { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
+      { name: "Reactive Printing", href: "/how-we-print/reactive" },
+      { name: "Sublimation", href: "/how-we-print/sublimation" },
+      { name: "Quality Standards", href: "/how-we-print/quality-control" },
+    ],
+  },
+  { title: "Design Studio", href: "/designs" },
+  {
+    title: "Blogs",
+    href: "/blogs",
+    subItems: [
+      { name: "Textile Trends", href: "/blogs?cat=trends" },
+      { name: "Printing Guides", href: "/blogs?cat=guides" },
+      { name: "Case Studies", href: "/blogs?cat=case-studies" },
+    ],
+  },
+  { title: "About", href: "/about" },
+  { title: "Expert Help", href: "/contact?type=consultation" },
 ];
 
 interface MobileMenuProps {
@@ -80,6 +68,18 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   >(null);
 
   const { cart } = useStore();
+
+  // Scroll lock
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
 
   const cartCount = cart.reduce(
     (acc, item) => acc + item.quantity,
@@ -170,16 +170,16 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
             </div>
 
             {/* Menu */}
-            <div className="flex-1 overflow-y-auto no-scrollbar">
-              <motion.nav className="px-5 py-5 space-y-1">
+            <div className="flex-1 overflow-y-auto no-scrollbar bg-white">
+              <motion.nav className="px-6 py-8 space-y-2">
                 {menuData.map((item) => (
                   <motion.div
                     key={item.title}
                     variants={itemVariants}
-                    className="group"
+                    className="border-b border-accent/5 last:border-0"
                   >
                     {item.subItems ? (
-                      <div className="rounded-2xl overflow-hidden">
+                      <div className="overflow-hidden">
                         <button
                           onClick={() =>
                             setActiveAccordion(
@@ -188,7 +188,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                                 : item.title
                             )
                           }
-                          className={`flex items-center justify-between w-full px-4 py-5 text-[30px] leading-tight font-vollkorn transition-all duration-300 ${
+                          className={`flex items-center justify-between w-full py-4 text-[24px] font-serif transition-all duration-300 ${
                             activeAccordion === item.title
                               ? "text-secondary"
                               : "text-accent"
@@ -196,52 +196,33 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                         >
                           <span>{item.title}</span>
 
-                          <ChevronRight
-                            size={18}
-                            className={`transition-all duration-300 ${
-                              activeAccordion === item.title
-                                ? "rotate-90 text-secondary"
-                                : "text-accent/30"
-                            }`}
-                          />
+                          <motion.div
+                            animate={{ rotate: activeAccordion === item.title ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronRight
+                              size={18}
+                              className={activeAccordion === item.title ? "text-secondary" : "text-accent/30"}
+                            />
+                          </motion.div>
                         </button>
 
-                        <AnimatePresence>
+                        <AnimatePresence initial={false}>
                           {activeAccordion === item.title && (
                             <motion.div
-                              initial={{
-                                height: 0,
-                                opacity: 0,
-                              }}
-                              animate={{
-                                height: "auto",
-                                opacity: 1,
-                              }}
-                              exit={{
-                                height: 0,
-                                opacity: 0,
-                              }}
-                              transition={{
-                                duration: 0.3,
-                              }}
-                              className="bg-accent/[0.03] mx-2 rounded-2xl overflow-hidden"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              className="overflow-hidden bg-bg-ivory/50 rounded-2xl mb-4"
                             >
-                              <div className="p-5 space-y-3">
-                                <Link
-                                  href={item.href}
-                                  onClick={onClose}
-                                  className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-secondary mb-5"
-                                >
-                                  Explore All
-                                  <ArrowRight size={14} />
-                                </Link>
-
+                              <div className="p-4 space-y-4">
                                 {item.subItems.map((sub) => (
                                   <Link
                                     key={sub.name}
                                     href={sub.href}
                                     onClick={onClose}
-                                    className="block text-lg text-accent/70 hover:text-secondary transition-all duration-300 py-1"
+                                    className="block text-base font-vollkorn text-accent/60 hover:text-secondary py-1 pl-2 border-l-2 border-transparent hover:border-secondary/30 transition-all"
                                   >
                                     {sub.name}
                                   </Link>
@@ -255,13 +236,12 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                       <Link
                         href={item.href!}
                         onClick={onClose}
-                        className="flex items-center justify-between px-4 py-5 text-[30px] leading-tight font-vollkorn text-accent hover:text-secondary rounded-2xl transition-all duration-300"
+                        className="flex items-center justify-between py-4 text-[24px] font-serif text-accent hover:text-secondary transition-all duration-300"
                       >
                         {item.title}
-
                         <ArrowRight
                           size={18}
-                          className="opacity-0 group-hover:opacity-100 transition-all duration-300 text-secondary"
+                          className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-secondary"
                         />
                       </Link>
                     )}

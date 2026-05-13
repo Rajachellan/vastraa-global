@@ -116,7 +116,7 @@ export const Footer = () => {
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-secondary">Services</h4>
             <ul className="space-y-4 text-sm text-primary/50">
               <li><Link href="/how-we-print" className="hover:text-secondary transition-colors">Custom Printing Solutions</Link></li>
-              <li><Link href="/fabrics" className="hover:text-secondary transition-colors">Premium Fabric Consultation</Link></li>
+              <li><Link href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</Link></li>
               <li><Link href="/contact" className="hover:text-secondary transition-colors">Tailored Textile Services</Link></li>
               <li><Link href="/contact" className="hover:text-secondary transition-colors">Bulk & Brand Orders</Link></li>
               <li><Link href="/designs" className="hover:text-secondary transition-colors">Design Studio</Link></li>
