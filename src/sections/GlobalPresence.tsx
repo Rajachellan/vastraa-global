@@ -108,13 +108,13 @@ export const GlobalPresence = () => {
             className="relative h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center"
           >
             {/* Real World Map Backdrop */}
-            <div className="absolute inset-0 opacity-40">
-              <Image 
-                src="/images/world-map.png" 
-                alt="Vastraa Global Presence Map" 
-                fill 
-                className="object-contain"
+            <div className="absolute inset-0 opacity-40 pointer-events-none">
+              <Image
+                src="/images/world-map.png"
+                alt="Vastraa Global Presence Map"
+                fill
                 priority
+                className="object-contain"
               />
             </div>
 
