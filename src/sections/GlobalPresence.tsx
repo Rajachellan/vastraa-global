@@ -114,6 +114,7 @@ export const GlobalPresence = () => {
                 alt="Vastraa Global Presence Map"
                 fill
                 priority
+                unoptimized
                 className="object-contain"
               />
             </div>

@@ -14,13 +14,14 @@ export const Footer = () => {
            <div className="grid grid-cols-2 items-center gap-3">
   <div className="flex justify-center sm:justify-start">
     <Link href="/" className="inline-block">
-      <Image
-        src="/images/logo.png"
-        alt="Vastraa Global"
-        width={120}
-        height={120}
-        className="object-contain"
-      />
+        <Image
+                        src="/images/logo.png"
+                        alt="Vastraa Global"
+                        width={70}
+                        height={70}
+                        priority
+                        unoptimized
+                      />
     </Link>
   </div>
 
