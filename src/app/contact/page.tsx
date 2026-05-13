@@ -1,12 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Globe, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Globe, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 
-export default function ContactPage() {
+function ContactContent() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
+
+  const isBulk = type === "bulk";
+  const isConsultation = type === "consultation";
+
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <Navbar />
@@ -22,10 +29,20 @@ export default function ContactPage() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif text-accent mb-8 leading-tight">
-                Global <span className="text-secondary">Partnerships</span> <br />Start Here
+                {isBulk ? (
+                  <>Bulk & <span className="text-secondary">Custom</span> <br />Business Enquiries</>
+                ) : isConsultation ? (
+                  <>Expert <span className="text-secondary">Fabric</span> <br />Consultation</>
+                ) : (
+                  <>Global <span className="text-secondary">Partnerships</span> <br />Start Here</>
+                )}
               </h1>
               <p className="text-lg sm:text-xl text-accent/60 leading-relaxed max-w-2xl">
-                From technical fabric specifications to bulk export logistics, our team of textile experts is ready to support your brand's growth.
+                {isBulk 
+                  ? "Looking for large-scale production? Our bulk division handles everything from custom textile development to global export logistics for high-volume orders."
+                  : isConsultation
+                  ? "Not sure which material suits your vision? Our textile engineers provide one-on-one guidance on fabric properties, GSM selection and printing compatibility."
+                  : "From technical fabric specifications to bulk export logistics, our team of textile experts is ready to support your brand's growth."}
               </p>
             </motion.div>
           </div>
@@ -45,9 +62,13 @@ export default function ContactPage() {
                     <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300">
                       <Mail size={24} />
                     </div>
-                    <h3 className="text-xl font-serif text-accent">General Inquiries</h3>
+                    <h3 className="text-xl font-serif text-accent">
+                      {isBulk ? "Bulk Sales Division" : isConsultation ? "Expert Support" : "General Inquiries"}
+                    </h3>
                   </div>
-                  <p className="text-accent/50 text-sm pl-16">info@vastraaglobal.com</p>
+                  <p className="text-accent/50 text-sm pl-16">
+                    {isBulk ? "sales@vastraaglobal.com" : isConsultation ? "consult@vastraaglobal.com" : "info@vastraaglobal.com"}
+                  </p>
                 </div>
 
                 <div className="group">
@@ -86,10 +107,6 @@ export default function ContactPage() {
                     <span className="text-white/40 uppercase tracking-widest">Saturday</span>
                     <span>9:00 AM — 1:00 PM (IST)</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/40 uppercase tracking-widest">Sunday</span>
-                    <span className="text-secondary">Closed</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -97,8 +114,16 @@ export default function ContactPage() {
             {/* Right: Form (8 cols) */}
             <div className="lg:col-span-8 bg-white p-12 rounded-[4rem] shadow-2xl border border-accent/5">
               <div className="mb-12">
-                <h2 className="text-3xl font-serif text-accent mb-4">Request a <span className="text-secondary">Professional</span> Quote</h2>
-                <p className="text-accent/50">Complete the form below and an account manager will contact you within 24 business hours.</p>
+                <h2 className="text-3xl font-serif text-accent mb-4">
+                  {isBulk ? "Request a Bulk Quotation" : isConsultation ? "Book a Fabric Consultation" : "Request a Professional Quote"}
+                </h2>
+                <p className="text-accent/50">
+                  {isBulk 
+                    ? "Provide your volume requirements and target destination for a custom business quote."
+                    : isConsultation
+                    ? "Tell us about your design goals and our experts will suggest the best fabric and printing match."
+                    : "Complete the form below and an account manager will contact you within 24 business hours."}
+                </p>
               </div>
 
               <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -127,8 +152,8 @@ export default function ContactPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Service Type</label>
-                  <select className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none appearance-none">
+                  <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Inquiry Type</label>
+                  <select defaultValue={isBulk ? "Bulk Fabric Sourcing" : isConsultation ? "Custom Fabric Development" : "Digital Printing Inquiry"} className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none appearance-none">
                     <option>Digital Printing Inquiry</option>
                     <option>Bulk Fabric Sourcing</option>
                     <option>Sample Yardage Request</option>
@@ -139,13 +164,13 @@ export default function ContactPage() {
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Message / Project Brief</label>
                   <textarea 
                     rows={6}
-                    placeholder="Please include details like fabric type, estimated quantity, and delivery destination..."
+                    placeholder={isBulk ? "Please include estimated quantity (MOQ 100m) and target fabric..." : "Describe your project or design vision..."}
                     className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none resize-none"
                   ></textarea>
                 </div>
                 <div className="md:col-span-2 pt-4">
                   <button className="w-full bg-accent text-white py-6 rounded-3xl font-bold uppercase tracking-[0.2em] hover:bg-secondary transition-all duration-500 shadow-xl flex items-center justify-center gap-4 group">
-                    Submit Inquiry
+                    {isBulk ? "Submit Bulk Request" : isConsultation ? "Request Consultation" : "Submit Inquiry"}
                     <Send size={18} className="group-hover:translate-x-2 transition-transform" />
                   </button>
                 </div>
@@ -156,15 +181,15 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Global Node Map Placeholder */}
       <section className="py-24 bg-bg-ivory overflow-hidden">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-serif text-accent mb-16">Supporting Global <span className="text-secondary">Export</span> Channels</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-12">
             {[
               { region: "North America", ports: "NY, LA, Houston" },
               { region: "Europe / UK", ports: "London, Hamburg, Rotterdam" },
               { region: "Middle East", ports: "Dubai, Doha, Riyadh" },
+              { region: "Canada", ports: "Toronto, Vancouver" },
               { region: "Asia Pacific", ports: "Singapore, Tokyo, Sydney" }
             ].map((node, i) => (
               <div key={i} className="space-y-3">
@@ -182,3 +207,10 @@ export default function ContactPage() {
   );
 }
 
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center">Loading...</div>}>
+      <ContactContent />
+    </Suspense>
+  );
+}

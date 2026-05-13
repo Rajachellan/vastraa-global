@@ -27,7 +27,7 @@ const steps = [
     icon: CheckCircle,
     number: "04",
     title: "Quality Check",
-    description: "Every meter undergoes rigorous inspection — color accuracy, fastness, hand-feel, and dimensional stability.",
+    description: "Every meter undergoes rigorous inspection — color accuracy, fastness, hand-feel and dimensional stability.",
   },
   {
     icon: Truck,

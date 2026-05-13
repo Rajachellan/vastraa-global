@@ -66,7 +66,7 @@ export const QuoteForm = () => {
               Request a <span className="text-secondary">Custom Quote</span>
             </h2>
             <p className="text-accent/60 text-base md:text-lg mb-10 leading-relaxed">
-              Ready to bring your fabric designs to life? Fill out the form with your project details, and our export specialists will provide a tailored solution for your brand.
+              Ready to bring your fabric designs to life? Fill out the form with your project details and our export specialists will provide a tailored solution for your brand.
             </p>
             
             <ul className="space-y-6">

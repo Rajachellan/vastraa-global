@@ -15,7 +15,7 @@ export default function SublimationPage() {
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <Image 
-          src="/images/print-sublimation-premium.png" 
+          src="/images/printing-cloths (5).jpg"
           alt="Digital Sublimation Transfer" 
           fill 
           className="object-cover"
@@ -29,7 +29,7 @@ export default function SublimationPage() {
           >
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Sublimation <span className="text-secondary">Transfer</span> Printing</h1>
             <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
-              Vibrant, permanent, and indestructible. The ultimate printing solution for high-performance activewear and polyester-rich textiles.
+              Vibrant, permanent and indestructible. The ultimate printing solution for high-performance activewear and polyester-rich textiles.
             </p>
           </motion.div>
         </div>
@@ -92,7 +92,7 @@ export default function SublimationPage() {
                   Sublimation printing is a unique chemical process that relies on the transition of ink from a solid state directly to a gas, bypassing the liquid phase. When this gas meets the heated, open pores of a polyester fiber, it infuses itself into the material. As the fabric cools, the pores close, permanently trapping the ink inside.
                 </p>
                 <p>
-                  At VastraaGlobal, our sublimation department is optimized for the high-performance demands of the modern activewear, swimwear, and technical apparel markets. 
+                  At VastraaGlobal, our sublimation department is optimized for the high-performance demands of the modern activewear, swimwear and technical apparel markets. 
                 </p>
                 
                 <h3 className="text-2xl font-serif text-accent">The Two-Step Precision Method</h3>
@@ -152,7 +152,7 @@ export default function SublimationPage() {
 
                 <h2 className="text-3xl font-serif text-accent">Sustainable Synthetics</h2>
                 <p>
-                  While sublimation requires polyester, VastraaGlobal is a leader in printing on **Recycled Polyester (rPET)**. By pairing our waterless sublimation process with fabrics made from post-consumer plastic bottles, we provide a circular manufacturing solution for eco-conscious performance brands.
+                  While sublimation requires polyester, VastraaGlobal is a leader in printing on <strong>Recycled Polyester (rPET).</strong> By pairing our waterless sublimation process with fabrics made from post-consumer plastic bottles, we provide a circular manufacturing solution for eco-conscious performance brands.
                 </p>
                 <p>
                   Our sublimation facility in India uses zero water in the transfer process and is powered by on-site renewable energy, making it one of the cleanest high-volume printing units in the region.

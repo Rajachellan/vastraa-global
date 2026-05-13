@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
 const menuData = [
   {
     title: "Custom Fabrics by Property",
@@ -46,9 +45,9 @@ export const MegaMenu = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-accent/5 z-50 py-12 px-6"
     >
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-10">
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-5 gap-10">
         {menuData.map((column, idx) => (
-          <div key={idx} className="space-y-6">
+          <div key={idx} className="space-y-6 ">
             <h4 className="text-sm font-bold uppercase tracking-widest text-accent/40 border-b border-accent/5 pb-2">
               {column.title}
             </h4>
@@ -71,7 +70,7 @@ export const MegaMenu = () => {
       {/* Featured Banner in Mega Menu (Optional Premium Touch) */}
       <div className="container mx-auto mt-12 pt-8 border-t border-accent/5 flex justify-between items-center">
         <p className="text-xs text-accent/40">
-          Free Swatch Pack on orders over ₹5,000. <Link href="/about" className="text-secondary underline">Learn more</Link>
+          Not sure which fabric suits your design? <Link href="/contact" className="text-secondary underline">Get expert consultation</Link>
         </p>
         <div className="flex gap-4">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />

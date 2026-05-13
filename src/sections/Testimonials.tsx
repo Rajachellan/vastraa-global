@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
   {
-    quote: "Exceptional fabric printing quality with rich colors, sharp detailing, and consistent results across every production batch.",
+    quote: "Exceptional fabric printing quality with rich colors, sharp detailing and consistent results across every production batch.",
     author: "Elena Rossi",
     role: "Fashion Designer"
   },
@@ -33,7 +33,7 @@ const testimonials = [
   },
   {
     quote:
-      "Professional service, fast delivery, and world-class fabric printing support for our growing apparel brand.",
+      "Professional service, fast delivery and world-class fabric printing support for our growing apparel brand.",
     author: "Ethan Walker",
     role: "Garment Exporter",
   },
@@ -63,7 +63,7 @@ export const Testimonials = () => {
 
           <p className="text-accent/70 text-lg leading-relaxed">
             Delivering premium fabric printing solutions with precision,
-            consistency, and world-class quality for fashion and textile
+            consistency and world-class quality for fashion and textile
             businesses worldwide.
           </p>
         </div>

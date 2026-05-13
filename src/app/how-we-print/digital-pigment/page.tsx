@@ -110,7 +110,7 @@ export default function DigitalPigmentPage() {
                     </div>
                     <div className="space-y-2">
                       <div className="font-bold text-secondary text-sm uppercase tracking-widest">Versatility</div>
-                      <p className="text-sm text-white/60 leading-relaxed">Works perfectly on natural fibers (Cotton, Linen), synthetics (Polyester), and complex blends.</p>
+                      <p className="text-sm text-white/60 leading-relaxed">Works perfectly on natural fibers (Cotton, Linen), synthetics (Polyester) and complex blends.</p>
                     </div>
                     <div className="space-y-2">
                       <div className="font-bold text-secondary text-sm uppercase tracking-widest">Color Fastness</div>

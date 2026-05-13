@@ -18,7 +18,6 @@ const designs = [
     name: "Midnight Blossom",
     category: "Floral",
     designer: "Sarah Jenkins",
-    price: "₹3,750",
     image: "/images/trending1.png",
     description: "Intricate floral patterns on a deep indigo background, perfect for evening wear.",
     resolution: "300 DPI",
@@ -29,7 +28,6 @@ const designs = [
     name: "Golden Meridian",
     category: "Geometric",
     designer: "Studio Luxe",
-    price: "₹4,350",
     image: "/images/trending2.png",
     description: "Sharp, elegant geometric lines infused with metallic gold accents.",
     resolution: "600 DPI",
@@ -40,7 +38,6 @@ const designs = [
     name: "Oceanic Flow",
     category: "Abstract",
     designer: "Marcello V.",
-    price: "₹3,200",
     image: "/images/trending3.png",
     description: "Fluid abstract movements inspired by deep sea currents and coral life.",
     resolution: "300 DPI",
@@ -51,7 +48,6 @@ const designs = [
     name: "Royal Ikat",
     category: "Traditional",
     designer: "Anita Rao",
-    price: "₹4,000",
     image: "/images/trending_textile_design_4.png",
     description: "A modern take on traditional Ikat weaving patterns with vibrant pigments.",
     resolution: "450 DPI",
@@ -62,8 +58,7 @@ const designs = [
     name: "Cyber Grid",
     category: "Modern",
     designer: "Neo Textile",
-    price: "₹2,950",
-    image: "/images/trending2.png",
+    image: "/images/grid.jpg",
     description: "Futuristic grid patterns designed for contemporary streetwear collections.",
     resolution: "300 DPI",
     format: "JPG/PNG"
@@ -73,8 +68,7 @@ const designs = [
     name: "Wild Peonies",
     category: "Floral",
     designer: "Elena G.",
-    price: "₹3,500",
-    image: "/images/trending1.png",
+    image: "/images/Wild-Peonies.jpg",
     description: "Hand-painted peonies with a soft watercolor effect, ideal for summer dresses.",
     resolution: "600 DPI",
     format: "TIFF/PSD"
@@ -84,8 +78,7 @@ const designs = [
     name: "Saffron Paisley",
     category: "Traditional",
     designer: "Rajesh K.",
-    price: "₹4,200",
-    image: "/images/trending_textile_design_4.png",
+    image: "/images/Saffron-Paisley.jpg",
     description: "Ornate paisley motifs in rich saffron and crimson tones, inspired by heritage tapestries.",
     resolution: "400 DPI",
     format: "TIFF"
@@ -95,8 +88,7 @@ const designs = [
     name: "Urban Glitch",
     category: "Modern",
     designer: "Pixel Art",
-    price: "₹3,100",
-    image: "/images/trending2.png",
+    image: "/images/Urban-Glitch.jpg",
     description: "Distorted digital textures and neon accents for an edgy, tech-wear aesthetic.",
     resolution: "300 DPI",
     format: "PNG"
@@ -106,8 +98,7 @@ const designs = [
     name: "Tropical Breeze",
     category: "Floral",
     designer: "Isabella S.",
-    price: "₹3,800",
-    image: "/images/trending3.png",
+    image: "/images/Tropical-Breeze.jpg",
     description: "Vibrant tropical leaves and exotic birds in a lush, jungle-inspired composition.",
     resolution: "500 DPI",
     format: "PSD/TIFF"
@@ -117,8 +108,7 @@ const designs = [
     name: "Lattice Work",
     category: "Geometric",
     designer: "Geometrica",
-    price: "₹3,400",
-    image: "/images/trending2.png",
+    image: "/images/Lattice-Work.jpg",
     description: "Intricate interlocking shapes inspired by classical architectural lattice screens.",
     resolution: "600 DPI",
     format: "AI/SVG"
@@ -128,8 +118,7 @@ const designs = [
     name: "Nebula Mist",
     category: "Abstract",
     designer: "Cosmos Design",
-    price: "₹4,500",
-    image: "/images/trending3.png",
+    image:"/images/Nebula-Mist.jpg",
     description: "Ethereal, swirling gaseous patterns mimicking the beauty of deep space nebulae.",
     resolution: "300 DPI",
     format: "TIFF/PSD"
@@ -139,8 +128,7 @@ const designs = [
     name: "Vintage Rose",
     category: "Floral",
     designer: "Clara M.",
-    price: "₹3,300",
-    image: "/images/trending1.png",
+    image: "/images/Vintage-Rose.jpg",
     description: "Delicate, faded rose patterns for a nostalgic and romantic textile feel.",
     resolution: "600 DPI",
     format: "PSD"
@@ -150,9 +138,8 @@ const designs = [
 export default function DesignsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const { addToCart, toggleWishlist, isInWishlist } = useStore();
+  const { toggleWishlist, isInWishlist } = useStore();
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
-  const router = useRouter();
 
   const filteredDesigns = designs.filter(design => {
     const matchesCategory = activeCategory === "All" || design.category === activeCategory;
@@ -161,26 +148,19 @@ export default function DesignsPage() {
     return matchesCategory && matchesSearch;
   });
 
-  const handleAddToCart = (design: any) => {
-    addToCart({
-      id: design.id,
-      name: design.name,
-      price: design.price,
-      image: design.image,
-      type: "Printable Design"
-    });
-    setToast({ show: true, message: `${design.name} added to your bag!` });
+  const handleGetQuote = (design: any) => {
+    setToast({ show: true, message: `Quote request for ${design.name} submitted! Our team will contact you.` });
   };
 
-  const handleBuyNow = (design: any) => {
-    addToCart({
+  const handleToggleWishlist = (design: any) => {
+    toggleWishlist({
       id: design.id,
       name: design.name,
-      price: design.price,
-      image: design.image,
-      type: "Printable Design"
+      image: design.image
     });
-    router.push("/cart");
+    if (!isInWishlist(design.id)) {
+      setToast({ show: true, message: `${design.name} added to your favorites!` });
+    }
   };
 
   return (
@@ -202,7 +182,7 @@ export default function DesignsPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-6xl md:text-8xl font-serif text-accent mb-8"
             >
-              Printable <span className="text-secondary italic">Artistry</span>
+              Custom <span className="text-secondary italic">Artistry</span>
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -210,7 +190,7 @@ export default function DesignsPage() {
               transition={{ delay: 0.1 }}
               className="text-xl text-accent/60 leading-relaxed max-w-2xl"
             >
-              Discover high-fidelity textile designs ready for immediate digital printing. From traditional motifs to contemporary abstracts, source the perfect pattern for your next collection.
+              Upload your design or choose from our curated patterns. Premium textile solutions tailored for your unique brand requirements.
             </motion.p>
           </div>
         </div>
@@ -282,7 +262,7 @@ export default function DesignsPage() {
                     {/* Overlay Actions */}
                     <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center gap-4">
                       <button 
-                        onClick={() => toggleWishlist({ id: design.id, name: design.name, price: design.price, image: design.image })}
+                        onClick={() => handleToggleWishlist(design)}
                         className={`p-4 rounded-full transition-all duration-300 ${
                           isInWishlist(design.id) 
                           ? "bg-secondary text-white" 
@@ -292,10 +272,10 @@ export default function DesignsPage() {
                         <Heart size={20} fill={isInWishlist(design.id) ? "currentColor" : "none"} />
                       </button>
                       <button 
-                        onClick={() => handleAddToCart(design)}
-                        className="p-4 bg-white text-accent rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
+                        onClick={() => handleGetQuote(design)}
+                        className="bg-white text-accent px-6 py-3 rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
                       >
-                        <ShoppingBag size={20} />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
                       </button>
                     </div>
 
@@ -313,7 +293,6 @@ export default function DesignsPage() {
                         <h3 className="text-2xl font-serif text-accent mb-1">{design.name}</h3>
                         <p className="text-xs text-secondary font-bold uppercase tracking-widest">By {design.designer}</p>
                       </div>
-                      <span className="text-xl font-bold text-accent">{design.price}</span>
                     </div>
                     
                     <p className="text-sm text-accent/60 leading-relaxed mb-8 line-clamp-2">
@@ -327,10 +306,10 @@ export default function DesignsPage() {
                         <span>{design.format}</span>
                       </div>
                       <button 
-                        onClick={() => handleBuyNow(design)}
+                        onClick={() => handleGetQuote(design)}
                         className="text-accent hover:text-secondary flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors group/btn"
                       >
-                        Buy Now
+                        Request Quote
                         <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>

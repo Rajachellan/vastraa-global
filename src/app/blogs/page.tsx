@@ -54,7 +54,7 @@ export default function BlogsPage() {
               Textile <span className="text-secondary">Intelligence</span>
             </h1>
             <p className="text-xl text-accent/60 leading-relaxed max-w-2xl">
-              Insights, technical guides, and industry reports from the forefront of digital textile manufacturing.
+              Insights, technical guides and industry reports from the forefront of digital textile manufacturing.
             </p>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function BlogsPage() {
           <div className="mt-32 p-16 bg-accent rounded-[4rem] text-center relative overflow-hidden">
             <div className="relative z-10 max-w-2xl mx-auto space-y-8">
               <h3 className="text-4xl font-serif text-white">Stay Ahead of the <span className="text-secondary">Market</span></h3>
-              <p className="text-white/50">Join our monthly newsletter for technical reports, fabric trends, and B2B pricing updates.</p>
+              <p className="text-white/50">Join our monthly newsletter for technical reports, fabric trends and B2B pricing updates.</p>
               <form className="flex gap-4 max-w-md mx-auto">
                 <input 
                   type="email" 

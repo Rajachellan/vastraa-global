@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -33,11 +33,11 @@ export const Hero = () => {
               Exquisite Craftsmanship
             </span>
             <h1 className="text-5xl md:text-7xl font-serif text-accent mb-8 leading-[1.1]">
-              Design Your Fabric, <br />
-              <span>Define Your Style</span>
+              Custom Fabric Printing <br />
+              <span className="text-secondary">For Every Brand</span>
             </h1>
             <p className="text-lg text-accent/80 mb-10 leading-relaxed max-w-lg">
-              Unlock your creativity with our premium custom printing services. From luxurious silks to organic cottons, bring your unique patterns to life.
+              Upload your design and we&apos;ll handle the rest. Premium textile solutions tailored for your unique brand requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="primary" size="lg" className="group">

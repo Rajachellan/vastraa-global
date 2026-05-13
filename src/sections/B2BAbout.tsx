@@ -44,10 +44,10 @@ export const B2BAbout = () => {
                 Established in 1975, Vastraa Global began with traditional screen printing and evolved into a leader in digital textile printing.
               </p>
               <p>
-                In 2018, we adopted advanced digital printing technologies, delivering precision, vibrant colors, and intricate designs across diverse fabrics.
+                In 2018, we adopted advanced digital printing technologies, delivering precision, vibrant colors and intricate designs across diverse fabrics.
               </p>
               <p>
-                We transform creative ideas into reality with innovation, sustainability, and craftsmanship.
+                We transform creative ideas into reality with innovation, sustainability and craftsmanship.
               </p>
             </div>
           </motion.div>
@@ -95,26 +95,33 @@ export const B2BAbout = () => {
           </h3>
         </motion.div>
 
-        {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {reasons.map((reason, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 + i * 0.1 }}
-            >
-              <div className="p-6 md:p-8 rounded-2xl bg-bg-ivory border border-accent/5 hover:border-secondary/30 hover:shadow-xl transition-all duration-500 h-full flex flex-col items-center text-center group">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
-                  <CheckCircle2 size={24} className="text-secondary" />
-                </div>
-                <p className="font-serif text-base md:text-lg text-accent group-hover:text-secondary transition-colors duration-300">
-                  {reason}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+  {/* Feature Cards Grid */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+  {reasons.map((reason, i) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.5 + i * 0.1 }}
+    >
+      <div className="p-6 md:p-8 rounded-2xl bg-[#FDFBF7] border border-[#E8E2D6] hover:border-[#C9D8CB] hover:shadow-xl transition-all duration-500 h-full flex flex-col items-center text-center group">
+
+        {/* Icon */}
+        <div className="w-14 h-14 rounded-full bg-[#E8F1EA] flex items-center justify-center mb-6 group-hover:bg-[#DDEADF] transition-all duration-300 shadow-sm">
+          <CheckCircle2
+            size={26}
+            className="text-[#1a5e29] group-hover:scale-110 transition-transform duration-300"
+          />
         </div>
+
+        {/* Text */}
+        <p className="font-serif text-base md:text-lg leading-relaxed text-[#3F3A34] group-hover:text-[#5F7A65] transition-colors duration-300">
+          {reason}
+        </p>
+      </div>
+    </motion.div>
+  ))}
+</div>
 
       </div>
     </section>

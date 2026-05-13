@@ -43,7 +43,7 @@ export default function LinenPage() {
           >
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Premium <span className="text-secondary">Linen</span></h1>
             <p className="text-lg sm:text-xl text-white/70 leading-relaxed mb-8">
-              Timeless, durable, and naturally cool. Sourced from the finest flax fields in Belgium and France. The ultimate choice for sustainable luxury.
+              Timeless, durable and naturally cool. Sourced from the finest flax fields in Belgium and France. The ultimate choice for sustainable luxury.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -126,7 +126,7 @@ export default function LinenPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
                   <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
                     <div className="text-2xl font-serif text-accent mb-2">100% Pure Linen</div>
-                    <p className="text-sm text-accent/50">160-200 GSM. The classic choice for resort wear, trousers, and luxury bedding.</p>
+                    <p className="text-sm text-accent/50">160-200 GSM. The classic choice for resort wear, trousers and luxury bedding.</p>
                   </div>
                   <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
                     <div className="text-2xl font-serif text-accent mb-2">Linen-Cotton Blend</div>
@@ -144,7 +144,7 @@ export default function LinenPage() {
 
                 <h2 className="text-3xl font-serif text-accent">Digital Printing on Linen</h2>
                 <p>
-                  Linen's irregular surface texture (slubs) poses a challenge for traditional printing, but it is where **Digital Pigment Printing** truly shines. The digital print heads can "fly" over the surface irregularities, delivering ink precisely without the smearing that can occur with screen printing.
+                  Linen's irregular surface texture (slubs) poses a challenge for traditional printing, but it is where <strong>Digital Pigment Printing</strong> truly shines. The digital print heads can "fly" over the surface irregularities, delivering ink precisely without the smearing that can occur with screen printing.
                 </p>
                 <p>
                   The result is a print that looks like it is part of the fiber's history. The natural flax color (often called 'oatmeal' or 'greige') serves as a beautiful base for muted, earthy tones and sophisticated botanical designs.
@@ -162,7 +162,7 @@ export default function LinenPage() {
                     </div>
                     <div className="space-y-2">
                       <div className="text-secondary text-xs font-bold uppercase tracking-widest">Anti-Bacterial</div>
-                      <p className="text-sm text-white/60">Naturally resistant to bacteria, mold, and moths.</p>
+                      <p className="text-sm text-white/60">Naturally resistant to bacteria, mold and moths.</p>
                     </div>
                     <div className="space-y-2">
                       <div className="text-secondary text-xs font-bold uppercase tracking-widest">No-Chemical Finishing</div>
@@ -170,14 +170,14 @@ export default function LinenPage() {
                     </div>
                     <div className="space-y-2">
                       <div className="text-secondary text-xs font-bold uppercase tracking-widest">Global Logistics</div>
-                      <p className="text-sm text-white/60">Fast shipping to fashion hubs in the UK, Europe, and North America.</p>
+                      <p className="text-sm text-white/60">Fast shipping to fashion hubs in the UK, Europe and North America.</p>
                     </div>
                   </div>
                 </div>
 
                 <h2 className="text-3xl font-serif text-accent">The Sustainability of Flax</h2>
                 <p>
-                  Flax is a remarkable plant. It requires significantly less water than cotton and can grow in poor soil conditions where other crops would fail. Every part of the flax plant is used — the seeds for oil and food, the long fibers for linen, and the shorter fibers for paper and rope.
+                  Flax is a remarkable plant. It requires significantly less water than cotton and can grow in poor soil conditions where other crops would fail. Every part of the flax plant is used — the seeds for oil and food, the long fibers for linen and the shorter fibers for paper and rope.
                 </p>
                 <p>
                   At VastraaGlobal, we champion linen as the ultimate "circular" textile. It is 100% biodegradable and, because of its extreme durability, garments made from our linen are meant to be passed down through generations, actively combating the "throwaway" culture of fast fashion.

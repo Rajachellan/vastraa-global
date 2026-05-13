@@ -72,12 +72,37 @@ export default function SignInPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <button className="flex items-center justify-center gap-3 border border-accent/5 rounded-2xl py-3 hover:bg-bg-ivory transition-colors text-accent text-sm font-medium">
-              <Globe size={18} /> Google
-            </button>
-            <button className="flex items-center justify-center gap-3 border border-accent/5 rounded-2xl py-3 hover:bg-bg-ivory transition-colors text-accent text-sm font-medium">
-              <Globe size={18} /> GitHub
-            </button>
+{/* Google Button */}
+<button
+  onClick={() =>
+    window.open(
+      "https://accounts.google.com/signin",
+      "_blank"
+    )
+  }
+  className="flex items-center justify-center gap-3 border border-accent/5 rounded-2xl py-3 hover:bg-bg-ivory transition-colors text-accent text-sm font-medium"
+>
+  <Globe size={18} />
+   Google
+</button>
+
+{/* GitHub Button */}
+<button
+  onClick={() => window.open("https://github.com", "_blank")}
+  className="flex items-center justify-center gap-3 border border-accent/5 rounded-2xl py-3 hover:bg-bg-ivory transition-colors text-accent text-sm font-medium"
+>
+   <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="text-accent"
+  >
+    <path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 008 10.95c.6.1.82-.26.82-.58v-2.02c-3.26.71-3.95-1.39-3.95-1.39-.55-1.38-1.33-1.75-1.33-1.75-1.09-.75.08-.74.08-.74 1.2.08 1.84 1.24 1.84 1.24 1.08 1.84 2.82 1.31 3.5 1 .1-.79.42-1.31.76-1.61-2.6-.3-5.34-1.3-5.34-5.78 0-1.28.46-2.32 1.22-3.14-.12-.3-.53-1.53.12-3.18 0 0 1-.32 3.3 1.2a11.5 11.5 0 016 0c2.3-1.52 3.3-1.2 3.3-1.2.65 1.65.24 2.88.12 3.18.76.82 1.22 1.86 1.22 3.14 0 4.49-2.75 5.47-5.37 5.77.43.37.81 1.1.81 2.22v3.3c0 .32.22.69.83.57A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z" />
+  </svg>
+  GitHub
+</button>
           </div>
 
 

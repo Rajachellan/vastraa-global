@@ -14,26 +14,26 @@ const categories = [
     id: "natural",
     name: "Natural Fabrics",
     items: [
-      { id: "f1", name: "Cotton", description: "Soft, breathable, and highly durable for versatile applications.", image: "/images/fabric_cotton.png", price: "₹1,000/m" },
-      { id: "f2", name: "Linen", description: "Strong, cool, and undeniably premium with a natural texture.", image: "/images/fabric-linen.png", price: "₹1,500/m" }
+      { id: "f1", name: "Cotton", description: "Soft, breathable and highly durable for versatile applications.", image: "/images/cotton.png" },
+      { id: "f2", name: "Linen", description: "Strong, cool and undeniably premium with a natural texture.", image: "/images/fabric-linen.png" }
     ]
   },
   {
     id: "semi-synthetic",
     name: "Semi-Synthetic",
     items: [
-      { id: "f3", name: "Viscose", description: "Silky, smooth, and excellent at holding vibrant digital prints.", image: "/images/fabric-viscose.png", price: "₹1,250/m" },
-      { id: "f4", name: "Modal", description: "Incredibly soft and durable, perfect for luxurious drapes.", image: "/images/silk-close-up.png", price: "₹1,350/m" }
+      { id: "f3", name: "Viscose", description: "Silky, smooth and excellent at holding vibrant digital prints.", image: "/images/fabric-viscose.png" },
+      { id: "f4", name: "Modal", description: "Incredibly soft and durable, perfect for luxurious drapes.", image: "/images/silk-close-up.png" }
     ]
   },
   {
     id: "blended",
     name: "Blended",
     items: [
-      { id: "f5", name: "Cotton-Linen", description: "Combining cotton's softness with linen's structured elegance.", image: "/images/fabric-blends.png", price: "₹1,700/m" },
-      { id: "f6", name: "Cotton-Viscose", description: "Breathable and luminous, ideal for high-end fashion garments.", image: "/images/fabric-viscose.png", price: "₹1,600/m" },
-      { id: "f7", name: "Cotton-Silk", description: "The ultimate luxury blend offering durability and a lustrous finish.", image: "/images/silk-close-up.png", price: "₹2,350/m" },
-      { id: "f8", name: "Linen-Viscose", description: "A beautifully textured fabric with a smooth, flowing drape.", image: "/images/fabric-linen.png", price: "₹1,850/m" }
+      { id: "f5", name: "Cotton-Linen", description: "Combining cotton's softness with linen's structured elegance.", image: "/images/fabric-blends.png" },
+      { id: "f6", name: "Cotton-Viscose", description: "Breathable and luminous, ideal for high-end fashion garments.", image: "/images/fabric-viscose.png" },
+      { id: "f7", name: "Cotton-Silk", description: "The ultimate luxury blend offering durability and a lustrous finish.", image: "/images/silk-close-up.png" },
+      { id: "f8", name: "Linen-Viscose", description: "A beautifully textured fabric with a smooth, flowing drape.", image: "/images/fabric-linen.png" }
     ]
   }
 ];
@@ -41,7 +41,7 @@ const categories = [
 export default function FabricsMainPage() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
-  const { addToCart, toggleWishlist, isInWishlist } = useStore();
+  const { toggleWishlist, isInWishlist } = useStore();
 
   const showToast = (message: string) => {
     setToast({ show: true, message });
@@ -51,19 +51,14 @@ export default function FabricsMainPage() {
     ? categories
     : categories.filter(c => c.name === activeFilter);
 
-  const handleRequestSample = (itemName: string) => {
-    showToast(`Sample request for ${itemName} has been sent!`);
-  };
-
-  const handleAddToCart = (item: any) => {
-    addToCart(item);
-    showToast(`${item.name} added to your bag!`);
+  const handleGetQuote = (itemName: string) => {
+    showToast(`Quote request for ${itemName} has been sent! Our experts will contact you soon.`);
   };
 
   const handleToggleWishlist = (item: any) => {
     toggleWishlist(item);
     if (!isInWishlist(item.id)) {
-      showToast(`${item.name} added to your wishlist!`);
+      showToast(`${item.name} added to your favorites!`);
     }
   };
 
@@ -78,29 +73,35 @@ export default function FabricsMainPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
-        <Image
-          src="/images/silk-close-up.png"
-          alt="Our Fabric Collection"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-accent/60 backdrop-blur-[2px]" />
-        <div className="container mx-auto px-6 relative z-10 text-white text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">
-              Explore Our <span className="text-secondary">Collection</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto font-light">
-              A curated selection of premium textiles, meticulously prepared for high-fidelity digital printing.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+   <section className="relative h-[60vh] flex items-center overflow-hidden">
+  <Image
+    src="/images/printing-cloths (5).jpg"
+    alt="Premium Mulberry Silk"
+    fill
+    priority
+    className="object-cover"
+  />
+
+  {/* Light Overlay */}
+  <div className="absolute inset-0 bg-black/35" />
+
+  <div className="container mx-auto px-6 relative z-10 text-white text-center">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="max-w-4xl mx-auto"
+    >
+      <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">
+        Explore Our <span className="text-secondary">Collection</span>
+      </h1>
+
+      <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto font-light">
+        Premium textile solutions tailored for your unique brand.
+        From fabric selection to final print, we handle the rest.
+      </p>
+    </motion.div>
+  </div>
+</section>
 
       {/* Main Content */}
       <section className="py-24">
@@ -164,24 +165,15 @@ export default function FabricsMainPage() {
                       <div className="w-full md:w-3/5 p-8 md:p-10 flex flex-col justify-center">
                         <div className="flex justify-between items-start mb-4">
                           <h3 className="text-3xl font-serif text-accent">{item.name}</h3>
-                          <span className="text-secondary font-bold font-sans">{item.price}</span>
                         </div>
                         <p className="text-accent/60 leading-relaxed mb-8">{item.description}</p>
 
-                        <div className="mt-auto flex items-center gap-4">
+                        <div className="mt-auto">
                           <button 
-                            onClick={() => handleRequestSample(item.name)}
-                            className="flex-1 bg-accent/5 text-accent hover:bg-secondary hover:text-white px-6 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all duration-300"
+                            onClick={() => handleGetQuote(item.name)}
+                            className="w-full bg-accent text-white hover:bg-secondary px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
                           >
-                            Request Sample
-                          </button>
-                          <button 
-                            onClick={() => handleAddToCart(item)}
-                            className="bg-accent text-white hover:bg-secondary px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
-                            title="Add to Bag"
-                          >
-                            <ShoppingBag size={18} />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Add to Bag</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
                           </button>
                         </div>
                       </div>

@@ -15,7 +15,7 @@ export default function QualityControlPage() {
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <Image 
-          src="/images/quality-control-premium.png" 
+          src="/images/printing-cloths (2).jpg"
           alt="Quality Control and Technical Standards" 
           fill 
           className="object-cover"
@@ -59,7 +59,7 @@ export default function QualityControlPage() {
                     </div>
                     <div>
                       <div className="text-sm font-bold text-accent">Lab Testing</div>
-                      <div className="text-xs text-accent/50 leading-relaxed">ISO 105 Compliant</div>
+                      <div className="text-xs text-accent/50 leading-relaxed">GRS Certified</div>
                     </div>
                   </li>
                   <li className="flex gap-4">
@@ -107,7 +107,7 @@ export default function QualityControlPage() {
                     </div>
                     <div>
                       <h4 className="text-xl font-serif text-accent mb-2">Grey Fabric Audit</h4>
-                      <p className="text-sm text-accent/50 leading-relaxed">Before printing, raw (grey) fabric is checked for GSM accuracy, weaving defects, and moisture content. Any roll failing this audit is immediately rejected.</p>
+                      <p className="text-sm text-accent/50 leading-relaxed">Before printing, raw (grey) fabric is checked for GSM accuracy, weaving defects and moisture content. Any roll failing this audit is immediately rejected.</p>
                     </div>
                   </div>
                   <div className="flex gap-6 p-8 bg-bg-ivory rounded-3xl border border-accent/5 items-center">
@@ -134,7 +134,7 @@ export default function QualityControlPage() {
                     </div>
                     <div>
                       <h4 className="text-xl font-serif text-accent mb-2">Final 100% Inspection</h4>
-                      <p className="text-sm text-accent/50 leading-relaxed">Every meter of finished fabric is passed over light-tables for a manual 4-point audit, checking for print consistency, handle, and width uniformity.</p>
+                      <p className="text-sm text-accent/50 leading-relaxed">Every meter of finished fabric is passed over light-tables for a manual 4-point audit, checking for print consistency, handle and width uniformity.</p>
                     </div>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default function QualityControlPage() {
                       <CheckCircle2 className="text-secondary" size={20} />
                       <span className="font-bold text-accent">Wash Fastness:</span>
                     </div>
-                    <p className="text-sm text-accent/50 leading-relaxed">Tested according to ISO 105-C06 standards. We guarantee minimal color loss even after 50 intensive wash cycles.</p>
+                    <p className="text-sm text-accent/50 leading-relaxed">Certified according to Global Recycled Standard (GRS) for recycled content and chemical safety.</p>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -194,8 +194,8 @@ export default function QualityControlPage() {
                       <p className="text-sm text-white/60 leading-relaxed">Zero discharge of hazardous chemicals across our entire production process.</p>
                     </div>
                     <div className="space-y-2">
-                      <div className="text-secondary text-xs font-bold uppercase tracking-widest">ISO 9001:2015</div>
-                      <p className="text-sm text-white/60 leading-relaxed">Certified quality management systems that prioritize customer satisfaction and continuous improvement.</p>
+                      <div className="text-secondary text-xs font-bold uppercase tracking-widest">GRS (Global Recycled Standard)</div>
+                      <p className="text-sm text-white/60 leading-relaxed">Ensuring recycled content, social and environmental practices, and chemical restrictions in our production.</p>
                     </div>
                   </div>
                 </div>

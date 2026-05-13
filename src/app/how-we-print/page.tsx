@@ -1,12 +1,10 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { FileText, Microscope, PackageCheck, HeartHandshake } from "lucide-react";
-
 const steps = [
   {
     icon: FileText,
@@ -49,7 +47,6 @@ export default function HowWePrintPage() {
   return (
     <main className="flex min-h-screen flex-col bg-bg-ivory">
       <Navbar />
-
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <Image
@@ -71,7 +68,7 @@ export default function HowWePrintPage() {
               Our Fabric Printing <span className="text-secondary">Journey</span>
             </h1>
             <p className="text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
-              A transparent, meticulous, and collaborative approach to bringing your textile visions to life.
+              A transparent, meticulous and collaborative approach to bringing your textile visions to life.
             </p>
           </motion.div>
         </div>

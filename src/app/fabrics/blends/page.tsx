@@ -15,7 +15,7 @@ export default function BlendsPage() {
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <Image 
-          src="/images/fabric-blends-premium.png" 
+          src="/images/fabric-blend.png"
           alt="Premium Fabric Blends" 
           fill 
           className="object-cover"
@@ -92,7 +92,7 @@ export default function BlendsPage() {
                   At VastraaGlobal, we view fabric blending as a scientific endeavor. By strategically combining different fibers, we can overcome the inherent limitations of each. Cotton provides softness but lacks the luster of silk; linen offers cooling but wrinkles easily; polyester adds strength but lacks breathability. Our engineered blends solve these challenges, providing B2B brands with textiles that perform as beautifully as they look.
                 </p>
                 <p>
-                  Our R&D team in Erode, India, works continuously to develop proprietary blend ratios that optimize for digital print reception, hand-feel, and longevity.
+                  Our R&D team in Erode, India, works continuously to develop proprietary blend ratios that optimize for digital print reception, hand-feel and longevity.
                 </p>
 
                 <h3 className="text-2xl font-serif text-accent">Our Signature Blends</h3>
@@ -124,7 +124,7 @@ export default function BlendsPage() {
                   Printing on blends is significantly more complex than printing on single-fiber fabrics. Because different fibers have different affinities for various ink types, achieving color uniformity requires deep technical expertise. 
                 </p>
                 <p>
-                  At VastraaGlobal, we solve this through our **Hybrid Ink Strategy**. For natural-rich blends, we use high-viscosity reactive inks that can bridge the gap between different fiber types. For synthetic blends, our digital pigment process offers a "one-ink-fits-all" solution that delivers consistent color across the entire surface of the textile.
+                  At VastraaGlobal, we solve this through our <strong> Hybrid Ink Strategy</strong>. For natural-rich blends, we use high-viscosity reactive inks that can bridge the gap between different fiber types. For synthetic blends, our digital pigment process offers a "one-ink-fits-all" solution that delivers consistent color across the entire surface of the textile.
                 </p>
 
                 <div className="p-12 bg-accent text-white rounded-4xl relative overflow-hidden my-20 shadow-xl">

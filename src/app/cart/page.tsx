@@ -16,11 +16,6 @@ export default function CartPage() {
   const { cart, removeFromCart, updateQuantity } = useStore();
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
 
-  const subtotal = cart.reduce((acc, item) => {
-    const price = parseFloat(item.price.replace(/[₹,]/g, "").split("/")[0]);
-    return acc + (isNaN(price) ? 0 : price) * item.quantity;
-  }, 0);
-
   return (
     <main className="flex min-h-screen flex-col pt-32">
       <Navbar />
@@ -33,14 +28,14 @@ export default function CartPage() {
 
       <section className="flex-1 py-16 bg-bg-ivory/30">
         <div className="container mx-auto px-6">
-          <h1 className="text-4xl font-serif text-accent mb-12">Your <span>Shopping Bag</span></h1>
+          <h1 className="text-4xl font-serif text-accent mb-12">Your <span>Quote Request Bag</span></h1>
 
           {cart.length === 0 ? (
             <div className="text-center py-24 bg-white rounded-[3rem] shadow-sm border border-accent/5">
               <ShoppingBag size={64} className="mx-auto text-accent/10 mb-6" />
-              <p className="text-xl text-accent/60 mb-8">Your bag is currently empty.</p>
+              <p className="text-xl text-accent/60 mb-8">Your quote request bag is currently empty.</p>
               <Link href="/fabrics">
-                <Button>Start Shopping</Button>
+                <Button>Explore Solutions</Button>
               </Link>
             </div>
           ) : (
@@ -77,7 +72,6 @@ export default function CartPage() {
                           </div>
                           
                           <div className="flex items-center gap-6">
-                            <span className="text-lg font-serif text-accent">{item.price}</span>
                             <button onClick={() => removeFromCart(item.id)} className="text-accent/30 hover:text-red-500 transition-colors">
                               <Trash2 size={18} />
                             </button>
@@ -92,33 +86,32 @@ export default function CartPage() {
               {/* Summary */}
               <div className="lg:col-span-4">
                 <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-accent/5 sticky top-40">
-                  <h3 className="text-2xl font-serif text-accent mb-8">Order Summary</h3>
+                  <h3 className="text-2xl font-serif text-accent mb-8">Quote Summary</h3>
                   
                   <div className="space-y-4 mb-8">
                     <div className="flex justify-between text-accent/60">
-                      <span>Subtotal</span>
-                      <span>₹{new Intl.NumberFormat('en-IN').format(subtotal)}</span>
+                      <span>Items for Review</span>
+                      <span>{cart.length}</span>
                     </div>
                     <div className="flex justify-between text-accent/60">
-                      <span>Shipping</span>
-                      <span className="text-secondary font-bold uppercase tracking-widest text-[10px] bg-secondary/10 px-2 py-1 rounded">Calculated at checkout</span>
+                      <span>Service Level</span>
+                      <span className="text-secondary font-bold uppercase tracking-widest text-[10px] bg-secondary/10 px-2 py-1 rounded">Premium Consultation</span>
                     </div>
-                    <div className="border-t border-accent/5 pt-4 flex justify-between text-xl text-accent">
-                      <span className="font-serif">Total</span>
-                      <span className="font-bold">₹{new Intl.NumberFormat('en-IN').format(subtotal)}</span>
+                    <div className="border-t border-accent/5 pt-4 text-sm text-accent/60 italic">
+                      Our experts will analyze your requirements and provide a tailored quote within 24 hours.
                     </div>
                   </div>
 
                   <Button 
                     className="w-full group"
-                    onClick={() => setToast({ show: true, message: "Proceeding to secure checkout..." })}
+                    onClick={() => setToast({ show: true, message: "Quote request submitted! Our team will contact you soon." })}
                   >
-                    Checkout Now
+                    Request Custom Quote
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                   </Button>
                   
                   <div className="mt-8 text-center">
-                    <p className="text-[10px] text-accent/30 uppercase tracking-[0.2em] font-bold">Secure Checkout Powered by Stripe</p>
+                    <p className="text-[10px] text-accent/30 uppercase tracking-[0.2em] font-bold">Trusted by Global Brands</p>
                   </div>
                 </div>
               </div>

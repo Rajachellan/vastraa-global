@@ -115,7 +115,7 @@ export default function ScreenPrintingPage() {
                   </div>
                   <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
                     <div className="text-xl font-serif text-accent mb-2">Specialty Finishes</div>
-                    <p className="text-sm text-accent/50 leading-relaxed">Incorporating foils, glitters, metallic inks, and high-density "puff" prints for boutique collections.</p>
+                    <p className="text-sm text-accent/50 leading-relaxed">Incorporating foils, glitters, metallic inks and high-density "puff" prints for boutique collections.</p>
                   </div>
                 </div>
 

@@ -29,7 +29,7 @@ export default function ViscosePage() {
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <Image 
-          src="/images/fabric-viscose-premium.png" 
+          src="/images/printing-cloths (1).jpg"
           alt="Premium Sustainable Viscose" 
           fill 
           className="object-cover"
@@ -112,7 +112,7 @@ export default function ViscosePage() {
               <div className="prose prose-lg prose-accent max-w-none text-accent/70 space-y-8">
                 <h2 className="text-4xl font-serif text-accent">Viscose: The Bridge Between Nature and Science</h2>
                 <p>
-                  Viscose (often called Rayon) is a semi-synthetic fiber that offers the best of both worlds: the breathability and comfort of a natural fiber with the consistency and performance of a manufactured one. At VastraaGlobal, we specialize in **Lenzing™ Ecovero™** and other FSC-certified viscose sources, ensuring that our production never contributes to the deforestation of ancient or endangered forests.
+                  Viscose (often called Rayon) is a semi-synthetic fiber that offers the best of both worlds: the breathability and comfort of a natural fiber with the consistency and performance of a manufactured one. At VastraaGlobal, we specialize in <strong>Lenzing™ Ecovero™</strong> and other FSC-certified viscose sources, ensuring that our production never contributes to the deforestation of ancient or endangered forests.
                 </p>
                 <p>
                   For our B2B clients in the contemporary womenswear and resort-wear markets, viscose is the undisputed leader for items requiring a soft "handle" and a fluid, feminine silhouette.
@@ -144,7 +144,7 @@ export default function ViscosePage() {
 
                 <h2 className="text-3xl font-serif text-accent">Digital Printing on Viscose</h2>
                 <p>
-                  Viscose is a dream canvas for digital printers. Because it is highly absorbent, the ink penetrates deeply into the fiber, resulting in a richness of color that is often superior to cotton. We primarily use **Reactive Digital Printing** for our viscose collections.
+                  Viscose is a dream canvas for digital printers. Because it is highly absorbent, the ink penetrates deeply into the fiber, resulting in a richness of color that is often superior to cotton. We primarily use <strong>Reactive Digital Printing</strong> for our viscose collections.
                 </p>
                 <p>
                   The chemical bond formed during reactive printing ensures that the vibrant designs are locked into the fiber, resisting fading even after multiple washes. Our precision print heads allow for the reproduction of intricate, high-definition patterns that make viscose garments stand out in the competitive retail market.

@@ -8,7 +8,7 @@ const steps = [
   {
     icon: <Shirt size={32} />,
     title: "Choose Your Fabric",
-    description: "Select from our premium range of cotton, silk, linen, and sustainable blends."
+    description: "Select from our premium range of cotton, silk, linen and sustainable blends."
   },
   {
     icon: <UploadCloud size={32} />,

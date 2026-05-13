@@ -13,6 +13,8 @@ import { FeaturedCategories } from "@/sections/FeaturedCategories";
 import { TrendingDesigns } from "@/sections/TrendingDesigns";
 import { Testimonials } from "@/sections/Testimonials";
 import { CTASection } from "@/sections/CTASection";
+import { FabricUpload } from "@/components/FabricUpload";
+import { ExpertConsultation } from "@/sections/ExpertConsultation";
 
 export default function Home() {
   return (
@@ -20,8 +22,10 @@ export default function Home() {
       <Navbar />
       <B2BHero />
       <B2BAbout />
+      <FabricUpload />
       <FeaturedCategories />
       <TrendingDesigns />
+      <ExpertConsultation />
       <Certifications />
       <ProductCategories />
       <ManufacturingCapabilities />

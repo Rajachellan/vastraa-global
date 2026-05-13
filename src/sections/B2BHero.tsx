@@ -9,24 +9,24 @@ import { ArrowRight, Globe, Shield, Zap } from "lucide-react";
 const slides = [
   {
     id: 1,
-    title: "Where Innovation Meets Fabric Excellence",
+    title: "Premium Textile Solutions Tailored For You",
     image: "/images/hero-b2b-new.png",
-    ctaText: "Explore Our Designs",
-    ctaLink: "/design-studio",
+    ctaText: "Get Expert Consultation",
+    ctaLink: "/contact",
   },
   {
     id: 2,
-    title: "Precision Digital Printing on Premium Textiles",
+    title: "From Fabric Selection To Final Print",
     image: "/images/mulberry_silk_texture.png",
-    ctaText: "Explore Our Premium Collection",
-    ctaLink: "/fabrics",
+    ctaText: "Explore Printing Methods",
+    ctaLink: "/how-we-print",
   },
   {
     id: 3,
-    title: "Creative Excellence Delivered with Precision",
+    title: "Smart Printing Suggestions Based On Your Fabric",
     image: "/images/warehouse.png",
-    ctaText: "Know About Us",
-    ctaLink: "/about",
+    ctaText: "Upload Your Design",
+    ctaLink: "/fabrics",
   }
 ];
 

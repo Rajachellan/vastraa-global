@@ -63,10 +63,10 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 text-accent/70 leading-relaxed text-lg">
                 <p>
-                  Our journey began in 1975, rooted in the rich traditions of screen printing. Over four decades, we honed our craft, developing a deep understanding of fabric behavior, color chemistry, and textile art.
+                  Our journey began in 1975, rooted in the rich traditions of screen printing. Over four decades, we honed our craft, developing a deep understanding of fabric behavior, color chemistry and textile art.
                 </p>
                 <p>
-                  In 2018, we embraced the future of fabric printing by integrating advanced digital technologies into our operations. This evolution allowed us to achieve unparalleled precision, vibrant colors, and intricate designs that were previously impossible.
+                  In 2018, we embraced the future of fabric printing by integrating advanced digital technologies into our operations. This evolution allowed us to achieve unparalleled precision, vibrant colors and intricate designs that were previously impossible.
                 </p>
               </div>
             </motion.div>
@@ -95,17 +95,18 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-5xl font-serif text-accent mb-8">
               Trust & <span className="text-secondary">Transparency</span>
             </h2>
-            <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-secondary/20">
-              <p className="text-accent/80 text-lg md:text-xl leading-relaxed mb-8">
-                VastraaGlobal is the export-focused identity of <strong>Indian Soft Colours (ISC)</strong>. While VastraaGlobal spearheads our international partnerships, all our industry certifications, technical audits, and four decades of manufacturing legacy are registered under our parent name, <strong>ISC</strong>.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm font-bold uppercase tracking-widest text-secondary">
-                <span className="px-6 py-3 bg-secondary/5 rounded-full">GOTS Certified</span>
-                <span className="px-6 py-3 bg-secondary/5 rounded-full">ISO 9001:2015</span>
-                <span className="px-6 py-3 bg-secondary/5 rounded-full">Sedex Member</span>
-                <span className="px-6 py-3 bg-secondary/5 rounded-full">OEKO-TEX 100</span>
-              </div>
-            </div>
+          <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-secondary/20">
+  <p className="text-accent/80 text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
+    VastraaGlobal delivers premium textile printing solutions for global brands with a strong focus on quality, sustainability, innovation and responsible manufacturing standards.
+  </p>
+
+  <div className="flex flex-wrap justify-center gap-4 text-sm font-bold uppercase tracking-widest text-secondary">
+    <span className="px-6 py-3 bg-secondary/5 rounded-full">GOTS Certified</span>
+    <span className="px-6 py-3 bg-secondary/5 rounded-full">GRS Certified</span>
+    <span className="px-6 py-3 bg-secondary/5 rounded-full">Sedex Member</span>
+    <span className="px-6 py-3 bg-secondary/5 rounded-full">OEKO-TEX 100</span>
+  </div>
+</div>
           </div>
         </div>
       </section>

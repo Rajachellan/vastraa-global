@@ -8,7 +8,7 @@ const offices = [
   {
     city: "Derby",
     country: "United Kingdom",
-    address: "58 Lyttleton Street, Derby, DE22 3FE",
+    address: "101 ASTWICK ROAD, LINCOLN, LINCOLNSHIRE, UNITED KINGDOM, LN6 7LL ",
     phone: "+44 7776698505",
     email: "ramesh85cloud@gmail.com",
     role: "UK Office",

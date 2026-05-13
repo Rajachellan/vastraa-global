@@ -12,55 +12,44 @@ const designs = [
     id: "td1",
     title: "Ethereal Florals",
     designer: "Sarah Jenkins",
-    image: "/images/trending1.png",
-    price: "₹3,750"
+    image: "/images/trending1.png"
   },
   {
     id: "td2",
     title: "Golden Hour",
     designer: "Studio Luxe",
-    image: "/images/trending2.png",
-    price: "₹4,350"
+    image: "/images/trending2.png"
   },
   {
     id: "td3",
     title: "Abstract Geometry",
     designer: "Marcello V.",
-    image: "/images/trending3.png",
-    price: "₹3,200"
+    image: "/images/trending3.png"
   },
   {
     id: "td4",
     title: "Heritage Motifs",
     designer: "Anita Rao",
-    image: "/images/trending_textile_design_4.png",
-    price: "₹4,000"
+    image: "/images/trending_textile_design_4.png"
   }
 ];
 
 export const TrendingDesigns = () => {
-  const { addToCart, toggleWishlist, isInWishlist } = useStore();
+  const { toggleWishlist, isInWishlist } = useStore();
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
 
-  const handleAddToCart = (design: any) => {
-    addToCart({
-      id: design.id,
-      name: design.title,
-      price: design.price,
-      image: design.image
-    });
-    setToast({ show: true, message: `${design.title} added to your bag!` });
+  const handleGetQuote = (design: any) => {
+    setToast({ show: true, message: `Quote request for ${design.title} submitted! Our team will contact you.` });
   };
 
   const handleToggleWishlist = (design: any) => {
     toggleWishlist({
       id: design.id,
       name: design.title,
-      price: design.price,
       image: design.image
     });
     if (!isInWishlist(design.id)) {
-      setToast({ show: true, message: `${design.title} added to your wishlist!` });
+      setToast({ show: true, message: `${design.title} added to your favorites!` });
     }
   };
 
@@ -108,10 +97,10 @@ export const TrendingDesigns = () => {
                     <Heart size={20} fill={isInWishlist(design.id) ? "currentColor" : "none"} />
                   </button>
                   <button 
-                    onClick={() => handleAddToCart(design)}
-                    className="p-4 bg-white text-accent rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
+                    onClick={() => handleGetQuote(design)}
+                    className="flex items-center gap-2 bg-white text-accent px-6 py-3 rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
                   >
-                    <ShoppingBag size={20} />
+                    <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
                   </button>
                 </div>
 
@@ -121,7 +110,6 @@ export const TrendingDesigns = () => {
                   <h3 className="text-2xl font-serif text-white mb-2">{design.title}</h3>
                   <div className="flex justify-between items-center">
                     <p className="text-secondary text-sm tracking-widest uppercase">By {design.designer}</p>
-                    <span className="text-white font-bold">{design.price}</span>
                   </div>
                 </div>
               </div>

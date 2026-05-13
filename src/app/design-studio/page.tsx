@@ -211,7 +211,7 @@ export default function DesignStudio() {
                 Textile design is a unique discipline that bridges the gap between 2D graphic art and 3D industrial manufacturing. At VastraaGlobal, we provide the technical infrastructure that allows your digital creations to translate perfectly onto physical fabric.
               </p>
               <p className="mt-8">
-                The most critical aspect of digital textile design is understanding the **Repeat**. A design must not only look good as a single tile but must flow seamlessly across hundreds of meters of fabric. Our Studio tool allows you to test various repeat styles — from the standard Grid to the more complex Half-Drop and Half-Brick configurations — in real-time. This prevents the "laddering" effect often seen in poorly constructed patterns.
+                The most critical aspect of digital textile design is understanding the <strong>Repeat</strong>. A design must not only look good as a single tile but must flow seamlessly across hundreds of meters of fabric. Our Studio tool allows you to test various repeat styles — from the standard Grid to the more complex Half-Drop and Half-Brick configurations — in real-time. This prevents the "laddering" effect often seen in poorly constructed patterns.
               </p>
             </div>
 
@@ -219,10 +219,10 @@ export default function DesignStudio() {
               <div>
                 <h3 className="text-3xl font-serif text-accent mb-6">Technical File Preparation</h3>
                 <p>
-                  To achieve high-fidelity prints, your source files must meet our industrial standards. We recommend working in **Adobe RGB (1998)** color space. While sRGB is common for web, Adobe RGB offers a much wider gamut, particularly in the greens and cyans, which our 8-color ink system can reproduce faithfully.
+                  To achieve high-fidelity prints, your source files must meet our industrial standards. We recommend working in <strong>Adobe RGB (1998)</strong> color space. While sRGB is common for web, Adobe RGB offers a much wider gamut, particularly in the greens and cyans, which our 8-color ink system can reproduce faithfully.
                 </p>
                 <p className="mt-4">
-                  Resolution is equally vital. For intricate patterns, we require a minimum of **300 DPI** (Dots Per Inch) at actual print size. Scaling up low-resolution images will result in pixelation and a loss of the "premium" feel that VastraaGlobal is known for.
+                  Resolution is equally vital. For intricate patterns, we require a minimum of <strong>300 DPI</strong> (Dots Per Inch) at actual print size. Scaling up low-resolution images will result in pixelation and a loss of the "premium" feel that VastraaGlobal is known for.
                 </p>
               </div>
               <div className="bg-white p-12 rounded-4xl border border-accent/5 shadow-sm space-y-8">
@@ -252,7 +252,7 @@ export default function DesignStudio() {
                 In the B2B world, color consistency is non-negotiable. A design approved on a monitor in London must match the fabric printed in Erode. However, because fabric absorbs light differently than a back-lit screen, "what you see is what you get" (WYSIWYG) is a challenge we tackle through rigorous calibration.
               </p>
               <p className="mt-4">
-                We offer a **Digital Lab Dip** service. Before committing to a large production run, we print a "Strike-Off" — a 1-meter sample of your design on the chosen fabric. This allows you to verify color accuracy, detail retention, and fabric handle (hand-feel) under real-world lighting conditions.
+                We offer a <strong>Digital Lab Dip</strong> service. Before committing to a large production run, we print a "Strike-Off" — a 1-meter sample of your design on the chosen fabric. This allows you to verify color accuracy, detail retention and fabric handle (hand-feel) under real-world lighting conditions.
               </p>
             </div>
 

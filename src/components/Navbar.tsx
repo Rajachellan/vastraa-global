@@ -7,6 +7,7 @@ import { Search, User, Heart, ShoppingBag, Menu, ChevronDown } from "lucide-reac
 import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
+import { SearchOverlay } from "./SearchOverlay";
 import { useStore } from "@/context/StoreContext";
 import Image from "next/image";
 
@@ -14,6 +15,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const pathname = usePathname();
@@ -36,15 +38,24 @@ export const Navbar = () => {
   const menuItems = [
     { name: "Home", href: "/" },
     {
+      name: "About",
+      href: "/about",
+      // subItems: [
+      //   { name: "Our Story", href: "/about" },
+      //   { name: "Manufacturing", href: "/about#manufacturing" },
+      //   { name: "Sustainability", href: "/about#sustainability" },
+      //   { name: "Certifications", href: "/about#certifications" },
+      // ],
+    },
+    {
       name: "How We Print",
       href: "/how-we-print",
       subItems: [
-        { name: "Overview", href: "/how-we-print" },
+        { name: "Printing Overview", href: "/how-we-print" },
         { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
-        { name: "Reactive", href: "/how-we-print/reactive" },
+        { name: "Reactive Printing", href: "/how-we-print/reactive" },
         { name: "Sublimation", href: "/how-we-print/sublimation" },
-        { name: "Screen", href: "/how-we-print/screen" },
-        { name: "Quality Control", href: "/how-we-print/quality-control" },
+        { name: "Quality Standards", href: "/how-we-print/quality-control" },
       ],
     },
     {
@@ -60,10 +71,20 @@ export const Navbar = () => {
         { name: "Sustainable", href: "/fabrics/sustainable" },
       ],
     },
-    { name: "Printable Designs", href: "/designs" },
-    { name: "Blogs", href: "/blogs" },
-    { name: "Contact", href: "/contact" },
-    { name: "About", href: "/about" },
+
+
+    { name: "Design Studio", href: "/designs" },
+    {
+      name: "Blogs",
+      href: "/blogs",
+      subItems: [
+        { name: "Textile Trends", href: "/blogs?cat=trends" },
+        { name: "Printing Guides", href: "/blogs?cat=guides" },
+        { name: "Case Studies", href: "/blogs?cat=case-studies" },
+      ],
+    },
+    // { name: "Bulk Orders", href: "/contact?type=bulk" },
+    { name: "Expert Help", href: "/contact?type=consultation" },
   ];
 
   const getSubNavItems = () => {
@@ -71,7 +92,13 @@ export const Navbar = () => {
       return menuItems.find((i) => i.name === "Our Fabrics")?.subItems || null;
     }
     if (pathname.startsWith("/how-we-print")) {
-      return menuItems.find((i) => i.name === "How We Print")?.subItems || null;
+      return menuItems.find((i) => i.name === "Custom Printing")?.subItems || null;
+    }
+    if (pathname.startsWith("/blogs")) {
+      return menuItems.find((i) => i.name === "Blogs")?.subItems || null;
+    }
+    if (pathname.startsWith("/about")) {
+      return menuItems.find((i) => i.name === "About")?.subItems || null;
     }
     return null;
   };
@@ -86,11 +113,10 @@ export const Navbar = () => {
           setIsHovered(false);
           setActiveDropdown(null);
         }}
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-in-out ${
-          isSolid
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-in-out ${isSolid
             ? "bg-white/80 backdrop-blur-xl py-3 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-neutral-200/50"
             : "bg-transparent py-5"
-        }`}
+          }`}
       >
         <div className="max-w-[1600px] mx-auto px-6 xl:px-10">
           <div className="flex items-center justify-between">
@@ -99,9 +125,8 @@ export const Navbar = () => {
             <div className="flex items-center gap-3 flex-shrink-0">
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className={`lg:hidden p-2 ${
-                  isSolid ? "text-black" : "text-white"
-                }`}
+                className={`lg:hidden p-2 ${isSolid ? "text-black" : "text-white"
+                  }`}
               >
                 <Menu size={24} />
               </button>
@@ -116,7 +141,7 @@ export const Navbar = () => {
                   unoptimized
                 />
                 <span className={`text-[7px] md:text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
-                 Global Print Experts
+                  Global Print Experts
                 </span>
               </Link>
             </div>
@@ -135,32 +160,29 @@ export const Navbar = () => {
                 >
                   <Link
                     href={item.href}
-                    className={`relative text-[20px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${
-                      pathname === item.href ||
-                      (item.subItems && pathname.startsWith(item.href))
+                    className={`relative text-[20px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${pathname === item.href ||
+                        (item.subItems && pathname.startsWith(item.href))
                         ? "text-secondary"
                         : isSolid
-                        ? "text-black/80"
-                        : "text-white/90"
-                    } hover:text-secondary group-hover:scale-105 transition-transform`}
+                          ? "text-black/80"
+                          : "text-white/90"
+                      } hover:text-secondary group-hover:scale-105 transition-transform`}
                   >
                     {item.name}
                     {item.subItems && (
                       <ChevronDown
                         size={14}
-                        className={`transition-transform duration-500 ${
-                          activeDropdown === item.name ? "rotate-180" : ""
-                        }`}
+                        className={`transition-transform duration-500 ${activeDropdown === item.name ? "rotate-180" : ""
+                          }`}
                       />
                     )}
 
                     {/* UNDERLINE */}
                     <span
-                      className={`absolute -bottom-1 left-0 h-[2px] bg-secondary transition-all duration-500 ease-out rounded-full ${
-                        pathname === item.href
+                      className={`absolute -bottom-1 left-0 h-[2px] bg-secondary transition-all duration-500 ease-out rounded-full ${pathname === item.href
                           ? "w-full"
                           : "w-0 group-hover:w-full"
-                      }`}
+                        }`}
                     />
                   </Link>
 
@@ -195,11 +217,13 @@ export const Navbar = () => {
 
             {/* RIGHT ICONS */}
             <div
-              className={`flex items-center gap-2 md:gap-4 ${
-                isSolid ? "text-black/70" : "text-white/90"
-              }`}
+              className={`flex items-center gap-2 md:gap-4 ${isSolid ? "text-black/70" : "text-white/90"
+                }`}
             >
-              <button className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110 hidden md:block">
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110 hidden md:block"
+              >
                 <Search size={21} />
               </button>
 
@@ -237,6 +261,7 @@ export const Navbar = () => {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       />
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );
 };

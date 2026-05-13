@@ -15,7 +15,7 @@ export default function ReactivePrintingPage() {
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center overflow-hidden">
         <Image 
-          src="/images/print-reactive-premium.png" 
+          src="/images/service-printing.png"
           alt="Reactive Digital Printing" 
           fill 
           className="object-cover"
@@ -29,7 +29,7 @@ export default function ReactivePrintingPage() {
           >
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-6 leading-tight">Reactive <span className="text-secondary">Digital</span> Printing</h1>
             <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
-              Deep fiber penetration for unrivaled color depth and softness. The gold standard for natural textiles like silk, cotton, and linen.
+              Deep fiber penetration for unrivaled color depth and softness. The gold standard for natural textiles like silk, cotton and linen.
             </p>
           </motion.div>
         </div>
@@ -77,7 +77,7 @@ export default function ReactivePrintingPage() {
                     </div>
                     <div>
                       <div className="text-sm font-bold text-accent">Wash Fastness</div>
-                      <div className="text-xs text-accent/50 leading-relaxed">Grade 4-5 (ISO 105-C06)</div>
+                      <div className="text-xs text-accent/50 leading-relaxed">Grade 4-5 (GRS Standards)</div>
                     </div>
                   </li>
                 </ul>
@@ -89,10 +89,10 @@ export default function ReactivePrintingPage() {
               <div className="prose prose-lg prose-accent max-w-none text-accent/70 space-y-8">
                 <h2 className="text-4xl font-serif text-accent">Reactive Printing: Bonding at a Molecular Level</h2>
                 <p>
-                  Unlike pigment printing, which sits on the surface of the fabric, reactive digital printing creates a covalent bond between the dye molecules and the textile fibers. This molecular fusion is what gives reactive prints their legendary color depth, vibrant brilliance, and absolute "no-feel" handle.
+                  Unlike pigment printing, which sits on the surface of the fabric, reactive digital printing creates a covalent bond between the dye molecules and the textile fibers. This molecular fusion is what gives reactive prints their legendary color depth, vibrant brilliance and absolute "no-feel" handle.
                 </p>
                 <p>
-                  At VastraaGlobal, we utilize reactive printing primarily for our high-end natural fiber collections — Silk, Cotton, and Linen. For a designer, this process offers the ultimate creative freedom, as the colors become an integral part of the fabric's DNA.
+                  At VastraaGlobal, we utilize reactive printing primarily for our high-end natural fiber collections — Silk, Cotton and Linen. For a designer, this process offers the ultimate creative freedom, as the colors become an integral part of the fabric's DNA.
                 </p>
                 
                 <h3 className="text-2xl font-serif text-accent">The Reactive Workflow</h3>
@@ -125,7 +125,7 @@ export default function ReactivePrintingPage() {
 
                 <h2 className="text-3xl font-serif text-accent">Unrivaled Color Clarity</h2>
                 <p>
-                  Because reactive dyes are translucent and bond directly with the fiber, they allow the natural luster of the fabric to shine through. This is particularly evident on silk, where reactive printing produces a luminosity that pigment inks simply cannot match. The blacks are deeper, the reds more vibrant, and the gradients more fluid.
+                  Because reactive dyes are translucent and bond directly with the fiber, they allow the natural luster of the fabric to shine through. This is particularly evident on silk, where reactive printing produces a luminosity that pigment inks simply cannot match. The blacks are deeper, the reds more vibrant and the gradients more fluid.
                 </p>
 
                 <div className="p-12 bg-accent text-white rounded-4xl relative overflow-hidden my-20 shadow-xl">
