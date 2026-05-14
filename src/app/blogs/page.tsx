@@ -23,7 +23,7 @@ const blogPosts = [
     id: 2,
     title: "Understanding GSM: A Technical Guide for Fashion Designers",
     excerpt: "From lightweight chiffons to heavy twills, mastering fabric weight is crucial for successful garment construction. Here is everything you need to know.",
-    image: "/images/fabric_cotton.png",
+    image: "/images/design-workspace.png",
     category: "Technical Guide",
     date: "April 10, 2024",
     author: "Sarah L.",
