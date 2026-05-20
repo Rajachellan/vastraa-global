@@ -8,40 +8,65 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, User, Tag, ChevronRight } from "lucide-react";
 
-const blogPosts = [
+const staticBlogPosts = [
   {
-    id: 1,
+    _id: "1",
     title: "The Shift to Digital: Why Pigment is Winning in 2024",
     excerpt: "Traditional dyeing methods are being challenged by the rapid rise of digital pigment printing. Explore the economic and environmental drivers behind this shift.",
     image: "/images/print-sublimation.png",
     category: "Industry Trends",
-    date: "April 15, 2024",
+    createdAt: "2024-04-15T00:00:00.000Z",
     author: "Arjun V.",
     readTime: "8 min read"
   },
   {
-    id: 2,
+    _id: "2",
     title: "Understanding GSM: A Technical Guide for Fashion Designers",
     excerpt: "From lightweight chiffons to heavy twills, mastering fabric weight is crucial for successful garment construction. Here is everything you need to know.",
+
     image: "/images/design-workspace.png",
+
+
     category: "Technical Guide",
-    date: "April 10, 2024",
+    createdAt: "2024-04-10T00:00:00.000Z",
     author: "Sarah L.",
     readTime: "12 min read"
   },
   {
-    id: 3,
+    _id: "3",
     title: "Sustainability in Export: Meeting EU Environmental Standards",
-    excerpt: "The regulatory landscape for textile exports is changing. Learn how GOTS and OEKO-TEX certifications can protect your brand's future.",
+    excerpt: "Sustainability compliance for textile exports is changing. Learn how GOTS and OEKO-TEX certifications protect your brand's future.",
     image: "/images/fabric-sustainable.png",
     category: "Compliance",
-    date: "April 05, 2024",
+    createdAt: "2024-04-05T00:00:00.000Z",
     author: "Elena R.",
     readTime: "15 min read"
   }
 ];
 
 export default function BlogsPage() {
+  const [blogs, setBlogs] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/blogs");
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            setBlogs(data);
+          } else {
+            setBlogs(staticBlogPosts);
+          }
+        } else {
+          setBlogs(staticBlogPosts);
+        }
+      } catch (err) {
+        setBlogs(staticBlogPosts);
+      }
+    };
+    fetchBlogs();
+  }, []);
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <Navbar />
@@ -109,9 +134,9 @@ export default function BlogsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {blogPosts.map((post) => (
+            {blogs.map((post) => (
               <motion.article 
-                key={post.id}
+                key={post._id || post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

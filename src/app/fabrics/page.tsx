@@ -14,8 +14,11 @@ const categories = [
     id: "natural",
     name: "Natural Fabrics",
     items: [
-      { id: "f1", name: "Cotton", description: "Soft, breathable and highly durable for versatile applications.", image: "/images/cotton.png" },
-      { id: "f2", name: "Linen", description: "Strong, cool and undeniably premium with a natural texture.", image: "/images/fabric-linen.png" }
+
+
+      { id: "f1", name: "Cotton", description: "Soft, breathable, and highly durable for versatile applications.", image: "/images/fabric-cotton.png", price: "$12.00/m" },
+      { id: "f2", name: "Linen", description: "Strong, cool, and undeniably premium with a natural texture.", image: "/images/fabric-linen.png", price: "$18.00/m" }
+
     ]
   },
   {
@@ -41,15 +44,52 @@ const categories = [
 export default function FabricsMainPage() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
-  const { toggleWishlist, isInWishlist } = useStore();
+
+  const { addToCart, toggleWishlist, isInWishlist } = useStore();
+  const [dbCategories, setDbCategories] = useState<any[]>(categories);
+
+  React.useEffect(() => {
+    const loadDynamicData = async () => {
+      try {
+        const [catRes, designRes] = await Promise.all([
+          fetch("http://localhost:3000/api/categories"),
+          fetch("http://localhost:3000/api/designs")
+        ]);
+        if (catRes.ok && designRes.ok) {
+          const catData = await catRes.json();
+          const designData = await designRes.json();
+          if (catData.length > 0) {
+            const mapped = catData.map((c: any) => ({
+              id: c.slug,
+              name: c.name,
+              items: designData
+                .filter((d: any) => d.category === c.name)
+                .map((d: any) => ({
+                  id: d._id,
+                  name: d.title,
+                  description: d.description,
+                  image: d.image,
+                  price: "$15.00/m"
+                }))
+            }));
+            setDbCategories(mapped);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    loadDynamicData();
+  }, []);
+
 
   const showToast = (message: string) => {
     setToast({ show: true, message });
   };
 
   const displayedCategories = activeFilter === "All"
-    ? categories
-    : categories.filter(c => c.name === activeFilter);
+    ? dbCategories
+    : dbCategories.filter(c => c.name === activeFilter);
 
   const handleGetQuote = (itemName: string) => {
     showToast(`Quote request for ${itemName} has been sent! Our experts will contact you soon.`);
@@ -115,7 +155,7 @@ export default function FabricsMainPage() {
             >
               All Fabrics
             </button>
-            {categories.map((cat) => (
+            {dbCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.name)}
