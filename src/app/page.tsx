@@ -25,7 +25,7 @@ export default function Home() {
       <FabricUpload />
       <FeaturedCategories />
       <TrendingDesigns />
-      <ExpertConsultation />
+      {/* <ExpertConsultation /> */}
       <Certifications />
       <ProductCategories />
       <ManufacturingCapabilities />

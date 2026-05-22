@@ -30,7 +30,7 @@ export const CTASection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button variant="primary" size="lg">
-                Create Now
+                <Link href="/contact">Create Now</Link>
               </Button>
               <Button variant="outline" size="lg">
                 Talk to a Designer
