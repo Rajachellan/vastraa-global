@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Globe, Shield, Zap } from "lucide-react";
-
+import google from "../../public/images/google-removebg-preview.png"
 const slides = [
   {
     id: 1,
@@ -41,7 +41,7 @@ export const B2BHero = () => {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[1000px] md:min-h-[1200px] xl:min-h-[800px] flex items-center overflow-hidden bg-accent">
+    <section className="relative h-screen min-h-[1000px] md:min-h-[1200px] xl:min-h-[900px] flex items-center overflow-hidden bg-accent">
       {/* Background Images Carousel */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -91,7 +91,19 @@ export const B2BHero = () => {
                 <span className="text-secondary mt-20 md:mt-10 xl:mt-30 font-bold tracking-[0.3em] uppercase text-[10px]">
                   Global Manufacturing Excellence
                 </span>
-              </motion.div>
+                
+              </motion.div> 
+              <br />
+              {/* Rating badge */}
+            <div className="inline-flex items-center mb-5 gap-2 px-4 py-1.5 md:py-2 text-xs md:text-base rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-md">
+              <span className="text-yellow-400 text-lg">★</span>
+              <span className="text-white font-medium">
+                <span className="font-semibold">4.8/5</span>
+                <span className="opacity-80 ml-1">Rating on</span>
+              </span>
+              <span className="font-semibold text-white">Google</span>
+              <Image src={google} alt="Google" width={18} height={18} className="object-contain" />
+            </div>
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl  font-serif text-white mb-8 leading-[1.1]">
                 {slides[current].title.split(' ').map((word, i) => (
@@ -100,7 +112,7 @@ export const B2BHero = () => {
                   </span>
                 ))}
               </h1>
-
+ 
               <p className="text-lg sm:text-xl md:text-xl text-white/90 mb-12 leading-relaxed max-w-2xl font-medium">
                 Precision in Print, Excellence in Fabric. Elevating global brands with 40+ years of textile heritage and state-of-the-art digital printing.
               </p>

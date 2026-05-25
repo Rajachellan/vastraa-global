@@ -107,6 +107,31 @@ export const Navbar = () => {
 
   return (
     <>
+    {/* ANNOUNCEMENT BAR */}
+
+      <div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 overflow-hidden h-10 flex items-center">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-16 px-6 text-[12px] md:text-sm font-medium tracking-wide">
+          <span>
+            Premium Printed Fabrics for Fashion Brands Worldwide
+          </span>
+
+          <span>
+            Sustainable Textile Manufacturing & Custom Printing Solutions
+          </span>
+
+          <span>
+            Export Quality Fabrics • Fast Sampling • Bulk Production
+          </span>
+
+          <span>
+            Digital Printing • Reactive Printing • Sublimation Printing
+          </span>
+
+          <span>
+            Designed & Manufactured with Precision at Vastraa Global
+          </span>
+        </div>
+      </div>
       <nav
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
@@ -118,7 +143,7 @@ export const Navbar = () => {
             : "bg-transparent py-5"
           }`}
       >
-        <div className="max-w-[1600px] mx-auto px-6 xl:px-10">
+        <div className="max-w-[1600px] mx-auto px-6 xl:px-10 mt-10">
           <div className="flex items-center justify-between">
 
             {/* LEFT */}
@@ -135,19 +160,19 @@ export const Navbar = () => {
                 <Image
                   src="/images/logo.png"
                   alt="Vastraa Global"
-                  width={70}
-                  height={70}
+                  width={50}
+                  height={50}
                   priority
                   unoptimized
                 />
-                <span className={`text-[7px] md:text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
+                <span className={`text-[7px] md:text-[8px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
                   Printed with Passion
                 </span>
               </Link>
             </div>
 
             {/* CENTER MENU */}
-            <div className="hidden lg:flex items-center justify-center flex-1 gap-8 xl:gap-12">
+            <div className="hidden lg:flex items-center gap-8 xl:gap-8 2xl:gap-14">
               {menuItems.map((item) => (
                 <div
                   key={item.name}
@@ -160,7 +185,7 @@ export const Navbar = () => {
                 >
                   <Link
                     href={item.href}
-                    className={`relative text-[20px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${pathname === item.href ||
+                    className={`relative text-[17px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${pathname === item.href ||
                         (item.subItems && pathname.startsWith(item.href))
                         ? "text-secondary"
                         : isSolid
@@ -262,6 +287,26 @@ export const Navbar = () => {
         onClose={() => setIsMobileMenuOpen(false)}
       />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* MARQUEE ANIMATION */}
+
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-marquee {
+          display: flex;
+          min-width: max-content;
+          animation: marquee 25s linear infinite;
+        }
+      `}</style>
     </>
   );
 };
