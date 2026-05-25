@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #EADBC8;
-  --color-secondary: #D4AF37;
-  --color-accent: #2F2F2F;
-  --color-bg-ivory: #F9F7F4;
-  --color-text-dark: #1A1A1A;
-  --color-teal: #0D4F4F;
-  --color-teal-light: #1A6B6B;
+  --color-primary: #FAF5FF;
+  --color-secondary: #ECC863;
+  --color-accent: #1D0B2E;
+  --color-bg-ivory: #F7F4FA;
+  --color-text-dark: #1C122C;
+  --color-teal: #4A1E86;
+  --color-teal-light: #8B5CF6;
   --color-slate: #334155;
-  --color-warm-gray: #F5F0EB;
+  --color-warm-gray: #ECE9F3;
 
   --font-serif: "Playfair Display", serif;
   --font-sans: "Montserrat", sans-serif;
 }
 
 :root {
-  --background: #F9F7F4;
-  --foreground: #1A1A1A;
+  --background: #F7F4FA;
+  --foreground: #1C122C;
 }
 
 body {
@@ -40,19 +40,19 @@ h6 {
 
 /* Utility classes */
 .premium-gradient {
-  background: linear-gradient(135deg, #F9F7F4 0%, #EADBC8 100%);
+  background: linear-gradient(135deg, #F7F4FA 0%, #FAF5FF 100%);
 }
 
 .gold-text {
-  color: #D4AF37;
+  color: #ECC863;
 }
 
 .charcoal-bg {
-  background-color: #2F2F2F;
+  background-color: #1D0B2E;
 }
 
 .teal-gradient {
-  background: linear-gradient(135deg, #0D4F4F 0%, #1A6B6B 100%);
+  background: linear-gradient(135deg, #1D0B2E 0%, #4A1E86 100%);
 }
 
 /* Removed textile-pattern as requested */
@@ -80,16 +80,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F9F7F4;
+  background: #F7F4FA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4AF37;
+  background: #ECC863;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8962E;
+  background: #D6AF4E;
 }
 
 /* Stat counter animation */

@@ -114,7 +114,7 @@ export const GlobalPresence = () => {
                   className="absolute p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col items-center gap-1 shadow-2xl"
                   style={{ top: node.top, left: node.left }}
                 >
-                  <div className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_10px_rgba(212,175,55,0.8)]" />
+                  <div className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_10px_rgba(236,200,99,0.8)]" />
                   <span className="text-[10px] font-bold text-primary/40 tracking-widest">{node.label}</span>
                 </motion.div>
               ))}
