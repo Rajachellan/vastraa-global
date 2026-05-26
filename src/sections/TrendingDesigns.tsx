@@ -6,28 +6,29 @@ import { Toast } from "@/components/Toast";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const designs = [
   {
-    id: "td1",
+    id: "d1",
     title: "Ethereal Florals",
     designer: "Sarah Jenkins",
     image: "/images/trending1.png"
   },
   {
-    id: "td2",
+    id: "d2",
     title: "Golden Hour",
     designer: "Studio Luxe",
     image: "/images/trending2.png"
   },
   {
-    id: "td3",
+    id: "d3",
     title: "Abstract Geometry",
     designer: "Marcello V.",
     image: "/images/trending3.png"
   },
   {
-    id: "td4",
+    id: "d4",
     title: "Heritage Motifs",
     designer: "Anita Rao",
     image: "/images/trending_textile_design_4.png"
@@ -71,50 +72,52 @@ export const TrendingDesigns = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {designs.map((design, index) => (
-            <motion.div
-              key={design.title}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="relative group"
-            >
-              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg">
-                <Image
-                  src={design.image}
-                  alt={design.title}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                
-                {/* Actions Overlay */}
-                <div className="absolute inset-0 bg-accent/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4 z-20">
-                  <button 
-                    onClick={() => handleToggleWishlist(design)}
-                    className={`p-4 rounded-full transition-all duration-300 ${isInWishlist(design.id) ? "bg-secondary text-white" : "bg-white text-accent hover:bg-secondary hover:text-white"}`}
-                  >
-                    <Heart size={20} fill={isInWishlist(design.id) ? "currentColor" : "none"} />
-                  </button>
-                  <button 
-                    onClick={() => handleGetQuote(design)}
-                    className="flex items-center gap-2 bg-white text-accent px-6 py-3 rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
-                  >
-                    <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
-                  </button>
-                </div>
+            {designs.map((design, index) => (
+              <motion.div
+                key={design.title}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="relative group"
+              >
+                <Link href={`/designs/${design.id}`} className="block">
+                  <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg">
+                    <Image
+                      src={design.image}
+                      alt={design.title}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
+                    
+                    {/* Actions Overlay */}
+                    <div className="absolute inset-0 bg-accent/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4 z-20">
+                      <button 
+                        onClick={(e) => { e.preventDefault(); handleToggleWishlist(design); }}
+                        className={`p-4 rounded-full transition-all duration-300 ${isInWishlist(design.id) ? "bg-secondary text-white" : "bg-white text-accent hover:bg-secondary hover:text-white"}`}
+                      >
+                        <Heart size={20} fill={isInWishlist(design.id) ? "currentColor" : "none"} />
+                      </button>
+                      <button 
+                        onClick={(e) => { e.preventDefault(); handleGetQuote(design); }}
+                        className="flex items-center gap-2 bg-white text-accent px-6 py-3 rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
+                      >
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
+                      </button>
+                    </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-accent/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
-                  <h3 className="text-2xl font-serif text-white mb-2">{design.title}</h3>
-                  <div className="flex justify-between items-center">
-                    <p className="text-secondary text-sm tracking-widest uppercase">By {design.designer}</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-accent/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="absolute bottom-0 left-0 w-full p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
+                      <h3 className="text-2xl font-serif text-white mb-2">{design.title}</h3>
+                      <div className="flex justify-between items-center">
+                        <p className="text-secondary text-sm tracking-widest uppercase">By {design.designer}</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                </Link>
+              </motion.div>
+            ))}
         </div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
 import { SearchOverlay } from "./SearchOverlay";
+import { designs } from "@/app/designs/data";
 import { useStore } from "@/context/StoreContext";
 import Image from "next/image";
 
@@ -83,16 +84,18 @@ export const Navbar = () => {
         { name: "Case Studies", href: "/blogs?cat=case-studies" },
       ],
     },
-    // { name: "Bulk Orders", href: "/contact?type=bulk" },
     { name: "Expert Help", href: "/contact?type=consultation" },
   ];
 
   const getSubNavItems = () => {
+    if (pathname.startsWith("/designs")) {
+      return designs.map((d) => ({ name: d.name, href: `/designs/${d.id}` }));
+    }
     if (pathname.startsWith("/fabrics")) {
       return menuItems.find((i) => i.name === "Our Fabrics")?.subItems || null;
     }
     if (pathname.startsWith("/how-we-print")) {
-      return menuItems.find((i) => i.name === "Custom Printing")?.subItems || null;
+      return menuItems.find((i) => i.name === "How We Print")?.subItems || null;
     }
     if (pathname.startsWith("/blogs")) {
       return menuItems.find((i) => i.name === "Blogs")?.subItems || null;

@@ -58,6 +58,16 @@ h6 {
 
 /* Removed textile-pattern as requested */
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 /* Animate on scroll helper */
 .reveal {
   opacity: 0;

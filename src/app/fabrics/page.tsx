@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ShoppingBag, Heart, CheckCircle } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
-
+import Link from "next/link"
 const categories = [
   {
     id: "natural",
@@ -137,47 +137,48 @@ export default function FabricsMainPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {category.items.map((item) => (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      key={item.id}
-                      className="group flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-sm border border-accent/5 hover:shadow-2xl transition-all duration-500"
-                    >
-                      {/* Image side */}
-                      <div className="w-full md:w-2/5 relative h-64 md:h-auto overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        {/* Wishlist Button */}
-                        <button 
-                          onClick={() => handleToggleWishlist(item)}
-                          className={`absolute top-6 right-6 p-3 rounded-full backdrop-blur-md transition-all duration-300 z-20 ${isInWishlist(item.id) ? "bg-secondary text-white" : "bg-white/80 text-accent hover:bg-secondary hover:text-white"}`}
-                        >
-                          <Heart size={18} fill={isInWishlist(item.id) ? "currentColor" : "none"} />
-                        </button>
-                      </div>
-
-                      {/* Content side */}
-                      <div className="w-full md:w-3/5 p-8 md:p-10 flex flex-col justify-center">
-                        <div className="flex justify-between items-start mb-4">
-                          <h3 className="text-3xl font-serif text-accent">{item.name}</h3>
-                        </div>
-                        <p className="text-accent/60 leading-relaxed mb-8">{item.description}</p>
-
-                        <div className="mt-auto">
+                    <Link href={`/fabrics/${item.id}`} key={item.id} className="group">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-sm border border-accent/5 hover:shadow-2xl transition-all duration-500"
+                      >
+                        {/* Image side */}
+                        <div className="w-full md:w-2/5 relative h-64 md:h-auto overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          {/* Wishlist Button */}
                           <button 
-                            onClick={() => handleGetQuote(item.name)}
-                            className="w-full bg-accent text-white hover:bg-secondary px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
+                            onClick={(e) => { e.stopPropagation(); handleToggleWishlist(item); }}
+                            className={`absolute top-6 right-6 p-3 rounded-full backdrop-blur-md transition-all duration-300 z-20 ${isInWishlist(item.id) ? "bg-secondary text-white" : "bg-white/80 text-accent hover:bg-secondary hover:text-white"}`}
                           >
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
+                            <Heart size={18} fill={isInWishlist(item.id) ? "currentColor" : "none"} />
                           </button>
                         </div>
-                      </div>
-                    </motion.div>
+
+                        {/* Content side */}
+                        <div className="w-full md:w-3/5 p-8 md:p-10 flex flex-col justify-center">
+                          <div className="flex justify-between items-start mb-4">
+                            <h3 className="text-3xl font-serif text-accent">{item.name}</h3>
+                          </div>
+                          <p className="text-accent/60 leading-relaxed mb-8">{item.description}</p>
+
+                          <div className="mt-auto">
+                            <button 
+                              onClick={(e) => { e.preventDefault(); handleGetQuote(item.name); }}
+                              className="w-full bg-accent text-white hover:bg-secondary px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
+                            >
+                              <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
+                            </button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </Link>
                   ))}
                 </div>
               </div>

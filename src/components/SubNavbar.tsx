@@ -13,7 +13,7 @@ export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
   const pathname = usePathname();
 
   return (
-    <div className="bg-bg-ivory/50 backdrop-blur-md border-b mt-24 border-accent/5 sticky top-[98px] z-[90] overflow-hidden">
+    <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[114px] border-accent/5 sticky top-[114px] z-[90] overflow-hidden">
       <div className="container mx-auto px-6 overflow-hidden">
         <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto overflow-y-hidden no-scrollbar">
           {items.map((item) => {
@@ -26,11 +26,10 @@ export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
                 className="relative group whitespace-nowrap flex-shrink-0"
               >
                 <span
-                  className={`text-[14px] font-vollkorn font-semibold transition-colors duration-300 ${
-                    isActive
+                  className={`text-[14px] font-vollkorn font-semibold transition-colors duration-300 ${isActive
                       ? "text-secondary"
                       : "text-accent/50 group-hover:text-accent"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </span>
