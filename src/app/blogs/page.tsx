@@ -7,6 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, User, Tag, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 const blogPosts = [
   {
@@ -42,6 +43,16 @@ const blogPosts = [
 ];
 
 export default function BlogsPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  
+  const filteredPosts = blogPosts.filter(post => {
+    if (activeCategory === "All") return true;
+    if (activeCategory === "Technical" && post.category.includes("Technical")) return true;
+    if (activeCategory === "Trends" && post.category.includes("Trends")) return true;
+    if (activeCategory === "Compliance" && post.category.includes("Compliance")) return true;
+    return false;
+  });
+
   return (
     <main className="flex min-h-screen flex-col bg-white">
       <Navbar />
@@ -97,11 +108,19 @@ export default function BlogsPage() {
       {/* Blog Grid */}
       <section className="py-24 bg-bg-ivory">
         <div className="container mx-auto px-6">
-          <div className="flex justify-between items-end mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <h2 className="text-4xl font-serif text-accent">Latest <span className="text-secondary">Updates</span></h2>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3">
               {["All", "Technical", "Trends", "Compliance"].map((cat) => (
-                <button key={cat} className="px-6 py-2 rounded-full border border-accent/10 text-xs font-bold uppercase tracking-widest text-accent/40 hover:border-secondary hover:text-secondary transition-all">
+                <button 
+                  key={cat} 
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-5 py-2 rounded-full border text-xs font-bold uppercase tracking-widest transition-all ${
+                    activeCategory === cat 
+                      ? "border-secondary text-white bg-secondary" 
+                      : "border-accent/10 text-accent/40 hover:border-secondary hover:text-secondary"
+                  }`}
+                >
                   {cat}
                 </button>
               ))}
@@ -109,7 +128,7 @@ export default function BlogsPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {blogPosts.map((post) => (
+            {filteredPosts.map((post) => (
               <motion.article 
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -147,13 +166,13 @@ export default function BlogsPage() {
             <div className="relative z-10 max-w-2xl mx-auto space-y-8">
               <h3 className="text-4xl font-serif text-white">Stay Ahead of the <span className="text-secondary">Market</span></h3>
               <p className="text-white/50">Join our monthly newsletter for technical reports, fabric trends and B2B pricing updates.</p>
-              <form className="flex gap-4 max-w-md mx-auto">
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input 
                   type="email" 
                   placeholder="Professional Email" 
                   className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-secondary transition-colors"
                 />
-                <button className="bg-secondary text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-accent transition-all">
+                <button className="bg-secondary text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-accent transition-all w-full sm:w-auto">
                   Join
                 </button>
               </form>

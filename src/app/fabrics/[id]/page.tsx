@@ -12,6 +12,7 @@ import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
 import { QuoteModal } from "@/components/QuoteModal";
 import { motion, AnimatePresence } from "framer-motion";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 
 export default function FabricDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -76,6 +77,9 @@ export default function FabricDetailPage({ params }: { params: Promise<{ id: str
         productName={`${fabric.name} Fabric`}
         initialImage={galleryImages[activeImageIdx]}
       />
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId={fabric.id} fabricName={fabric.name} />
 
       <section className="container mx-auto px-6 pt-36 pb-24">
         {/* Main Details Section */}

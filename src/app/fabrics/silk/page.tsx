@@ -10,6 +10,7 @@ import { Toast } from "@/components/Toast";
 import { FabricUpload } from "@/components/FabricUpload";
 import { ExpertConsultation } from "@/sections/ExpertConsultation";
 import { QuoteModal } from "@/components/QuoteModal";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 
 export default function SilkPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,7 +37,7 @@ export default function SilkPage() {
       />
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-32 pb-16">
         <Image 
           src="/images/silk-close-up.png" 
           alt="Premium Mulberry Silk" 
@@ -66,6 +67,9 @@ export default function SilkPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId="f7" fabricName="Silk" />
 
       {/* Technical Details Section */}
       <section className="py-24 bg-bg-ivory">

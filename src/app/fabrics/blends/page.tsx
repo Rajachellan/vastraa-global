@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Shield, Globe, Award, Droplets, Sparkles, Zap, Activity, Layers, Binary } from "lucide-react";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 
 export default function BlendsPage() {
   return (
@@ -13,7 +14,7 @@ export default function BlendsPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-32 pb-16">
         <Image 
           src="/images/fabric-blend.png"
           alt="Premium Fabric Blends" 
@@ -34,6 +35,9 @@ export default function BlendsPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId="f5" fabricName="Blends" />
 
       {/* Massive Content Section */}
       <section className="py-24">

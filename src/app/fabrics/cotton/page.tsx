@@ -12,6 +12,7 @@ import { CheckCircle, Truck, Package, Layers, Palette, ArrowRight, }
 from "lucide-react";
 import { Toast } from "@/components/Toast";
 import { Leaf, Sun, Wind, Award, } from "lucide-react";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 export default function CottonPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
@@ -37,7 +38,7 @@ export default function CottonPage() {
       />
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-32 pb-16">
         <Image
           src="/images/fabric-cotton.png"
           alt="Organic Cotton"
@@ -67,6 +68,9 @@ export default function CottonPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId="f1" fabricName="Cotton" />
 
       {/* Technical Details Section */}
       <section className="py-24 bg-bg-ivory">

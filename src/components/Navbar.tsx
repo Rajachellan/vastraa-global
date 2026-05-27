@@ -54,9 +54,9 @@ export const Navbar = () => {
       subItems: [
         { name: "Printing Overview", href: "/how-we-print" },
         { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
-        { name: "Reactive Printing", href: "/how-we-print/reactive" },
-        { name: "Sublimation", href: "/how-we-print/sublimation" },
-        { name: "Quality Standards", href: "/how-we-print/quality-control" },
+        // { name: "Reactive Printing", href: "/how-we-print/reactive" },
+        // { name: "Sublimation", href: "/how-we-print/sublimation" },
+        // { name: "Quality Standards", href: "/how-we-print/quality-control" },
       ],
     },
     {
@@ -78,11 +78,11 @@ export const Navbar = () => {
     {
       name: "Blogs",
       href: "/blogs",
-      subItems: [
-        { name: "Textile Trends", href: "/blogs?cat=trends" },
-        { name: "Printing Guides", href: "/blogs?cat=guides" },
-        { name: "Case Studies", href: "/blogs?cat=case-studies" },
-      ],
+      // subItems: [
+      //   { name: "Textile Trends", href: "/blogs?cat=trends" },
+      //   { name: "Printing Guides", href: "/blogs?cat=guides" },
+      //   { name: "Case Studies", href: "/blogs?cat=case-studies" },
+      // ],
     },
     { name: "Expert Help", href: "/contact?type=consultation" },
   ];

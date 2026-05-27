@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Leaf, Recycle, Wind, Droplets, ShieldCheck, Award, ArrowRight } from "lucide-react";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 
 export default function SustainableFabricsPage() {
   return (
@@ -13,7 +14,7 @@ export default function SustainableFabricsPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden pt-32 pb-16">
         <Image 
           src="/images/viscos.jpg"
           alt="Sustainable Fabrics" 
@@ -44,6 +45,9 @@ export default function SustainableFabricsPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId="f4" fabricName="Sustainable" />
 
       {/* Philosophy */}
       <section className="py-24 bg-bg-ivory">

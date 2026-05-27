@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Shield, Leaf, Globe, Award, Droplets, Sparkles, Zap, Activity, TreeDeciduous, Send } from "lucide-react";
 import { Toast } from "@/components/Toast";
 import { useState } from "react";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 
 export default function ViscosePage() {
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
@@ -27,7 +28,7 @@ export default function ViscosePage() {
       />
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-32 pb-16">
         <Image 
           src="/images/printing-cloths (1).jpg"
           alt="Premium Sustainable Viscose" 
@@ -57,6 +58,9 @@ export default function ViscosePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId="f3" fabricName="Viscose" />
 
       {/* Massive Content Section */}
       <section className="py-24">

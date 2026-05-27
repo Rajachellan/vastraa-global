@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Shield, Leaf, Globe, Award, Droplets, Thermometer, Wind, Activity, Send } from "lucide-react";
 import { Toast } from "@/components/Toast";
 import { useState } from "react";
+import { RelatedDesigns } from "@/components/RelatedDesigns";
 
 export default function LinenPage() {
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
@@ -27,7 +28,7 @@ export default function LinenPage() {
       />
 
       {/* Hero */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-32 pb-16">
         <Image 
           src="/images/fabric-linen-premium.png" 
           alt="Premium Belgian Linen" 
@@ -57,6 +58,9 @@ export default function LinenPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Designs */}
+      <RelatedDesigns fabricId="f2" fabricName="Linen" />
 
       {/* Massive Content Section */}
       <section className="py-24">
