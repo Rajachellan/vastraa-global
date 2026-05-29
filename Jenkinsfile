@@ -6,14 +6,11 @@ pipeline {
         IMAGE_TAG        = "${BUILD_NUMBER}"
         CONTAINER_NAME   = 'vastraa-global-nextjs-container'
         APP_PORT         = '7007'
-        APP_SUBDIR       = 'vastraa-global'
         APP_DOMAIN       = 'https://vastraaglobal.com'
 
         HOST_UPLOADS     = '/home/vastraa/uploads'
         HOST_LOGS        = '/home/vastraa/logs'
         HOST_CONFIG      = '/home/vastraa/config'
-
-        GIT_REPO_URL     = 'https://github.com/Rajachellan/vastraa-global.git'
 
         NEXT_PUBLIC_API_URL    = 'https://api.vastraaglobal.com/api'
         NEXT_PUBLIC_API_ORIGIN = 'https://api.vastraaglobal.com'
@@ -21,17 +18,33 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Resolve app directory') {
             steps {
-                git branch: 'main',
-                    credentialsId: 'learnfella-credentials',
-                    url: "${GIT_REPO_URL}"
+                script {
+                    def candidates = ['.', 'vastraa-global']
+                    env.APP_DIR = ''
+
+                    for (dir in candidates) {
+                        def pkg = dir == '.' ? 'package.json' : "${dir}/package.json"
+                        def dockerfile = dir == '.' ? 'Dockerfile' : "${dir}/Dockerfile"
+                        if (fileExists(pkg) && fileExists(dockerfile)) {
+                            env.APP_DIR = dir
+                            break
+                        }
+                    }
+
+                    if (!env.APP_DIR) {
+                        error('Could not find package.json and Dockerfile together. Push Dockerfile to repo root or vastraa-global/.')
+                    }
+
+                    echo "Using app directory: ${env.APP_DIR}"
+                }
             }
         }
 
         stage('Install Dependencies & Build Next.js') {
             steps {
-                dir("${APP_SUBDIR}") {
+                dir("${env.APP_DIR}") {
                     sh '''
                     export NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api
                     export NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com
@@ -44,7 +57,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir("${APP_SUBDIR}") {
+                dir("${env.APP_DIR}") {
                     sh '''
                     docker build \
                       --build-arg NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api \
