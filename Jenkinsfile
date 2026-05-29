@@ -1,0 +1,119 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE     = 'vastraa-global-nextjs'
+        IMAGE_TAG        = "${BUILD_NUMBER}"
+        CONTAINER_NAME   = 'vastraa-global-nextjs-container'
+        APP_PORT         = '7007'
+        APP_SUBDIR       = 'vastraa-global'
+        APP_DOMAIN       = 'https://vastraaglobal.com'
+
+        HOST_UPLOADS     = '/home/vastraa/uploads'
+        HOST_LOGS        = '/home/vastraa/logs'
+        HOST_CONFIG      = '/home/vastraa/config'
+
+        GIT_REPO_URL     = 'https://github.com/Rajachellan/vastraa-global.git'
+
+        NEXT_PUBLIC_API_URL    = 'https://api.vastraaglobal.com/api'
+        NEXT_PUBLIC_API_ORIGIN = 'https://api.vastraaglobal.com'
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'learnfella-credentials',
+                    url: "${GIT_REPO_URL}"
+            }
+        }
+
+        stage('Install Dependencies & Build Next.js') {
+            steps {
+                dir("${APP_SUBDIR}") {
+                    sh '''
+                    export NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api
+                    export NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com
+                    npm ci
+                    npm run build
+                    '''
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir("${APP_SUBDIR}") {
+                    sh '''
+                    docker build \
+                      --build-arg NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api \
+                      --build-arg NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com \
+                      -t $DOCKER_IMAGE:$IMAGE_TAG \
+                      -t $DOCKER_IMAGE:latest .
+                    '''
+                }
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                sh '''
+                echo "Freeing port $APP_PORT and removing old containers..."
+
+                for NAME in "$CONTAINER_NAME" vastraa-frontend vastraa-global-nextjs-container; do
+                  docker stop "$NAME" 2>/dev/null || true
+                  docker rm -f "$NAME" 2>/dev/null || true
+                done
+
+                for CID in $(docker ps -q --filter "publish=$APP_PORT"); do
+                  echo "Stopping container on port $APP_PORT: $CID"
+                  docker stop "$CID" || true
+                  docker rm -f "$CID" || true
+                done
+
+                docker rm -f "$CONTAINER_NAME" 2>/dev/null || true
+                '''
+            }
+        }
+
+        stage('Run New Container (with .env)') {
+            steps {
+                withCredentials([
+                    file(credentialsId: 'vastraa-global-frontend-env', variable: 'ENV_FILE')
+                ]) {
+                    sh '''
+                    docker run -d --name $CONTAINER_NAME \
+                      --restart always \
+                      --env-file $ENV_FILE \
+                      -e PORT=$APP_PORT \
+                      -e NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api \
+                      -e NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com \
+                      -p $APP_PORT:$APP_PORT \
+                      -v $HOST_UPLOADS:/app/uploads \
+                      -v $HOST_LOGS:/app/logs \
+                      -v $HOST_CONFIG:/app/config \
+                      $DOCKER_IMAGE:$IMAGE_TAG
+
+                    sleep 3
+                    if [ "$(docker inspect -f '{{.State.Running}}' $CONTAINER_NAME 2>/dev/null)" != "true" ]; then
+                      echo "Container failed to start"
+                      docker logs $CONTAINER_NAME || true
+                      exit 1
+                    fi
+                    echo "Container running on port $APP_PORT"
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployment successful — ${APP_DOMAIN}"
+        }
+        failure {
+            echo 'Frontend deployment failed. Check Jenkins logs.'
+        }
+    }
+}
