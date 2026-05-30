@@ -1,11 +1,12 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Mail, Phone, MapPin, Send, Globe, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { submitInquiry } from "@/lib/submitInquiry";
 
 function ContactContent() {
   const searchParams = useSearchParams();
@@ -13,6 +14,35 @@ function ContactContent() {
 
   const isBulk = type === "bulk";
   const isConsultation = type === "consultation";
+
+  const defaultInquiry = isBulk
+    ? "Bulk Fabric Sourcing"
+    : isConsultation
+      ? "Custom Fabric Development"
+      : "Digital Printing Inquiry";
+
+  const [fullName, setFullName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [email, setEmail] = useState("");
+  const [inquirytype, setInquirytype] = useState(defaultInquiry);
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    try {
+      await submitInquiry({ fullName, companyName, email, inquirytype, message });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not submit inquiry.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
@@ -126,11 +156,20 @@ function ContactContent() {
                 </p>
               </div>
 
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {submitted ? (
+                <div className="text-center py-12">
+                  <h3 className="text-2xl font-serif text-accent mb-4">Inquiry Submitted</h3>
+                  <p className="text-accent/60">We will contact you within 24 business hours.</p>
+                </div>
+              ) : (
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Full Name</label>
                   <input 
-                    type="text" 
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
                     placeholder="John Doe"
                     className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none"
                   />
@@ -138,7 +177,10 @@ function ContactContent() {
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Company Name</label>
                   <input 
-                    type="text" 
+                    type="text"
+                    required
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="Luxe Apparel Co."
                     className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none"
                   />
@@ -146,35 +188,53 @@ function ContactContent() {
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Professional Email</label>
                   <input 
-                    type="email" 
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="john@company.com"
                     className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Inquiry Type</label>
-                  <select defaultValue={isBulk ? "Bulk Fabric Sourcing" : isConsultation ? "Custom Fabric Development" : "Digital Printing Inquiry"} className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none appearance-none">
+                  <select
+                    value={inquirytype}
+                    onChange={(e) => setInquirytype(e.target.value)}
+                    className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none appearance-none"
+                  >
                     <option>Digital Printing Inquiry</option>
                     <option>Bulk Fabric Sourcing</option>
                     <option>Sample Yardage Request</option>
                     <option>Custom Fabric Development</option>
+                    <option>Design Studio Quote</option>
+                    <option>Other</option>
                   </select>
                 </div>
                 <div className="md:col-span-2 space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Message / Project Brief</label>
                   <textarea 
                     rows={6}
+                    required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     placeholder={isBulk ? "Please include estimated quantity (MOQ 100m) and target fabric..." : "Describe your project or design vision..."}
                     className="w-full bg-bg-ivory border-none rounded-2xl px-6 py-5 focus:ring-2 focus:ring-secondary/20 transition-all text-accent outline-none resize-none"
-                  ></textarea>
+                  />
                 </div>
+                {error ? <p className="md:col-span-2 text-sm text-red-600">{error}</p> : null}
                 <div className="md:col-span-2 pt-4">
-                  <button className="w-full bg-accent text-white py-6 rounded-3xl font-bold uppercase tracking-[0.2em] hover:bg-secondary transition-all duration-500 shadow-xl flex items-center justify-center gap-4 group">
-                    {isBulk ? "Submit Bulk Request" : isConsultation ? "Request Consultation" : "Submit Inquiry"}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-accent text-white py-6 rounded-3xl font-bold uppercase tracking-[0.2em] hover:bg-secondary transition-all duration-500 shadow-xl flex items-center justify-center gap-4 group disabled:opacity-60"
+                  >
+                    {isSubmitting ? "Submitting…" : isBulk ? "Submit Bulk Request" : isConsultation ? "Request Consultation" : "Submit Inquiry"}
                     <Send size={18} className="group-hover:translate-x-2 transition-transform" />
                   </button>
                 </div>
               </form>
+              )}
             </div>
 
           </div>

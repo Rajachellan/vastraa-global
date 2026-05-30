@@ -1,45 +1,92 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
-import { Heart, ShoppingBag, Search, Filter, ArrowRight, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { Heart, Search, ArrowRight } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
-import { designs } from "@/app/designs/data";
-
-const designCategories = ["All", "Floral", "Geometric", "Abstract", "Traditional", "Modern"];
-
-
+import { fetchDesigns, fetchDesignStyles } from "@/lib/catalog";
+import { designHref } from "@/lib/designs";
+import type { ApiDesign, DesignStyle } from "@/lib/types";
 
 export default function DesignsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-bg-ivory pt-40 text-center text-accent/40">Loading…</div>}>
+      <DesignsPageContent />
+    </Suspense>
+  );
+}
+
+function DesignsPageContent() {
+  const searchParams = useSearchParams();
+  const styleParam = searchParams.get("style") || "";
+
+  const [designs, setDesigns] = useState<ApiDesign[]>([]);
+  const [designStyles, setDesignStyles] = useState<DesignStyle[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const { toggleWishlist, isInWishlist } = useStore();
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
 
-  const filteredDesigns = designs.filter(design => {
-    const matchesCategory = activeCategory === "All" || design.category === activeCategory;
-    const matchesSearch = design.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      design.designer.toLowerCase().includes(searchQuery.toLowerCase());
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      setLoading(true);
+      try {
+        const [designList, styles] = await Promise.all([
+          fetchDesigns(styleParam || undefined),
+          fetchDesignStyles(),
+        ]);
+        if (!cancelled) {
+          setDesigns(designList);
+          setDesignStyles(styles);
+          if (styleParam) {
+            const match = styles.find(
+              (s) => s.slug === styleParam || s.name.toLowerCase() === styleParam.toLowerCase()
+            );
+            if (match) setActiveCategory(match.name);
+          }
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [styleParam]);
+
+  const categoryFilters = [
+    "All",
+    ...designStyles.map((s) => s.name),
+  ];
+
+  const filteredDesigns = designs.filter((design) => {
+    const styleName = design.style || design.category || "";
+    const matchesCategory =
+      activeCategory === "All" ||
+      styleName.toLowerCase() === activeCategory.toLowerCase();
+    const matchesSearch =
+      (design.name || design.title || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (design.designer || "").toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
-  const handleGetQuote = (design: any) => {
-    setToast({ show: true, message: `Quote request for ${design.name} submitted! Our team will contact you.` });
-  };
-
-  const handleToggleWishlist = (design: any) => {
+  const handleToggleWishlist = (design: ApiDesign) => {
     toggleWishlist({
       id: design.id,
-      name: design.name,
-      image: design.image
+      name: design.name || design.title,
+      image: design.image,
     });
     if (!isInWishlist(design.id)) {
-      setToast({ show: true, message: `${design.name} added to your favorites!` });
+      setToast({ show: true, message: `${design.name || design.title} added to your favorites!` });
     }
   };
 
@@ -53,7 +100,6 @@ export default function DesignsPage() {
         onClose={() => setToast({ ...toast, show: false })}
       />
 
-      {/* Hero Section */}
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl">
@@ -76,27 +122,26 @@ export default function DesignsPage() {
         </div>
       </section>
 
-      {/* Filters & Search */}
       <section className="py-5 bg-white/50 backdrop-blur-md sticky top-[176px] z-30 border-y border-accent/5">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
-            {/* Category Pills */}
             <div className="flex flex-wrap gap-3">
-              {designCategories.map((cat) => (
-                <button
+              {categoryFilters.map((cat) => (
+                <Link
                   key={cat}
+                  href={cat === "All" ? "/designs" : `/designs?style=${encodeURIComponent(cat)}`}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${activeCategory === cat
-                    ? "bg-accent text-white shadow-lg"
-                    : "bg-white text-accent/40 hover:bg-secondary/10 hover:text-secondary"
-                    }`}
+                  className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                    activeCategory === cat
+                      ? "bg-accent text-white shadow-lg"
+                      : "bg-white text-accent/40 hover:bg-secondary/10 hover:text-secondary"
+                  }`}
                 >
                   {cat}
-                </button>
+                </Link>
               ))}
             </div>
 
-            {/* Search Bar */}
             <div className="relative w-full md:w-96">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-accent/20" size={18} />
               <input
@@ -111,12 +156,13 @@ export default function DesignsPage() {
         </div>
       </section>
 
-      {/* Design Grid */}
       <section className="py-24">
         <div className="container mx-auto px-6">
-          {filteredDesigns.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-20 text-accent/40">Loading designs…</div>
+          ) : filteredDesigns.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-xl text-accent/40">No designs found matching your criteria.</p>
+              <p className="text-xl text-accent/40">No designs found. Add designs in the admin panel.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -129,66 +175,69 @@ export default function DesignsPage() {
                   transition={{ delay: index * 0.1 }}
                   className="group bg-white rounded-[3rem] overflow-hidden shadow-sm border border-accent/5 hover:shadow-2xl transition-all duration-500"
                 >
-                  {/* Image Container - Clickable to detail page */}
-                  <Link href={`/designs/${design.id}`} className="block">
+                  <Link href={designHref(design)} className="block">
                     <div className="relative aspect-[4/5] overflow-hidden">
                       <Image
-                        src={design.image}
-                        alt={design.name}
+                        src={design.image || "/images/trending1.png"}
+                        alt={design.name || design.title}
                         fill
                         className="object-cover transition-transform duration-1000 group-hover:scale-110"
                       />
 
-                      {/* Overlay Actions */}
                       <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center gap-4">
                         <button
-                          onClick={(e) => { e.preventDefault(); handleToggleWishlist(design); }}
-                          className={`p-4 rounded-full transition-all duration-300 ${isInWishlist(design.id)
-                            ? "bg-secondary text-white"
-                            : "bg-white text-accent hover:bg-secondary hover:text-white"
-                            }`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleToggleWishlist(design);
+                          }}
+                          className={`p-4 rounded-full transition-all duration-300 ${
+                            isInWishlist(design.id)
+                              ? "bg-secondary text-white"
+                              : "bg-white text-accent hover:bg-secondary hover:text-white"
+                          }`}
                         >
                           <Heart size={20} fill={isInWishlist(design.id) ? "currentColor" : "none"} />
-                        </button>
-                        <button
-                          onClick={(e) => { e.preventDefault(); handleGetQuote(design); }}
-                          className="bg-white text-accent px-6 py-3 rounded-full hover:bg-secondary hover:text-white transition-all duration-300"
-                        >
-                          <span className="text-[10px] font-bold uppercase tracking-widest">Get Custom Quote</span>
                         </button>
                       </div>
 
                       <div className="absolute top-6 left-6 z-20">
                         <span className="bg-white/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full text-accent shadow-sm">
-                          {design.category}
+                          {design.style || design.category}
                         </span>
                       </div>
                     </div>
                   </Link>
 
-                  {/* Content */}
                   <div className="p-10">
-                    <Link href={`/designs/${design.id}`} className="block">
+                    <Link href={designHref(design)} className="block">
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="text-2xl font-serif text-accent mb-1 group-hover:text-secondary transition-colors">{design.name}</h3>
-                          <p className="text-xs text-secondary font-bold uppercase tracking-widest">By {design.designer}</p>
+                          <h3 className="text-2xl font-serif text-accent mb-1 group-hover:text-secondary transition-colors">
+                            {design.name || design.title}
+                          </h3>
+                          {design.designer ? (
+                            <p className="text-xs text-secondary font-bold uppercase tracking-widest">
+                              By {design.designer}
+                            </p>
+                          ) : null}
                         </div>
                       </div>
                     </Link>
 
-                    <p className="text-sm text-accent/60 leading-relaxed mb-8 line-clamp-2">
-                      {design.description}
-                    </p>
+                    {design.description ? (
+                      <p className="text-sm text-accent/60 leading-relaxed mb-8 line-clamp-2">
+                        {design.description}
+                      </p>
+                    ) : null}
 
                     <div className="flex items-center justify-between pt-6 border-t border-accent/5">
                       <div className="flex gap-4 text-[10px] text-accent/40 font-bold uppercase tracking-tighter">
-                        <span>{design.resolution}</span>
-                        <span>•</span>
-                        <span>{design.format}</span>
+                        {design.resolution ? <span>{design.resolution}</span> : null}
+                        {design.resolution && design.format ? <span>•</span> : null}
+                        {design.format ? <span>{design.format}</span> : null}
                       </div>
                       <Link
-                        href={`/designs/${design.id}`}
+                        href={designHref(design)}
                         className="text-accent hover:text-secondary flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors group/btn"
                       >
                         View Details
@@ -203,7 +252,6 @@ export default function DesignsPage() {
         </div>
       </section>
 
-      {/* Featured Banner */}
       <section className="py-24 bg-accent text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
           <Image src="/images/trending3.png" alt="Pattern Background" fill className="object-cover" />

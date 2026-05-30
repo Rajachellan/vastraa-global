@@ -8,7 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
 import { SearchOverlay } from "./SearchOverlay";
-import { designs } from "@/app/designs/data";
+import { fetchDesignStyles, fetchFabricCatalog } from "@/lib/catalog";
+import type { DesignStyle, FabricCategory } from "@/lib/types";
 import { useStore } from "@/context/StoreContext";
 import Image from "next/image";
 
@@ -18,9 +19,16 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [designStyles, setDesignStyles] = useState<DesignStyle[]>([]);
+  const [fabricCategories, setFabricCategories] = useState<FabricCategory[]>([]);
 
   const pathname = usePathname();
   const { cart, wishlist } = useStore();
+
+  useEffect(() => {
+    fetchDesignStyles().then(setDesignStyles).catch(() => setDesignStyles([]));
+    fetchFabricCatalog().then(setFabricCategories).catch(() => setFabricCategories([]));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,12 +72,10 @@ export const Navbar = () => {
       href: "/fabrics",
       subItems: [
         { name: "All Fabrics", href: "/fabrics" },
-        { name: "Cotton", href: "/fabrics/cotton" },
-        { name: "Linen", href: "/fabrics/linen" },
-        { name: "Viscose", href: "/fabrics/viscose" },
-        { name: "Blends", href: "/fabrics/blends" },
-        { name: "Silk", href: "/fabrics/silk" },
-        { name: "Sustainable", href: "/fabrics/sustainable" },
+        ...fabricCategories.map((cat) => ({
+          name: cat.name,
+          href: `/fabrics?category=${encodeURIComponent(cat.slug || cat.name)}`,
+        })),
       ],
     },
 
@@ -89,7 +95,10 @@ export const Navbar = () => {
 
   const getSubNavItems = () => {
     if (pathname.startsWith("/designs")) {
-      return designs.map((d) => ({ name: d.name, href: `/designs/${d.id}` }));
+      return designStyles.map((s) => ({
+        name: s.name,
+        href: `/designs?style=${encodeURIComponent(s.slug || s.name)}`,
+      }));
     }
     if (pathname.startsWith("/fabrics")) {
       return menuItems.find((i) => i.name === "Our Fabrics")?.subItems || null;

@@ -1,74 +1,111 @@
 "use client";
 
-import React, { useState, use } from "react";
+import React, { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { designs } from "@/app/designs/data";
-import { categories } from "@/app/fabrics/data";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { Heart, ChevronDown, Check, Info, FileCode, Layers, ShieldCheck, ChevronRight } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
 import { QuoteModal } from "@/components/QuoteModal";
 import { motion, AnimatePresence } from "framer-motion";
+import { fetchDesignById, fetchFabricCatalog } from "@/lib/catalog";
+import { designHref } from "@/lib/designs";
+import type { ApiDesign, FabricItem } from "@/lib/types";
 
 export default function DesignDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const design = designs.find((d) => d.id === id);
+  const router = useRouter();
+  const [design, setDesign] = useState<ApiDesign | null>(null);
+  const [relatedDesigns, setRelatedDesigns] = useState<ApiDesign[]>([]);
+  const [allFabrics, setAllFabrics] = useState<FabricItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      setLoading(true);
+      const [fetched, catalog] = await Promise.all([
+        fetchDesignById(id),
+        fetchFabricCatalog(),
+      ]);
+      if (cancelled) return;
+      if (!fetched) {
+        setLoading(false);
+        return;
+      }
+      if (fetched.slug && fetched.slug !== id) {
+        router.replace(designHref(fetched));
+        return;
+      }
+      setDesign(fetched);
+      setRelatedDesigns(fetched.relatedDesigns || []);
+      const flatFabrics = catalog.flatMap((c) => c.items);
+      const suggested = flatFabrics.filter((f) =>
+        (fetched.suggestedFabrics || []).includes(f.id)
+      );
+      setAllFabrics(suggested.length > 0 ? suggested : flatFabrics.slice(0, 8));
+      setLoading(false);
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [id, router]);
+
+  const { toggleWishlist, isInWishlist } = useStore();
+  const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
+  const [selectedFabricId, setSelectedFabricId] = useState<string>("");
+  const [activeAccordion, setActiveAccordion] = useState<string | null>("specs");
+
+  useEffect(() => {
+    if (design?.defaultFabricId) {
+      setSelectedFabricId(design.defaultFabricId);
+    } else if (allFabrics[0]?.id) {
+      setSelectedFabricId(allFabrics[0].id);
+    }
+  }, [design, allFabrics]);
+
+  if (loading) {
+    return (
+      <main className="flex min-h-screen flex-col bg-bg-ivory">
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center text-accent/40 pt-40">Loading design…</div>
+      </main>
+    );
+  }
 
   if (!design) {
     notFound();
     return null;
   }
 
-  // Get list of all flat fabrics for selection
-  const allFabrics: any[] = [];
-  categories.forEach((cat) => {
-    cat.items.forEach((item) => {
-      // Only suggest specific main fabrics
-      if (["f1", "f2", "f3", "f7"].includes(item.id)) {
-        allFabrics.push(item);
-      }
-    });
-  });
-
-  const { toggleWishlist, isInWishlist } = useStore();
-  const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
-  const [activeImageIdx, setActiveImageIdx] = useState(0);
-  
-  // Dynamic Selector State (pre-fill with recomended fabric base)
-  const [selectedFabricId, setSelectedFabricId] = useState(design.defaultFabricId);
-  const [activeAccordion, setActiveAccordion] = useState<string | null>("specs");
-
-  const selectedFabric = allFabrics.find(f => f.id === selectedFabricId) || allFabrics[0];
+  const selectedFabric = allFabrics.find((f) => f.id === selectedFabricId) || allFabrics[0];
   const galleryImages = design.images && design.images.length > 0 ? design.images : [design.image];
+  const designName = design.name || design.title;
 
   const showToast = (msg: string) => setToast({ show: true, message: msg });
 
   const handleToggleWishlist = () => {
     toggleWishlist({
       id: design.id,
-      name: design.name,
-      image: design.image
+      name: designName,
+      image: design.image,
     });
     if (!isInWishlist(design.id)) {
-      showToast(`${design.name} added to your favorites!`);
+      showToast(`${designName} added to your favorites!`);
     } else {
-      showToast(`${design.name} removed from your favorites!`);
+      showToast(`${designName} removed from your favorites!`);
     }
   };
 
   const toggleAccordion = (section: string) => {
     setActiveAccordion(activeAccordion === section ? null : section);
   };
-
-  // Get related designs in the same category
-  const relatedDesigns = designs
-    .filter((d) => d.category === design.category && d.id !== design.id)
-    .slice(0, 3);
 
   return (
     <main className="flex min-h-screen flex-col bg-bg-ivory">
@@ -83,8 +120,10 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
       <QuoteModal 
         isOpen={isQuoteModalOpen} 
         onClose={() => setIsQuoteModalOpen(false)} 
-        productName={`${design.name} Pattern printed on ${selectedFabric.name}`}
+        productName={`${designName} Pattern printed on ${selectedFabric?.name || "fabric"}`}
         initialImage={design.image}
+        designId={design.id}
+        designTitle={designName}
       />
 
       <section className="container mx-auto px-6 pt-36 pb-24">
@@ -382,7 +421,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                     </div>
                     <p className="text-accent/60 text-sm leading-relaxed mb-8 flex-1 line-clamp-2">{item.description}</p>
                     <Link 
-                      href={`/designs/${item.id}`} 
+                      href={designHref(item)} 
                       className="text-accent group-hover:text-secondary flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors"
                     >
                       View Pattern Details

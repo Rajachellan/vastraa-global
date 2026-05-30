@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, use } from "react";
+import React, { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { categories } from "@/app/fabrics/data";
 import { notFound } from "next/navigation";
 import { Heart, ChevronDown, Award, Sparkles, Droplets, Info, Upload, CheckCircle } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
@@ -13,25 +12,44 @@ import { Toast } from "@/components/Toast";
 import { QuoteModal } from "@/components/QuoteModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { RelatedDesigns } from "@/components/RelatedDesigns";
+import { fetchFabricById, fetchFabricCatalog } from "@/lib/catalog";
+import type { FabricItem } from "@/lib/types";
 
 export default function FabricDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  let fabric: any = null;
-  let categoryName = "";
-  
-  for (const cat of categories) {
-    const found = cat.items.find((i: any) => i.id === id);
-    if (found) {
-      fabric = found;
-      categoryName = cat.name;
-      break;
+  const [fabric, setFabric] = useState<FabricItem | null>(null);
+  const [categoryName, setCategoryName] = useState("");
+  const [related, setRelated] = useState<FabricItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function load() {
+      setLoading(true);
+      const [item, catalog] = await Promise.all([fetchFabricById(id), fetchFabricCatalog()]);
+      if (cancelled) return;
+      if (!item) {
+        setLoading(false);
+        return;
+      }
+      setFabric(item);
+      const catId =
+        typeof item.categoryId === "object" && item.categoryId
+          ? item.categoryId._id
+          : item.categoryId;
+      const cat = catalog.find((c) => String(c._id || c.id) === String(catId));
+      setCategoryName(cat?.name || (typeof item.categoryId === "object" ? item.categoryId.name : "") || "");
+      setRelated(
+        cat?.items.filter((i) => i.id !== item.id) ||
+          catalog.flatMap((c) => c.items).filter((i) => i.id !== item.id).slice(0, 4)
+      );
+      setLoading(false);
     }
-  }
-  
-  if (!fabric) {
-    notFound();
-    return null;
-  }
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
 
   const { toggleWishlist, isInWishlist } = useStore();
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
@@ -39,7 +57,20 @@ export default function FabricDetailPage({ params }: { params: Promise<{ id: str
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [activeAccordion, setActiveAccordion] = useState<string | null>("specs");
 
-  // If the fabric doesn't have an images array, fall back to its single image
+  if (loading) {
+    return (
+      <main className="flex min-h-screen flex-col bg-bg-ivory">
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center text-accent/40 pt-40">Loading fabric…</div>
+      </main>
+    );
+  }
+
+  if (!fabric) {
+    notFound();
+    return null;
+  }
+
   const galleryImages = fabric.images && fabric.images.length > 0 ? fabric.images : [fabric.image];
 
   const showToast = (msg: string) => setToast({ show: true, message: msg });
@@ -52,10 +83,6 @@ export default function FabricDetailPage({ params }: { params: Promise<{ id: str
       showToast(`${fabric.name} removed from your favorites!`);
     }
   };
-
-  const related = categories
-    .find((c) => c.name === categoryName)!
-    .items.filter((i: any) => i.id !== fabric.id);
 
   const toggleAccordion = (section: string) => {
     setActiveAccordion(activeAccordion === section ? null : section);
