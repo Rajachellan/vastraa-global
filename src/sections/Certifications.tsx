@@ -10,6 +10,7 @@ import global from "../../public/images/globalrecycled.png"
 import { image } from "framer-motion/client";
 import { ok } from "node:assert";
 import Image from "next/image";
+
 const certifications = [
    {
     name: "OEKO-TEX",
@@ -48,7 +49,7 @@ export const Certifications = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="certifications" className="py-24 md:py-32 bg-bg-ivory relative" ref={ref}>
+    <section id="certifications" className="py-14 md:py-20 bg-bg-ivory relative" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -116,7 +117,7 @@ export const Certifications = () => {
       </div>
     </motion.div>
   ))}
-</div>
+      </div>
       </div>
     </section>
   );

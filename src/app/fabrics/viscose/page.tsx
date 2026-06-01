@@ -9,6 +9,7 @@ import { Shield, Leaf, Globe, Award, Droplets, Sparkles, Zap, Activity, TreeDeci
 import { Toast } from "@/components/Toast";
 import { useState } from "react";
 import { RelatedDesigns } from "@/components/RelatedDesigns";
+import ViscoseFaqs from '../../../components/ViscoseFaqs'
 
 export default function ViscosePage() {
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
@@ -16,6 +17,131 @@ export default function ViscosePage() {
   const handleRequestSample = () => {
     setToast({ show: true, message: "Sample request for Sustainable Viscose sent successfully!" });
   };
+    const viscoseFabrics = [
+  {
+    title: "Pure Viscose Fabric",
+    description:
+      "Pure viscose fabrics offer exceptional softness, fluid drape, and lightweight comfort ideal for elegant apparel collections.",
+  },
+  {
+    title: "Lightweight Viscose Fabric",
+    description:
+      "Lightweight viscose fabrics are ideal for breathable summer wear, resort fashion, and flowy garments.",
+  },
+  {
+    title: "Viscose Rayon Fabric",
+    description:
+      "Viscose rayon fabrics are widely used for dresses, tops, and contemporary fashion garments because of their smooth texture and luxurious feel.",
+  },
+  {
+    title: "Printed Viscose Fabric ",
+    description:
+      "Custom printed viscose fabrics are perfect for designer collections, modern apparel brands, and premium fashion manufacturing.",
+  },
+  {
+    title: "Viscose Slub Fabric ",
+    description:
+      "Viscose slub fabrics provide subtle texture and visual depth suitable for relaxed and artisanal fashion aesthetics.",
+  },
+  {
+    title: "Viscose Blend Fabric",
+    description:
+      "Viscose blends combine softness with enhanced durability and versatility for various apparel applications.",
+  },
+    ];
+
+    const fabricUses = [
+  "Dresses",
+  "Co-ord Sets",
+  "Kidswear",
+  "Women’s Fashion",
+  "Resort Wear",
+  "Lounge Wear",
+  "Ethnic Apparel",
+  "Home Textiles",
+  "Designer Collections",
+  "Casualwear",
+  "Scarves and overlays",
+  "Contemporary ethnic wear",
+  "Premium fashion collections"
+    ];
+
+    const fabricFeatures = [
+  "Smooth silky texture",
+  "Excellent drape",
+  "Breathable structure",
+  "Vibrant print clarity",
+  "Soft touch against skin",
+  "Easy Maintenance",
+  "Elegant fabric movement",
+  "Premium aesthetic appeal"
+    ];
+
+    const viscoseTrends = [
+      "Abstract digital prints",
+      "Soft pastel collections",
+      "Botanical-inspired patterns",
+      "Fluid resort wear",
+      "Contemporary ethnic fusion styles",
+      "Minimal luxury aesthetics",
+      "Lightweight layered fashion",
+      "Sustainable-inspired apparel collections",
+    ];
+
+    const bulkOrders = [
+  "Fashion Brands",
+  "Apparel Manufacturers",
+  "Private Clothing Labels",
+  "Boutique Lables",
+  "Export Businesses",
+  "Resort wear collections "
+    ];
+
+    const chooseVastraa = [
+  {
+    title: "Sustainable Manufacturing",
+    description:
+      "Modern textile production focused on responsible and efficient manufacturing practices.",
+  },
+  {
+    title: "Premium Fabric Quality",
+    description:
+      "High-quality viscose fabrics crafted with superior softness, finish, and durability.",
+  },
+  {
+    title: "Custom Textile Printing",
+    description:
+      "Advanced printing solutions designed for contemporary fashion collections.",
+  },
+  {
+    title: "Fast Sampling & Production",
+    description:
+      "Efficient workflows for rapid development and bulk manufacturing.",
+  },
+  {
+    title: "Export-Ready Standards",
+    description:
+      "Global-quality textile production suitable for international apparel markets.",
+  },
+  {
+    title: "Fashion-Focused Expertise",
+    description:
+      "Textile solutions tailored for modern fashion brands and creative collections",
+  },
+    ];
+
+    const popularSearches = [
+  "Premium Viscose Fabrics",
+  "Sustainable Viscose Fabrics",
+  "Printed Viscose Fabrics",
+  "Soft Viscose Fabrics",
+  "Custom Printed Viscose Fabrics ",
+  "Lightweight Fashion Fabrics",
+  "Viscose Fabric For Dresses",
+  "Bulk Viscose Fabric Suppliers",
+   "Viscose Fabric Manufacturer ",
+   "Viscose Rayon Fabrics "
+    ];
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
@@ -63,134 +189,435 @@ export default function ViscosePage() {
       <RelatedDesigns fabricId="f3" fabricName="Viscose" />
 
       {/* Massive Content Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            {/* Sidebar Highlights */}
-            <div className="lg:col-span-1 space-y-8">
-              <div className="bg-bg-ivory p-10 rounded-4xl border border-accent/5 sticky top-40 shadow-sm">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-secondary mb-8">Viscose Intelligence</h3>
-                <div className="space-y-8">
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-secondary shrink-0 shadow-sm">
-                      <Sparkles size={18} />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-accent">Silky Lustre</div>
-                      <div className="text-xs text-accent/50 leading-relaxed">High-reflectivity fibers for elegant, fluid shine.</div>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-secondary shrink-0 shadow-sm">
-                      <Droplets size={18} />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-accent">Superior Drapability</div>
-                      <div className="text-xs text-accent/50 leading-relaxed">Mimics the movement and feel of natural silk.</div>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-secondary shrink-0 shadow-sm">
-                      <TreeDeciduous size={18} />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-accent">Wood-Based</div>
-                      <div className="text-xs text-accent/50 leading-relaxed">Sourced from sustainably managed forests.</div>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-secondary shrink-0 shadow-sm">
-                      <Zap size={18} />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-accent">Color Vividness</div>
-                      <div className="text-xs text-accent/50 leading-relaxed">Excellent ink absorption for rich, deep tones.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <section className="py-24 container mx-auto flex flex-col gap-[28px]">
+      
+      <div className="flex flex-col gap-[14px]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+      Premium Linen Fabrics for <span className="text-secondary italic">Fashion Brands.</span>
+      </h2>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+      Discover premium viscose fabrics crafted for modern fashion brands, apparel manufacturers, and designers worldwide. At Vastraa Global, we provide high-quality viscose fabric solutions designed for softness, fluid drape, and luxurious comfort. From custom textile printing to bulk manufacturing, our viscose fabrics are tailored for contemporary fashion collections and export-quality apparel production.
+      </p>
+      </div>
 
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-16">
-              <div className="prose prose-lg prose-accent max-w-none text-accent/70 space-y-8">
-                <h2 className="text-4xl font-serif text-accent">Viscose: The Bridge Between Nature and Science</h2>
-                <p>
-                  Viscose (often called Rayon) is a semi-synthetic fiber that offers the best of both worlds: the breathability and comfort of a natural fiber with the consistency and performance of a manufactured one. At VastraaGlobal, we specialize in <strong>Lenzing™ Ecovero™</strong> and other FSC-certified viscose sources, ensuring that our production never contributes to the deforestation of ancient or endangered forests.
-                </p>
-                <p>
-                  For our B2B clients in the contemporary womenswear and resort-wear markets, viscose is the undisputed leader for items requiring a soft "handle" and a fluid, feminine silhouette.
-                </p>
+      <div className="flex flex-col gap-[14px]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+      About <span className="text-secondary italic">Viscose  Fabrics.</span>
+      </h2>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+      Viscose fabric is one of the most versatile and elegant textiles used in modern fashion. Known for its silky softness, lightweight feel, and graceful drape, viscose is widely preferred for premium apparel and designer collections.
+      </p>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Its ability to blend comfort with luxury aesthetics makes viscose fabrics a popular choice among fashion brands seeking sophisticated and breathable textiles.</p>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">At Vastraa Global, we offer premium viscose fabrics suitable for custom printing, fashion manufacturing, and large-scale apparel production.</p>
+      </div>
 
-                <h3 className="text-2xl font-serif text-accent">Technical Characteristics</h3>
-                <p>
-                  Viscose is unique in its ability to take on the characteristics of other fibers. Depending on the processing, it can feel like silk, wool, or cotton. At VastraaGlobal, we focus on high-twist viscose yarns that provide:
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
-                  <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
-                    <div className="text-2xl font-serif text-accent mb-2">Viscose Challis</div>
-                    <p className="text-sm text-accent/50">80-110 GSM. The most popular choice for printed dresses and skirts. Exceptional drape.</p>
-                  </div>
-                  <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
-                    <div className="text-2xl font-serif text-accent mb-2">Viscose Georgette</div>
-                    <p className="text-sm text-accent/50">Semi-transparent with a grainy texture. Ideal for luxury blouses and evening overlays.</p>
-                  </div>
-                  <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
-                    <div className="text-2xl font-serif text-accent mb-2">Viscose Crepe</div>
-                    <p className="text-sm text-accent/50">Highly textured with a beautiful "bounce." Perfect for premium tailoring and trousers.</p>
-                  </div>
-                  <div className="bg-bg-ivory p-8 rounded-3xl border border-accent/5">
-                    <div className="text-2xl font-serif text-accent mb-2">Viscose-Modal</div>
-                    <p className="text-sm text-accent/50">Enhanced softness and shrinkage resistance. The gold standard for luxury loungewear.</p>
-                  </div>
-                </div>
+      <div className="flex flex-col gap-[14px]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+      What are <span className="text-secondary italic">Viscose Fabrics?</span>
+      </h2>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+      Viscose fabrics are semi-natural textiles made from regenerated cellulose fibers derived from wood pulp. These fibers are processed to create soft, breathable, and smooth fabrics commonly used in fashion and lifestyle applications.
+      </p>
+      <div>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Viscose fabrics are valued for:</p>
+      <ul className="flex flex-col gap-[6px] mt-2 pl-4" style={{listStyleType:"disc"}}>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Silky-soft texture</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Lightweight comfort </li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Elegant drape</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Breathability</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Moisture absorption </li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Vibrant print compatibility</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Smooth luxurious finish</li>
+      </ul>
+      </div>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Because of their premium appearance and versatility, viscose fabrics are widely used across contemporary fashion collections.</p>
+      </div>
 
-                <h2 className="text-3xl font-serif text-accent">Digital Printing on Viscose</h2>
-                <p>
-                  Viscose is a dream canvas for digital printers. Because it is highly absorbent, the ink penetrates deeply into the fiber, resulting in a richness of color that is often superior to cotton. We primarily use <strong>Reactive Digital Printing</strong> for our viscose collections.
-                </p>
-                <p>
-                  The chemical bond formed during reactive printing ensures that the vibrant designs are locked into the fiber, resisting fading even after multiple washes. Our precision print heads allow for the reproduction of intricate, high-definition patterns that make viscose garments stand out in the competitive retail market.
-                </p>
+      <div className="flex flex-col gap-[14px]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+       Why Fashion Brands<span className="text-secondary italic"> Prefer Viscose Fabrics?</span>
+      </h2>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+      Viscose fabrics have become a favorite in modern fashion because they combine softness, fluid movement, and refined aesthetics.
+      </p>
+      <div>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Fashion brands choose Viscose fabrics for:</p>
+      <ul className="flex flex-col gap-[6px] mt-2 pl-4" style={{listStyleType:"disc"}}>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Luxury-inspired texture</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Lightweight breathable garments</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Elegant fabric drape </li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Lightweight and breathable garments</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Vibrant print results</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Comfortable everyday wear</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Contemporary fashion silhouettes</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Premium apparel collections</li>
+      </ul>
+      </div>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">From dresses and co-ords to resort wear and designer garments, viscose fabrics help create effortlessly stylish fashion pieces.</p>
+      </div>
 
-                <div className="p-12 bg-accent text-white rounded-4xl relative overflow-hidden my-20 shadow-xl">
-                  <div className="absolute top-0 right-0 p-8 opacity-20">
-                    <Activity size={120} />
-                  </div>
-                  <h4 className="text-2xl font-serif mb-6 text-secondary relative z-10">Sustainable B2B Sourcing</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-                    <div className="space-y-2">
-                      <div className="text-secondary text-xs font-bold uppercase tracking-widest">FSC® Certified</div>
-                      <p className="text-sm text-white/60">100% of our wood pulp source is traceable to sustainably managed forests.</p>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="text-secondary text-xs font-bold uppercase tracking-widest">Closed-Loop Production</div>
-                      <p className="text-sm text-white/60">Minimizing chemical emissions and recycling water during fiber manufacturing.</p>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="text-secondary text-xs font-bold uppercase tracking-widest">No-Azo Dyes</div>
-                      <p className="text-sm text-white/60">All our reactive inks are free from harmful Azo compounds.</p>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="text-secondary text-xs font-bold uppercase tracking-widest">Rapid Prototyping</div>
-                      <p className="text-sm text-white/60">Digital workflow enables sample turnaround in as little as 48 hours.</p>
-                    </div>
-                  </div>
-                </div>
+      <div className="flex flex-col gap-[14px]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+      The Evolution of Viscose Fabrics<span className="text-secondary italic"> in Modern Fashion</span>
+      </h2>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+      Viscose fabrics evolved as an innovative alternative to silk and quickly became a major textile in global fashion.
+      </p>
+      <div>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Today’s fashion industry uses Linen fabrics not only for comfort but also for: </p>
+      <ul className="flex flex-col gap-[6px] mt-2 pl-4" style={{listStyleType:"disc"}}>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Sustainable-inspired fashion </li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Digital textile printing</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Contemporary designer wear</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Luxury casualwear</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Resort and vacation collections</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Soft-flowing apparel designs</li>
+      </ul>
+      </div>
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Modern textile manufacturing has further enhanced viscose fabrics with advanced finishing techniques, improved durability, and premium print compatibility.</p>
+      </div>
+      </section>
 
-                <h2 className="text-3xl font-serif text-accent">Ethical Responsibility</h2>
-                <p>
-                  Historically, viscose production has been criticized for its chemical usage. At VastraaGlobal, we have made it our mission to only partner with fiber manufacturers who employ modern, closed-loop technology. This means that 99% of the solvents used to turn wood pulp into fiber are recovered and reused, preventing harmful chemicals from entering the local ecosystem.
-                </p>
-                <p>
-                  When you choose VastraaGlobal viscose, you are choosing a fabric that is as gentle on the planet as it is on the skin.
-                </p>
-              </div>
-            </div>
+       <section className="container mx-auto flex flex-col gap-[14] pb-20">
+      <div className="text-center">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">Types of <span className="text-secondary italic">Viscose Fabrics</span></h2>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mt-6">
+      {viscoseFabrics.map((item, index) => (
+      <div
+      key={index}
+      className="bg-white border border-[#D4AF37]/30 rounded-3xl p-5 md:p-7 shadow-sm hover:shadow-xl transition-all duration-300">
+      <h3 className="text-lg sm:text-xl font-semibold text-black mb-3 leading-snug">
+        {item.title}
+      </h3>
+      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+        {item.description}
+      </p>
+    </div>
+    ))}
+    </div>
+      </section>
+
+      <section className="w-full py-16 md:py-24 bg-[#faf7f2]">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      {/* Uses Card */}
+      <div className="bg-white rounded-[32px] p-6 md:p-10 border border-[#D4AF37]/20 shadow-sm hover:shadow-xl transition-all duration-300">
+
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+            <span className="text-[#D4AF37] text-xl">✦</span>
+          </div>
+
+          <div>
+            <p className="text-[#D4AF37] uppercase tracking-[3px] text-xs font-medium">
+              Fashion Applications
+            </p>
+
+            <h2 className="text-2xl md:text-4xl font-semibold text-black">
+              Best Uses of Viscose Fabrics
+            </h2>
           </div>
         </div>
+
+        <p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-8">
+         Viscose fabrics are suitable for a wide range of premium fashion applications
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          {fabricUses.map((item, index) => (
+            <div
+              key={index}
+              className="px-4 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-sm md:text-base text-black font-medium hover:bg-[#D4AF37] hover:text-white transition-all duration-300 cursor-pointer"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+
+
+      {/* Features Card */}
+      <div className="bg-[#D4AF37] rounded-[32px] p-6 md:p-10 text-white relative overflow-hidden">
+
+        <div className="absolute top-0 right-0 w-52 h-52 bg-white/10 rounded-full blur-3xl"></div>
+
+        <div className="relative z-10">
+
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+              <span className="text-white text-xl">✦</span>
+            </div>
+
+            <div>
+              <p className="uppercase tracking-[3px] text-xs font-medium text-white/80">
+                Fabric Advantages
+              </p>
+
+              <h2 className="text-2xl md:text-4xl font-semibold">
+                Unique Characteristics
+              </h2>
+            </div>
+          </div>
+
+          <p className="text-white/90 leading-relaxed text-sm sm:text-base mb-8">
+            Viscose fabrics are admired for their luxurious appearance and comfortable feel. 
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {fabricFeatures.map((item, index) => (
+              <div
+                key={index}
+                className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-4"
+              >
+                <p className="text-sm md:text-base font-medium leading-relaxed">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
       </section>
+
+       <section className="container mx-auto flex flex-col gap-[14] py-15">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight text-black">Why Buy Viscose Fabrics From <span className="text-secondary italic">Vastraa Global ?</span></h2>
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">At Vastraa Global, we help fashion brands create premium apparel collections through high-quality viscose fabric manufacturing and custom textile printing solutions.</p>
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">Why brands choose us:</p>
+      <ul className="flex flex-col gap-[6px] mt-2 pl-4" style={{listStyleType:"disc"}}>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Sustainable textile manufacturing</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Export-quality Viscose fabrics</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Reliable global manufacturing standards</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Advanced custom printing </li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Fast sampling support</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Bulk production capabilities </li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Premium Fabric Finishing</li>
+      <li className="text-gray-500" style={{fontSize:"15px"}}>Fashion-focused textile expertise</li>
+      </ul>
+       <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">We work closely with fashion brands, designers, and apparel manufacturers to deliver fabrics tailored to modern creative and commercial requirements.</p>
+       </section>
+
+      <section className="container mx-auto relative overflow-hidden py-16 md:py-24 bg-[#faf7f2]">
+
+    {/* Background Glow */}
+    <div className="absolute top-0 left-0 w-72 h-72 bg-[#D4AF37]/10 blur-3xl rounded-full"></div>
+    <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#D4AF37]/10 blur-3xl rounded-full"></div>
+
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Heading */}
+    <div className=" text-center mb-14">
+
+      <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-4">
+        Fashion Industry Insights
+      </p>
+
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black leading-tight mb-6">
+        Viscose Fabric <span className="text-secondary italic">Trends 2026</span>
+      </h2>
+
+      <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+        Viscose fabrics continue to grow in popularity as fashion trends move toward fluid silhouettes, comfort-driven styling, and expressive prints.
+      </p>
+    </div>
+
+
+
+    {/* Trend Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      {viscoseTrends.map((trend, index) => (
+        <div
+          key={index}
+          className="group relative bg-white border border-[#D4AF37]/15 rounded-[28px] p-6 md:p-7 hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 overflow-hidden"
+        >
+
+          {/* Top Gradient */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#D4AF37] to-[#f4df9b]"></div>
+
+          {/* Number */}
+          <div className="text-5xl font-bold text-[#D4AF37]/15 mb-10">
+            0{index + 1}
+          </div>
+
+          {/* Content */}
+          <div>
+            <h3 className="text-lg md:text-xl font-semibold text-black leading-snug mb-5">
+              {trend}
+            </h3>
+
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-[2px] bg-[#D4AF37] rounded-full group-hover:w-16 transition-all duration-500"></div>
+
+              <span className="text-xs uppercase tracking-[2px] text-gray-500">
+                Trending
+              </span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+      </section>
+
+      <section className="md:py-15 bg-[#faf7f2] mt-7">
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="relative overflow-hidden bg-white border border-[#D4AF37]/20 rounded-[36px] p-6 sm:p-10 lg:p-14">
+
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-[#D4AF37]/10 blur-3xl rounded-full"></div>
+
+      <div className="relative z-10 text-center">
+
+        <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-5">
+          Bulk Manufacturing
+        </p>
+
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black leading-tight mb-8">
+          We Take Bulk Orders Too!
+        </h2>
+
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed mb-10">
+          Vastraa Global supports bulk Viscose fabric manufacturing for:
+        </p>
+
+
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-4 mb-10" style={{justifyContent:"center"}}>
+
+          {bulkOrders.map((item, index) => (
+            <div
+              key={index}
+              className="px-5 py-3 rounded-full bg-[#faf7f2] border border-[#D4AF37]/20 text-black text-sm sm:text-base font-medium hover:bg-[#D4AF37] hover:text-white transition-all duration-300">
+              {item}
+            </div>
+          ))}
+
+        </div>
+       {/* Bottom Text */}
+        <div className="border-t border-[#D4AF37]/15 pt-2">
+
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
+          From fabric development to large-scale production, we provide scalable textile solutions tailored for growing fashion businesses. 
+          </p>
+        </div>
+      </div>
+      </div>
+    </div>
+      </section>
+
+      <section className="py-12 md:py-18 bg-[#faf7f2]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Heading */}
+    <div className="text-center mb-14 ">
+
+      <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-4">
+        Why Brands Choose Us
+      </p>
+
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black leading-tight">
+        Why Choose Vastraa Global?
+      </h2>
+
+    </div>
+
+
+
+    {/* Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {chooseVastraa.map((item, index) => (
+        <div
+          key={index}
+          className="group relative bg-white border border-[#D4AF37]/15 rounded-[30px] p-6 md:p-8 overflow-hidden hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
+        >
+
+          {/* Top Line */}
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-[#D4AF37] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+
+          {/* Number */}
+          <div className="text-5xl font-bold text-[#D4AF37]/15 mb-10">
+            0{index + 1}
+          </div>
+
+          {/* Content */}
+          <div>
+
+            <h3 className="text-xl md:text-2xl font-semibold text-black leading-snug mb-4 group-hover:text-[#D4AF37] transition-all duration-300">
+              {item.title}
+            </h3>
+
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {item.description}
+            </p>
+
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+    </div>
+      </section>
+
+       <section className="py-16 md:py-24 bg-[#faf7f2]">
+
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Heading */}
+    <div className="mb-10">
+
+      <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-4">
+        Trending Keywords
+      </p>
+
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-black leading-tight">
+        Popular Searches
+      </h2>
+
+    </div>
+
+
+
+    {/* Search Items */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-10">
+
+      {popularSearches.map((item, index) => (
+        <div
+          key={index}
+          className="flex items-center gap-3"
+        >
+
+          <div className="w-2 h-2 rounded-full bg-[#D4AF37] flex-shrink-0"></div>
+
+          <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed hover:text-[#D4AF37] transition-all duration-300 cursor-pointer">
+            {item}
+          </p>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+       </section>
+
+       <ViscoseFaqs/>
 
       <Footer />
     </main>

@@ -6,46 +6,138 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { MapPin, Printer, Layers } from "lucide-react";
+import aboutusimg from '../../../public/images/aboutusimg1.png'
+import gotsimg from '../../../public/images/GOTS.png'
+import { Certifications } from "@/sections/Certifications";
+import gots from "../../../public/images/GOTS.png"
+import seedex from "../../../public/images/seedex.png"
+import oeko from "../../../public/images/oeko.png"
+import global from "../../../public/images/globalrecycled.png"
+import { ArrowRight } from "lucide-react";
+import deliveryImg from '../../../public/images/deliveryImg.png'
+import bgbanner from '../../../public/images/aboutherbg.png'
 
 export default function AboutPage() {
+  const certifications = [
+   {
+    name: "OEKO-TEX",
+    image: oeko,
+    fullName: "Standard 100",
+    description: "Tested for harmful substances to ensure textile safety and consumer confidence.",
+    color: "#00BCD4",
+  },
+  {
+    image:gots,
+    name: "GOTS",
+    fullName: "Global Organic Textile Standard",
+    description: "The world's leading processing standard for textiles made from organic fibers.",
+    color: "#4CAF50",
+  },
+{
+  name: "GRS",
+  image: global,
+  fullName: "Global Recycled Standard",
+  description:
+    "Ensures products contain recycled materials while meeting environmental and social responsibility standards.",
+  color: "#2196F3",
+},
+  {
+    name: "Sedex",
+    image:seedex,
+    fullName: "Empowering Responsible Supply Chains",
+    description: "Ensuring ethical and responsible business practices across the global supply chain.",
+    color: "#FF9800",
+  },
+ 
+];
+
   return (
     <main className="flex min-h-screen flex-col bg-bg-ivory">
       <Navbar />
 
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center overflow-hidden">
-        <Image
-          src="/images/warehouse.png"
-          alt="About Vastraa Global"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-accent/70 backdrop-blur-[1px]" />
-        <div className="container mx-auto px-6 relative z-10 text-white text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="flex items-center justify-center gap-3 mb-6 opacity-80">
-              <span className="w-12 h-[1px] bg-secondary" />
-              <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Identity</span>
-              <span className="w-12 h-[1px] bg-secondary" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif mb-8 leading-tight">
-              About <span className="text-secondary">Vastraa Global</span>
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto font-light">
-              "Precision in Print, Excellence in Fabric. Turning your creative visions into reality, one print at a time."
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden mt-35">
+
+  {/* Background Image */}
+  <Image
+    src={bgbanner}
+    alt="Custom printed fabrics from India for global export markets."
+    fill
+    priority
+    className="object-cover"
+  />
+
+ 
+ 
+  {/* Content */}
+  <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+
+    <div className="max-w-4xl">
+
+      <h1 className="text-[25px] sm:text-[35px] lg:text-[45px] leading-[1.05] font-semibold mb-4 text-black">
+        Custom Fabric Printing,
+        <br />
+        <span className="text-[#D4AF37]">
+          Made Export-Ready
+        </span>
+      </h1>
+
+      <p className="text-[#3d4b63] text-[15px] sm:text-[17px] leading-[1.8] mb-3">
+        Vastraa Global is a custom digital fabric printing manufacturer and
+        export partner from India, helping fashion, home textile, and
+        lifestyle brands create premium printed fabrics for bulk and global
+        orders.
+      </p>
+
+      <p className="text-[#3d4b63] text-[15px] sm:text-[17px] leading-[1.8] mb-3">
+        Backed by 40+ years of textile heritage, modern digital pigment
+        printing, certified quality standards, and export-ready support,
+        we bring original fabric ideas to life with precision and
+        consistency.
+      </p>
+
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row gap-3 mt-6">
+
+        <button className="px-8 py-4 rounded-full bg-[#D4AF37] hover:bg-[#c8a32e] text-white font-medium transition-all duration-300">
+          Get a Custom Quote
+        </button>
+
+        <button className="px-8 py-4 rounded-full border border-black/10 bg-white hover:border-[#D4AF37] text-black font-medium transition-all duration-300">
+          Explore Our Printing Process
+        </button>
+
+      </div>
+
+      {/* Trust Line */}
+      <div className="flex flex-wrap items-center gap-3 mt-6 text-[#5b6575] text-sm sm:text-base">
+
+        <span>40+ Years Heritage</span>
+
+        <span className="text-[#D4AF37]">•</span>
+
+        <span>Certified Quality</span>
+
+        <span className="text-[#D4AF37]">•</span>
+
+        <span>Global Export Support</span>
+
+      </div>
+
+      {/* Supporting Line */}
+      <p className="mt-4 max-w-3xl text-[#6b7280] text-sm sm:text-base leading-relaxed">
+        Printed on cotton, linen, viscose, organic cotton, and premium fabric
+        blends for brands in India and global markets.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* Our Story & Digital Evolution */}
-      <section className="py-24 md:py-32 bg-white">
+      {/* <section className="py-24 md:py-32 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -86,10 +178,10 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ISC & VastraaGlobal Link */}
-      <section className="py-24 bg-bg-ivory border-y border-accent/5">
+      {/* <section className="py-24 bg-bg-ivory border-y border-accent/5">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-5xl font-serif text-accent mb-8">
@@ -109,10 +201,10 @@ export default function AboutPage() {
 </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Manufacturing Excellence */}
-      <section className="py-24 md:py-32 bg-white overflow-hidden">
+      {/* <section className="py-24 md:py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <motion.div
@@ -158,9 +250,413 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <Footer />
+    {/* NEW CONTENT STARTS HERE */}
+     <section className="py-16 md:py-24 bg-[#f7f4ef]">
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      {/* Left Image */}
+      <div className="relative">
+
+        <div className="overflow-hidden rounded-[32px]">
+
+          <Image
+            src={aboutusimg}
+            alt="Custom Fabric Printing"
+             width={700}
+            height={800} className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover"
+          />
+
+        </div>
+
+        {/* Floating Stat */}
+        <div className="absolute -bottom-6 right-6 bg-white rounded-[24px] px-8 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+
+          <h3 className="text-4xl font-semibold text-[#D4AF37]">
+            75K+
+          </h3>
+
+          <p className="text-gray-600 text-sm mt-1">
+            Meters Monthly Capacity
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      {/* Right Content */}
+      <div>
+      <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-3">
+          About Vastraa Global
+        </p>
+
+        <h2 className="text-[28px] sm:text-[35px] lg:text-[45px] leading-[1.05] font-semibold text-black mb-3">
+          Turning Creative Ideas Into
+          <br />
+          Premium Printed Fabrics
+        </h2>
+
+        <div className="space-y-3 mt-6">
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.3]">
+          Every great fabric starts with a clear idea. At Vastraa Global, we help brands turn artwork, patterns, colour concepts, and product requirements into high-quality printed fabrics ready for production.
+          </p>
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+          Our process covers design support, sampling, digital pigment printing, bulk production, quality inspection, and dispatch. Whether it is cotton, linen, viscose, organic cotton, or premium blends, each order is handled with attention to colour accuracy, fabric feel, print clarity, and finish. 
+          </p>
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+            With a 75,000-meter monthly capacity, 300-meter MOQ, fast timelines, and trusted certifications, Vastraa Global is built for brands that need dependable custom fabric printing at scale.
+          </p> 
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+          Premium Printed Fabrics, Made for Growing Brands. 
+          </p> 
+
+        </div>
+
+
+
+        {/* Highlights */}
+        <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-black/10">
+
+          <div>
+            <h3 className="text-3xl font-semibold text-[#D4AF37]">
+              40+
+            </h3>
+            <p className="text-gray-600 mt-1">
+              Years Textile Heritage
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-semibold text-[#D4AF37]">
+              300m
+            </h3>
+            <p className="text-gray-600 mt-1">
+              Minimum Order Quantity
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-semibold text-[#D4AF37]">
+              Export
+            </h3>
+            <p className="text-gray-600 mt-1">
+              Ready Production
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-semibold text-[#D4AF37]">
+              Global
+            </h3>
+            <p className="text-gray-600 mt-1">
+              Shipping Support
+            </p>
+          </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+     </section>
+
+     <section className="py-16 md:py-24 bg-[#f7f4ef]">
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 lg:gap-20">
+
+      {/* Left Side */}
+      <div>
+
+        <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-4">
+          Our Story
+        </p>
+
+        <p className="text-[#D4AF37] text-lg font-medium mb-6">
+          Custom Fabric Printing, Made Export-Ready.
+        </p>
+
+        <h2 className="text-[32px] sm:text-[42px] lg:text-[54px] leading-[1.05] font-semibold text-black">
+          From Textile Heritage to Modern Fabric Printing Excellence
+        </h2>
+
+      </div>
+
+
+
+      {/* Right Side */}
+      <div className="border-l border-[#D4AF37]/20 pl-0 lg:pl-10">
+
+        <div className="space-y-6">
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+            Our journey began in 1975 with a strong foundation in traditional
+            screen printing and textile craftsmanship. Over the decades, we
+            built our expertise through a deep commitment to quality,
+            consistency, and customer satisfaction.
+          </p>
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+            In 2018, we evolved into advanced digital fabric printing by
+            integrating modern printing technologies under Indian Soft Colours
+            (ISC), enabling us to deliver vibrant colours, intricate designs,
+            and precision printing across a wide range of premium fabrics.
+          </p>
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+            Today, Vastraa Global represents our export-focused vision, created
+            to serve fashion brands, designers, home textile companies, and
+            global buyers with high-quality custom printed fabrics crafted for
+            modern international markets.
+          </p>
+
+          <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+            From cotton and linen to viscose and premium blends, every fabric
+            we produce reflects our dedication to craftsmanship, innovation,
+            and global-quality manufacturing.
+          </p>
+
+        </div>
+
+      {/* Bottom Statement */}
+        <div className="mt-3 pt-4 border-t border-black/10">
+      <p className="text-[14px] sm:text-[18px] font-medium text-black italic">
+            Built on experience. Driven by innovation. Trusted for quality.
+          </p>
+        </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    
+    <section className="py-10 md:py-15 bg-[#f7f4ef]">
+
+   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    {/* Heading */}
+    <div className="text-center max-w-4xl mx-auto">
+
+      <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-4">
+        Certifications & Quality Standards
+      </p>
+
+      <h2 className="text-[25px] sm:text-[35px] lg:text-[45px] leading-[1.05] font-semibold text-black mb-8">
+        Certified Manufacturing,
+        <br />
+        Built on Quality and Trust
+      </h2>
+
+      <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9] mb-4">
+        At Vastraa Global, quality is part of every stage — from fabric
+        selection and print preparation to production, inspection, and
+        dispatch.
+      </p>
+
+      <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9]">
+        Our manufacturing operations are supported by globally recognized
+        certifications under Indian Soft Colours (ISC), reflecting our
+        commitment to responsible textile production, product safety,
+        ethical practices, and consistent quality standards.
+      </p>
+
+    </div>
+
+    {/* Certification Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {certifications.map((cert, i) => (
+        
+      <div className="p-8 rounded-2xl bg-white border border-accent/5 hover:border-secondary/20 transition-all duration-500 h-full flex flex-col items-center text-center hover:shadow-lg hover:shadow-secondary/5 mt-6" key={i}>
+         
+      {/* Image */}
+    <div className="w-full h-44 flex items-center justify-center overflow-hidden mb-6 rounded-2xl bg-white">
+      <Image
+        src={cert.image}
+        alt={cert.name}
+        width={220}
+        height={160}
+        className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+    
+            {/* Badge Name */}
+            {/* <h3 className="text-xl font-serif font-bold text-accent mb-1">
+              {cert.name}
+            </h3> */}
+    
+            {/* <p className="text-xs text-secondary font-medium uppercase tracking-wider mb-4">
+              {cert.fullName}
+            </p> */}
+    
+            {/* Description */}
+            {/* <p className="text-sm text-accent/50 leading-relaxed">
+              {cert.description}
+            </p> */}
+    
+            {/* Bottom accent line */}
+            {/* <div
+              className="mt-6 w-8 h-[2px] rounded-full transition-all duration-500 group-hover:w-16"
+              style={{ backgroundColor: cert.color }}
+            /> */}
+          </div>
+       
+      ))}
+          </div>
+
+  {/* Bottom Content */}
+  <div className="max-w-4xl mx-auto text-center">
+
+      <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9] mb-4 mt-15">
+        With advanced digital printing technology, strict quality checks,
+        and export-focused production processes, Vastraa Global ensures every
+        printed fabric is made to meet the expectations of modern global brands.
+      </p>
+
+      <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9] mb-4">
+        Trusted standards. Responsible production. Fabrics made for global markets.
+      </p>
+    </div>
+    </div>
+    </section>
+
+
+    <section className="bg-[#F8F5F0] py-20">
+  <div className="container mx-auto px-4">
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
+      
+      {/* Left Content */}
+      <div>
+        <span className="inline-block text-[#B88A44] font-medium mb-4">
+          Global Export Support
+        </span>
+
+        <h2 className="text-[25px] sm:text-[35px] lg:text-[45px] leading-[1.05] font-semibold text-black mb-8">
+        Printed In India
+        <br />
+        Built on Quality and Trust
+      </h2>
+
+        <div className="w-16 h-[3px] bg-[#B88A44] mb-4"></div>
+
+        <p className="text-lg text-gray-700 leading-8 mb-4">
+          Vastraa Global works with fashion labels, home textile brands,
+          designers, and sourcing teams that need high-quality custom
+          printed fabrics from India.
+        </p>
+
+        <p className="text-lg text-gray-700 leading-8 mb-4">
+          Our export-ready production setup helps brands manage bulk fabric
+          printing with better consistency, careful quality checks, secure
+          packing, and smooth dispatch support.
+        </p>
+
+        <div className="mb-4">
+          <p className="text-[#B88A44] font-semibold mb-4">
+            We serve buyers across:
+          </p>
+
+        <div className="flex flex-wrap items-center gap-3">
+  {[
+    "United Kingdom",
+    "United States",
+    "Canada",
+    "Europe",
+    "UAE",
+    "Australia",
+  ].map((country, index, arr) => (
+    <div key={country} className="flex items-center gap-3">
+      <span className="px-5 py-3 border border-[#D9C9AF] rounded-full bg-white text-[#0F2341] text-sm font-medium">
+        {country}
+      </span>
+    
+    <span className="text-[#B88A44] text-lg">→</span>
+    
+    </div>
+  ))}
+</div>
+          
+        </div>
+
+        <p className="text-lg text-gray-700 leading-8 mb-3">
+          Whether you need fabrics for a new collection, repeat production,
+          or international sourcing, our team ensures every order is handled
+          with clarity, care, and dependable timelines.
+        </p>
+
+        <div className="border border-[#D9C9AF] rounded-2xl p-8 bg-white">
+          <h3 className="text-3xl font-serif text-[#0F2341] leading-snug">
+            Premium printed fabrics,
+            <br />
+            produced in India for global markets.
+          </h3>
+        </div>
+      </div>
+
+      {/* Right Side Image */}
+   <div className="h-full">
+
+  <Image
+    src={deliveryImg}
+    alt="Printed in India Supplied to Global Brands"
+    className="w-full h-full object-cover rounded-2xl"
+  />
+
+</div>
+
+    </div>
+  </div>
+    </section>
+
+    <section className="py-20 md:py-28 bg-[#F8F5F0]">
+
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="relative overflow-hidden rounded-[40px] bg-white border border-[#D4AF37]/20 p-10 sm:p-14 lg:p-20 text-center">
+
+      {/* Accent */}
+      <div className="w-20 h-[3px] bg-[#D4AF37] mx-auto mb-8"></div>
+
+      <h2 className="text-[32px] sm:text-[44px] lg:text-[60px] leading-[1.05] font-semibold text-black mb-8">
+        Build Your Next
+        <br />
+        Fabric Collection
+      </h2>
+
+      <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9] max-w-3xl mx-auto mb-8">
+        Partner with Vastraa Global for premium custom fabric printing,
+        reliable bulk production, and export-ready manufacturing support.
+      </p>
+
+      <p className="text-xl sm:text-2xl font-medium text-[#D4AF37] mb-12">
+        Crafted for Brands. Produced for Global Markets.
+      </p>
+
+      <div className="flex flex-col sm:flex-row justify-center gap-4">
+
+        <button className="px-8 py-4 rounded-full bg-[#D4AF37] text-white font-medium hover:bg-[#c39f2f] transition-all duration-300">
+          Request a Quote
+        </button>
+
+        <button className="px-8 py-4 rounded-full border border-[#D4AF37] text-black font-medium hover:bg-[#D4AF37]/5 transition-all duration-300">
+          Get Fabric Samples
+        </button>
+  </div>
+    </div>
+    </div>
+    </section>
+
+
+    <Footer/>
     </main>
   );
 }
