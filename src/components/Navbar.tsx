@@ -59,13 +59,13 @@ export const Navbar = () => {
     {
       name: "How We Print",
       href: "/how-we-print",
-      subItems: [
-        { name: "Printing Overview", href: "/how-we-print" },
-        { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
-        // { name: "Reactive Printing", href: "/how-we-print/reactive" },
-        // { name: "Sublimation", href: "/how-we-print/sublimation" },
-        // { name: "Quality Standards", href: "/how-we-print/quality-control" },
-      ],
+      // subItems: [
+      //   { name: "Printing Overview", href: "/how-we-print" },
+      //   { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
+      //   { name: "Reactive Printing", href: "/how-we-print/reactive" },
+      //   { name: "Sublimation", href: "/how-we-print/sublimation" },
+      //   { name: "Quality Standards", href: "/how-we-print/quality-control" },
+      // ],
     },
     {
       name: "Our Fabrics",
@@ -124,24 +124,24 @@ export const Navbar = () => {
       <div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 overflow-hidden h-10 flex items-center">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-16 px-6 text-[12px] md:text-sm font-medium tracking-wide">
           <span>
-            Premium Printed Fabrics for Fashion Brands Worldwide
+          Factory Price Digital Fabric Printing
           </span>
 
           <span>
-            Sustainable Textile Manufacturing & Custom Printing Solutions
+           Direct From Our Production Unit • No middleman Margin
           </span>
 
           <span>
-            Export Quality Fabrics • Fast Sampling • Bulk Production
+          Custom Digital Printed Fabrics
           </span>
 
           <span>
-            Digital Printing • Reactive Printing • Sublimation Printing
+           Export Ready Quality From India
           </span>
 
-          <span>
+          {/* <span>
             Designed & Manufactured with Precision at Vastraa Global
-          </span>
+          </span> */}
         </div>
       </div>
       <nav

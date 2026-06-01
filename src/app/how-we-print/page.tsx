@@ -1331,8 +1331,8 @@ export default function HowWePrintPage() {
   </div>
     </section>
 
-     <section className="w-full bg-[#1d1d1d]">
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen mb-20">
+     <section className="max-w-7xl mx-auto bg-[#1d1d1d] my-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen ">
         
         {/* Left Content */}
         <div className="flex flex-col justify-center px-8 md:px-16 py-16 text-white">
