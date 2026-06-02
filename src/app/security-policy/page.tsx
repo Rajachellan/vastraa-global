@@ -24,7 +24,7 @@ export default function SecurityPolicyPage() {
             </div>
             <h1 className="text-4xl md:text-6xl font-serif text-accent mb-6">Security <span className="text-secondary italic">Policy</span></h1>
             <p className="text-accent/60 leading-relaxed">
-              Ensuring the security of our clients' data and intellectual property is the foundation of our B2B operations.
+             Last Updated: June 2026 
             </p>
           </motion.div>
         </div>
@@ -34,21 +34,46 @@ export default function SecurityPolicyPage() {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto prose prose-lg prose-accent">
-            <h2 className="text-3xl font-serif text-accent mb-8">Platform Security</h2>
-            <p className="text-accent/70 mb-12">
-              Our website uses SSL (Secure Sockets Layer) encryption to protect all data transmissions between your browser and our servers. This ensures that sensitive information like login credentials and design files are transmitted securely.
+            {/* <h2 className="text-3xl font-serif text-accent mb-8">Platform Security</h2> */}
+            <p className="text-accent/70 mb-3">
+             At Vastraa Global, we take website security and customer information protection seriously. This Security Policy explains how we handle and protect the information shared through our website, enquiry forms, quote requests, sample requests, and file upload options. 
             </p>
-
-            <h2 className="text-3xl font-serif text-accent mb-8">Design Protection</h2>
-            <p className="text-accent/70 mb-12">
-              We understand that your textile designs are valuable business assets. Our servers employ robust firewalls and intrusion detection systems to prevent unauthorized access. Once uploaded, designs are stored in encrypted environments accessible only to relevant production technicians during the printing phase.
+               <p className="text-accent/70 mb-3">
+              When visitors submit details such as name, email address, phone number, WhatsApp number, company details, fabric printing requirements, or uploaded design files, we handle the information carefully and use it only for business communication, quotation, sampling, production discussion, or support purposes. 
             </p>
-
-            <h2 className="text-3xl font-serif text-accent mb-8">Regular Audits</h2>
-            <p className="text-accent/70 mb-12">
-              Vastraa Global conducts regular security audits of its digital infrastructure. We stay updated with the latest security patches for our web frameworks and database systems to mitigate potential vulnerabilities.
+               <p className="text-accent/70 mb-3">
+            We follow reasonable security practices to reduce unauthorized access, misuse, loss, or disclosure of submitted information. These may include secure website hosting, SSL protection, safe form handling, restricted admin access, and careful management of uploaded files. 
             </p>
+               <p className="text-accent/70 mb-3">
+            Uploaded design files, artwork, patterns, logos, and reference images are treated as confidential business information. We do not share them publicly or use them for unrelated purposes without permission. 
+            </p>
+               <p className="text-accent/70 mb-3">
+            While we take reasonable steps to protect submitted information, no online system or data transmission method can be guaranteed to be completely secure. Users are advised to share accurate information and avoid submitting unnecessary sensitive details through website forms. 
+            </p>
+                <p className="text-accent/70 mb-3">
+          We may update this Security Policy from time to time. Any changes will be published on this page with the updated date. 
+            </p>
+       <p className="text-accent/70 mb-12">
+For any questions about this Security Policy, please contact us: 
+            </p>
+            <table>
+              <tr>
+                <td className="font-bold">Email:</td>
+                <td className="text-accent/70">info@vastraaglobal.com</td>
+              </tr>
+              <tr>
+                <td className="font-bold">Phone:</td>
+                <td className="text-accent/70">+44 7776698505 / +91 93613 94323</td>
+              </tr><tr>
+                <td className="font-bold pr-5">Location:</td>
+                <td className="text-accent/70"> India-74A, Attayampalayam, Chithode, Erode 638102</td>
+              </tr>
+              
+            </table>
 
+          
+
+    
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-16">
               <div className="p-10 bg-accent text-white rounded-4xl">
                 <Server className="text-secondary mb-6" size={32} />
@@ -66,7 +91,7 @@ export default function SecurityPolicyPage() {
             <p className="text-accent/70 mb-12">
               If you discover a potential security vulnerability on our platform, we encourage you to report it to us immediately. We appreciate your assistance in keeping Vastraa Global secure.
             </p>
-            <a href="mailto:ramesh85cloud@gmail.com" className="bg-accent text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-secondary transition-all inline-block">Report Vulnerability</a>
+            {/* <a href="mailto:ramesh85cloud@gmail.com" className="bg-accent text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-secondary transition-all inline-block">Report Vulnerability</a> */}
           </div>
         </div>
       </section>

@@ -51,7 +51,7 @@ const menuData = [
     ],
   },
   { title: "About", href: "/about" },
-  { title: "Expert Help", href: "/contact?type=consultation" },
+  { title: "Expert Help", href: "/contact-us?type=consultation" },
 ];
 
 interface MobileMenuProps {

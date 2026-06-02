@@ -118,8 +118,8 @@ export const Footer = () => {
             <ul className="space-y-4 text-sm text-primary/50">
               <li><Link href="/how-we-print" className="hover:text-secondary transition-colors">Custom Printing Solutions</Link></li>
               <li><Link href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</Link></li>
-              <li><Link href="/contact" className="hover:text-secondary transition-colors">Tailored Textile Services</Link></li>
-              <li><Link href="/contact" className="hover:text-secondary transition-colors">Bulk & Brand Orders</Link></li>
+              <li><Link href="/contact-us" className="hover:text-secondary transition-colors">Tailored Textile Services</Link></li>
+              <li><Link href="/contact-us" className="hover:text-secondary transition-colors">Bulk & Brand Orders</Link></li>
               <li><Link href="/designs" className="hover:text-secondary transition-colors">Design Studio</Link></li>
             </ul>
           </div>

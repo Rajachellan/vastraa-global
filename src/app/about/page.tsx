@@ -5,19 +5,22 @@ import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { MapPin, Printer, Layers } from "lucide-react";
+import { MapPin, Printer, Layers,Upload } from "lucide-react";
+import { Button } from "@/components/Button";
 import aboutusimg from '../../../public/images/aboutusimg1.png'
 import gotsimg from '../../../public/images/GOTS.png'
 import { Certifications } from "@/sections/Certifications";
 import gots from "../../../public/images/GOTS.png"
 import seedex from "../../../public/images/seedex.png"
 import oeko from "../../../public/images/oeko.png"
+import Link from "next/link";
 import global from "../../../public/images/globalrecycled.png"
 import { ArrowRight } from "lucide-react";
 import deliveryImg from '../../../public/images/deliveryImg.png'
 import bgbanner from '../../../public/images/aboutherbg.png'
-
+import { useState } from "react";
 export default function AboutPage() {
+   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const certifications = [
    {
     name: "OEKO-TEX",
@@ -56,7 +59,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden mt-35">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden mt-30">
 
   {/* Background Image */}
   <Image
@@ -100,14 +103,262 @@ export default function AboutPage() {
       <div className="flex flex-col sm:flex-row gap-3 mt-6">
 
         <button className="px-8 py-4 rounded-full bg-[#D4AF37] hover:bg-[#c8a32e] text-white font-medium transition-all duration-300">
-          Get a Custom Quote
+         <Link href="/how-we-print"> Explore Our Printing Process</Link>
         </button>
-
-        <button className="px-8 py-4 rounded-full border border-black/10 bg-white hover:border-[#D4AF37] text-black font-medium transition-all duration-300">
-          Explore Our Printing Process
-        </button>
+         <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => setShowQuoteForm(true)}
+                >
+                 Get a Custom Quote
+                </Button>
+       
 
       </div>
+
+ {/* Popup Form */}
+      {showQuoteForm && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden mt-30">
+          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden">
+
+            {/* Close */}
+            <button
+              onClick={() => setShowQuoteForm(false)}
+              className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100"
+            >
+              ✕
+            </button>
+
+            {/* Header */}
+            <div className="text-center mb-8">
+               <img
+                    src="/images/logo.png"
+                    alt="Vastraa Global"
+                    className="h-20 mx-auto mb-4"
+                  />
+              <h2 className="text-4xl font-serif font-bold text-[#0A2342]">
+                Request a Custom Quote
+              </h2>
+
+              <div className="flex items-center justify-center gap-4 my-5">
+                <div className="w-16 h-px bg-[#D4AF37]" />
+                <div className="text-[#D4AF37]">✦</div>
+                <div className="w-16 h-px bg-[#D4AF37]" />
+              </div>
+
+              <p className="text-gray-600">
+                Share your requirements and our team will contact you shortly.
+              </p>
+            </div>
+
+            {/* Form */}
+         <form className="space-y-6">
+
+  {/* Row 1 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Full Name *
+      </label>
+      <input
+        type="text"
+        placeholder="Enter your full name"
+        className="w-full h-14 rounded-xl px-4 border border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+      />
+    </div>
+
+   
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Email Address *
+      </label>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+      />
+    </div>
+  </div>
+
+  {/* Row 2 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    
+
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Phone / WhatsApp *
+      </label>
+      <input
+        type="tel"
+        placeholder="+91 XXXXX XXXXX"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Fabric Type
+      </label>
+
+      <input
+        type="text"
+        placeholder="Cotton, Silk, Linen..."
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+  </div>
+
+  {/* Row 3 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Product Category
+      </label>
+
+      <select className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]">
+        <option>Select Category</option>
+        <option>Printed Fabrics</option>
+        <option>Home Textiles</option>
+        <option>Fashion Fabrics</option>
+        <option>Custom Textile Design</option>
+      </select>
+    </div>
+ <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Fabric GSM
+      </label>
+      <input
+        type="text"
+        placeholder="Enter fabric GSM"
+       className="w-full h-14 rounded-xl px-4 border border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+    
+  </div>
+
+  {/* Row 4 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Quantity Required
+      </label>
+
+      <input
+        type="text"
+        placeholder="500 Meters"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Delivery Timeline
+      </label>
+
+      <input
+        type="text"
+        placeholder="Within 30 Days"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+  </div>
+
+  {/* Description */}
+  <div>
+    <label className="block text-sm font-medium text-[#0A2342] mb-2">
+      Query *
+    </label>
+
+    <textarea
+      rows={6}
+      placeholder="Describe your requirements, design ideas, printing preferences, colors, dimensions, quantity and any special instructions..."
+      className="w-full rounded-xl border border-[#D4AF37] px-4 py-4 resize-none focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+    />
+  </div>
+
+  {/* Upload */}
+  <div>
+    <label className="block text-sm font-medium text-[#0A2342] mb-3">
+      Upload Design / Artwork
+    </label>
+
+    <div
+      className="
+        border-2
+        border-dashed
+        border-[#D4AF37]
+        rounded-3xl
+        p-10
+        text-center
+        bg-white
+        cursor-pointer
+        hover:bg-[#FFFDF8]
+        transition-all
+      "
+    >
+      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+        <Upload size={32} className="text-[#D4AF37]" />
+      </div>
+
+      <h4 className="text-lg font-semibold text-[#0A2342]">
+        Upload Your Design Files
+      </h4>
+
+      <p className="text-sm text-gray-500 mt-2">
+        Drag & Drop or Click to Upload
+      </p>
+
+      <p className="text-xs text-gray-400 mt-3">
+        JPG, PNG, PDF, AI, PSD (Max 20MB)
+      </p>
+<div className="flex justify-center mt-5">
+  <input
+    type="file"
+    className="
+      text-sm
+      text-gray-500
+      file:py-2
+      file:px-6
+      file:mx-5
+      file:rounded-full
+      file:border-0
+      file:text-sm
+      file:font-semibold
+      file:bg-[#D4AF37]
+      file:text-white
+      hover:file:bg-[#C99A2E]
+      cursor-pointer
+    "
+  />
+</div>
+    </div>
+  </div>
+
+  {/* Submit */}
+  <button
+    type="submit"
+    className="
+      w-full
+      h-16
+      rounded-2xl
+      bg-gradient-to-r
+      from-[#C99A2E]
+      to-[#D4AF37]
+      text-white
+      text-lg
+      font-semibold
+      shadow-lg
+      hover:opacity-90
+      transition-all 
+    "
+  >
+    Request Custom Quote
+  </button>
+
+</form>
+          </div>
+        </div>
+      )}
+
 
       {/* Trust Line */}
       <div className="flex flex-wrap items-center gap-3 mt-6 text-[#5b6575] text-sm sm:text-base">
@@ -643,13 +894,29 @@ export default function AboutPage() {
 
       <div className="flex flex-col sm:flex-row justify-center gap-4">
 
-        <button className="px-8 py-4 rounded-full bg-[#D4AF37] text-white font-medium hover:bg-[#c39f2f] transition-all duration-300">
-          Request a Quote
-        </button>
-
-        <button className="px-8 py-4 rounded-full border border-[#D4AF37] text-black font-medium hover:bg-[#D4AF37]/5 transition-all duration-300">
-          Get Fabric Samples
-        </button>
+       
+        <Button
+  variant="primary"
+  size="lg"
+  onClick={() => setShowQuoteForm(true)}
+  className="
+    !bg-[#D4AF37]
+    !text-white
+    hover:!bg-[#c39f2f]
+    border-0
+  "
+>
+  Request a Quote
+</Button>
+ <Button
+  variant="primary"
+  size="lg"
+  onClick={() => setShowQuoteForm(true)}
+  className="
+  "
+>
+  Get Fabric Samples
+</Button>      
   </div>
     </div>
     </div>

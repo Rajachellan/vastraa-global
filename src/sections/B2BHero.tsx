@@ -12,7 +12,7 @@ const slides = [
     title: "Premium Textile Solutions Tailored For You",
     image: "/images/hero-b2b-new.png",
     ctaText: "Get Expert Consultation",
-    ctaLink: "/contact",
+    ctaLink: "/contact-us",
   },
   {
     id: 2,

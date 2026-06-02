@@ -59,7 +59,7 @@ export const ExpertConsultation = () => {
             </div>
 
             <Button  className="bg-secondary text-white px-10 py-5 rounded-2xl font-bold uppercase tracking-widest hover:bg-white hover:text-accent transition-all duration-500 shadow-2xl flex items-center gap-3">
-            <Link href="/contact">Book a Free Consultation</Link>
+            <Link href="/contact-us">Book a Free Consultation</Link>
               
               <ArrowRight size={18} />
             </Button>

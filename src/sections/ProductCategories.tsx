@@ -20,6 +20,11 @@ const categories = [
         image: "/images/fabric-linen.png",
         description: "Luxurious natural linen with exceptional drape and texture. Perfect for summer collections.",
       },
+       {
+        name: "Silk",
+        image: "/images/silk-close-up.png",
+        description: "A luxurious natural fiber with a smooth texture, elegant sheen, and lightweight feel. Known for its softness and sophistication.",
+      },
     ],
   },
   {
@@ -29,6 +34,16 @@ const categories = [
         name: "Viscose",
         image: "/images/fabric-viscose.png",
         description: "Silky smooth viscose with vibrant color absorption. Excellent for fluid, draped garments.",
+      },
+        {
+        name: "Rayon",
+        image: "/images/fabric-linen-premium.png",
+        description: "A soft, breathable fabric made from natural cellulose fibers, usually wood pulp. It offers a silky feel and excellent drape.",
+      },
+        {
+        name: "Bemberg",
+        image: "/images/fabric-cotton-premium.png",
+        description: "A high-quality cupro fabric valued for its luxurious feel, breathability, and anti-static properties.",
       },
     ],
   },

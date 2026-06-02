@@ -90,7 +90,7 @@ export const Navbar = () => {
       //   { name: "Case Studies", href: "/blogs?cat=case-studies" },
       // ],
     },
-    { name: "Expert Help", href: "/contact?type=consultation" },
+    { name: "Expert Help", href: "/contact-us?type=consultation" },
   ];
 
   const getSubNavItems = () => {

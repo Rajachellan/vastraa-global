@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
-import { FileText, Microscope, PackageCheck, HeartHandshake } from "lucide-react";
+import { FileText, Microscope, PackageCheck, HeartHandshake,Upload } from "lucide-react";
 import {History,Factory, TimerReset,Paintbrush2,Globe,} from "lucide-react";
 import Image1 from '../../../public/images/Printingimg1.png'
 import Viscoseimg from '../../../public/images/viscose.png'
@@ -19,6 +19,9 @@ import bgimg1 from '../../../public/images/stepbgimg.png'
 import step5img from '../../../public/images/step5img.png'
 import howWePrintImg2 from '../../../public/images/Howweprintimg2.png'
 import { Leaf, Palette, Cog } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/Button";
+import Link from "next/link";
 import {
   ScanSearch,
   Waves,
@@ -75,7 +78,15 @@ import HowWePrintFaqs from "@/components/HowWePrintFaqs";
 // ];
 
 export default function HowWePrintPage() {
+const [showQuoteForm, setShowQuoteForm] = useState(false);
+const [submitted, setSubmitted] = useState(false);
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
 
+  // API call can be added here later
+
+  setSubmitted(true);
+};
   const highlights = [
   {
     icon: History,
@@ -422,11 +433,15 @@ export default function HowWePrintPage() {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
 
-          <button className="bg-black text-white px-8 h-[58px] text-sm font-semibold uppercase tracking-[0.5px] hover:bg-[#1a1a1a] transition-all duration-300">
-            Upload Your Design
-          </button>
-
-          <button className='bg-[#D4AF37] text-white px-8 h-[58px] text-sm font-semibold uppercase tracking-[0.5px] hover:bg-[#c29b2f] transition-all duration-300 flex items-center justify-center gap-3'>
+         
+            <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => setShowQuoteForm(true)}
+                >
+              Upload Your Design
+                </Button>
+          <button className='bg-[#D4AF37] text-white px-8 h-[58px] text-sm font-semibold uppercase tracking-[0.5px] hover:bg-[#c29b2f] transition-all duration-300 flex items-center justify-center gap-3 rounded-full hover:text-white'>
             
             {/* Chat Icon */}
             <svg
@@ -443,7 +458,9 @@ export default function HowWePrintPage() {
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
 
+          <Link href="/contact-us" className="text-white ">
             Talk to a Fabric Expert
+          </Link>
           </button>
 
         </div>
@@ -879,10 +896,14 @@ export default function HowWePrintPage() {
             <p className="text-[#444] text-[15px] leading-[34px]">
               {item.description}
             </p>
-
-            <button className="mt-8 text-[#d19c5d] text-[18px] font-medium">
-              Get Custom Quote
-            </button>
+               <Button
+                              variant="primary"
+                              size="lg"
+                              onClick={() => setShowQuoteForm(true)}
+                              className="text-sm my-5"
+                            >
+                             Get a Custom Quote
+                            </Button>
           </div>
         </div>
       ))}
@@ -1365,7 +1386,7 @@ export default function HowWePrintPage() {
               Get Your Custom Quote
             </h2>
 
-            <form className="space-y-5">
+            <form onSubmit={handleSubmit}  className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <input
                   type="text"
@@ -1402,11 +1423,264 @@ export default function HowWePrintPage() {
               <button className="w-full h-16 rounded-2xl bg-black text-white text-lg font-medium">
                 Submit Request
               </button>
+                {submitted && (
+    <div className="mt-4 rounded-xl border border-green-200 bg-green-50 p-4 text-center">
+      <p className="font-medium text-green-700">
+        ✓ Successfully Submitted!
+      </p>
+      <p className="text-sm text-green-600 mt-1">
+        Our team will contact you shortly.
+      </p>
+    </div>
+  )}
             </form>
           </div>
         </div>
       </div>
     </section>
+     {/* Popup Form */}
+      {showQuoteForm && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden mt-30">
+          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden">
+
+            {/* Close */}
+            <button
+              onClick={() => setShowQuoteForm(false)}
+              className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100"
+            >
+              ✕
+            </button>
+
+            {/* Header */}
+            <div className="text-center mb-8">
+               <img
+                    src="/images/logo.png"
+                    alt="Vastraa Global"
+                    className="h-20 mx-auto mb-4"
+                  />
+              <h2 className="text-4xl font-serif font-bold text-[#0A2342]">
+                Request a Custom Quote
+              </h2>
+
+              <div className="flex items-center justify-center gap-4 my-5">
+                <div className="w-16 h-px bg-[#D4AF37]" />
+                <div className="text-[#D4AF37]">✦</div>
+                <div className="w-16 h-px bg-[#D4AF37]" />
+              </div>
+
+              <p className="text-gray-600">
+                Share your requirements and our team will contact you shortly.
+              </p>
+            </div>
+
+            {/* Form */}
+         <form className="space-y-6">
+
+  {/* Row 1 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Full Name *
+      </label>
+      <input
+        type="text"
+        placeholder="Enter your full name"
+        className="w-full h-14 rounded-xl px-4 border border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+      />
+    </div>
+
+   
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Email Address *
+      </label>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+      />
+    </div>
+  </div>
+
+  {/* Row 2 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    
+
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Phone / WhatsApp *
+      </label>
+      <input
+        type="tel"
+        placeholder="+91 XXXXX XXXXX"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+      />
+    </div>
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Fabric Type
+      </label>
+
+      <input
+        type="text"
+        placeholder="Cotton, Silk, Linen..."
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+  </div>
+
+  {/* Row 3 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Product Category
+      </label>
+
+      <select className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]">
+        <option>Select Category</option>
+        <option>Printed Fabrics</option>
+        <option>Home Textiles</option>
+        <option>Fashion Fabrics</option>
+        <option>Custom Textile Design</option>
+      </select>
+    </div>
+ <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Fabric GSM
+      </label>
+      <input
+        type="text"
+        placeholder="Enter fabric GSM"
+       className="w-full h-14 rounded-xl px-4 border border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+    
+  </div>
+
+  {/* Row 4 */}
+  <div className="grid md:grid-cols-2 gap-5">
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Quantity Required
+      </label>
+
+      <input
+        type="text"
+        placeholder="500 Meters"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm font-medium text-[#0A2342] mb-2">
+        Delivery Timeline
+      </label>
+
+      <input
+        type="text"
+        placeholder="Within 30 Days"
+        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+      />
+    </div>
+  </div>
+
+  {/* Description */}
+  <div>
+    <label className="block text-sm font-medium text-[#0A2342] mb-2">
+      Query *
+    </label>
+
+    <textarea
+      rows={6}
+      placeholder="Describe your requirements, design ideas, printing preferences, colors, dimensions, quantity and any special instructions..."
+      className="w-full rounded-xl border border-[#D4AF37] px-4 py-4 resize-none focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
+    />
+  </div>
+
+  {/* Upload */}
+  <div>
+    <label className="block text-sm font-medium text-[#0A2342] mb-3">
+      Upload Design / Artwork
+    </label>
+
+    <div
+      className="
+        border-2
+        border-dashed
+        border-[#D4AF37]
+        rounded-3xl
+        p-10
+        text-center
+        bg-white
+        cursor-pointer
+        hover:bg-[#FFFDF8]
+        transition-all
+      "
+    >
+      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
+        <Upload size={32} className="text-[#D4AF37]" />
+      </div>
+
+      <h4 className="text-lg font-semibold text-[#0A2342]">
+        Upload Your Design Files
+      </h4>
+
+      <p className="text-sm text-gray-500 mt-2">
+        Drag & Drop or Click to Upload
+      </p>
+
+      <p className="text-xs text-gray-400 mt-3">
+        JPG, PNG, PDF, AI, PSD (Max 20MB)
+      </p>
+<div className="flex justify-center mt-5">
+  <input
+    type="file"
+    className="
+      text-sm
+      text-gray-500
+      file:py-2
+      file:px-6
+      file:mx-5
+      file:rounded-full
+      file:border-0
+      file:text-sm
+      file:font-semibold
+      file:bg-[#D4AF37]
+      file:text-white
+      hover:file:bg-[#C99A2E]
+      cursor-pointer
+    "
+  />
+</div>
+    </div>
+  </div>
+
+  {/* Submit */}
+  <button
+    type="submit"
+    className="
+      w-full
+      h-16
+      rounded-2xl
+      bg-gradient-to-r
+      from-[#C99A2E]
+      to-[#D4AF37]
+      text-white
+      text-lg
+      font-semibold
+      shadow-lg
+      hover:opacity-90
+      transition-all 
+    "
+  >
+    Request Custom Quote
+  </button>
+
+</form>
+          </div>
+        </div>
+      )}
+
 
     <HowWePrintFaqs/>
 

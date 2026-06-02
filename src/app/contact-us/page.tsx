@@ -7,7 +7,8 @@ import { Mail, Phone, MapPin, Send, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import { submitInquiry } from "@/lib/submitInquiry";
-
+import Location from "./location"
+import Image from "next/image";
 function ContactContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -97,7 +98,7 @@ function ContactContent() {
                     </h3>
                   </div>
                   <p className="text-accent/50 text-sm pl-16">
-                    {isBulk ? "sales@vastraaglobal.com" : isConsultation ? "consult@vastraaglobal.com" : "info@vastraaglobal.com"}
+                    {isBulk ? "sales@vastraaglobal.com" : isConsultation ? "info@vastraaglobal.com" : "info@vastraaglobal.com"}
                   </p>
                 </div>
 
@@ -108,8 +109,8 @@ function ContactContent() {
                     </div>
                     <h3 className="text-xl font-serif text-accent">Direct Hotline</h3>
                   </div>
-                  <p className="text-accent/50 text-sm pl-16">+91 424 221 XXXX (Erode)</p>
-                  <p className="text-accent/50 text-sm pl-16">+44 20 XXXX XXXX (London)</p>
+                  <p className="text-accent/50 text-sm pl-16">+91 93613 94323 (Erode)</p>
+                  <p className="text-accent/50 text-sm pl-16">+44 777 669 8505  (London)</p>
                 </div>
 
                 <div className="group">
@@ -241,27 +242,187 @@ function ContactContent() {
         </div>
       </section>
 
-      <section className="py-24 bg-bg-ivory overflow-hidden">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-serif text-accent mb-16">Supporting Global <span className="text-secondary">Export</span> Channels</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-12">
-            {[
-              { region: "North America", ports: "NY, LA, Houston" },
-              { region: "Europe / UK", ports: "London, Hamburg, Rotterdam" },
-              { region: "Middle East", ports: "Dubai, Doha, Riyadh" },
-              { region: "Canada", ports: "Toronto, Vancouver" },
-              { region: "Asia Pacific", ports: "Singapore, Tokyo, Sydney" }
-            ].map((node, i) => (
-              <div key={i} className="space-y-3">
-                <Globe className="text-secondary/40 mx-auto" size={48} />
-                <h4 className="text-lg font-serif text-accent">{node.region}</h4>
-                <p className="text-[10px] uppercase tracking-widest text-accent/40">{node.ports}</p>
-              </div>
-            ))}
+  <section className="relative py-32 overflow-hidden bg-gradient-to-b from-[#FAF8F4] to-white">
+  
+  {/* Background */}
+  <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_center,_#0A2342_1px,_transparent_1px)] bg-[length:30px_30px]" />
+
+  <div className="container mx-auto px-6 relative z-10">
+
+    {/* Header */}
+    <div className="max-w-3xl mx-auto text-center mb-20">
+      <span className="inline-flex px-4 py-2 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] text-xs tracking-[0.25em] uppercase font-medium">
+        Global Distribution Network
+      </span>
+
+      <h2 className="mt-6 text-4xl md:text-6xl font-serif text-[#0A2342]">
+        Supporting Global
+        <span className="block text-[#D4AF37] italic">
+          Export Channels
+        </span>
+      </h2>
+
+      <p className="mt-6 text-lg text-[#0A2342]/60">
+        Delivering premium textiles and custom printed fabrics
+        across international markets through trusted logistics
+        and export partnerships.
+      </p>
+    </div>
+
+    {/* Center Hub */}
+    <div className="relative">
+
+      {/* Connection Lines */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none">
+        <div className="absolute left-1/2 top-40 -translate-x-1/2 w-px h-[400px] bg-gradient-to-b from-[#D4AF37]/50 to-transparent" />
+      </div>
+
+      <div className="grid lg:grid-cols-5 gap-8">
+
+        {[
+          {
+            region: "United States",
+            ports: "New York • Los Angeles • Houston",
+            flag: "🇺🇸",
+            image1:"/images/us-flag.jpg",
+          },
+          {
+            region: "Europe ",
+            ports: "Germany • Italy • France • Netherlands",
+            flag: "🇬🇧",
+            image1:"/images/europe_flag.jpg",
+
+          },
+          {
+            region: "United Kingdom",
+            ports: "London • Manchester • Birmingham",
+            flag: "🇬🇧",
+            image1:"/images/ukimg.png",
+
+          },
+          {
+            region: "Canada",
+            ports: "Toronto • Vancouver • Montreal",
+            flag: "🇨🇦",
+            image1:"/images/canada_flag.jpg",
+
+          },
+          {
+            region: "UAE",
+            ports: "Dubai • Abu Dhabi • Sharjah",
+            flag: "ua🇪",
+            image1:"/images/uae_flag.jpg",
+
+          },
+          // {
+          //   region: "Asia Pacific",
+          //   ports: "Singapore • Tokyo",
+          //   flag: "🇸🇬",
+          // },
+        ].map((item, index) => (
+          <div
+            key={index}
+            className="
+              group
+              relative
+              rounded-[32px]
+              bg-white
+              border
+              border-[#D4AF37]/10
+              p-8
+              text-center
+              shadow-[0_10px_40px_rgba(0,0,0,0.04)]
+              hover:-translate-y-2
+              hover:border-[#D4AF37]/40
+              transition-all
+              duration-500
+            "
+          >
+            {/* Glow */}
+            <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+            <div className="relative">
+              <div className="flex justify-center mb-4">
+<div className="flex justify-center mb-5">
+  <Image
+    src={item.image1}
+    alt={item.region}
+    width={128}
+    height={80}
+    className="w-32 h-20 object-cover rounded-lg border border-[#D4AF37]/20 shadow-sm"
+    priority={index < 2}
+  />
+</div>
+</div>
+
+              <h3 className="text-xl font-serif text-[#0A2342] mb-3">
+                {item.region}
+              </h3>
+
+              <div className="w-12 h-px bg-[#D4AF37] mx-auto mb-4" />
+
+              <p className="text-xs tracking-[0.25em] uppercase text-[#0A2342]/50">
+                {item.ports}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Export Hub */}
+      <div className="mt-16 flex justify-center">
+        <div
+          className="
+            relative
+            px-10
+            py-6
+            rounded-full
+            bg-[#0A2342]
+            text-white
+            shadow-2xl
+          "
+        >
+          <div className="absolute inset-0 rounded-full animate-ping bg-[#D4AF37]/20" />
+
+          <div className="relative">
+            <p className="text-xs tracking-[0.3em] uppercase text-[#D4AF37]">
+              Export Hub
+            </p>
+
+            <h4 className="text-2xl font-serif mt-2">
+              India
+            </h4>
           </div>
         </div>
-      </section>
+      </div>
 
+    </div>
+
+    {/* Stats */}
+    <div className="grid md:grid-cols-3 gap-8 mt-24">
+      {[
+        ["25+", "Countries Served"],
+        ["1000+", "Global Clients"],
+        ["98%", "On-Time Deliveries"],
+      ].map(([number, label]) => (
+        <div
+          key={label}
+          className="text-center p-8 rounded-[28px] bg-white border border-[#D4AF37]/10"
+        >
+          <div className="text-4xl font-serif text-[#D4AF37]">
+            {number}
+          </div>
+
+          <div className="mt-2 text-[#0A2342]/60">
+            {label}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+{/* <Location/> */}
       <Footer />
     </main>
   );

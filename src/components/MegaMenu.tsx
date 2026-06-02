@@ -70,7 +70,7 @@ export const MegaMenu = () => {
       {/* Featured Banner in Mega Menu (Optional Premium Touch) */}
       <div className="container mx-auto mt-12 pt-8 border-t border-accent/5 flex justify-between items-center">
         <p className="text-xs text-accent/40">
-          Not sure which fabric suits your design? <Link href="/contact" className="text-secondary underline">Get expert consultation</Link>
+          Not sure which fabric suits your design? <Link href="/contact-us" className="text-secondary underline">Get expert consultation</Link>
         </p>
         <div className="flex gap-4">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
