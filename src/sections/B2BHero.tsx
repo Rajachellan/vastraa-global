@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Globe, Shield, Zap } from "lucide-react";
 import google from "../../public/images/google-removebg-preview.png"
+import { getHeroVideoSrc } from "@/lib/heroVideo";
 const slides = [
   {
     id: 1,
@@ -31,6 +32,7 @@ const slides = [
 ];
 
 export const B2BHero = () => {
+  const heroVideoSrc = getHeroVideoSrc();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -178,7 +180,7 @@ export const B2BHero = () => {
       preload="auto"
       className="absolute inset-0 w-full h-full object-cover"
     >
-      <source src="/vastraa_home_banner.mp4" type="video/mp4" />
+      <source src={heroVideoSrc} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 

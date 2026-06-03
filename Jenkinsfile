@@ -42,6 +42,67 @@ pipeline {
             }
         }
 
+        stage('Fetch Git LFS assets') {
+            steps {
+                dir("${env.APP_DIR}") {
+                    sh '''
+                    set -e
+                    VIDEO="public/vastraa_home_banner.mp4"
+                    MIN_BYTES=10000000
+
+                    if [ -f "$VIDEO" ]; then
+                      SIZE=$(wc -c < "$VIDEO" | tr -d " ")
+                      if [ "$SIZE" -ge "$MIN_BYTES" ]; then
+                        echo "Hero video already present ($SIZE bytes)"
+                        exit 0
+                      fi
+                      echo "Hero video is $SIZE bytes (LFS pointer); fetching..."
+                    else
+                      echo "Hero video missing; fetching Git LFS..."
+                    fi
+
+                    if ! command -v git-lfs >/dev/null 2>&1; then
+                      echo "git-lfs not found; installing..."
+                      if command -v apt-get >/dev/null 2>&1; then
+                        sudo apt-get update -qq && sudo apt-get install -y git-lfs || true
+                      elif command -v apk >/dev/null 2>&1; then
+                        sudo apk add --no-cache git-lfs || true
+                      elif command -v yum >/dev/null 2>&1; then
+                        sudo yum install -y git-lfs || true
+                      fi
+                    fi
+
+                    if ! command -v git-lfs >/dev/null 2>&1; then
+                      echo "Installing git-lfs to workspace (no sudo)..."
+                      LFS_VERSION=3.7.1
+                      LFS_DIR="$PWD/.git-lfs"
+                      mkdir -p "$LFS_DIR"
+                      curl -fsSL "https://github.com/git-lfs/git-lfs/releases/download/v${LFS_VERSION}/git-lfs-linux-amd64-v${LFS_VERSION}.tar.gz" \
+                        | tar -xz -C "$LFS_DIR"
+                      export PATH="$LFS_DIR/git-lfs-${LFS_VERSION}:$PATH"
+                      git-lfs version
+                    fi
+
+                    if ! command -v git-lfs >/dev/null 2>&1; then
+                      echo "ERROR: git-lfs is required but could not be installed"
+                      exit 1
+                    fi
+
+                    ROOT=$(git rev-parse --show-toplevel)
+                    git lfs install
+                    git -C "$ROOT" lfs pull
+
+                    SIZE=$(wc -c < "$VIDEO" | tr -d " ")
+                    if [ "$SIZE" -lt "$MIN_BYTES" ]; then
+                      echo "ERROR: $VIDEO is still $SIZE bytes after git lfs pull"
+                      exit 1
+                    fi
+                    echo "Hero video ready ($SIZE bytes)"
+                    '''
+                }
+            }
+        }
+
         stage('Install Dependencies & Build Next.js') {
             steps {
                 dir("${env.APP_DIR}") {

@@ -13,6 +13,15 @@ ARG NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_ORIGIN=$NEXT_PUBLIC_API_ORIGIN
 
+# Fail fast if Jenkins did not pull the LFS video (pointer files are ~130 bytes).
+RUN VIDEO="public/vastraa_home_banner.mp4" && \
+    test -f "$VIDEO" && \
+    SIZE=$(wc -c < "$VIDEO" | tr -d " ") && \
+    if [ "$SIZE" -lt 10000000 ]; then \
+      echo "ERROR: $VIDEO is $SIZE bytes. Run git lfs pull before docker build." >&2; \
+      exit 1; \
+    fi
+
 RUN npm run build
 
 FROM node:20-alpine AS runner
