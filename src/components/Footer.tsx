@@ -158,7 +158,7 @@ export const Footer = () => {
 
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[10px] uppercase tracking-widest text-primary/30">
-            © {new Date().getFullYear()} Vastraa Global. All rights reserved.
+            © {new Date().getFullYear()} Vastraa Global. All rights reserved by <Link href="https://rankraze.com/" className="font-bold underline">@RankRaze</Link>
           </p>
           <div className="flex gap-8 text-[10px] uppercase tracking-widest text-primary/30">
             <span>Designed for Excellence</span>
