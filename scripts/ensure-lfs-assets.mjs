@@ -1,6 +1,10 @@
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import {
+  downloadGitHubLfsFile,
+  resolveGitHubRepo,
+} from "./download-github-lfs.mjs";
 
 const videoPath = path.join("public", "vastraa_home_banner.mp4");
 const MIN_BYTES = 10 * 1024 * 1024;
@@ -14,67 +18,87 @@ function isPointer(content) {
   return content.startsWith("version https://git-lfs.github.com/spec/v1");
 }
 
+function isVideoReady() {
+  if (!fs.existsSync(videoPath)) return false;
+  const size = fileSize(videoPath);
+  if (size < MIN_BYTES) return false;
+  const head = fs.readFileSync(videoPath, { encoding: "utf8", end: 80 });
+  return !isPointer(head);
+}
+
 if (remoteUrl) {
   console.log(
-    `[ensure-lfs-assets] Using remote hero video (NEXT_PUBLIC_HERO_VIDEO_URL)`,
+    "[ensure-lfs-assets] Using remote hero video (NEXT_PUBLIC_HERO_VIDEO_URL)",
   );
   process.exit(0);
 }
 
-if (process.env.VERCEL === "1") {
-  console.error(
-    "[ensure-lfs-assets] Vercel deploy requires NEXT_PUBLIC_HERO_VIDEO_URL.\n" +
-      "  1. Run: git lfs pull\n" +
-      "  2. Run: BLOB_READ_WRITE_TOKEN=<token> node scripts/upload-hero-video-blob.mjs\n" +
-      "  3. Add the printed URL as NEXT_PUBLIC_HERO_VIDEO_URL in Vercel env vars\n" +
-      "  4. Redeploy\n" +
-      "See .env.example",
-  );
-  process.exit(1);
-}
-
-if (!fs.existsSync(videoPath)) {
-  console.error(`[ensure-lfs-assets] Missing ${videoPath}`);
-  process.exit(1);
-}
-
-let size = fileSize(videoPath);
-if (size >= MIN_BYTES) {
-  console.log(`[ensure-lfs-assets] Hero video OK (${size} bytes)`);
+if (isVideoReady()) {
+  console.log(`[ensure-lfs-assets] Hero video OK (${fileSize(videoPath)} bytes)`);
   process.exit(0);
 }
 
-const head = fs.readFileSync(videoPath, { encoding: "utf8", end: 80 });
-if (!isPointer(head)) {
-  console.error(
-    `[ensure-lfs-assets] ${videoPath} is only ${size} bytes and is not a valid video file.`,
-  );
-  process.exit(1);
+function tryGitLfsPull() {
+  try {
+    const root = execSync("git rev-parse --show-toplevel", {
+      encoding: "utf8",
+    }).trim();
+    execSync("git lfs install", { cwd: root, stdio: "inherit" });
+    execSync("git lfs pull", { cwd: root, stdio: "inherit" });
+    return isVideoReady();
+  } catch {
+    return false;
+  }
 }
 
-console.log(
-  `[ensure-lfs-assets] ${videoPath} is a Git LFS pointer (${size} bytes). Running git lfs pull...`,
+if (fs.existsSync(videoPath)) {
+  const size = fileSize(videoPath);
+  const head = fs.readFileSync(videoPath, { encoding: "utf8", end: 80 });
+  if (isPointer(head)) {
+    console.log(
+      `[ensure-lfs-assets] ${videoPath} is a Git LFS pointer (${size} bytes).`,
+    );
+  }
+} else {
+  console.log(`[ensure-lfs-assets] ${videoPath} is missing.`);
+}
+
+console.log("[ensure-lfs-assets] Running git lfs pull...");
+if (tryGitLfsPull()) {
+  console.log(`[ensure-lfs-assets] Hero video ready (${fileSize(videoPath)} bytes)`);
+  process.exit(0);
+}
+
+const repo = resolveGitHubRepo();
+if (repo && fs.existsSync(videoPath)) {
+  console.log(
+    `[ensure-lfs-assets] Fetching LFS object from GitHub (${repo.owner}/${repo.repo})...`,
+  );
+  try {
+    const bytes = await downloadGitHubLfsFile({
+      owner: repo.owner,
+      repo: repo.repo,
+      pointerPath: videoPath,
+      destPath: videoPath,
+    });
+    console.log(`[ensure-lfs-assets] Hero video downloaded (${bytes} bytes)`);
+    process.exit(0);
+  } catch (error) {
+    console.error(
+      `[ensure-lfs-assets] GitHub LFS download failed: ${error.message}`,
+    );
+    if (!process.env.GITHUB_TOKEN && !process.env.GITHUB_ACCESS_TOKEN) {
+      console.error(
+        "[ensure-lfs-assets] For a private repo, add GITHUB_TOKEN in Vercel env vars (read access).",
+      );
+    }
+  }
+}
+
+console.error(
+  "[ensure-lfs-assets] Could not resolve hero video for this build.\n" +
+    "Option A (Vercel): enable Git LFS in Project → Settings → Git, then redeploy.\n" +
+    "Option B: set NEXT_PUBLIC_HERO_VIDEO_URL to a CDN/Blob URL (see .env.example).\n" +
+    "Option C: add GITHUB_TOKEN if the repository is private.",
 );
-
-try {
-  const root = execSync("git rev-parse --show-toplevel", {
-    encoding: "utf8",
-  }).trim();
-  execSync("git lfs install", { cwd: root, stdio: "inherit" });
-  execSync("git lfs pull", { cwd: root, stdio: "inherit" });
-} catch {
-  console.error(
-    "[ensure-lfs-assets] git lfs pull failed. Install Git LFS on the build agent and ensure the job can access LFS objects.",
-  );
-  process.exit(1);
-}
-
-size = fileSize(videoPath);
-if (size < MIN_BYTES || isPointer(fs.readFileSync(videoPath, { encoding: "utf8", end: 80 }))) {
-  console.error(
-    `[ensure-lfs-assets] ${videoPath} is still not a full video after git lfs pull (${size} bytes).`,
-  );
-  process.exit(1);
-}
-
-console.log(`[ensure-lfs-assets] Hero video ready (${size} bytes)`);
+process.exit(1);
