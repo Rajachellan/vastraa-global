@@ -72,7 +72,7 @@ export default function BlogsPage() {
       </section>
 
       {/* Featured Post */}
-      <section className="py-24">
+      <section className="py-14">
         <div className="container mx-auto px-6">
           <Link href="/blogs/digital-pigment-shift" className="group block">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -106,7 +106,7 @@ export default function BlogsPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-24 bg-bg-ivory">
+      <section className="py-14 bg-bg-ivory">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <h2 className="text-4xl font-serif text-accent">Latest <span className="text-secondary">Updates</span></h2>
@@ -162,7 +162,7 @@ export default function BlogsPage() {
           </div>
 
           {/* Newsletter / CTA */}
-          <div className="mt-32 p-16 bg-accent rounded-[4rem] text-center relative overflow-hidden">
+          <div className="mt-12 p-16 bg-accent rounded-[4rem] text-center relative overflow-hidden">
             <div className="relative z-10 max-w-2xl mx-auto space-y-8">
               <h3 className="text-4xl font-serif text-white">Stay Ahead of the <span className="text-secondary">Market</span></h3>
               <p className="text-white/50">Join our monthly newsletter for technical reports, fabric trends and B2B pricing updates.</p>

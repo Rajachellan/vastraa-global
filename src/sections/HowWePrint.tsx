@@ -42,7 +42,7 @@ export const HowWePrint = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="how-we-print" className="py-24 md:py-32 bg-bg-ivory relative overflow-hidden" ref={ref}>
+    <section id="how-we-print" className="py-24 md:py-12 bg-bg-ivory relative overflow-hidden" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div

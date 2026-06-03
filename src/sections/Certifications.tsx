@@ -49,7 +49,7 @@ export const Certifications = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="certifications" className="py-14 md:py-20 bg-bg-ivory relative" ref={ref}>
+    <section id="certifications" className="py-14 md:py-10 bg-bg-ivory relative" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div

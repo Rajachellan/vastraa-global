@@ -126,19 +126,22 @@ export const Navbar = () => {
           <span>
           Factory Price Digital Fabric Printing
           </span>
-
           <span>
            Direct From Our Production Unit • No middleman Margin
           </span>
 
           <span>
-          Custom Digital Printed Fabrics
+          Custom Digital Printed Fabric for Every Order Size
           </span>
-
           <span>
-           Export Ready Quality From India
+           Premium Quality Prints
           </span>
-
+          <span>
+            Fast Production Support
+          </span>
+          <span>
+            Export Ready Fabric Printed from India
+          </span>
           {/* <span>
             Designed & Manufactured with Precision at Vastraa Global
           </span> */}

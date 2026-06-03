@@ -53,7 +53,7 @@ export const QuoteForm = () => {
 
   if (isSubmitted) {
     return (
-      <section id="quote" className="py-24 bg-white">
+      <section id="quote" className="py-14 bg-white">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

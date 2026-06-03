@@ -55,7 +55,7 @@ export const ManufacturingCapabilities = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 md:py-32 bg-accent relative overflow-hidden" ref={ref}>
+    <section id="services" className="py-24 md:py-12 bg-accent relative overflow-hidden" ref={ref}>
       {/* Decorative elements */}
       <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-white/5" />
       <div className="absolute -bottom-48 -left-48 w-[500px] h-[500px] rounded-full border border-white/5" />

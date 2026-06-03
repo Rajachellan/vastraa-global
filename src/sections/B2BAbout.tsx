@@ -21,12 +21,12 @@ export const B2BAbout = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about-section" className="py-20 md:py-32 bg-white relative overflow-hidden" ref={ref}>
+    <section id="about-section" className="py-20 md:py-10 bg-white relative overflow-hidden" ref={ref}>
 
       <div className="container mx-auto px-6 relative z-10">
 
         {/* About Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24 md:mb-25">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}

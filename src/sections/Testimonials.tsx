@@ -51,7 +51,7 @@ export const Testimonials = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section className="py-24 bg-primary/30">
+    <section className="py-14 bg-primary/30">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <p className="uppercase tracking-[0.2em] text-secondary text-md font-bold mb-4">

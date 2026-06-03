@@ -34,7 +34,7 @@ const categories = [
 
 export const FeaturedCategories = () => {
   return (
-    <section className="py-24 bg-bg-ivory">
+    <section className="py-10 bg-bg-ivory">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-xl">

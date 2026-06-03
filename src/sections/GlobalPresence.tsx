@@ -38,7 +38,7 @@ const globalLocations = [
 
 export const GlobalPresence = () => {
   return (
-    <section id="global-presence" className="py-24 bg-accent text-primary relative overflow-hidden">
+    <section id="global-presence" className="py-14 bg-accent text-primary relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary/5 -skew-x-12 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2" />

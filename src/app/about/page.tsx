@@ -504,7 +504,7 @@ export default function AboutPage() {
       </section> */}
 
     {/* NEW CONTENT STARTS HERE */}
-     <section className="py-16 md:py-24 bg-[#f7f4ef]">
+     <section className="py-16 md:py-14 bg-[#f7f4ef]">
 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -620,7 +620,7 @@ export default function AboutPage() {
     </div>
      </section>
 
-     <section className="py-16 md:py-24 bg-[#f7f4ef]">
+     <section className="py-16 md:py-14 bg-[#f7f4ef]">
 
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -693,10 +693,10 @@ export default function AboutPage() {
     
     <section className="py-10 md:py-15 bg-[#f7f4ef]">
 
-   <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     {/* Heading */}
-    <div className="text-center max-w-4xl mx-auto">
+    <div className="text-center max-w-7xl mx-auto">
 
       <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-4">
         Certifications & Quality Standards
@@ -704,7 +704,7 @@ export default function AboutPage() {
 
       <h2 className="text-[25px] sm:text-[35px] lg:text-[45px] leading-[1.05] font-semibold text-black mb-8">
         Certified Manufacturing,
-        <br />
+       
         Built on Quality and Trust
       </h2>
 
@@ -765,7 +765,7 @@ export default function AboutPage() {
           </div>
 
   {/* Bottom Content */}
-  <div className="max-w-4xl mx-auto text-center">
+  <div className="max-w-7xl mx-auto text-center">
 
       <p className="text-[#3d4b63] text-base sm:text-lg leading-[1.9] mb-4 mt-15">
         With advanced digital printing technology, strict quality checks,
@@ -781,7 +781,7 @@ export default function AboutPage() {
     </section>
 
 
-    <section className="bg-[#F8F5F0] py-20">
+    <section className="bg-[#F8F5F0] py-20 max-w-7xl mx-auto">
   <div className="container mx-auto px-4">
     <div className="grid lg:grid-cols-2 gap-12 items-center">
       
@@ -868,9 +868,9 @@ export default function AboutPage() {
   </div>
     </section>
 
-    <section className="py-20 md:py-28 bg-[#F8F5F0]">
+    <section className="py-20 md:py-10 bg-[#F8F5F0] max-w-7xl mx-auto">
 
-  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto px-4 ">
 
     <div className="relative overflow-hidden rounded-[40px] bg-white border border-[#D4AF37]/20 p-10 sm:p-14 lg:p-20 text-center">
 
@@ -879,7 +879,7 @@ export default function AboutPage() {
 
       <h2 className="text-[32px] sm:text-[44px] lg:text-[60px] leading-[1.05] font-semibold text-black mb-8">
         Build Your Next
-        <br />
+        
         Fabric Collection
       </h2>
 

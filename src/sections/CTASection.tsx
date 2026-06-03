@@ -11,9 +11,9 @@ export const CTASection = () => {
 
   return (
     <>
-      <section className="py-24 ">
+      <section className="py-14 ">
         <div className="container mx-auto px-6">
-          <div className="premium-gradient rounded-[3rem] p-12 md:p-24 text-center shadow-xl border border-accent/5 overflow-hidden relative">
+          <div className="premium-gradient rounded-[3rem] p-12 md:p-14 text-center shadow-xl border border-accent/5 overflow-hidden relative">
             
             {/* Decorative Circles */}
             <div className="absolute top-[-10%] right-[-5%] w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />

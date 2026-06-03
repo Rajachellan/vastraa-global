@@ -50,7 +50,7 @@ function ContactContent() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-24 bg-bg-ivory relative overflow-hidden">
+      <section className="pt-40 pb-14 bg-bg-ivory relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-accent/5 -skew-x-12 translate-x-1/4" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
@@ -81,7 +81,7 @@ function ContactContent() {
       </section>
 
       {/* Main Contact Area */}
-      <section className="py-24">
+      <section className="py-14">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
@@ -242,7 +242,7 @@ function ContactContent() {
         </div>
       </section>
 
-  <section className="relative py-32 overflow-hidden bg-gradient-to-b from-[#FAF8F4] to-white">
+  <section className="relative py-14 overflow-hidden bg-gradient-to-b from-[#FAF8F4] to-white">
   
   {/* Background */}
   <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_center,_#0A2342_1px,_transparent_1px)] bg-[length:30px_30px]" />

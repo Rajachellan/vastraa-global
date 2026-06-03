@@ -404,7 +404,7 @@ const handleSubmit = (e: React.FormEvent) => {
       </section> */}
 
       {/* NEW CONTENT STARTS HERE  */}
-      <section className="py-16 md:py-24 bg-[#f7f4ef] border-t border-black/5 mt-20">
+      <section className="py-16 md:py-20 bg-[#f7f4ef] border-t border-black/5 mt-20">
 
      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -551,7 +551,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
       </section>
 
-      <section className="py-16 md:py-24 bg-[#f7f4ef]">
+      <section className="py-16 md:py-14 bg-[#f7f4ef]">
 
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -603,7 +603,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
       </section>
 
-      <section className="py-16 md:py-24 bg-[#f7f4ef]">
+      <section className="py-16 md:py-14 bg-[#f7f4ef]">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -652,7 +652,7 @@ const handleSubmit = (e: React.FormEvent) => {
       </section>
 
       {/* STEP 1 & 2 */}
-      <section className="py-16 md:py-24 bg-[#f7f4ef]">
+      <section className="py-16 md:py-14 bg-[#f7f4ef]">
 
      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -668,8 +668,6 @@ const handleSubmit = (e: React.FormEvent) => {
         />
 
       </div>
-
-
 
       {/* Content */}
       <div>
@@ -913,7 +911,7 @@ const handleSubmit = (e: React.FormEvent) => {
       </section>
 
       {/* STEP 4 */}
-      <section className="w-full bg-black py-24 overflow-hidden">
+      <section className="w-full bg-black py-14 overflow-hidden">
      <div className="max-w-7xl mx-auto px-6">
 
     <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
@@ -1013,7 +1011,7 @@ const handleSubmit = (e: React.FormEvent) => {
       </section>
 
       {/* STEP 5 */}
-      <section className="w-full bg-[#f5f1ea] py-28 overflow-hidden">
+      <section className="w-full bg-[#f5f1ea] py-15 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
 
     <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
@@ -1113,7 +1111,7 @@ const handleSubmit = (e: React.FormEvent) => {
      </section>
 
      {/* STEP 6 */}
-     <section className="w-full bg-[#f5f1ea] py-10 pb-20">
+     <section className="w-full bg-[#f5f1ea] py-10 pb-15">
    <div className="max-w-7xl mx-auto px-6">
 
     {/* Heading */}
