@@ -25,11 +25,12 @@ export function FabricMedia({
 }: Props) {
   const poster = image ? normalizeImageSrc(image) : undefined;
   const imageSrc = poster || "";
+  const videoSrc = video ? normalizeImageSrc(video) : "";
 
-  if (video) {
+  if (videoSrc) {
     return (
       <video
-        src={video}
+        src={videoSrc}
         poster={poster}
         muted
         loop

@@ -28,18 +28,37 @@ export async function subscribeNewsletter(
   return data;
 }
 
+function toApiMediaPath(pathname: string): string {
+  if (!pathname) return "";
+  if (pathname.startsWith("/uploads/") || pathname.startsWith("/assets/")) {
+    return API_ORIGIN ? `${API_ORIGIN}${pathname}` : pathname;
+  }
+  return pathname;
+}
+
+/** Browser-safe media URL — API origin for uploads, same-origin proxy in local dev. */
 export function resolveMediaUrl(url: string): string {
   if (!url) return "";
   if (url.startsWith("blob:")) return url;
-  if (url.startsWith("/uploads/")) return url;
+
+  if (url.startsWith("/uploads/") || url.startsWith("/assets/")) {
+    return toApiMediaPath(url);
+  }
+
   if (url.startsWith("http")) {
     try {
       const parsed = new URL(url);
-      if (parsed.pathname.startsWith("/uploads/")) return parsed.pathname;
+      if (
+        parsed.pathname.startsWith("/uploads/") ||
+        parsed.pathname.startsWith("/assets/")
+      ) {
+        return toApiMediaPath(parsed.pathname);
+      }
     } catch {
       return url;
     }
     return url;
   }
+
   return url;
 }

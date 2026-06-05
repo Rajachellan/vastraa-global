@@ -66,19 +66,25 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    if (process.env.NEXT_PUBLIC_API_URL?.startsWith("http")) {
-      return [];
-    }
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${apiOrigin}/api/:path*`,
-      },
+    const rewrites: { source: string; destination: string }[] = [
       {
         source: "/uploads/:path*",
         destination: `${apiOrigin}/uploads/:path*`,
       },
+      {
+        source: "/assets/:path*",
+        destination: `${apiOrigin}/assets/:path*`,
+      },
     ];
+
+    if (!process.env.NEXT_PUBLIC_API_URL?.startsWith("http")) {
+      rewrites.unshift({
+        source: "/api/:path*",
+        destination: `${apiOrigin}/api/:path*`,
+      });
+    }
+
+    return rewrites;
   },
 };
 
