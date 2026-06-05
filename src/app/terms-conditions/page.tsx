@@ -160,7 +160,7 @@ For any questions about these Terms & Conditions, please contact us:
                   <p className="text-sm text-accent/50 mb-6">
                     If you have any questions about our Terms & Conditions, please contact our legal department.
                   </p>
-                  <a href="mailto:ramesh85cloud@gmail.com" className="text-secondary font-bold uppercase tracking-widest text-xs hover:underline">Contact Legal →</a>
+                  <a href="mailto:info@vastraaglobal.com" className="text-secondary font-bold uppercase tracking-widest text-xs hover:underline">Contact Legal →</a>
                 </div>
               </div>
             </div>

@@ -185,12 +185,12 @@ export const B2BHero = () => {
     </video>
 
     {/* Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-r from-accent/80 via-accent/60 to-black/40" />
+    <div className="absolute inset-0 bg-gradient-to-l from-accent/70 via-accent/30 to-black/20" />
   </div>
 
   {/* Content */}
   <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10 py-24 lg:py-0">
-    <div className="max-w-4xl pt-16 lg:pt-30">
+    <div className="max-w-4xl pt-16 lg:pt-30 mx:pt-35">
 
       {/* Top Badge */}
       <div className="inline-flex flex-wrap items-center gap-3 mb-6">
@@ -217,7 +217,7 @@ export const B2BHero = () => {
       </div>
 <br />
       {/* Google Rating */}
-      <div className="inline-flex items-center mb-6 gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-md">
+      {/* <div className="inline-flex items-center mb-6 gap-2 px-4 py-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-md">
         <span className="text-yellow-400 text-lg">★</span>
 
         <span className="text-white font-medium text-sm md:text-base">
@@ -236,10 +236,10 @@ export const B2BHero = () => {
           height={18}
           className="object-contain"
         />
-      </div>
+      </div> */}
 
       {/* Heading */}
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-white mb-6 leading-tight">
+      <h1 className="text-4xl  sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-serif text-white mb-6 leading-tight">
         Premium Textile
         <span className="text-secondary"> Manufacturing</span>
         <br />
@@ -256,7 +256,7 @@ export const B2BHero = () => {
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row gap-4">
         <Link
-          href="/contact"
+          href="/contact-us"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-secondary text-white px-8 lg:px-10 py-4 lg:py-5 rounded-2xl text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-accent transition-all duration-500 shadow-2xl group"
         >
           Get a Quote
@@ -276,7 +276,7 @@ export const B2BHero = () => {
       </div>
 
       {/* Metrics */}
-      <div className="mt-12 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 border-t border-white/10 pt-8">
+      <div className="mt-12 mb-7 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 border-t border-white/10 pt-8">
         {[
           {
             label: "Legacy",

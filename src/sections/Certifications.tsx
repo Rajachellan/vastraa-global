@@ -91,7 +91,7 @@ export const Certifications = () => {
     alt={cert.name}
     width={220}
     height={160}
-    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-95"
   />
 </div>
 

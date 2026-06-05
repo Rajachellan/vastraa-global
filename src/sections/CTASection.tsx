@@ -46,7 +46,7 @@ export const CTASection = () => {
                 </Button>
 
                 <Button variant="outline" size="lg">
-                  <Link href="/contact-us">Talk to a Designer</Link>
+                  <Link href="/contact-us">Talk to Export</Link>
                 </Button>
               </div>
             </motion.div>
@@ -56,9 +56,14 @@ export const CTASection = () => {
 
       {/* Popup Form */}
       {showQuoteForm && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden">
-          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden">
-
+        <div
+  className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden"
+  onClick={() => setShowQuoteForm(false)}
+>
+          <div
+  className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden"
+  onClick={(e) => e.stopPropagation()}
+>
             {/* Close */}
             <button
               onClick={() => setShowQuoteForm(false)}
@@ -182,7 +187,7 @@ export const CTASection = () => {
 
       <input
         type="text"
-        placeholder="500 Meters"
+        placeholder="500 Meters/Pieces"
         className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
       />
     </div>

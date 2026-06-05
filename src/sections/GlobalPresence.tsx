@@ -11,7 +11,7 @@ const offices = [
     country: "United Kingdom",
     address: "101 ASTWICK ROAD, LINCOLN, LINCOLNSHIRE, UNITED KINGDOM, LN6 7LL ",
     phone: "+44 7776698505",
-    email: "ramesh85cloud@gmail.com",
+    email: "info@vastraaglobal.com",
     role: "UK Office",
     isMain: false,
   },
@@ -20,7 +20,7 @@ const offices = [
     country: "India",
     address: "74-A, Attayampalayam, East Colony, Gangapuram Post, Chithode, Erode, Tamil Nadu 638107",
     phone: "+91 93613 94323 ",
-    email: "ramesh85cloud@gmail.com",
+    email: "info@vastraaglobal.com",
     role: "India Office",
     isMain: true,
   }

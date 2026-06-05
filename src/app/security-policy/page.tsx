@@ -91,7 +91,7 @@ For any questions about this Security Policy, please contact us:
             <p className="text-accent/70 mb-12">
               If you discover a potential security vulnerability on our platform, we encourage you to report it to us immediately. We appreciate your assistance in keeping Vastraa Global secure.
             </p>
-            {/* <a href="mailto:ramesh85cloud@gmail.com" className="bg-accent text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-secondary transition-all inline-block">Report Vulnerability</a> */}
+            {/* <a href="mailto:info@vastraaglobal.com" className="bg-accent text-white px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-xs hover:bg-secondary transition-all inline-block">Report Vulnerability</a> */}
           </div>
         </div>
       </section>

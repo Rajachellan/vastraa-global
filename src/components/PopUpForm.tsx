@@ -131,7 +131,7 @@ export default function PopupForm(){
 
       <input
         type="text"
-        placeholder="Ex: 500 Meters"
+        placeholder="Ex: 500 Meters/pieces"
         className="w-full h-14 rounded-xl border border-gray-300 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
       />
     </div>

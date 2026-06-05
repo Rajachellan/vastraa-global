@@ -32,13 +32,13 @@ const menuData = [
   {
     title: "How We Print",
     href: "/how-we-print",
-    subItems: [
-      { name: "Printing Overview", href: "/how-we-print" },
-      { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
-      { name: "Reactive Printing", href: "/how-we-print/reactive" },
-      { name: "Sublimation", href: "/how-we-print/sublimation" },
-      { name: "Quality Standards", href: "/how-we-print/quality-control" },
-    ],
+    // subItems: [
+    //   { name: "Printing Overview", href: "/how-we-print" },
+    //   { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
+    //   { name: "Reactive Printing", href: "/how-we-print/reactive" },
+    //   { name: "Sublimation", href: "/how-we-print/sublimation" },
+    //   { name: "Quality Standards", href: "/how-we-print/quality-control" },
+    // ],
   },
   { title: "Design Studio", href: "/designs" },
   {

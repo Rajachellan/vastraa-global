@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Playfair_Display, Vollkorn } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import WhatsAppButton from "@/components/WhatsappIcon";
 const sans = Outfit({
   variable: "--font-sans",
   subsets: ["latin"],
@@ -59,6 +60,7 @@ export default function RootLayout({
     `}
   </Script>
         <StoreProvider>
+          <WhatsAppButton/>
           {children}
         </StoreProvider>
       </body>

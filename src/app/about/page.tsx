@@ -118,9 +118,14 @@ export default function AboutPage() {
 
  {/* Popup Form */}
       {showQuoteForm && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden mt-30">
-          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden">
-
+       <div
+  className="fixed inset-0 z-[9999] pt-30 flex items-center justify-center bg-black/70 backdrop-blur-sm   overflow-hidden"
+  onClick={() => setShowQuoteForm(false)}
+>
+         <div
+  className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-[24px] bg-[#F8F5F0] p-6 md:p-8 shadow-2xl"
+  onClick={(e) => e.stopPropagation()}
+>
             {/* Close */}
             <button
               onClick={() => setShowQuoteForm(false)}
@@ -136,7 +141,7 @@ export default function AboutPage() {
                     alt="Vastraa Global"
                     className="h-20 mx-auto mb-4"
                   />
-              <h2 className="text-4xl font-serif font-bold text-[#0A2342]">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#0A2342]">
                 Request a Custom Quote
               </h2>
 
@@ -244,7 +249,7 @@ export default function AboutPage() {
 
       <input
         type="text"
-        placeholder="500 Meters"
+        placeholder="500 Meters/Pieces"
         className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
       />
     </div>
