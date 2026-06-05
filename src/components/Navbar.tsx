@@ -267,9 +267,9 @@ export const Navbar = () => {
                 <Search size={21} />
               </button>
 
-              <Link href="/signin" className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110">
+              {/* <Link href="/signin" className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110">
                 <User size={21} />
-              </Link>
+              </Link> */}
 
               <Link href="/wishlist" className="p-2.5 relative hover:text-secondary transition-all duration-300 hover:scale-110">
                 <Heart size={21} />

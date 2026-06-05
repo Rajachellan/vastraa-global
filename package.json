@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "clean": "node scripts/clean-dev.js",
-    "dev": "next dev --webpack",
+    "dev": "next dev --webpack -p 7008",
     "dev:fresh": "node scripts/clean-dev.js && next dev --webpack",
     "dev:turbo": "next dev",
     "prebuild": "node scripts/ensure-lfs-assets.mjs",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 7008",
     "lint": "eslint"
   },
   "dependencies": {
