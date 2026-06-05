@@ -3,6 +3,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FabricMedia } from "@/components/FabricMedia";
 import { useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -88,6 +89,7 @@ function FabricsPageContent() {
           alt="Premium fabrics"
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/35" />
@@ -161,12 +163,22 @@ function FabricsPageContent() {
                             className="flex flex-col md:flex-row bg-white rounded-[2rem] overflow-hidden shadow-sm border border-accent/5 hover:shadow-2xl transition-all duration-500"
                           >
                             <div className="w-full md:w-2/5 relative h-64 md:h-auto overflow-hidden">
-                              <Image
-                                src={item.image || "/images/cotton.png"}
-                                alt={item.name}
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                              />
+                              {item.image ? (
+                                <FabricMedia
+                                  image={item.image}
+                                  alt={item.name}
+                                  imageClassName="object-cover transition-transform duration-700 group-hover:scale-110"
+                                  sizes="(max-width: 768px) 100vw, 40vw"
+                                />
+                              ) : (
+                                <Image
+                                  src="/images/cotton.png"
+                                  alt={item.name}
+                                  fill
+                                  sizes="(max-width: 768px) 100vw, 40vw"
+                                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                              )}
                               <button
                                 onClick={(e) => {
                                   e.preventDefault();

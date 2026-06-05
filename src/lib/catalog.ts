@@ -1,5 +1,5 @@
 import { apiUrl, resolveMediaUrl } from "@/lib/api";
-import type { ApiDesign, DesignStyle, FabricCategory, FabricItem } from "@/lib/types";
+import type { ApiDesign, BlogPost, DesignStyle, FabricCategory, FabricItem } from "@/lib/types";
 
 function normalizeDesign(raw: ApiDesign): ApiDesign {
   return {
@@ -26,6 +26,9 @@ function normalizeFabricCategory(raw: FabricCategory): FabricCategory {
   return {
     ...raw,
     id: raw.id || raw._id,
+    image: raw.image ? resolveMediaUrl(raw.image) : undefined,
+    video: raw.video ? resolveMediaUrl(raw.video) : undefined,
+    videoHls: raw.videoHls ? resolveMediaUrl(raw.videoHls) : undefined,
     items: (raw.items || []).map(normalizeFabricItem),
   };
 }
@@ -63,6 +66,24 @@ export async function fetchFabricCatalog(): Promise<FabricCategory[]> {
   if (!res.ok) return [];
   const data = await res.json();
   return Array.isArray(data) ? data.map(normalizeFabricCategory) : [];
+}
+
+function normalizeBlogPost(raw: BlogPost): BlogPost {
+  return {
+    ...raw,
+    id: raw.id || raw._id,
+    image: raw.image ? resolveMediaUrl(raw.image) : undefined,
+  };
+}
+
+export async function fetchBlogs(): Promise<BlogPost[]> {
+  const res = await fetch(apiUrl("blogs"), { cache: "no-store" });
+  if (!res.ok) return [];
+  const data = await res.json();
+  if (!Array.isArray(data)) return [];
+  return data
+    .filter((b) => b.status !== "draft")
+    .map(normalizeBlogPost);
 }
 
 export async function fetchFabricById(id: string): Promise<FabricItem | null> {

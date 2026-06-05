@@ -4,7 +4,12 @@
   "private": true,
   "scripts": {
     "clean": "node scripts/clean-dev.js",
+<<<<<<< Updated upstream
     "dev": "next dev --webpack -p 7008",
+=======
+    "dev": "next dev --webpack",
+    "dev:assets": "node scripts/ensure-lfs-assets.mjs",
+>>>>>>> Stashed changes
     "dev:fresh": "node scripts/clean-dev.js && next dev --webpack",
     "dev:turbo": "next dev",
     "prebuild": "node scripts/ensure-lfs-assets.mjs",
@@ -13,8 +18,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "dompurify": "^3.4.8",
     "framer-motion": "^12.38.0",
-    "isomorphic-dompurify": "^3.15.0",
     "lucide-react": "^1.11.0",
     "next": "^16.2.6",
     "react": "19.2.4",

@@ -113,6 +113,7 @@ export const GlobalPresence = () => {
                 src="/images/world-map.png"
                 alt="Vastraa Global Presence Map"
                 fill
+                sizes="(max-width: 1024px) 100vw, 800px"
                 priority
                 unoptimized
                 className="object-contain"

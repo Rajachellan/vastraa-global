@@ -1,14 +1,13 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BlogContent } from "@/components/BlogContent";
-import { apiUrl } from "@/lib/api";
-import { normalizeImageUrl } from "@/utils/imageUrl";
+import { apiUrl, resolveMediaUrl } from "@/lib/api";
+import { FabricMedia } from "@/components/FabricMedia";
 import { ArrowLeft, Clock, User, Tag } from "lucide-react";
 
 export default function BlogPostPage() {
@@ -24,9 +23,13 @@ export default function BlogPostPage() {
         const res = await fetch(apiUrl(`blogs/slug/${slug}`));
         if (res.ok) {
           const data = await res.json();
+          if (data.status === "draft") {
+            setNotFound(true);
+            return;
+          }
           setPost({
             ...data,
-            image: data.image ? normalizeImageUrl(data.image) : data.image,
+            image: data.image ? resolveMediaUrl(data.image) : data.image,
           });
         } else {
           setNotFound(true);
@@ -102,13 +105,12 @@ export default function BlogPostPage() {
 
               {post.image && (
                 <div className="relative aspect-video rounded-[2.5rem] overflow-hidden mb-14 shadow-xl">
-                  <Image
-                    src={post.image}
+                  <FabricMedia
+                    image={post.image}
                     alt={post.title}
-                    fill
                     priority
                     sizes="(max-width: 896px) 100vw, 896px"
-                    className="object-cover"
+                    imageClassName="object-cover"
                   />
                 </div>
               )}

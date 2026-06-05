@@ -6,12 +6,14 @@ export type InquiryType =
   | "Digital Printing Inquiry"
   | "Sample Yardage Request"
   | "Design Studio Quote"
+  | "Custom Quote Request"
   | "Other";
 
 export interface InquiryPayload {
   fullName: string;
-  companyName: string;
+  companyName?: string;
   email: string;
+  phone?: string;
   inquirytype: InquiryType | string;
   message: string;
   image?: string;
@@ -19,6 +21,33 @@ export interface InquiryPayload {
   designTitle?: string;
   quantity?: string;
   notes?: string;
+  fabricType?: string;
+  productCategory?: string;
+  fabricGSM?: string;
+  deliveryTimeline?: string;
+}
+
+export async function uploadInquiryFile(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  const res = await fetch(apiUrl("upload"), {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(
+      (data as { message?: string }).message || "Could not upload your file."
+    );
+  }
+
+  const data = (await res.json()) as { url?: string };
+  if (!data.url) {
+    throw new Error("Upload succeeded but no file URL was returned.");
+  }
+  return data.url;
 }
 
 export async function submitInquiry(payload: InquiryPayload): Promise<void> {

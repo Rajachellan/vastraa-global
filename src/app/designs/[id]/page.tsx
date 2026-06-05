@@ -3,6 +3,7 @@
 import React, { useState, use, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FabricMedia } from "@/components/FabricMedia";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { notFound, useRouter } from "next/navigation";
@@ -133,12 +134,12 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
           {/* LEFT COLUMN: Gallery - Sticky */}
           <div className="lg:col-span-7 flex flex-col gap-6 lg:sticky lg:top-40">
             <div className="relative aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden shadow-xl border border-accent/5 bg-white group">
-              <Image 
-                src={galleryImages[activeImageIdx]} 
-                alt={`${design.name} Pattern Print`} 
-                fill 
+              <FabricMedia
+                image={galleryImages[activeImageIdx]}
+                alt={`${design.name} Pattern Print`}
                 priority
-                className="object-cover transition-transform duration-1000 group-hover:scale-105" 
+                imageClassName="object-cover transition-transform duration-1000 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 60vw"
               />
               
               {/* Badge Overlay */}
@@ -176,7 +177,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                     : "border-accent/10 hover:border-secondary/40 opacity-70 hover:opacity-100"
                   }`}
                 >
-                  <Image src={img} alt="Thumbnail design view" fill className="object-cover" />
+                  <FabricMedia image={img} alt="Thumbnail design view" imageClassName="object-cover" sizes="96px" />
                 </button>
               ))}
             </div>
@@ -412,7 +413,12 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                   className="group flex flex-col bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-accent/5 hover:shadow-xl transition-all duration-500"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image src={item.image} alt={item.name} fill className="object-cover transition-transform duration-750 group-hover:scale-105" />
+                    <FabricMedia
+                      image={item.image}
+                      alt={item.name || "Design"}
+                      imageClassName="object-cover transition-transform duration-750 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
                   </div>
                   <div className="p-10 flex flex-col flex-1">
                     <div className="flex justify-between items-center mb-2">

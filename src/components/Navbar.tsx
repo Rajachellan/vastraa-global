@@ -179,6 +179,7 @@ export const Navbar = () => {
                   height={50}
                   priority
                   unoptimized
+                  style={{ width: "auto", height: "auto", maxHeight: 50 }}
                 />
                 <span className={`text-[7px] md:text-[8px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
                   Printed with Passion

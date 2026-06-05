@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { FabricMedia } from "@/components/FabricMedia";
 import { Heart, ArrowRight } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
@@ -85,11 +85,11 @@ export const RelatedDesigns: React.FC<RelatedDesignsProps> = ({ fabricId, fabric
             >
               <Link href={designHref(design)} className="block">
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={design.image || "/images/trending1.png"}
-                    alt={design.name || design.title}
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  <FabricMedia
+                    image={design.image}
+                    alt={design.name || design.title || "Design"}
+                    imageClassName="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <button
                     onClick={(e) => {
