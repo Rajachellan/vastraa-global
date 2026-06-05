@@ -143,20 +143,14 @@ export const CTASection = () => {
       </section>
 
       {showQuoteForm && (
-<<<<<<< Updated upstream
         <div
-  className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden"
-  onClick={() => setShowQuoteForm(false)}
->
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden"
+          onClick={closeForm}
+        >
           <div
-  className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden"
-  onClick={(e) => e.stopPropagation()}
->
-            {/* Close */}
-=======
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden">
-          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden">
->>>>>>> Stashed changes
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={closeForm}
               className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100"
@@ -349,18 +343,9 @@ export const CTASection = () => {
                         <Upload size={32} className="text-[#D4AF37]" />
                       </div>
 
-<<<<<<< Updated upstream
-      <input
-        type="text"
-        placeholder="500 Meters/Pieces"
-        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-      />
-    </div>
-=======
                       <h4 className="text-lg font-semibold text-[#0A2342]">
                         Upload Your Design Files
                       </h4>
->>>>>>> Stashed changes
 
                       <p className="text-sm text-gray-500 mt-2">
                         Drag & Drop or Click to Upload

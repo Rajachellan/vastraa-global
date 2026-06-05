@@ -4,92 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-<<<<<<< Updated upstream
-
-const categories = [
-  {
-    group: "Natural Fabrics",
-    items: [
-      {
-        name: "Cotton",
-        image: "/images/fabric-cotton.png",
-        video:"/Cloth_simulation_threat_to_silk_202606041514.mp4",
-
-        description: "Premium organic cotton ideal for fashion apparel and home textiles. Soft, breathable and sustainable.",
-      },
-      {
-        name: "Linen",
-        image: "/images/fabric-linen.png",
-    video:"/linen.mp4",
-
-        description: "Luxurious natural linen with exceptional drape and texture. Perfect for summer collections.",
-      },
-       {
-        name: "Silk",
-        image: "/images/silk-close-up.png",
-    video:"silk.mp4",
-
-        description: "A luxurious natural fiber with a smooth texture, elegant sheen, and lightweight feel. Known for its softness and sophistication.",
-      },
-    ],
-  },
-  {
-    group: "Semi-Synthetic Fabrics",
-    items: [
-      {
-        name: "Viscose",
-        image: "/images/fabric-viscose.png",
-    video:"/vastra 1_1.mp4",
-
-        description: "Silky smooth viscose with vibrant color absorption. Excellent for fluid, draped garments.",
-      },
-        {
-        name: "Rayon",
-        image: "/images/fabric-linen-premium.png",
-        video:"/vastra_silk.mp4",
-
-        description: "A soft, breathable fabric made from natural cellulose fibers, usually wood pulp. It offers a silky feel and excellent drape.",
-      },
-        {
-        name: "Bemberg",
-        image: "/images/fabric-cotton-premium.png",
-    video:"/linen.mp4",
-
-        description: "A high-quality cupro fabric valued for its luxurious feel, breathability, and anti-static properties.",
-      },
-    ],
-  },
-  {
-    group: "Blended Fabrics",
-    items: [
-      {
-        name: "Cotton-Linen",
-        image: "/images/fabric-blends.png",
-    video:"/swrilcloth.mp4",
-
-        description: "The best of both worlds — cotton softness meets linen structure for versatile design applications.",
-      },
-      {
-        name: "Cotton-Viscose",
-        image: "/images/fabric-viscose.png",
-    video:"/vastra 3.mp4",
-
-        description: "Breathable cotton paired with viscose sheen. Ideal for premium womenswear and resort collections.",
-      },
-      {
-        name: "Cotton-Silk",
-        image: "/images/silk-close-up.png",
-         video:"/Cloth_simulation_threat_to_silk_202606041514.mp4",
-        description: "Luxurious blend combining cotton durability with silk's elegant lustre for high-end apparel.",
-      },
-    ],
-  },
-];
-=======
 import { FabricMedia } from "@/components/FabricMedia";
 import { fetchFabricCatalog } from "@/lib/catalog";
 import type { FabricCategory } from "@/lib/types";
->>>>>>> Stashed changes
 
 export const ProductCategories = () => {
   const ref = useRef(null);
@@ -136,80 +53,11 @@ export const ProductCategories = () => {
           </p>
         </motion.div>
 
-<<<<<<< Updated upstream
-        {/* Category Groups */}
-        {categories.map((category, groupIdx) => (
-          <div key={groupIdx} className="mb-16 last:mb-0">
-            {/* Group Label */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: groupIdx * 0.1 }}
-              className="flex items-center gap-4 mb-8"
-            >
-              <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-accent/40">{category.group}</h3>
-              <span className="flex-1 h-[1px] bg-accent/5" />
-            </motion.div>
-
-            {/* Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {category.items.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
-                  className="group"
-                >
-                  <div className="rounded-2xl overflow-hidden border border-accent/5 bg-bg-ivory hover:shadow-xl hover:shadow-accent/5 transition-all duration-500">
-                    {/* Image */}
-                    <div className="relative h-64 overflow-hidden">
-                      {/* <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      /> */}
-                       <div className="relative h-64 overflow-hidden">
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-  >
-    <source src={item.video} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
-  <div className="absolute inset-0 bg-gradient-to-t from-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-</div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6">
-                      <h4 className="text-xl font-serif text-accent mb-2">{item.name}</h4>
-                      <p className="text-sm text-accent/50 leading-relaxed mb-4">{item.description}</p>
-                      <Link
-                        href={`/fabrics?type=${item.name.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="inline-flex items-center gap-2 text-secondary text-sm font-medium group/link hover:gap-3 transition-all duration-300"
-                      >
-                        View Details
-                        <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-=======
         {loading ? (
           <div className="text-center py-16 text-accent/40">Loading fabric categories…</div>
         ) : categories.length === 0 ? (
           <div className="text-center py-16 text-accent/40">
             No fabric categories yet. Add them in the admin panel.
->>>>>>> Stashed changes
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
