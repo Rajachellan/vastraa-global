@@ -50,6 +50,8 @@ export interface FabricCategory {
   slug: string;
   description?: string;
   image?: string;
+  video?: string;
+  videoHls?: string;
   items: FabricItem[];
 }
 
@@ -59,4 +61,19 @@ export interface DesignStyle {
   slug: string;
   sortOrder?: number;
   status?: string;
+}
+
+export interface BlogPost {
+  _id: string;
+  id?: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt?: string;
+  image?: string;
+  author?: string;
+  tags?: string[];
+  status?: "draft" | "published";
+  readTime?: string;
+  createdAt: string;
 }

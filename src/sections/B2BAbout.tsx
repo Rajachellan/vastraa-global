@@ -64,6 +64,7 @@ export const B2BAbout = () => {
                 src="/images/warehouse.png"
                 alt="Vastraa Global Facility"
                 fill
+                sizes="(max-width: 768px) 80vw, 450px"
                 className="object-cover"
               />
             </div>
@@ -72,6 +73,7 @@ export const B2BAbout = () => {
                 src="/images/textile_gallery_showroom.png"
                 alt="Showroom"
                 fill
+                sizes="(max-width: 768px) 50vw, 270px"
                 className="object-cover"
               />
             </div>

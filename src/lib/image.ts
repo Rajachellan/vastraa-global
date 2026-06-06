@@ -1,23 +1,8 @@
-import { API_ORIGIN, resolveMediaUrl } from "@/lib/api";
+import { resolveMediaUrl } from "@/lib/api";
 
-/** Normalize upload URLs for dev rewrites or production API host. */
+/** Normalize upload URLs for same-origin /uploads proxy or CDN. */
 export function normalizeImageSrc(url: string): string {
-  const resolved = resolveMediaUrl(url);
-  if (!resolved) return "";
-  if (resolved.startsWith("blob:")) return resolved;
-  if (!API_ORIGIN && resolved.startsWith("/uploads/")) return resolved;
-  if (API_ORIGIN && resolved.startsWith(API_ORIGIN + "/uploads/")) {
-    return resolved.slice(API_ORIGIN.length);
-  }
-  try {
-    const parsed = new URL(resolved);
-    if (!API_ORIGIN && parsed.pathname.startsWith("/uploads/")) {
-      return parsed.pathname;
-    }
-  } catch {
-    // relative or invalid
-  }
-  return resolved;
+  return resolveMediaUrl(url);
 }
 
 /** Use for next/image when the URL may be Cloudflare Images or local API uploads */
@@ -29,5 +14,9 @@ export function shouldUnoptimizeImage(src: string): boolean {
   if (srcNorm.startsWith("http://localhost")) return true;
   if (srcNorm.includes("api.vastraaglobal.com")) return true;
   if (srcNorm.includes("imagedelivery.net")) return true;
+  if (srcNorm.includes("assets.vastraaglobal.com")) return true;
+  if (srcNorm.includes("videodelivery.net")) return true;
+  if (srcNorm.includes("cloudflarestream.com")) return true;
+  if (srcNorm.includes("127.0.0.1")) return true;
   return false;
 }

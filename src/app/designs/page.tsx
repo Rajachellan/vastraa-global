@@ -3,6 +3,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { FabricMedia } from "@/components/FabricMedia";
 import { useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -177,11 +178,11 @@ function DesignsPageContent() {
                 >
                   <Link href={designHref(design)} className="block">
                     <div className="relative aspect-[4/5] overflow-hidden">
-                      <Image
-                        src={design.image || "/images/trending1.png"}
-                        alt={design.name || design.title}
-                        fill
-                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                      <FabricMedia
+                        image={design.image}
+                        alt={design.name || design.title || "Design"}
+                        imageClassName="object-cover transition-transform duration-1000 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
 
                       <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center gap-4">

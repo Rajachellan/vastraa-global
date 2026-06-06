@@ -3,13 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Send, Globe, X } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const Footer = () => {
   return (
     <footer className="bg-accent text-primary pt-24 pb-12 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
           <div className="space-y-8">
            <div className="grid grid-cols-2 items-center gap-3">
   <div className="flex justify-center sm:justify-start">
@@ -21,6 +22,7 @@ export const Footer = () => {
                         height={70}
                         priority
                         unoptimized
+                        style={{ width: "auto", height: "auto", maxHeight: 70 }}
                       />
     </Link>
   </div>
@@ -132,6 +134,14 @@ export const Footer = () => {
               <li><Link href="/cookie-policy" className="hover:text-secondary transition-colors">Cookie Policy</Link></li>
               <li><Link href="/security-policy" className="hover:text-secondary transition-colors">Security Policy</Link></li>
             </ul>
+          </div>
+
+          <div>
+            <NewsletterSignup
+              source="footer"
+              variant="footer"
+              description="Monthly fabric trends, B2B pricing updates, and technical reports."
+            />
           </div>
 
           <div>
