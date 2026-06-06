@@ -187,7 +187,7 @@ export const CTASection = () => {
 
       <input
         type="text"
-        placeholder="500 Meters/Pieces"
+        placeholder="500 Meters/Pieces "
         className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
       />
     </div>
