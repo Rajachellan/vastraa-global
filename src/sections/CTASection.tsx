@@ -46,7 +46,7 @@ export const CTASection = () => {
                 </Button>
 
                 <Button variant="outline" size="lg">
-                  <Link href="/contact-us">Talk to Export</Link>
+                  <Link href="/contact-us">Talk to Expert</Link>
                 </Button>
               </div>
             </motion.div>
