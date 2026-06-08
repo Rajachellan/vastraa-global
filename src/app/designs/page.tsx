@@ -107,7 +107,7 @@ function DesignsPageContent() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-6xl md:text-8xl font-serif text-accent mb-8"
+              className="text-5xl md:text-6xl font-serif text-accent mb-8"
             >
               Custom <span className="text-secondary italic">Artistry</span>
             </motion.h1>
