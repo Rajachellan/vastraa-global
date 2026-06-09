@@ -99,9 +99,10 @@ function DesignsPageContent() {
         isVisible={toast.show}
         message={toast.message}
         onClose={() => setToast({ ...toast, show: false })}
+      
       />
 
-      <section className="relative pt-40 pb-20 overflow-hidden">
+      <section className="relative pt-20 pb-20 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl">
             <motion.h1
