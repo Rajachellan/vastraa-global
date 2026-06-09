@@ -99,15 +99,16 @@ function DesignsPageContent() {
         isVisible={toast.show}
         message={toast.message}
         onClose={() => setToast({ ...toast, show: false })}
+      
       />
 
-      <section className="relative pt-40 pb-20 overflow-hidden">
+      <section className="relative pt-20 pb-20 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-6xl md:text-8xl font-serif text-accent mb-8"
+              className="text-5xl md:text-6xl font-serif text-accent mb-8"
             >
               Custom <span className="text-secondary italic">Artistry</span>
             </motion.h1>

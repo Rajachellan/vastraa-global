@@ -16,7 +16,7 @@ import oeko from "../../../public/images/oeko.png"
 import Link from "next/link";
 import global from "../../../public/images/globalrecycled.png"
 import { ArrowRight } from "lucide-react";
-import deliveryImg from '../../../public/images/deliveryImg.png'
+import deliveryImg from '../../../public/images/about_banner.jpg'
 import bgbanner from '../../../public/images/aboutherbg.png'
 import { useState } from "react";
 export default function AboutPage() {
@@ -821,7 +821,7 @@ export default function AboutPage() {
             We serve buyers across:
           </p>
 
-        <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
   {[
     "United Kingdom",
     "United States",
@@ -829,14 +829,17 @@ export default function AboutPage() {
     "Europe",
     "UAE",
     "Australia",
+    "Singapore"
   ].map((country, index, arr) => (
     <div key={country} className="flex items-center gap-3">
       <span className="px-5 py-3 border border-[#D9C9AF] rounded-full bg-white text-[#0F2341] text-sm font-medium">
         {country}
       </span>
-    
-    <span className="text-[#B88A44] text-lg">→</span>
-    
+
+      {/* show arrow only if not last item */}
+      {index !== arr.length - 1 && (
+        <span className="text-[#B88A44] text-lg">→</span>
+      )}
     </div>
   ))}
 </div>

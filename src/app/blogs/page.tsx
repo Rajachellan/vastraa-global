@@ -70,7 +70,7 @@ export default function BlogsPage() {
       <section className="pt-40 pb-20 bg-bg-ivory relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl">
-            <h1 className="text-6xl md:text-8xl font-serif text-accent mb-8 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-serif text-accent mb-8 leading-tight">
               Textile <span className="text-secondary">Intelligence</span>
             </h1>
             <p className="text-xl text-accent/60 leading-relaxed max-w-2xl">

@@ -59,7 +59,7 @@ function ContactContent() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif text-accent mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-accent mb-8 leading-tight">
                 {isBulk ? (
                   <>Bulk & <span className="text-secondary">Custom</span> <br />Business Enquiries</>
                 ) : isConsultation ? (

@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { motion } from "framer-motion";
 import { FileText, Microscope, PackageCheck, HeartHandshake,Upload } from "lucide-react";
 import {History,Factory, TimerReset,Paintbrush2,Globe,} from "lucide-react";
-import Image1 from '../../../public/images/Printingimg1.png'
+import Image1 from '../../../public/images/Media (3).jpg'
 import Viscoseimg from '../../../public/images/viscose.png'
 import orangecottonimg from '../../../public/images/orangecotton.png'
 import linenimg from '../../../public/images/linenimg.png'
@@ -16,7 +16,7 @@ import cottonviscose from '../../../public/images/cottonviscose.png'
 import cottonsilk from '../../../public/images/cottonsilk.png'
 import linensilk from '../../../public/images/linenviscose.png'
 import bgimg1 from '../../../public/images/stepbgimg.png'
-import step5img from '../../../public/images/step5img.png'
+import step5img from '../../../public/images/print_machine.jpg'
 import howWePrintImg2 from '../../../public/images/Howweprintimg2.png'
 import { Leaf, Palette, Cog } from "lucide-react";
 import { useState } from "react";
@@ -1040,7 +1040,7 @@ const handleSubmit = (e: React.FormEvent) => {
       <Image
           src={step5img}
           alt="Digital Pigment Printing"
-          className="w-full h-[460px] object-cover rounded-[30px]"
+          className="w-full h-[430px] object-cover rounded-[30px]"
         />
 
       </div>
