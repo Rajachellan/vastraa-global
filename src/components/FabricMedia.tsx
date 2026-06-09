@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { normalizeImageSrc, shouldUnoptimizeImage } from "@/lib/image";
 
 type Props = {
@@ -13,6 +14,14 @@ type Props = {
   priority?: boolean;
 };
 
+const imgFillStyle: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+};
+
 /** Renders category/fabric media — video preferred, else image. */
 export function FabricMedia({
   image,
@@ -23,6 +32,7 @@ export function FabricMedia({
   sizes = "(max-width: 768px) 100vw, 25vw",
   priority = false,
 }: Props) {
+  const [imgFailed, setImgFailed] = useState(false);
   const poster = image ? normalizeImageSrc(image) : undefined;
   const imageSrc = poster || "";
   const videoSrc = video ? normalizeImageSrc(video) : "";
@@ -42,11 +52,28 @@ export function FabricMedia({
     );
   }
 
-  if (!imageSrc) {
+  if (!imageSrc || imgFailed) {
     return (
       <div className={`${className} bg-accent/10 flex items-center justify-center text-accent/40 text-sm`}>
-        No media
+        {imgFailed ? "Image unavailable" : "No media"}
       </div>
+    );
+  }
+
+  const useNativeImg =
+    imageSrc.startsWith("/uploads/") ||
+    imageSrc.startsWith("/assets/") ||
+    shouldUnoptimizeImage(imageSrc);
+
+  if (useNativeImg) {
+    return (
+      <img
+        src={imageSrc}
+        alt={alt}
+        className={imageClassName || className}
+        style={imgFillStyle}
+        onError={() => setImgFailed(true)}
+      />
     );
   }
 
@@ -59,6 +86,7 @@ export function FabricMedia({
       priority={priority}
       unoptimized={shouldUnoptimizeImage(imageSrc)}
       className={imageClassName || className}
+      onError={() => setImgFailed(true)}
     />
   );
 }

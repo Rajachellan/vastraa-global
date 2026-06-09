@@ -28,21 +28,13 @@ export async function subscribeNewsletter(
   return data;
 }
 
-function toApiMediaPath(pathname: string): string {
-  if (!pathname) return "";
-  if (pathname.startsWith("/uploads/") || pathname.startsWith("/assets/")) {
-    return API_ORIGIN ? `${API_ORIGIN}${pathname}` : pathname;
-  }
-  return pathname;
-}
-
-/** Browser-safe media URL — API origin for uploads, same-origin proxy in local dev. */
+/** Same-origin /uploads paths — proxied to API via next.config rewrites. */
 export function resolveMediaUrl(url: string): string {
   if (!url) return "";
   if (url.startsWith("blob:")) return url;
 
   if (url.startsWith("/uploads/") || url.startsWith("/assets/")) {
-    return toApiMediaPath(url);
+    return url;
   }
 
   if (url.startsWith("http")) {
@@ -52,7 +44,7 @@ export function resolveMediaUrl(url: string): string {
         parsed.pathname.startsWith("/uploads/") ||
         parsed.pathname.startsWith("/assets/")
       ) {
-        return toApiMediaPath(parsed.pathname);
+        return parsed.pathname;
       }
     } catch {
       return url;
