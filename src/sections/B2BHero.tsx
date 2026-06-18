@@ -202,7 +202,7 @@ export const B2BHero = () => {
   </div>
 
   {/* Content */}
-  <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10 py-24 lg:py-0">
+  <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative pt-20 md:pt-0 lg:py-0">
     <div className="max-w-4xl pt-16 lg:pt-30 mx:pt-35">
 
       {/* Top Badge */}

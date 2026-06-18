@@ -8,12 +8,11 @@ import { motion } from "framer-motion";
 interface SubNavbarProps {
   items: { name: string; href: string }[];
 }
-
 export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
   const pathname = usePathname();
 
   return (
-    <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[114px] border-accent/5 sticky top-[114px] z-[90] overflow-hidden">
+    <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[130px] border-accent/5 sticky top-[130px] z-[90] overflow-hidden">
       <div className="container mx-auto px-6 overflow-hidden">
         <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto overflow-y-hidden no-scrollbar">
           {items.map((item) => {

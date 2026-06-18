@@ -41,7 +41,7 @@ export const Footer = () => {
          <div className="flex gap-4">
   {/* Instagram */}
   <Link
-    href="https://instagram.com"
+    href="https://www.instagram.com/vastraa_global/"
     target="_blank"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary/40 hover:bg-secondary hover:text-white transition-all duration-300"
   >
@@ -81,7 +81,7 @@ export const Footer = () => {
 
   {/* Facebook */}
   <Link
-    href="https://facebook.com"
+    href="https://www.facebook.com/profile.php?id=61591124932718"
     target="_blank"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary/40 hover:bg-secondary hover:text-white transition-all duration-300"
   >

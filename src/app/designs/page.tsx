@@ -92,7 +92,7 @@ function DesignsPageContent() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-bg-ivory">
+    <main className="flex min-h-screen flex-col  bg-bg-ivory">
       <Navbar />
 
       <Toast
@@ -102,7 +102,7 @@ function DesignsPageContent() {
       
       />
 
-      <section className="relative pt-20 pb-20 overflow-hidden">
+      <section className="relative md:mb-15 md:mt-10 pb-10 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl">
             <motion.h1
@@ -124,7 +124,7 @@ function DesignsPageContent() {
         </div>
       </section>
 
-      <section className="py-5 bg-white/50 backdrop-blur-md sticky top-[176px] z-30 border-y border-accent/5">
+      <section className="py-5 bg-white/50 backdrop-blur-md sticky top-[126px] z-30 border-y border-accent/5">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
             <div className="flex flex-wrap gap-3">

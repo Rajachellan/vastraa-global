@@ -39,7 +39,7 @@ export const FabricUpload = () => {
   };
 
   return (
-    <section className="py-10 bg-white overflow-hidden">
+    <section className="py-4 md:py-20 bg-white overflow-hidden">
       <QuoteModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
