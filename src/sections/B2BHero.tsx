@@ -174,32 +174,20 @@ export const B2BHero = () => {
   
   {/* Background Video */}
   <div className="absolute inset-0 z-0">
-    {!videoFailed ? (
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={heroPoster}
-        onError={() => setVideoFailed(true)}
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src={heroVideoSrc} type="video/mp4" />
-      </video>
-    ) : (
-      <Image
-        src={heroPoster}
-        alt="Vastraa Global"
-        fill
-        priority
-        className="object-cover"
-      />
-    )}
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    className="absolute inset-0 w-full h-full object-cover"
+  >
+    <source src="/vastraa_banner_video.mp4" type="video/mp4" />
+  </video>
 
-    {/* Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-l from-accent/70 via-accent/30 to-black/20" />
-  </div>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-l from-accent/70 via-accent/30 to-black/20" />
+</div>
 
   {/* Content */}
   <div className="container mx-auto px-5 sm:px-6 lg:px-8 relative pt-20 md:pt-0 lg:py-0">
