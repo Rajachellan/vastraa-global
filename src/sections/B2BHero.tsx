@@ -170,7 +170,7 @@ export const B2BHero = () => {
     //     </div>
     //   </div>
     // </section>
-<section className="relative min-h-screen flex items-center overflow-hidden">
+<section className="relative lg:min-h-[400px] xl:min-h-screen flex items-center overflow-hidden">
   
   {/* Background Video */}
   <div className="absolute inset-0 z-0">

@@ -21,10 +21,12 @@ export const B2BAbout = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about-section" className="py-20 md:py-10 bg-white relative overflow-hidden" ref={ref}>
+    <section id="about-section" className="py-20 md:py-4 bg-white relative overflow-hidden" ref={ref}>
+
       <div className="container mx-auto px-6 relative z-10">
+
         {/* About Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 items-center mb-14 md:mb-25">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-20 items-center mb-24 md:mb-32">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -55,14 +57,13 @@ export const B2BAbout = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[200px] sm:h-[400px] md:h-[600px] flex items-center justify-center lg:justify-end mt-12 lg:mt-0"
+            className="relative h-[300px] sm:h-[400px] md:h-[600px] flex items-center justify-center lg:justify-end mt-5 lg:mt-0"
           >
             <div className="relative w-[80%] md:w-full max-w-[320px] md:max-w-[450px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl z-10 border-4 md:border-8 border-white">
               <Image
                 src="/images/warehouse.png"
                 alt="Vastraa Global Facility"
                 fill
-                sizes="(max-width: 768px) 80vw, 450px"
                 className="object-cover"
               />
             </div>
@@ -71,7 +72,6 @@ export const B2BAbout = () => {
                 src="/images/textile_gallery_showroom.png"
                 alt="Showroom"
                 fill
-                sizes="(max-width: 768px) 50vw, 270px"
                 className="object-cover"
               />
             </div>
