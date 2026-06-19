@@ -39,17 +39,17 @@ export const FabricUpload = () => {
   };
 
   return (
-    <section className="py-4 md:py-20 bg-white overflow-hidden">
+    <section className="section-y bg-white overflow-hidden">
       <QuoteModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
         initialImage={previewUrl}
         productName="Custom Fabric Submission"
       />
-      <div className="container mx-auto px-6">
+      <div className="container-site">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif text-accent mb-6">
+            <h2 className="section-title font-serif text-accent mb-6">
               Upload Your Cloth Image & <span className="text-secondary italic">Get Expert Suggestions</span>
             </h2>
             <p className="text-lg text-accent/60 max-w-2xl mx-auto">

@@ -55,12 +55,12 @@ export const ManufacturingCapabilities = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 md:py-12 bg-accent relative overflow-hidden" ref={ref}>
+    <section id="services" className="section-y-lg bg-accent relative overflow-hidden" ref={ref}>
       {/* Decorative elements */}
       <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-white/5" />
       <div className="absolute -bottom-48 -left-48 w-[500px] h-[500px] rounded-full border border-white/5" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container-site relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -73,7 +73,7 @@ export const ManufacturingCapabilities = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Services</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-primary mb-6">
+          <h2 className="section-title font-serif text-primary mb-6">
             Comprehensive <span className="text-secondary">Capabilities</span>
           </h2>
           <p className="text-primary/50 text-base md:text-lg leading-relaxed">

@@ -8,8 +8,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
 import { SearchOverlay } from "./SearchOverlay";
-import { fetchDesignStyles, fetchFabricCatalog } from "@/lib/catalog";
-import type { DesignStyle, FabricCategory } from "@/lib/types";
+import { fetchFabricCatalog } from "@/lib/catalog";
+import type { FabricCategory } from "@/lib/types";
 import { useStore } from "@/context/StoreContext";
 import Image from "next/image";
 
@@ -19,14 +19,12 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [designStyles, setDesignStyles] = useState<DesignStyle[]>([]);
   const [fabricCategories, setFabricCategories] = useState<FabricCategory[]>([]);
 
   const pathname = usePathname();
   const { cart, wishlist } = useStore();
 
   useEffect(() => {
-    fetchDesignStyles().then(setDesignStyles).catch(() => setDesignStyles([]));
     fetchFabricCatalog().then(setFabricCategories).catch(() => setFabricCategories([]));
   }, []);
 
@@ -94,12 +92,6 @@ export const Navbar = () => {
   ];
 
   const getSubNavItems = () => {
-    if (pathname.startsWith("/designs")) {
-      return designStyles.map((s) => ({
-        name: s.name,
-        href: `/designs?style=${encodeURIComponent(s.slug || s.name)}`,
-      }));
-    }
     if (pathname.startsWith("/fabrics")) {
       return menuItems.find((i) => i.name === "Our Fabrics")?.subItems || null;
     }
@@ -116,6 +108,7 @@ export const Navbar = () => {
   };
 
   const subNavItems = getSubNavItems();
+  const pagePathTitle = pathname.startsWith("/designs") ? "Designs" : null;
 
   return (
     <>
@@ -158,7 +151,7 @@ export const Navbar = () => {
             : "bg-transparent py-5"
           }`}
       >
-        <div className="max-w-[1600px] mx-auto px-6 xl:px-10 mt-10">
+        <div className="container-site mt-10">
           <div className="flex items-center justify-between">
 
             {/* LEFT */}
@@ -175,11 +168,11 @@ export const Navbar = () => {
                 <Image
                   src="/images/logo.png"
                   alt="Vastraa Global"
-                  width={50}
-                  height={50}
+                  width={40}
+                  height={40}
                   priority
                   unoptimized
-                  style={{ width: "auto", height: "auto", maxHeight: 50 }}
+                  style={{ width: "auto", height: "auto", maxHeight: 25 }}
                 />
                 <span className={`text-[7px] md:text-[8px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
                   Printed with Passion
@@ -188,7 +181,7 @@ export const Navbar = () => {
             </div>
 
             {/* CENTER MENU */}
-            <div className="hidden lg:flex items-center gap-8 xl:gap-8 2xl:gap-14">
+            <div className="hidden lg:flex items-center gap-8 xl:gap-10 2xl:gap-14 3xl:gap-16">
               {menuItems.map((item) => (
                 <div
                   key={item.name}
@@ -294,8 +287,12 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* SUB NAV */}
-      {subNavItems && <SubNavbar items={subNavItems} />}
+      {/* SUB NAV / PAGE PATH */}
+      {pagePathTitle ? (
+        <SubNavbar title={pagePathTitle} />
+      ) : (
+        subNavItems && <SubNavbar items={subNavItems} />
+      )}
 
       {/* MOBILE MENU */}
       <MobileMenu

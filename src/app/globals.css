@@ -14,11 +14,72 @@
   --font-serif: "Playfair Display", serif;
   --font-sans: "Outfit", sans-serif;
   --font-vollkorn: "Vollkorn", serif;
+
+  /* Extended spacing scale (used across fabric/sub pages) */
+  --spacing-15: 3.75rem;
+  --spacing-18: 4.5rem;
+  --spacing-30: 7.5rem;
+  --spacing-35: 8.75rem;
+
+  /* Wider container for 4K / ultra-wide displays */
+  --container-8xl: 96rem;
+  --max-width-8xl: 96rem;
+  --container-9xl: 108rem;
+  --max-width-9xl: 108rem;
+  --container-10xl: 120rem;
+  --max-width-10xl: 120rem;
+
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 160rem;
 }
 
 :root {
   --background: #F9F7F4;
   --foreground: #1A1A1A;
+  /* Fixed navbar: announcement bar (2.5rem) + nav content */
+  --site-header-height: 5.75rem;
+  /* Responsive site container — scales up on 2K / 4K without over-stretching */
+  --container-max: 80rem;
+  --container-padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --container-max: 88rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --container-max: 96rem;
+    --container-padding-inline: clamp(2rem, 3vw, 3.5rem);
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    --container-max: 108rem;
+    --container-padding-inline: clamp(2.5rem, 4vw, 4.5rem);
+  }
+}
+
+@media (min-width: 3840px) {
+  :root {
+    --container-max: 120rem;
+    --container-padding-inline: clamp(3rem, 5vw, 6rem);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-height: 6.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --site-header-height: 6.5rem;
+  }
 }
 
 body {
@@ -28,6 +89,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -66,6 +138,261 @@ h6 {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .site-main {
+    width: 100%;
+    max-width: 100vw;
+    margin-inline: auto;
+  }
+
+  /* Consistent horizontal padding for all sections */
+  .container-site {
+    width: 100%;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-inline);
+  }
+
+  /* Hero text block — readable line length on ultra-wide */
+  .hero-content {
+    width: 100%;
+    min-width: 0;
+    max-width: min(56rem, 100%);
+  }
+
+  @media (min-width: 1920px) {
+    .hero-content {
+      max-width: min(60rem, 92%);
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .hero-content {
+      max-width: min(64rem, 88%);
+    }
+  }
+
+  /* Consistent vertical rhythm between page sections */
+  .section-y {
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .section-y-lg {
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+
+  @media (min-width: 1920px) {
+    .section-y {
+      padding-block: clamp(4rem, 4.5vw, 6rem);
+    }
+
+    .section-y-lg {
+      padding-block: clamp(4.5rem, 5vw, 7rem);
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .section-y {
+      padding-block: clamp(4.5rem, 4vw, 6.5rem);
+    }
+
+    .section-y-lg {
+      padding-block: clamp(5rem, 4.5vw, 7.5rem);
+    }
+  }
+
+  /* Hero: full viewport height on laptop+ only; mobile/tablet are content-driven */
+  .hero-viewport {
+    min-height: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-viewport {
+      min-height: 100dvh;
+      min-height: 100svh;
+    }
+  }
+
+  .hero-heading {
+    font-size: clamp(1.625rem, 4.2vw + 0.5rem, 4.5rem);
+    line-height: 1.1;
+  }
+
+  .hero-subtext {
+    font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1.25rem);
+    line-height: 1.6;
+  }
+
+  @media (min-width: 1920px) {
+    .hero-heading {
+      font-size: clamp(2.25rem, 2.2vw + 0.75rem, 4.75rem);
+    }
+
+    .hero-subtext {
+      font-size: clamp(1rem, 0.6vw + 0.75rem, 1.375rem);
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .hero-heading {
+      font-size: clamp(2.5rem, 1.8vw + 0.85rem, 5rem);
+    }
+
+    .hero-subtext {
+      font-size: clamp(1.0625rem, 0.45vw + 0.8rem, 1.5rem);
+    }
+
+    .hero-metric-value {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Section headings scale on large displays */
+  .section-title {
+    font-size: clamp(2rem, 2.5vw + 1rem, 3.75rem);
+    line-height: 1.15;
+  }
+
+  .section-subtitle {
+    font-size: clamp(1rem, 0.5vw + 0.875rem, 1.25rem);
+    line-height: 1.65;
+  }
+
+  /* More breathing room on mobile & tablet hero content */
+  @media (max-width: 1023px) {
+    .hero-heading {
+      line-height: 1.15;
+    }
+
+    .hero-subtext {
+      line-height: 1.7;
+    }
+
+    .hero-badge-offset {
+      margin-top: 0.75rem;
+    }
+  }
+
+  /* Quote / contact modal — tablet-friendly layout */
+  .quote-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: rgb(0 0 0 / 0.7);
+    backdrop-filter: blur(4px);
+    padding: max(1rem, var(--site-header-height)) 1rem 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .quote-modal-overlay {
+      align-items: center;
+      padding: max(1.25rem, var(--site-header-height)) 1.5rem 1.5rem;
+    }
+  }
+
+  .quote-modal-panel {
+    position: relative;
+    width: 100%;
+    max-width: 48rem;
+    margin-block: auto;
+    overflow-y: auto;
+    border-radius: 1.5rem;
+    background: #f8f5f0;
+    padding: 1.25rem;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  }
+
+  @media (min-width: 640px) {
+    .quote-modal-panel {
+      padding: 2rem;
+      border-radius: 2rem;
+      max-height: min(90vh, 900px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .quote-modal-panel {
+      padding: 3rem;
+      border-radius: 2rem;
+    }
+  }
+
+  .quote-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .quote-form-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  /* Continuous testimonial carousel */
+  @keyframes testimonial-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .testimonial-carousel-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: testimonial-marquee 50s linear infinite;
+    will-change: transform;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-carousel-track {
+      gap: 2rem;
+    }
+  }
+
+  .testimonial-carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  .testimonial-card {
+    flex-shrink: 0;
+    width: min(400px, calc(100vw - 2.5rem));
+  }
+
+  @media (min-width: 640px) {
+    .testimonial-card {
+      width: min(
+        560px,
+        calc(
+          (
+            min(100vw, var(--container-max)) -
+            2 * var(--container-padding-inline) -
+            1.5rem
+          ) / 2
+        )
+      );
+    }
+  }
+}
+
+/* Legacy Tailwind containers — align with site container on large displays */
+@media (min-width: 1920px) {
+  .max-w-7xl {
+    max-width: var(--container-max);
+  }
+
+  .container {
+    max-width: var(--container-max);
   }
 }
 

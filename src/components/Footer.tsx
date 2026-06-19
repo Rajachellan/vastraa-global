@@ -8,8 +8,8 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export const Footer = () => {
   return (
-    <footer className="bg-accent text-primary pt-24 pb-12 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <footer className="bg-accent text-primary pt-20 3xl:pt-24 pb-12 relative overflow-hidden">
+      <div className="container-site relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
           <div className="space-y-8">
            <div className="grid grid-cols-2 items-center gap-3">

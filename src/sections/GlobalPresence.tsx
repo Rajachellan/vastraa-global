@@ -38,12 +38,12 @@ const globalLocations = [
 
 export const GlobalPresence = () => {
   return (
-    <section id="global-presence" className="py-14 bg-accent text-primary relative overflow-hidden">
+    <section id="global-presence" className="section-y bg-accent text-primary relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary/5 -skew-x-12 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container-site relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -55,7 +55,7 @@ export const GlobalPresence = () => {
               <span className="w-12 h-[1px] bg-secondary" />
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-[10px]">Strategic Footprint</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif mb-8 leading-[1.1]">
+            <h2 className="section-title font-serif mb-8 leading-[1.1]">
               Exporting Excellence <br />
               <span className="text-secondary italic">Worldwide</span>
             </h2>

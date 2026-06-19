@@ -48,7 +48,7 @@ export const TrendingDesigns = () => {
   };
 
   return (
-    <section className="py-10 overflow-hidden relative">
+    <section className="section-y overflow-hidden relative">
       <Toast
         isVisible={toast.show}
         message={toast.message}
@@ -64,9 +64,9 @@ export const TrendingDesigns = () => {
         designTitle={quoteDesign?.name || quoteDesign?.title}
       />
 
-      <div className="container mx-auto px-6">
+      <div className="container-site">
         <div className="flex flex-col md:flex-row justify-between items-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-accent text-center md:text-left mb-6 md:mb-0">
+          <h2 className="section-title font-serif text-accent text-center md:text-left mb-6 md:mb-0">
             Trending <span>Designs</span>
           </h2>
           <p className="text-accent/60 max-w-sm text-center md:text-right">

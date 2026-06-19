@@ -46,20 +46,23 @@ function ContactContent() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col bg-white">
+    <main className="flex min-h-screen flex-col bg-white overflow-x-hidden w-full max-w-full">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-40 pb-14 bg-bg-ivory relative overflow-hidden">
+      <section
+        className="section-y bg-bg-ivory relative overflow-hidden"
+        style={{ paddingTop: "max(3rem, var(--site-header-height))" }}
+      >
         <div className="absolute top-0 right-0 w-1/2 h-full bg-accent/5 -skew-x-12 translate-x-1/4" />
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container-site relative z-10">
           <div className="max-w-4xl">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-accent mb-8 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-accent mb-8 pt-10 leading-tight">
                 {isBulk ? (
                   <>Bulk & <span className="text-secondary">Custom</span> <br />Business Enquiries</>
                 ) : isConsultation ? (
@@ -81,12 +84,12 @@ function ContactContent() {
       </section>
 
       {/* Main Contact Area */}
-      <section className="py-14">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <section className="section-y">
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16 items-start">
             
             {/* Left: Info Blocks (4 cols) */}
-            <div className="lg:col-span-4 space-y-12">
+            <div className="lg:col-span-4 space-y-12 lg:mt-30">
               <div className="space-y-8">
                 <div className="group">
                   <div className="flex items-center gap-4 mb-4">
@@ -143,7 +146,7 @@ function ContactContent() {
             </div>
 
             {/* Right: Form (8 cols) */}
-            <div className="lg:col-span-8 bg-white p-12 rounded-[4rem] shadow-2xl border border-accent/5">
+            <div className="lg:col-span-8 bg-white p-6 sm:p-8 md:p-10 lg:p-12 rounded-3xl md:rounded-[4rem] shadow-2xl border border-accent/5 w-full min-w-0">
               <div className="mb-12">
                 <h2 className="text-3xl font-serif text-accent mb-4">
                   {isBulk ? "Request a Bulk Quotation" : isConsultation ? "Book a Fabric Consultation" : "Request a Professional Quote"}
@@ -163,7 +166,7 @@ function ContactContent() {
                   <p className="text-accent/60">We will contact you within 24 business hours.</p>
                 </div>
               ) : (
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent/40">Full Name</label>
                   <input 

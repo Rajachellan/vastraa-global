@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="en" className="h-full" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         suppressHydrationWarning
-        className={`${sans.variable} ${serif.variable} ${vollkorn.variable} font-sans min-h-full flex flex-col antialiased`}
+        className={`${sans.variable} ${serif.variable} ${vollkorn.variable} font-sans min-h-full flex flex-col antialiased overflow-x-hidden`}
       >
         <Script
           id="microsoft-clarity"

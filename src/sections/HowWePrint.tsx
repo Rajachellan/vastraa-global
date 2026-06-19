@@ -42,8 +42,8 @@ export const HowWePrint = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="how-we-print" className="py-24 md:py-12 bg-bg-ivory relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="how-we-print" className="section-y-lg bg-bg-ivory relative overflow-hidden" ref={ref}>
+      <div className="container-site">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -56,7 +56,7 @@ export const HowWePrint = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Process</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-6">
+          <h2 className="section-title font-serif text-accent mb-6">
             How We <span className="text-secondary">Print</span>
           </h2>
           <p className="text-accent/60 text-base md:text-lg leading-relaxed">

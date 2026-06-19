@@ -31,11 +31,11 @@ export const FeaturedCategories = () => {
   const featured = categories.slice(0, 4);
 
   return (
-    <section className="py-10 bg-bg-ivory">
-      <div className="container mx-auto px-6">
+    <section className="section-y bg-bg-ivory">
+      <div className="container-site">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-serif text-accent mb-6">
+            <h2 className="section-title font-serif text-accent mb-6">
               Our Curated <span>Collections</span>
             </h2>
             <p className="text-accent/70 leading-relaxed">

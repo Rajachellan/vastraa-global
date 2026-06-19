@@ -32,8 +32,8 @@ export const ProductCategories = () => {
   }, []);
 
   return (
-    <section id="product-categories" className="py-24 md:py-15 bg-white relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="product-categories" className="section-y-lg bg-white relative" ref={ref}>
+      <div className="container-site">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -45,7 +45,7 @@ export const ProductCategories = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Fabrics</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-6">
+          <h2 className="section-title font-serif text-accent mb-6">
             Exploring the Variety and Quality of <span className="text-secondary">Our Fabrics</span>
           </h2>
           <p className="text-accent/60 text-base md:text-lg leading-relaxed">
@@ -60,7 +60,7 @@ export const ProductCategories = () => {
             No fabric categories yet. Add them in the admin panel.
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 3xl:gap-8">
             {categories.map((category, i) => (
               <motion.div
                 key={category.id}

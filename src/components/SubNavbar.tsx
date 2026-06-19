@@ -6,14 +6,30 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 interface SubNavbarProps {
-  items: { name: string; href: string }[];
+  items?: { name: string; href: string }[];
+  title?: string;
 }
-export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
+
+export const SubNavbar: React.FC<SubNavbarProps> = ({ items, title }) => {
   const pathname = usePathname();
 
+  if (title) {
+    return (
+      <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[var(--site-header-height)] border-accent/5 sticky top-[var(--site-header-height)] z-[90]">
+        <div className="container-site">
+          <p className="py-3 text-center text-sm font-vollkorn font-semibold tracking-wide text-secondary uppercase">
+            {title}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!items?.length) return null;
+
   return (
-    <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[130px] border-accent/5 sticky top-[130px] z-[90] overflow-hidden">
-      <div className="container mx-auto px-6 overflow-hidden">
+    <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[var(--site-header-height)] border-accent/5 sticky top-[var(--site-header-height)] z-[90] overflow-hidden pt-3">
+      <div className="container-site overflow-hidden">
         <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto overflow-y-hidden no-scrollbar">
           {items.map((item) => {
             const isActive = pathname === item.href;

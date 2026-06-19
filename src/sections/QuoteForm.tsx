@@ -53,8 +53,8 @@ export const QuoteForm = () => {
 
   if (isSubmitted) {
     return (
-      <section id="quote" className="py-14 bg-white">
-        <div className="container mx-auto px-6">
+      <section id="quote" className="section-y bg-white">
+        <div className="container-site">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -77,10 +77,10 @@ export const QuoteForm = () => {
   }
 
   return (
-    <section id="quote" className="py-24 bg-white relative overflow-hidden">
+    <section id="quote" className="section-y-lg bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container-site relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -92,7 +92,7 @@ export const QuoteForm = () => {
               <span className="w-12 h-[1px] bg-secondary" />
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Partner With Us</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-5 md:mb-8 leading-tight">
+            <h2 className="section-title font-serif text-accent mb-8 leading-tight">
               Request a <span className="text-secondary">Custom Quote</span>
             </h2>
             <p className="text-accent/60 text-base md:text-lg md:mb-10 leading-relaxed">
