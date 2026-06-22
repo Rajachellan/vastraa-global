@@ -92,7 +92,7 @@ function ContactContent() {
             <div className="lg:col-span-4 space-y-12 lg:mt-30">
               <div className="space-y-8">
                 <div className="group">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4 ">
                     <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300">
                       <Mail size={24} />
                     </div>
@@ -106,7 +106,7 @@ function ContactContent() {
                 </div>
 
                 <div className="group">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300">
                       <Phone size={24} />
                     </div>
@@ -117,7 +117,7 @@ function ContactContent() {
                 </div>
 
                 <div className="group">
-                  <div className="flex items-center gap-4 mb-4">
+                  <div className="flex items-center gap-4 ">
                     <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300">
                       <MapPin size={24} />
                     </div>
@@ -130,8 +130,8 @@ function ContactContent() {
                 </div>
               </div>
 
-              <div className="p-8 bg-accent text-white rounded-4xl space-y-6">
-                <h4 className="text-xl font-serif text-secondary">Our Office Hours</h4>
+              <div className="p-8 bg-accent text-white rounded-4xl space-y-3">
+                <h4 className="text-xl font-serif text-secondary">Our Office Hours (IST)</h4>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-white/40 uppercase tracking-widest">Mon — Fri</span>
@@ -142,7 +142,19 @@ function ContactContent() {
                     <span>9:00 AM — 1:00 PM (IST)</span>
                   </div>
                 </div>
+                   <h4 className="text-xl font-serif text-secondary">Our Office Hours (BST)</h4>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-white/40 uppercase tracking-widest">Mon — Fri</span>
+                    <span>4:30 AM — 1:30 PM (BST)</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-white/40 uppercase tracking-widest">Saturday</span>
+                    <span>4:30 AM — 8:30 PAM (BST)</span>
+                  </div>
+                </div>
               </div>
+            
             </div>
 
             {/* Right: Form (8 cols) */}

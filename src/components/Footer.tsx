@@ -3,8 +3,34 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+
+function FooterLink({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <Link href={href} className={className} onClick={handleClick}>
+      {children}
+    </Link>
+  );
+}
 
 export const Footer = () => {
   return (
@@ -14,7 +40,7 @@ export const Footer = () => {
           <div className="space-y-8">
            <div className="grid grid-cols-2 items-center gap-3">
   <div className="flex justify-center sm:justify-start">
-    <Link href="/" className="inline-block">
+    <FooterLink href="/" className="inline-block">
         <Image
                         src="/images/logo.png"
                         alt="Vastraa Global"
@@ -24,7 +50,7 @@ export const Footer = () => {
                         unoptimized
                         style={{ width: "auto", height: "auto", maxHeight: 70 }}
                       />
-    </Link>
+    </FooterLink>
   </div>
 
   <div className="flex items-center h-full">
@@ -118,21 +144,26 @@ export const Footer = () => {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-secondary">Services</h4>
             <ul className="space-y-4 text-sm text-primary/50">
-              <li><Link href="/how-we-print" className="hover:text-secondary transition-colors">Custom Printing Solutions</Link></li>
-              <li><Link href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</Link></li>
-              <li><Link href="/contact-us" className="hover:text-secondary transition-colors">Tailored Textile Services</Link></li>
-              <li><Link href="/contact-us" className="hover:text-secondary transition-colors">Bulk & Brand Orders</Link></li>
-              <li><Link href="/designs" className="hover:text-secondary transition-colors">Design Studio</Link></li>
+              <li><FooterLink href="/how-we-print" className="hover:text-secondary transition-colors">Custom Printing Solutions</FooterLink></li>
+              {/* <li><FooterLink href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</FooterLink></li> */}
+              <li><FooterLink href="/contact-us" className="hover:text-secondary transition-colors">Tailored Textile Services</FooterLink></li>
+              <li><a
+  href="tel:+9193613 94323"
+  className="hover:text-secondary transition-colors"
+>
+ Bulk & Brand Orders
+</a></li>
+              <li><FooterLink href="/designs" className="hover:text-secondary transition-colors">Design Studio</FooterLink></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-secondary">Policies</h4>
             <ul className="space-y-4 text-sm text-primary/50">
-              <li><Link href="/terms-conditions" className="hover:text-secondary transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/cookie-policy" className="hover:text-secondary transition-colors">Cookie Policy</Link></li>
-              <li><Link href="/security-policy" className="hover:text-secondary transition-colors">Security Policy</Link></li>
+              <li><FooterLink href="/terms-conditions" className="hover:text-secondary transition-colors">Terms & Conditions</FooterLink></li>
+              <li><FooterLink href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</FooterLink></li>
+              <li><FooterLink href="/cookie-policy" className="hover:text-secondary transition-colors">Cookie Policy</FooterLink></li>
+              <li><FooterLink href="/security-policy" className="hover:text-secondary transition-colors">Security Policy</FooterLink></li>
             </ul>
           </div>
 
@@ -170,10 +201,10 @@ export const Footer = () => {
           <p className="text-[10px] uppercase tracking-widest text-primary/30">
             © {new Date().getFullYear()} Vastraa Global. All rights reserved by <Link href="https://rankraze.com/" className="font-bold underline">@RankRaze</Link>
           </p>
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest text-primary/30">
+          {/* <div className="flex gap-8 text-[10px] uppercase tracking-widest text-primary/30">
             <span>Designed for Excellence</span>
             <span className="text-secondary">Export Focused</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

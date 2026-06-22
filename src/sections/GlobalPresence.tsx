@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const offices = [
   {
-    city: "Derby",
+    city: "Lincoln",
     country: "United Kingdom",
     address: "101 ASTWICK ROAD, LINCOLN, LINCOLNSHIRE, UNITED KINGDOM, LN6 7LL ",
     phone: "+44 7776698505",

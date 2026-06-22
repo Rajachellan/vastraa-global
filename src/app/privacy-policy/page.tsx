@@ -120,7 +120,10 @@ For any questions about these Privacy & Policy, please contact us:
               <p className="text-sm text-white/60 mb-6 relative z-10">
                 For any data-related inquiries or to exercise your right to be forgotten, please reach out to our privacy team.
               </p>
-              <a href="mailto:info@vastraaglobal.com" className="text-secondary font-bold uppercase tracking-widest text-xs hover:underline relative z-10">Email Privacy Team →</a>
+                                <a  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@vastraaglobal.com"
+  target="_blank"
+  rel="noopener noreferrer"className="text-secondary font-bold uppercase tracking-widest text-xs hover:underline">Email Privacy Team →</a>
+           
             </div>
           </div>
         </div>
