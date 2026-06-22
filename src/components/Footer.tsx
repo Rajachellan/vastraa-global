@@ -151,7 +151,7 @@ export const Footer = () => {
   href="https://wa.me/919361394323"
   target="_blank"
   rel="noopener noreferrer"
-  className="text-white"
+ className="hover:text-secondary transition-colors"
 >
   Contact Fabric Export
 </a></li>
