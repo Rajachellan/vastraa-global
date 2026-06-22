@@ -131,28 +131,19 @@ function ContactContent() {
               </div>
 
               <div className="p-8 bg-accent text-white rounded-4xl space-y-3">
-                <h4 className="text-xl font-serif text-secondary">Our Office Hours (IST)</h4>
+                <h4 className="text-xl font-serif text-secondary">Our Office Hours (IST/BST)</h4>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/40 uppercase tracking-widest">Mon — Fri</span>
-                    <span>9:00 AM — 6:00 PM (IST)</span>
+                    <span className="text-white/40 uppercase tracking-widest">Mon — Sat</span>
+                    <span>9:00 AM — 6:00 PM </span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
+                  {/* <div className="flex justify-between items-center text-sm">
                     <span className="text-white/40 uppercase tracking-widest">Saturday</span>
                     <span>9:00 AM — 1:00 PM (IST)</span>
-                  </div>
+                  </div> */}
                 </div>
-                   <h4 className="text-xl font-serif text-secondary">Our Office Hours (BST)</h4>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/40 uppercase tracking-widest">Mon — Fri</span>
-                    <span>4:30 AM — 1:30 PM (BST)</span>
-                  </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-white/40 uppercase tracking-widest">Saturday</span>
-                    <span>4:30 AM — 8:30 PAM (BST)</span>
-                  </div>
-                </div>
+                  
+             
               </div>
             
             </div>

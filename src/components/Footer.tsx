@@ -148,10 +148,12 @@ export const Footer = () => {
               {/* <li><FooterLink href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</FooterLink></li> */}
               <li><FooterLink href="/contact-us" className="hover:text-secondary transition-colors">Tailored Textile Services</FooterLink></li>
               <li><a
-  href="tel:+9193613 94323"
-  className="hover:text-secondary transition-colors"
+  href="https://wa.me/919361394323"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-white"
 >
- Bulk & Brand Orders
+  Contact Fabric Export
 </a></li>
               <li><FooterLink href="/designs" className="hover:text-secondary transition-colors">Design Studio</FooterLink></li>
             </ul>
@@ -181,7 +183,7 @@ export const Footer = () => {
               <li className="flex gap-4">
                 <MapPin size={18} className="text-secondary shrink-0" />
                 <span>
-                  <strong>UK:</strong> 101 ASTWICK ROAD, LINCOLN, LINCOLNSHIRE, UNITED KINGDOM, LN6 7LL  <br />
+                  <strong>UK:</strong> 101 Astwick Road, Lincoln, Lincolnshire, United Kingdom , LN6 7LL  <br />
                   <strong>India:</strong> 74A, Attayampalayam, Chithode, Erode 638102
                 </span>
               </li>
@@ -197,15 +199,17 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] uppercase tracking-widest text-primary/30">
-            © {new Date().getFullYear()} Vastraa Global. All rights reserved by <Link href="https://rankraze.com/" className="font-bold underline">@RankRaze</Link>
-          </p>
-          {/* <div className="flex gap-8 text-[10px] uppercase tracking-widest text-primary/30">
-            <span>Designed for Excellence</span>
-            <span className="text-secondary">Export Focused</span>
-          </div> */}
-        </div>
+      <div className="border-t border-white/5 pt-12 flex flex-col items-center justify-center text-center gap-6">
+  <p className="text-[10px] uppercase tracking-widest text-primary/30">
+    © {new Date().getFullYear()} Vastraa Global. All rights reserved by{" "}
+    <Link
+      href="https://rankraze.com/"
+      className="font-bold underline"
+    >
+      @RankRaze
+    </Link>
+  </p>
+</div>
       </div>
     </footer>
   );

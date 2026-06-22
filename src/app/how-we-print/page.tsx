@@ -458,11 +458,13 @@ const handleSubmit = (e: React.FormEvent) => {
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
 
-          <a
-  href="tel:+9193613 94323"
+<a
+  href="https://wa.me/919361394323"
+  target="_blank"
+  rel="noopener noreferrer"
   className="text-white"
 >
-Contact Fabric Export
+  Contact Fabric Export
 </a>
           </button>
 
