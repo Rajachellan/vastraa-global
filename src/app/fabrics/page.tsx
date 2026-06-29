@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FabricMedia } from "@/components/FabricMedia";
@@ -11,12 +11,10 @@ import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
-import {
-  FABRIC_NAV_ITEMS,
-  getStaticFabricCatalog,
-  getStaticFabricCategoryBySlug,
-} from "@/lib/fabricCategories";
-import type { FabricItem } from "@/lib/types";
+import { FABRIC_NAV_ITEMS, getStaticFabricCategoryBySlug } from "@/lib/fabricCategories";
+import { fetchFabricCatalog } from "@/lib/catalog";
+import { fabricProductHref } from "@/lib/fabricUrls";
+import type { FabricCategory, FabricItem } from "@/lib/types";
 
 export default function FabricsMainPage() {
   return (
@@ -29,7 +27,22 @@ export default function FabricsMainPage() {
 function FabricsPageContent() {
   const searchParams = useSearchParams();
   const categorySlug = searchParams.get("category") || "";
-  const categories = useMemo(() => getStaticFabricCatalog(), []);
+  const [categories, setCategories] = useState<FabricCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    fetchFabricCatalog().then((data) => {
+      if (!cancelled) {
+        setCategories(data);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const activeCategory = categorySlug
     ? categories.find((category) => category.slug === categorySlug) ||
@@ -116,7 +129,9 @@ function FabricsPageContent() {
             ))}
           </div>
 
-          {displayedCategories.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-20 text-accent/40">Loading fabrics…</div>
+          ) : displayedCategories.length === 0 ? (
             <div className="text-center py-20 text-accent/40">
               No fabrics found for this category.
             </div>
@@ -134,7 +149,7 @@ function FabricsPageContent() {
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       {category.items.map((item: FabricItem) => (
-                        <Link href={`/fabrics/${item.id}`} key={item.id} className="group">
+                        <Link href={fabricProductHref(item)} key={item.id} className="group">
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}

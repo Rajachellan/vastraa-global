@@ -28,13 +28,13 @@ export async function subscribeNewsletter(
   return data;
 }
 
-/** Same-origin /uploads paths — proxied to API via next.config rewrites. */
+/** Same-origin /uploads paths — proxied to API via next.config rewrites, or direct API origin when set. */
 export function resolveMediaUrl(url: string): string {
   if (!url) return "";
   if (url.startsWith("blob:")) return url;
 
   if (url.startsWith("/uploads/") || url.startsWith("/assets/")) {
-    return url;
+    return API_ORIGIN ? `${API_ORIGIN}${url}` : url;
   }
 
   if (url.startsWith("http")) {
@@ -44,7 +44,7 @@ export function resolveMediaUrl(url: string): string {
         parsed.pathname.startsWith("/uploads/") ||
         parsed.pathname.startsWith("/assets/")
       ) {
-        return parsed.pathname;
+        return API_ORIGIN ? `${API_ORIGIN}${parsed.pathname}` : parsed.pathname;
       }
     } catch {
       return url;

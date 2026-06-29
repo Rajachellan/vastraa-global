@@ -16,7 +16,7 @@ const popularCategories = [
   { name: "Premium Silk", href: "/fabrics/silk" },
   { name: "Organic Cotton", href: "/fabrics/cotton" },
   { name: "Digital Printing", href: "/how-we-print" },
-  { name: "Sustainability", href: "/fabrics/sustainable" },
+  { name: "Sustainability", href: "/fabrics" },
 ];
 
 export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {

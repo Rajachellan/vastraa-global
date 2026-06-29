@@ -9,14 +9,14 @@ import { Button } from "@/components/Button";
 export const ExpertConsultation = () => {
   return (
     <section className="py-24 bg-accent relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <Image 
-          src="/images/fabric_cotton.png" 
-          alt="Consultation Background" 
-          fill 
-          className="object-cover"
-        />
-      </div>
+      <div
+        className="absolute inset-0 opacity-20"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 30%, rgba(212,175,55,0.35), transparent 45%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.12), transparent 40%)",
+        }}
+      />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">

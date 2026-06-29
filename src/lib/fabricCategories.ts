@@ -1,3 +1,4 @@
+import { ENABLED_FABRIC_SLUGS, isEnabledFabricSlug } from "@/lib/enabledFabricRoutes";
 import type { FabricCategory, FabricItem } from "@/lib/types";
 
 export type FabricNavItem = {
@@ -6,15 +7,30 @@ export type FabricNavItem = {
   slug?: string;
 };
 
+const SLUG_LABELS: Record<string, string> = {
+  cotton: "Cotton",
+  silk: "Silk",
+  blends: "Blends",
+  linen: "Linen",
+  greige: "Greige",
+  knitted: "Knitted",
+  schiffli: "Schiffli",
+  sustainable: "Sustainable",
+  viscose: "Viscose",
+  vinyl: "Vinyl",
+};
+
+function fabricLabel(slug: string): string {
+  return SLUG_LABELS[slug] || slug.charAt(0).toUpperCase() + slug.slice(1);
+}
+
 export const FABRIC_NAV_ITEMS: FabricNavItem[] = [
   { name: "All Fabrics", href: "/fabrics" },
-  { name: "Cotton", href: "/fabrics/cotton", slug: "cotton" },
-  { name: "Silk", href: "/fabrics/silk", slug: "silk" },
-  { name: "Blends", href: "/fabrics/blends", slug: "blends" },
-  { name: "Linen", href: "/fabrics/linen", slug: "linen" },
-  { name: "Sustainable", href: "/fabrics/sustainable", slug: "sustainable" },
-  { name: "Viscose", href: "/fabrics/viscose", slug: "viscose" },
-  // { name: "Viscose", href: "/fabrics?category=viscose", slug: "viscose" },
+  ...ENABLED_FABRIC_SLUGS.map((slug) => ({
+    name: fabricLabel(slug),
+    href: `/fabrics/${slug}`,
+    slug,
+  })),
 ];
 
 const fabricItems: FabricItem[] = [
@@ -222,6 +238,26 @@ const categoryMeta: Record<
     description: "Smooth, fluid fabrics that hold vibrant prints with a silky hand feel.",
     image: "/images/fabric-viscose.png",
   },
+  greige: {
+    name: "Greige",
+    description: "Unfinished greige fabrics ready for dyeing, printing, and custom finishing.",
+    image: "/images/fabric-cotton.png",
+  },
+  knitted: {
+    name: "Knitted",
+    description: "Soft knitted fabrics for apparel, loungewear, and stretch applications.",
+    image: "/images/fabric-cotton.png",
+  },
+  schiffli: {
+    name: "Schiffli",
+    description: "Intricate schiffli embroidery fabrics for premium fashion and occasion wear.",
+    image: "/images/fabric-cotton.png",
+  },
+  vinyl: {
+    name: "Vinyl",
+    description: "Durable vinyl fabrics for bags, upholstery, and specialty applications.",
+    image: "/images/fabric-cotton.png",
+  },
 };
 
 const categoryItemIds: Record<string, string[]> = {
@@ -235,6 +271,17 @@ const categoryItemIds: Record<string, string[]> = {
 
 function buildCategory(slug: string): FabricCategory {
   const meta = categoryMeta[slug];
+  if (!meta) {
+    return {
+      _id: slug,
+      id: slug,
+      name: slug.charAt(0).toUpperCase() + slug.slice(1),
+      slug,
+      description: "",
+      image: "/images/fabric-cotton.png",
+      items: [],
+    };
+  }
   const itemIds = categoryItemIds[slug] || [];
 
   return {
@@ -251,11 +298,11 @@ function buildCategory(slug: string): FabricCategory {
 }
 
 export function getStaticFabricCatalog(): FabricCategory[] {
-  return FABRIC_NAV_ITEMS.filter((item) => item.slug).map((item) => buildCategory(item.slug!));
+  return ENABLED_FABRIC_SLUGS.map((slug) => buildCategory(slug));
 }
 
 export function getStaticFabricCategoryBySlug(slug: string): FabricCategory | undefined {
-  if (!categoryMeta[slug]) return undefined;
+  if (!isEnabledFabricSlug(slug)) return undefined;
   return buildCategory(slug);
 }
 
@@ -274,7 +321,7 @@ export function getStaticFabricCategoryNameForItem(item: FabricItem): string {
 
 export function getRelatedFabricsForItem(item: FabricItem, limit = 4): FabricItem[] {
   const categoryId = typeof item.categoryId === "string" ? item.categoryId : item.categoryId?.slug;
-  if (!categoryId) {
+  if (!categoryId || !categoryMeta[categoryId]) {
     return fabricItems.filter((fabric) => fabric.id !== item.id).slice(0, limit);
   }
 

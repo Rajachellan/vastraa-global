@@ -1,5 +1,5 @@
 import { FabricSlugPage } from "@/components/FabricSlugPage";
 
 export default function Page() {
-  return <FabricSlugPage slug="linen" />;
+  return <FabricSlugPage slug="jute" />;
 }

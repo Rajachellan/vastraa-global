@@ -28,6 +28,7 @@ export interface ApiDesign {
 export interface FabricItem {
   _id: string;
   id: string;
+  slug?: string;
   name: string;
   description: string;
   image: string;
@@ -43,6 +44,32 @@ export interface FabricItem {
   categoryId?: string | { _id: string; name: string; slug: string };
 }
 
+export interface FabricPageContent {
+  hero?: {
+    title?: string;
+    highlight?: string;
+    subtitle?: string;
+    image?: string;
+  };
+  meta?: { title?: string; description?: string };
+  sections?: Array<{
+    id?: string;
+    heading: string;
+    highlight?: string;
+    paragraphs?: string[];
+    bullets?: string[];
+  }>;
+  typeCards?: Array<{ title: string; description: string }>;
+  uses?: string[];
+  features?: string[];
+  trends?: string[];
+  bulkOrders?: string[];
+  whyChoose?: Array<{ title: string; description: string }>;
+  popularSearches?: string[];
+  faqs?: Array<{ question: string; answer: string }>;
+  technicalCards?: Array<{ title: string; items: string[] }>;
+}
+
 export interface FabricCategory {
   id: string;
   _id: string;
@@ -52,6 +79,7 @@ export interface FabricCategory {
   image?: string;
   video?: string;
   videoHls?: string;
+  pageContent?: FabricPageContent;
   items: FabricItem[];
 }
 
