@@ -1,4 +1,10 @@
 import { apiUrl, resolveMediaUrl } from "@/lib/api";
+import {
+  getRelatedFabricsForItem,
+  getStaticFabricById,
+  getStaticFabricCatalog,
+  getStaticFabricCategoryNameForItem,
+} from "@/lib/fabricCategories";
 import type { ApiDesign, BlogPost, DesignStyle, FabricCategory, FabricItem } from "@/lib/types";
 
 function normalizeDesign(raw: ApiDesign): ApiDesign {
@@ -10,26 +16,6 @@ function normalizeDesign(raw: ApiDesign): ApiDesign {
     images: (raw.images || []).map(resolveMediaUrl),
     category: raw.style || raw.category || "",
     style: raw.style || raw.category || "",
-  };
-}
-
-function normalizeFabricItem(raw: FabricItem): FabricItem {
-  return {
-    ...raw,
-    id: raw.id || raw._id,
-    image: resolveMediaUrl(raw.image),
-    images: (raw.images || []).map(resolveMediaUrl),
-  };
-}
-
-function normalizeFabricCategory(raw: FabricCategory): FabricCategory {
-  return {
-    ...raw,
-    id: raw.id || raw._id,
-    image: raw.image ? resolveMediaUrl(raw.image) : undefined,
-    video: raw.video ? resolveMediaUrl(raw.video) : undefined,
-    videoHls: raw.videoHls ? resolveMediaUrl(raw.videoHls) : undefined,
-    items: (raw.items || []).map(normalizeFabricItem),
   };
 }
 
@@ -62,10 +48,7 @@ export async function fetchDesignStyles(): Promise<DesignStyle[]> {
 }
 
 export async function fetchFabricCatalog(): Promise<FabricCategory[]> {
-  const res = await fetch(apiUrl("fabrics/catalog"), { cache: "no-store" });
-  if (!res.ok) return [];
-  const data = await res.json();
-  return Array.isArray(data) ? data.map(normalizeFabricCategory) : [];
+  return getStaticFabricCatalog();
 }
 
 function normalizeBlogPost(raw: BlogPost): BlogPost {
@@ -87,9 +70,13 @@ export async function fetchBlogs(): Promise<BlogPost[]> {
 }
 
 export async function fetchFabricById(id: string): Promise<FabricItem | null> {
-  const res = await fetch(apiUrl(`fabrics/${encodeURIComponent(id)}`), {
-    cache: "no-store",
-  });
-  if (!res.ok) return null;
-  return normalizeFabricItem(await res.json());
+  return getStaticFabricById(id);
+}
+
+export function getFabricCategoryName(item: FabricItem): string {
+  return getStaticFabricCategoryNameForItem(item);
+}
+
+export function getRelatedFabrics(item: FabricItem, limit = 4): FabricItem[] {
+  return getRelatedFabricsForItem(item, limit);
 }

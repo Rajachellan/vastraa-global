@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, use, useEffect } from "react";
+import React, { useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FabricMedia } from "@/components/FabricMedia";
@@ -13,59 +13,21 @@ import { Toast } from "@/components/Toast";
 import { QuoteModal } from "@/components/QuoteModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { RelatedDesigns } from "@/components/RelatedDesigns";
-import { fetchFabricById, fetchFabricCatalog } from "@/lib/catalog";
+import { fetchDesignById, getFabricCategoryName, getRelatedFabrics } from "@/lib/catalog";
+import { getStaticFabricById } from "@/lib/fabricCategories";
 import type { FabricItem } from "@/lib/types";
 
 export default function FabricDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const [fabric, setFabric] = useState<FabricItem | null>(null);
-  const [categoryName, setCategoryName] = useState("");
-  const [related, setRelated] = useState<FabricItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      setLoading(true);
-      const [item, catalog] = await Promise.all([fetchFabricById(id), fetchFabricCatalog()]);
-      if (cancelled) return;
-      if (!item) {
-        setLoading(false);
-        return;
-      }
-      setFabric(item);
-      const catId =
-        typeof item.categoryId === "object" && item.categoryId
-          ? item.categoryId._id
-          : item.categoryId;
-      const cat = catalog.find((c) => String(c._id || c.id) === String(catId));
-      setCategoryName(cat?.name || (typeof item.categoryId === "object" ? item.categoryId.name : "") || "");
-      setRelated(
-        cat?.items.filter((i) => i.id !== item.id) ||
-          catalog.flatMap((c) => c.items).filter((i) => i.id !== item.id).slice(0, 4)
-      );
-      setLoading(false);
-    }
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [id]);
+  const fabric = getStaticFabricById(id);
+  const categoryName = fabric ? getFabricCategoryName(fabric) : "";
+  const related = fabric ? getRelatedFabrics(fabric) : [];
 
   const { toggleWishlist, isInWishlist } = useStore();
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [activeAccordion, setActiveAccordion] = useState<string | null>("specs");
-
-  if (loading) {
-    return (
-      <main className="flex min-h-screen flex-col bg-bg-ivory">
-        <Navbar />
-        <div className="flex-1 flex items-center justify-center text-accent/40 pt-40">Loading fabric…</div>
-      </main>
-    );
-  }
 
   if (!fabric) {
     notFound();

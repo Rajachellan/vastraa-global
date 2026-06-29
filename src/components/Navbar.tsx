@@ -8,8 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
 import { SearchOverlay } from "./SearchOverlay";
-import { fetchFabricCatalog } from "@/lib/catalog";
-import type { FabricCategory } from "@/lib/types";
+import { FABRIC_NAV_ITEMS } from "@/lib/fabricCategories";
 import { useStore } from "@/context/StoreContext";
 import Image from "next/image";
 
@@ -19,14 +18,9 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [fabricCategories, setFabricCategories] = useState<FabricCategory[]>([]);
 
   const pathname = usePathname();
   const { cart, wishlist } = useStore();
-
-  useEffect(() => {
-    fetchFabricCatalog().then(setFabricCategories).catch(() => setFabricCategories([]));
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,15 +62,8 @@ export const Navbar = () => {
     {
       name: "Our Fabrics",
       href: "/fabrics",
-      subItems: [
-        { name: "All Fabrics", href: "/fabrics" },
-        ...fabricCategories.map((cat) => ({
-          name: cat.name,
-          href: `/fabrics?category=${encodeURIComponent(cat.slug || cat.name)}`,
-        })),
-      ],
+      subItems: FABRIC_NAV_ITEMS,
     },
-
 
     { name: "Design Studio", href: "/designs" },
     {
@@ -88,7 +75,7 @@ export const Navbar = () => {
       //   { name: "Case Studies", href: "/blogs?cat=case-studies" },
       // ],
     },
-    { name: "Expert Help", href: "/contact-us?type=consultation" },
+    { name: "Expert Help", href: "/contact-us" },
   ];
 
   const getSubNavItems = () => {

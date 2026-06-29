@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FabricMedia } from "@/components/FabricMedia";
@@ -11,8 +11,12 @@ import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
-import { fetchFabricCatalog } from "@/lib/catalog";
-import type { FabricCategory, FabricItem } from "@/lib/types";
+import {
+  FABRIC_NAV_ITEMS,
+  getStaticFabricCatalog,
+  getStaticFabricCategoryBySlug,
+} from "@/lib/fabricCategories";
+import type { FabricItem } from "@/lib/types";
 
 export default function FabricsMainPage() {
   return (
@@ -24,47 +28,23 @@ export default function FabricsMainPage() {
 
 function FabricsPageContent() {
   const searchParams = useSearchParams();
-  const categoryParam = searchParams.get("category") || "";
+  const categorySlug = searchParams.get("category") || "";
+  const categories = useMemo(() => getStaticFabricCatalog(), []);
 
-  const [categories, setCategories] = useState<FabricCategory[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [activeFilter, setActiveFilter] = useState("All");
+  const activeCategory = categorySlug
+    ? categories.find((category) => category.slug === categorySlug) ||
+      getStaticFabricCategoryBySlug(categorySlug)
+    : null;
+
+  const activeFilter = activeCategory?.name || "All";
+  const displayedCategories = activeCategory ? [activeCategory] : categories;
+
   const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: "" });
   const { toggleWishlist, isInWishlist } = useStore();
-
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      setLoading(true);
-      try {
-        const catalog = await fetchFabricCatalog();
-        if (!cancelled) {
-          setCategories(catalog);
-          if (categoryParam) {
-            const match = catalog.find(
-              (c) => c.slug === categoryParam || c.name.toLowerCase() === categoryParam.toLowerCase()
-            );
-            if (match) setActiveFilter(match.name);
-          }
-        }
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [categoryParam]);
 
   const showToast = (message: string) => {
     setToast({ show: true, message });
   };
-
-  const displayedCategories =
-    activeFilter === "All"
-      ? categories
-      : categories.filter((c) => c.name === activeFilter);
 
   const handleToggleWishlist = (item: FabricItem) => {
     toggleWishlist(item);
@@ -100,10 +80,19 @@ function FabricsPageContent() {
             className="max-w-4xl mx-auto"
           >
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif mb-6 leading-tight">
-              Explore Our <span className="text-secondary">Collection</span>
+              {activeCategory ? (
+                <>
+                  Explore Our <span className="text-secondary">{activeCategory.name}</span> Collection
+                </>
+              ) : (
+                <>
+                  Explore Our <span className="text-secondary">Collection</span>
+                </>
+              )}
             </h1>
             <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto font-light">
-              Premium textile solutions tailored for your unique brand. From fabric selection to final print, we handle the rest.
+              {activeCategory?.description ||
+                "Premium textile solutions tailored for your unique brand. From fabric selection to final print, we handle the rest."}
             </p>
           </motion.div>
         </div>
@@ -112,34 +101,24 @@ function FabricsPageContent() {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap items-center justify-center gap-4 mb-20">
-            <Link
-              href="/fabrics"
-              onClick={() => setActiveFilter("All")}
-              className={`px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
-                activeFilter === "All" ? "bg-accent text-white shadow-xl" : "bg-white text-accent/60 hover:bg-secondary/10"
-              }`}
-            >
-              All Fabrics
-            </Link>
-            {categories.map((cat) => (
+            {FABRIC_NAV_ITEMS.map((item) => (
               <Link
-                key={cat.id}
-                href={`/fabrics?category=${encodeURIComponent(cat.slug || cat.name)}`}
-                onClick={() => setActiveFilter(cat.name)}
+                key={item.name}
+                href={item.href}
                 className={`px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
-                  activeFilter === cat.name ? "bg-accent text-white shadow-xl" : "bg-white text-accent/60 hover:bg-secondary/10"
+                  (item.slug ? activeFilter === item.name : activeFilter === "All")
+                    ? "bg-accent text-white shadow-xl"
+                    : "bg-white text-accent/60 hover:bg-secondary/10"
                 }`}
               >
-                {cat.name}
+                {item.name}
               </Link>
             ))}
           </div>
 
-          {loading ? (
-            <div className="text-center py-20 text-accent/40">Loading fabrics…</div>
-          ) : displayedCategories.length === 0 ? (
+          {displayedCategories.length === 0 ? (
             <div className="text-center py-20 text-accent/40">
-              No fabric categories yet. Add categories and items in the admin panel.
+              No fabrics found for this category.
             </div>
           ) : (
             <div className="space-y-32">

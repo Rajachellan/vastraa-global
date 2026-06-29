@@ -1,34 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FabricMedia } from "@/components/FabricMedia";
-import { fetchFabricCatalog } from "@/lib/catalog";
-import type { FabricCategory } from "@/lib/types";
+import { getStaticFabricCatalog } from "@/lib/fabricCategories";
 
 export const FeaturedCategories = () => {
-  const [categories, setCategories] = useState<FabricCategory[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let cancelled = false;
-    async function load() {
-      try {
-        setLoading(true);
-        const catalog = await fetchFabricCatalog();
-        if (!cancelled) setCategories(catalog);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const featured = categories.slice(0, 4);
+  const categories = getStaticFabricCatalog().slice(0, 4);
 
   return (
     <section className="section-y bg-bg-ivory">
@@ -50,13 +29,8 @@ export const FeaturedCategories = () => {
           </Link>
         </div>
 
-        {loading ? (
-          <div className="text-center py-10 text-accent/60">Loading collections…</div>
-        ) : featured.length === 0 ? (
-          <div className="text-center py-10 text-accent/60">No categories yet. Add them in the admin panel.</div>
-        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featured.map((category, index) => (
+          {categories.map((category, index) => (
             <motion.div
               key={category.name}
               initial={{ opacity: 0, y: 20 }}
@@ -65,13 +39,12 @@ export const FeaturedCategories = () => {
               transition={{ delay: index * 0.1, duration: 0.5 }}
             >
               <Link
-                href={`/fabrics?category=${encodeURIComponent(category.slug || category.name)}`}
+                href={`/fabrics?category=${encodeURIComponent(category.slug)}`}
                 className="group block"
               >
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-6 shadow-sm">
                   <FabricMedia
                     image={category.image}
-                    video={category.video}
                     alt={category.name}
                     imageClassName="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -88,7 +61,6 @@ export const FeaturedCategories = () => {
             </motion.div>
           ))}
         </div>
-        )}
       </div>
     </section>
   );

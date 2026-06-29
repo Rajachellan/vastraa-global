@@ -13,21 +13,14 @@ import {
 } from "lucide-react";
 
 import { useStore } from "@/context/StoreContext";
+import { FABRIC_NAV_ITEMS } from "@/lib/fabricCategories";
 
 const menuData = [
   { title: "Home", href: "/" },
   {
     title: "Our Fabrics",
     href: "/fabrics",
-    subItems: [
-      { name: "All Fabrics", href: "/fabrics" },
-      { name: "Cotton", href: "/fabrics/cotton" },
-      { name: "Linen", href: "/fabrics/linen" },
-      { name: "Viscose", href: "/fabrics/viscose" },
-      { name: "Blends", href: "/fabrics/blends" },
-      { name: "Silk", href: "/fabrics/silk" },
-      { name: "Sustainable", href: "/fabrics/sustainable" },
-    ],
+    subItems: FABRIC_NAV_ITEMS,
   },
   {
     title: "How We Print",
