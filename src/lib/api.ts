@@ -29,27 +29,36 @@ export async function subscribeNewsletter(
 }
 
 /** Same-origin /uploads paths — proxied to API via next.config rewrites, or direct API origin when set. */
+const CDN_HOSTS = ["assets.vastraaglobal.com", "imagedelivery.net", "videodelivery.net"];
+
+function isCdnMediaUrl(url: string): boolean {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return CDN_HOSTS.some((cdn) => host === cdn || host.endsWith(`.${cdn}`));
+  } catch {
+    return false;
+  }
+}
+
 export function resolveMediaUrl(url: string): string {
   if (!url) return "";
   if (url.startsWith("blob:")) return url;
 
-  if (url.startsWith("/uploads/") || url.startsWith("/assets/")) {
-    return API_ORIGIN ? `${API_ORIGIN}${url}` : url;
-  }
-
   if (url.startsWith("http")) {
+    if (isCdnMediaUrl(url)) return url;
     try {
       const parsed = new URL(url);
-      if (
-        parsed.pathname.startsWith("/uploads/") ||
-        parsed.pathname.startsWith("/assets/")
-      ) {
+      if (parsed.pathname.startsWith("/uploads/")) {
         return API_ORIGIN ? `${API_ORIGIN}${parsed.pathname}` : parsed.pathname;
       }
     } catch {
       return url;
     }
     return url;
+  }
+
+  if (url.startsWith("/uploads/") || url.startsWith("/assets/")) {
+    return API_ORIGIN ? `${API_ORIGIN}${url}` : url;
   }
 
   return url;
