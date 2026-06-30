@@ -104,4 +104,9 @@ export interface BlogPost {
   status?: "draft" | "published";
   readTime?: string;
   createdAt: string;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    canonical?: string;
+  };
 }
