@@ -4,6 +4,7 @@ import {
   getRelatedFabricsForItem,
   getStaticFabricById,
   getStaticFabricCatalog,
+  getStaticFabricCategoryBySlug,
   getStaticFabricCategoryNameForItem,
 } from "@/lib/fabricCategories";
 import type { ApiDesign, BlogPost, DesignStyle, FabricCategory, FabricItem } from "@/lib/types";
@@ -80,17 +81,23 @@ function normalizeFabricCategory(raw: FabricCategory): FabricCategory {
 }
 
 export async function fetchFabricPage(slug: string): Promise<FabricCategory | null> {
-  const res = await fetch(apiUrl(`fabric-pages/${encodeURIComponent(slug)}`), {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    const legacy = await fetch(apiUrl(`categories/slug/${encodeURIComponent(slug)}`), {
+  try {
+    const res = await fetch(apiUrl(`fabric-pages/${encodeURIComponent(slug)}`), {
       cache: "no-store",
     });
-    if (!legacy.ok) return null;
-    return normalizeFabricCategory(await legacy.json());
+    if (!res.ok) {
+      const legacy = await fetch(apiUrl(`categories/slug/${encodeURIComponent(slug)}`), {
+        cache: "no-store",
+      });
+      if (!legacy.ok) {
+        return getStaticFabricCategoryBySlug(slug) || null;
+      }
+      return normalizeFabricCategory(await legacy.json());
+    }
+    return normalizeFabricCategory(await res.json());
+  } catch (error) {
+    return getStaticFabricCategoryBySlug(slug) || null;
   }
-  return normalizeFabricCategory(await res.json());
 }
 
 function normalizeBlogPost(raw: BlogPost): BlogPost {

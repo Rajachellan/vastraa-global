@@ -101,32 +101,37 @@ export const Navbar = () => {
     <>
     {/* ANNOUNCEMENT BAR */}
 
-      <div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 overflow-hidden h-10 flex items-center">
-        <div className="animate-marquee whitespace-nowrap flex items-center gap-16 px-6 text-[12px] md:text-sm font-medium tracking-wide">
-          <span>
-          Factory Price Digital Fabric Printing
-          </span>
-          <span>
-           Direct From Our Production Unit • No middleman Margin
-          </span>
+   {/* ANNOUNCEMENT BAR */}
+<div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 overflow-hidden h-10 flex items-center">
+  <div className="marquee">
+    <div className="marquee-content">
+      {[
+        "Factory Price Digital Fabric Printing",
+        "Direct From Our Production Unit • No Middleman Margin",
+        "Custom Digital Printed Fabric for Every Order Size",
+        "Premium Quality Prints",
+        "Fast Production Support",
+        "Export Ready Fabric Printed from India",
+      ].map((text, index) => (
+        <span key={index}>{text}</span>
+      ))}
+    </div>
 
-          <span>
-          Custom Digital Printed Fabric for Every Order Size
-          </span>
-          <span>
-           Premium Quality Prints
-          </span>
-          <span>
-            Fast Production Support
-          </span>
-          <span>
-            Export Ready Fabric Printed from India
-          </span>
-          {/* <span>
-            Designed & Manufactured with Precision at Vastraa Global
-          </span> */}
-        </div>
-      </div>
+    {/* Duplicate Content */}
+    <div className="marquee-content" aria-hidden="true">
+      {[
+        "Factory Price Digital Fabric Printing",
+        "Direct From Our Production Unit • No Middleman Margin",
+        "Custom Digital Printed Fabric for Every Order Size",
+        "Premium Quality Prints",
+        "Fast Production Support",
+        "Export Ready Fabric Printed from India",
+      ].map((text, index) => (
+        <span key={index}>{text}</span>
+      ))}
+    </div>
+  </div>
+</div>
       <nav
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
@@ -291,22 +296,39 @@ export const Navbar = () => {
       {/* MARQUEE ANIMATION */}
 
       <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0%);
-          }
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
 
-          100% {
-            transform: translateX(-50%);
-          }
-        }
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
 
-        .animate-marquee {
-          display: flex;
-          min-width: max-content;
-          animation: marquee 25s linear infinite;
-        }
-      `}</style>
+  .marquee-content span {
+    white-space: nowrap;
+    padding: 0 3rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+`}</style>
     </>
   );
 };
