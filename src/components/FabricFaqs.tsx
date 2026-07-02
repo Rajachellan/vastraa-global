@@ -3,46 +3,117 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
-type Faq = { question: string; answer: string };
+type Faq = {
+  question: string;
+  answer: string;
+};
 
-export function FabricFaqs({ faqs, title = "FAQs" }: { faqs: Faq[]; title?: string }) {
+export function FabricFaqs({
+  faqs,
+  title = "Frequently Asked Questions",
+}: {
+  faqs: Faq[];
+  title?: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   if (!faqs?.length) return null;
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-semibold text-black mb-10 text-center">
-          {title}
-        </h2>
-        <div className="space-y-4">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white via-gray-50 to-white">
+      <div className="container-site max-w-5xl">
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <span className="uppercase tracking-[0.3em] text-secondary text-xs font-semibold">
+            Need Help?
+          </span>
+
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold text-black">
+            {title}
+          </h2>
+
+          <div className="w-24 h-1 bg-secondary rounded-full mx-auto mt-6"></div>
+        </div>
+
+        {/* FAQs */}
+        <div className="space-y-5">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
+
             return (
               <div
                 key={index}
-                className="border border-[#D4AF37]/20 rounded-2xl overflow-hidden bg-[#faf7f2]"
+                className={`group overflow-hidden rounded-3xl border transition-all duration-300 ${
+                  isOpen
+                    ? "border-secondary shadow-xl bg-white"
+                    : "border-gray-200 bg-white hover:border-secondary/40 hover:shadow-lg"
+                }`}
               >
                 <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left"
+                  onClick={() =>
+                    setOpenIndex(isOpen ? null : index)
+                  }
+                  className="w-full flex items-center gap-6 p-6 md:p-7 text-left"
                 >
-                  <span className="font-semibold text-black text-sm md:text-base">
-                    {faq.question}
-                  </span>
-                  {isOpen ? (
-                    <Minus size={18} className="text-[#D4AF37] shrink-0" />
-                  ) : (
-                    <Plus size={18} className="text-[#D4AF37] shrink-0" />
-                  )}
-                </button>
-                {isOpen && (
-                  <div className="px-5 md:px-6 pb-5 md:pb-6 text-gray-600 text-sm md:text-base leading-relaxed">
-                    {faq.answer}
+                  {/* Number */}
+                  <div
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-lg transition-all ${
+                      isOpen
+                        ? "bg-secondary text-white"
+                        : "bg-secondary/10 text-secondary"
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
                   </div>
-                )}
+
+                  {/* Question */}
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-semibold text-black leading-8">
+                      {faq.question}
+                    </h3>
+                  </div>
+
+                  {/* Icon */}
+                  <div
+                    className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
+                      isOpen
+                        ? "bg-secondary text-white"
+                        : "bg-gray-100 text-secondary group-hover:bg-secondary/10"
+                    }`}
+                  >
+                    {isOpen ? (
+                      <Minus size={18} />
+                    ) : (
+                      <Plus size={18} />
+                    )}
+                  </div>
+                </button>
+
+                {/* Answer */}
+                <div
+                  className={`grid transition-all duration-500 ease-in-out ${
+                    isOpen
+                      ? "grid-rows-[1fr]"
+                      : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="border-t border-gray-100 px-6 md:px-7 pb-7 pt-5">
+                      <div className="pl-20">
+                        <p className="text-gray-600 leading-8 text-base">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Accent */}
+                <div
+                  className={`h-1 bg-gradient-to-r from-secondary to-yellow-400 transition-all duration-500 ${
+                    isOpen ? "opacity-100" : "opacity-0"
+                  }`}
+                />
               </div>
             );
           })}

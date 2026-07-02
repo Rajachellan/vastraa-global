@@ -8,6 +8,15 @@ export type FabricNavItem = {
 };
 
 const SLUG_LABELS: Record<string, string> = {
+  "wholesale-cotton-fabrics": "Cotton",
+  "wholesale-silk-fabrics": "Silk",
+  "wholesale-linen-fabrics": "Linen",
+  "wholesale-blended-fabrics": "Blends",
+  "wholesale-modal-fabric": "Modal",
+  "wholesale-jute-fabric": "Jute",
+  "wholesale-rayon-fabric": "Rayon",
+  "wholesale-viscose-fabric": "Viscose",
+  "wholesale-tencel-fabric": "Tencel",
   cotton: "Cotton",
   silk: "Silk",
   blends: "Blends",

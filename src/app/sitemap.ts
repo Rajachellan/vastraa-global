@@ -31,5 +31,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.9,
     },
+    ...[
+      "wholesale-cotton-fabrics",
+      "wholesale-silk-fabrics",
+      "wholesale-linen-fabrics",
+      "wholesale-blended-fabrics",
+      "wholesale-jute-fabric",
+      "wholesale-modal-fabric",
+      "wholesale-rayon-fabric",
+      "wholesale-viscose-fabric",
+      "wholesale-tencel-fabric",
+    ].map((route) => ({
+      url: `${baseUrl}/fabrics/${route}`,
+      lastModified: new Date(),
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
   ];
 }

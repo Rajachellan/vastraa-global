@@ -9,14 +9,18 @@ const backendFile = path.join(projectRoot, "..", "vastraa-backend", "data", "ena
 const frontendFile = path.join(projectRoot, "src", "lib", "enabledFabricRoutes.ts");
 
 const SLUG_ORDER = [
-  "cotton",
-  "silk",
-  "linen",
-  "blends",
+  "wholesale-cotton-fabrics",
+  "wholesale-silk-fabrics",
+  "wholesale-linen-fabrics",
+  "wholesale-blended-fabrics",
+  "wholesale-jute-fabric",
+  "wholesale-modal-fabric",
+  "wholesale-rayon-fabric",
+  "wholesale-viscose-fabric",
+  "wholesale-tencel-fabric",
   "greige",
   "knitted",
   "schiffli",
-  "viscose",
   "sustainable",
   "vinyl",
 ];

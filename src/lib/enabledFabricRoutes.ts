@@ -3,15 +3,15 @@
  * Detected from src/app/fabrics/{slug}/page.tsx folders. Do not edit by hand.
  */
 export const ENABLED_FABRIC_SLUGS = [
-  "cotton",
-  "silk",
-  "linen",
-  "blends",
-  "viscose",
-  "jute",
-  "modal",
-  "rayon",
-  "tencil",
+  "wholesale-cotton-fabrics",
+  "wholesale-silk-fabrics",
+  "wholesale-linen-fabrics",
+  "wholesale-blended-fabrics",
+  "wholesale-jute-fabric",
+  "wholesale-modal-fabric",
+  "wholesale-rayon-fabric",
+  "wholesale-viscose-fabric",
+  "wholesale-tencel-fabric",
 ] as const;
 
 export type EnabledFabricSlug = (typeof ENABLED_FABRIC_SLUGS)[number];
