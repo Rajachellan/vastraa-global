@@ -363,7 +363,7 @@ At Vastraa Global, we provide premium rayon fabrics suitable for custom printing
                        
                
                              {/* Features */}
-                             <div className="grid grid-cols-2 gap-4 mt-10">
+                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
                
                                <div className="rounded-2xl border border-gray-200 p-5 bg-white shadow-sm">
                                  <h4 className="text-2xl font-bold text-secondary">100%</h4>
@@ -842,7 +842,7 @@ Popular uses include:
       
                 {/* Bottom Stats */}
       
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
       
                   <div className="text-center border border-white/10 rounded-3xl p-8 bg-white/5">
                     <h3 className="text-4xl font-bold text-secondary">
@@ -1008,7 +1008,7 @@ Trending rayon fabric styles include:
                               <ArrowRight size={18} />
                             </button>
             
-                            <div className="grid grid-cols-3 gap-6 mt-16">
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16">
             
                               <div>
                                 <div className="text-4xl font-bold text-secondary">

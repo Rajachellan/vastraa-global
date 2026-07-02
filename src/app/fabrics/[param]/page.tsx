@@ -154,7 +154,7 @@ function FabricProductDetail({ param }: { param: string }) {
               <p className="text-accent/60 text-lg leading-relaxed">{fabric.description}</p>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 border-y border-accent/5 py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-accent/5 py-8">
               <StatCard icon={Award} label="Weight" value={fabric.gsm} />
               <StatCard icon={Sparkles} label="Print" value={fabric.printing} />
               <StatCard icon={Droplets} label="MOQ" value={fabric.moq} />
