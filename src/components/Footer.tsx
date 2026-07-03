@@ -37,31 +37,33 @@ export const Footer = () => {
     <footer className="bg-accent text-primary pt-20 3xl:pt-24 pb-12 relative overflow-hidden">
       <div className="container-site relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
-          <div className="space-y-8">
-           <div className="grid grid-cols-2 items-center gap-3">
-  <div className="flex justify-center sm:justify-start">
-    <FooterLink href="/" className="inline-block">
-        <Image
-                        src="/images/logo.png"
-                        alt="Vastraa Global"
-                        width={70}
-                        height={70}
-                        priority
-                        unoptimized
-                        style={{ width: "auto", height: "auto", maxHeight: 70 }}
-                      />
-    </FooterLink>
-  </div>
+          <div className="space-y-2">
+<div className="grid grid-cols-[auto_1fr] items-center gap-4">
+  {/* Logo */}
+  <FooterLink
+    href="/"
+    className="flex items-center justify-center"
+  >
+    <Image
+      src="/images/logo.png"
+      alt="Vastraa Global"
+      width={50}
+      height={50}
+      priority
+      unoptimized
+      className="h-[50px] w-auto object-contain"
+    />
+  </FooterLink>
 
-  <div className="flex items-center h-full">
-    <p className="text-xl md:text-2xl font-bold leading-tight font-serif tracking-wide text-primary/70">
+  {/* Brand Name */}
+  <div className="flex items-center">
+    <h2 className="font-serif text-2xl md:text-3xl font-semibold leading-none tracking-wide text-primary/70">
       Vastraa <br />
-      Global
-    </p>
+      <span className="text-primary">Global</span>
+    </h2>
   </div>
 </div>
-            
-            <p className="text-sm text-primary/50 leading-relaxed max-w-xs">
+            <p className="text-sm text-primary/50 text-justify leading-relaxed max-w-xs">
               Custom Fabric Printing for Every Brand. Premium Textile Solutions Tailored for You. Decades of expertise in digital printing and fabric consultation.
             </p>
          <div className="flex gap-4">

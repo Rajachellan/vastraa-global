@@ -411,7 +411,12 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.9fr] gap-12 lg:gap-20 items-start">
 
       {/* Left Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
 
         <p className="text-[#C9A14A] uppercase tracking-[4px] text-xs sm:text-sm font-semibold mb-6">
           How We Print
@@ -441,7 +446,8 @@ const handleSubmit = (e: React.FormEvent) => {
                 >
               Upload Your Design
                 </Button>
-          <button className='bg-[#D4AF37] text-white px-8 h-[58px] text-sm font-semibold uppercase tracking-[0.5px] hover:bg-[#c29b2f] transition-all duration-300 flex items-center justify-center gap-3 rounded-full hover:text-white'>
+          <button className='group relative bg-[#D4AF37] text-white px-8 h-[58px] text-sm font-semibold uppercase tracking-[0.5px] hover:bg-[#c29b2f] transition-all duration-300 flex items-center justify-center gap-3 rounded-full overflow-hidden hover:shadow-[0_10px_20px_rgba(212,175,55,0.3)]'>
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
             
             {/* Chat Icon */}
             <svg
@@ -454,6 +460,7 @@ const handleSubmit = (e: React.FormEvent) => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className="relative z-10 group-hover:scale-110 transition-transform duration-300"
             >
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
             </svg>
@@ -462,7 +469,7 @@ const handleSubmit = (e: React.FormEvent) => {
   href="https://wa.me/919361394323"
   target="_blank"
   rel="noopener noreferrer"
-  className="text-white"
+  className="text-white relative z-10"
 >
   Contact Fabric Export
 </a>
@@ -473,12 +480,18 @@ const handleSubmit = (e: React.FormEvent) => {
           Not sure which fabric is right for your design? Our team can help
           you choose.
         </p>
-      </div>
+      </motion.div>
 
 
 
       {/* Right Card */}
-      <div className="bg-white border border-black/10 rounded-[24px] p-8 sm:p-10 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
+      <motion.div 
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="bg-white border border-[#D4AF37]/10 rounded-[24px] p-8 sm:p-10 shadow-[0_10px_40px_rgba(212,175,55,0.05)] hover:shadow-[0_10px_40px_rgba(212,175,55,0.12)] transition-shadow duration-500"
+      >
 
         <div className="flex items-start justify-between gap-5 mb-8">
 
@@ -515,7 +528,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
         </div>
 
-      </div>
+      </motion.div>
 
     </div>
 
@@ -532,21 +545,25 @@ const handleSubmit = (e: React.FormEvent) => {
         const Icon = item.icon;
 
         return (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
             key={index}
-            className="flex items-center justify-center gap-3 text-center"
+            className="flex items-center justify-center gap-3 text-center group"
           >
 
             <Icon
               size={18}
-              className="text-[#C9A14A] flex-shrink-0"
+              className="text-[#C9A14A] flex-shrink-0 group-hover:scale-125 transition-transform duration-300"
             />
 
-            <p className="text-[8px] sm:text-[11px] tracking-[2px] uppercase font-semibold text-[#555] leading-relaxed">
+            <p className="text-[8px] sm:text-[11px] tracking-[2px] uppercase font-semibold text-[#555] leading-relaxed group-hover:text-black transition-colors duration-300">
               {item.title}
             </p>
 
-          </div>
+          </motion.div>
         );
       })}
 
@@ -579,17 +596,22 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
       {processSteps.map((item, index) => (
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.05, duration: 0.5 }}
           key={index}
-          className="group rounded-[28px] border border-black/8 p-8 min-h-[240px] transition-all duration-500 hover:-translate-y-2 hover:border-[#C9A14A] hover:shadow-[0_10px_40px_rgba(201,161,74,0.12)]">
+          className="group rounded-[28px] border border-black/8 bg-white/50 backdrop-blur-sm p-8 min-h-[240px] transition-all duration-500 hover:-translate-y-2 hover:border-[#C9A14A] hover:shadow-[0_10px_40px_rgba(201,161,74,0.12)] hover:bg-white"
+        >
 
           {/* Number */}
-          <span className="text-[54px] leading-none font-medium text-[#D8C3A0] block mb-10">
+          <span className="text-[54px] leading-none font-medium text-[#D8C3A0] block mb-10 group-hover:scale-110 group-hover:text-[#C9A14A] transition-all duration-300 origin-left">
             {item.number}
           </span>
         {/* Content */}
           <div>
-          <h3 className="text-[28px] sm:text-[25px] leading-none font-semibold text-black mb-5">
+          <h3 className="text-[28px] sm:text-[25px] leading-none font-semibold text-black mb-5 group-hover:text-[#C9A14A] transition-colors duration-300">
               {item.title}
             </h3>
 
@@ -599,7 +621,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
           </div>
 
-        </div>
+        </motion.div>
       ))}
 
     </div>
@@ -615,7 +637,12 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-start">
 
       {/* Left Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
     <p className="text-[#C9A14A] uppercase tracking-[4px] text-xs sm:text-sm font-semibold mb-6">
           Why Process Matters
         </p>
@@ -630,18 +657,22 @@ const handleSubmit = (e: React.FormEvent) => {
           friction points between creative vision and industrial reality.
         </p>
 
-      </div>
+      </motion.div>
     
     {/* Right Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
         {painPoints.map((item, index) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
             key={index}
-            className="bg-white rounded-[28px] border border-black/8 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#C9A14A] hover:shadow-[0_10px_40px_rgba(201,161,74,0.12)]"
+            className="bg-white rounded-[28px] border border-black/8 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#C9A14A] hover:shadow-[0_10px_40px_rgba(201,161,74,0.12)] group"
           >
 
-            <h3 className="text-[25px] leading-none font-semibold text-black mb-6">
+            <h3 className="text-[25px] leading-none font-semibold text-black mb-6 group-hover:text-[#C9A14A] transition-colors duration-300">
               {item.title}
             </h3>
 
@@ -649,7 +680,7 @@ const handleSubmit = (e: React.FormEvent) => {
               {item.description}
             </p>
 
-          </div>
+          </motion.div>
         ))}
     </div>
     </div>
@@ -664,18 +695,29 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
       {/* Image */}
-      <div className="overflow-hidden rounded-[30px]">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="overflow-hidden rounded-[30px] group"
+      >
 
         <Image
           src={howWePrintImg2}
           alt="Share Your Design File"
-          className="w-full h-[420px] object-cover"
+          className="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
         />
 
-      </div>
+      </motion.div>
 
       {/* Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
 
         <p className="text-[#C9A14A] text-[34px] leading-none font-medium mb-5">
           Step 01
@@ -747,13 +789,18 @@ const handleSubmit = (e: React.FormEvent) => {
           </div> 
             </div>
         </div>
-      </div>
+      </motion.div>
     </div>
 
      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center mt-15">
 
       {/* Left Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
 
         <p className="text-[#C9A14A] text-[34px] leading-none font-medium mb-5">
           Step 02
@@ -833,7 +880,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
         </div>
 
-      </div>
+      </motion.div>
 
 
 
@@ -862,7 +909,13 @@ const handleSubmit = (e: React.FormEvent) => {
   <div className="max-w-7xl mx-auto px-6">
 
     {/* Heading */}
-    <div className="text-center mb-20">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="text-center mb-20"
+    >
       <p className="text-[#c89b5d] text-4xl font-medium mb-4">
         Step 03
       </p>
@@ -875,24 +928,30 @@ const handleSubmit = (e: React.FormEvent) => {
         From organic naturals to engineered blends — every fabric in our
         portfolio is curated for digital printing excellence.
       </p>
-    </div>
+    </motion.div>
 
     {/* Cards */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-      {fabrics.map((item) => (
-        <div
+      {fabrics.map((item, index) => (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1, duration: 0.6 }}
           key={item.id}
-          className="bg-[#f5f1ea] border border-[#ddd4c7] rounded-[26px] overflow-hidden"
+          className="bg-[#f5f1ea] border border-[#ddd4c7] rounded-[26px] overflow-hidden hover:shadow-[0_10px_30px_rgba(200,155,93,0.15)] hover:border-[#c89b5d]/50 transition-all duration-500 group"
         >
-          <Image
-            src={item.image}
-            alt={item.title}
-            className="w-full h-[280px] object-cover"
-          />
+          <div className="overflow-hidden">
+            <Image
+              src={item.image}
+              alt={item.title}
+              className="w-full h-[280px] object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
 
           <div className="p-7">
-            <h3 className="text-[22px] font-semibold text-black mb-4">
+            <h3 className="text-[22px] font-semibold text-black mb-4 group-hover:text-[#c89b5d] transition-colors duration-300">
               {item.title}
             </h3>
 
@@ -908,7 +967,7 @@ const handleSubmit = (e: React.FormEvent) => {
                              Get a Custom Quote
                             </Button>
           </div>
-        </div>
+        </motion.div>
       ))}
 
     </div>
@@ -922,7 +981,12 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
 
       {/* Left Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
 
         <p className="text-[#d29d57] text-4xl font-medium mb-6">
           Step 04
@@ -990,10 +1054,16 @@ const handleSubmit = (e: React.FormEvent) => {
           </div>
 
         </div>
-      </div>
+      </motion.div>
 
       {/* Right Image Card */}
-      <div className="relative bg-[#0d0d11] border border-[#1d1d22] rounded-[34px] p-8">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative bg-[#0d0d11] border border-[#1d1d22] rounded-[34px] p-8 hover:border-[#d29d57]/30 transition-colors duration-500"
+      >
 
         <Image
           src={bgimg1}
@@ -1003,12 +1073,12 @@ const handleSubmit = (e: React.FormEvent) => {
 
         {/* Bottom Badge */}
         <div className="absolute bottom-0 right-0 bg-[#d2a15d] px-10 py-5 rounded-tl-[22px] rounded-br-[34px]">
-          <p className="text-white text-lg font-medium uppercase">
+          <p className="text-white text-lg font-medium uppercase tracking-wide">
             SAMPLE APPROVED
           </p>
         </div>
 
-      </div>
+      </motion.div>
 
     </div>
 
@@ -1022,7 +1092,12 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
 
       {/* Left Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
 
         <p className="text-[#cf9b58] text-4xl font-medium mb-6">
           Step 05
@@ -1038,17 +1113,22 @@ const handleSubmit = (e: React.FormEvent) => {
           natural and synthetic fibers.
         </p>
 
-      </div>
+      </motion.div>
 
       {/* Right Image */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
       <Image
           src={step5img}
           alt="Digital Pigment Printing"
-          className="w-full h-[430px] object-cover rounded-[30px]"
+          className="w-full h-[430px] object-cover rounded-[30px] hover:shadow-[0_20px_50px_rgba(207,155,88,0.15)] transition-shadow duration-500"
         />
 
-      </div>
+      </motion.div>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18">
@@ -1120,7 +1200,13 @@ const handleSubmit = (e: React.FormEvent) => {
    <div className="max-w-7xl mx-auto px-6">
 
     {/* Heading */}
-    <div className="text-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="text-center"
+    >
 
       <p className="text-[#cf9b58] text-4xl font-medium mb-4">
         Step 06
@@ -1135,7 +1221,7 @@ const handleSubmit = (e: React.FormEvent) => {
         processing and expert textile care.
       </p>
 
-    </div>
+    </motion.div>
 
     {/* Cards */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 mt-15">
@@ -1144,19 +1230,23 @@ const handleSubmit = (e: React.FormEvent) => {
         const Icon = item.icon;
 
         return (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
             key={index}
-            className="bg-[#f8f6f2] border border-[#ddd4c7] rounded-[28px] px-7 py-10 text-center"
+            className="bg-[#f8f6f2] border border-[#ddd4c7] rounded-[28px] px-7 py-10 text-center hover:border-[#cf9b58]/50 hover:shadow-[0_10px_30px_rgba(207,155,88,0.1)] transition-all duration-300 group"
           >
 
-            <div className="flex justify-center mb-7">
+            <div className="flex justify-center mb-7 group-hover:scale-110 transition-transform duration-300">
               <Icon
                 className="w-7 h-7 text-[#cf9b58]"
                 strokeWidth={1.8}
               />
             </div>
 
-            <h3 className="text-[20px] leading-[30px] font-semibold text-black mb-5">
+            <h3 className="text-[20px] leading-[30px] font-semibold text-black mb-5 group-hover:text-[#cf9b58] transition-colors duration-300">
               {item.title}
             </h3>
 
@@ -1164,7 +1254,7 @@ const handleSubmit = (e: React.FormEvent) => {
               {item.description}
             </p>
 
-          </div>
+          </motion.div>
         );
       })}
 
@@ -1180,7 +1270,13 @@ const handleSubmit = (e: React.FormEvent) => {
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8">
 
       {/* Left Card */}
-      <div className="border border-[#ddd4c7] rounded-[34px] p-14 bg-[#f5f1ea]">
+      <motion.div 
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="border border-[#ddd4c7] rounded-[34px] p-14 bg-[#f5f1ea] hover:shadow-[0_10px_40px_rgba(207,155,88,0.05)] transition-shadow duration-500"
+      >
 
         <p className="text-[#cf9b58] text-4xl font-medium mb-6">
           Step 07
@@ -1275,25 +1371,32 @@ const handleSubmit = (e: React.FormEvent) => {
 
         </div>
 
-      </div>
+      </motion.div>
 
       {/* Right Quote Card */}
-      <div className="bg-black rounded-[34px] p-14 flex flex-col justify-center">
+      <motion.div 
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="bg-black rounded-[34px] p-14 flex flex-col justify-center relative overflow-hidden group"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#cf9b58]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
         <Quote
-          className="w-10 h-10 text-[#cf9b58] mb-10"
+          className="w-10 h-10 text-[#cf9b58] mb-10 relative z-10"
           strokeWidth={2}
         />
 
-        <h3 className="text-white text-[25px] leading-[62px] italic font-semibold">
+        <h3 className="text-white text-[25px] leading-[62px] italic font-semibold relative z-10">
           “Quality is not an act, it is a habit. In B2B exports, there is
           zero margin for error.”
         </h3>
 
-        <p className="text-white text-[15px] mt-6">
+        <p className="text-white text-[15px] mt-6 relative z-10">
           Production Lead, Vastraa Global
         </p>
-      </div>
+      </motion.div>
       </div>
     </div>
     </section>
@@ -1303,7 +1406,13 @@ const handleSubmit = (e: React.FormEvent) => {
   <div className="max-w-7xl mx-auto px-6">
 
     {/* Heading */}
-    <div className="text-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="text-center"
+    >
 
       <p className="text-[#cf9b58] text-4xl font-medium mb-4">
         Step 08
@@ -1317,7 +1426,7 @@ const handleSubmit = (e: React.FormEvent) => {
         Safe, secure, and compliant shipping for global delivery.
       </p>
 
-    </div>
+    </motion.div>
 
     {/* Cards */}
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 mt-10">
@@ -1326,19 +1435,23 @@ const handleSubmit = (e: React.FormEvent) => {
         const Icon = item.icon;
 
         return (
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
             key={index}
-            className="bg-[#f8f6f2] border border-[#ddd4c7] rounded-[28px] px-7 py-10 text-center"
+            className="bg-[#f8f6f2] border border-[#ddd4c7] rounded-[28px] px-7 py-10 text-center hover:shadow-[0_15px_40px_rgba(207,155,88,0.12)] hover:-translate-y-2 transition-all duration-300 group"
           >
 
-            <div className="flex justify-center mb-7">
+            <div className="flex justify-center mb-7 group-hover:scale-125 transition-transform duration-300">
               <Icon
                 className="w-7 h-7 text-[#cf9b58]"
                 strokeWidth={1.8}
               />
             </div>
 
-            <h3 className="text-[20px] leading-[30px] font-semibold text-black mb-5">
+            <h3 className="text-[20px] leading-[30px] font-semibold text-black mb-5 group-hover:text-[#cf9b58] transition-colors duration-300">
               {item.title}
             </h3>
 
@@ -1346,7 +1459,7 @@ const handleSubmit = (e: React.FormEvent) => {
               {item.description}
             </p>
 
-          </div>
+          </motion.div>
         );
       })}
 
@@ -1359,7 +1472,13 @@ const handleSubmit = (e: React.FormEvent) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen ">
         
         {/* Left Content */}
-        <div className="flex flex-col justify-center px-8 md:px-16 py-16 text-white">
+        <motion.div 
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col justify-center px-8 md:px-16 py-16 text-white"
+        >
           <h1 className="text-5xl md:text-7xl leading-tight font-serif font-medium max-w-[520px]">
             Ready to Print Your Custom Fabric?
           </h1>
@@ -1380,10 +1499,16 @@ const handleSubmit = (e: React.FormEvent) => {
               <p className="text-gray-300 mt-1">Export Countries</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Form */}
-        <div className="bg-[#f5f3ef] flex items-center justify-center px-6 py-16">
+        <motion.div 
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-[#f5f3ef] flex items-center justify-center px-6 py-16"
+        >
           <div className="w-full max-w-[560px]">
             <h2 className="text-5xl font-serif text-black mb-10">
               Get Your Custom Quote
@@ -1394,23 +1519,23 @@ const handleSubmit = (e: React.FormEvent) => {
                 <input
                   type="text"
                   placeholder="Full Name"
-                  className="h-16 px-5 rounded-2xl border border-gray-300 outline-none bg-transparent"
+                  className="h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent transition-colors duration-300"
                 />
 
                 <input
                   type="email"
                   placeholder="Business Email"
-                  className="h-16 px-5 rounded-2xl border border-gray-300 outline-none bg-transparent"
+                  className="h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent transition-colors duration-300"
                 />
               </div>
 
               <input
                 type="text"
                 placeholder="Company Name"
-                className="w-full h-16 px-5 rounded-2xl border border-gray-300 outline-none bg-transparent"
+                className="w-full h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent transition-colors duration-300"
               />
 
-              <select className="w-full h-16 px-5 rounded-2xl border border-gray-300 outline-none bg-transparent text-gray-700">
+              <select className="w-full h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent text-gray-700 transition-colors duration-300">
                 <option>Estimated Monthly Volume</option>
                 <option>Sample Only (Under 10m)</option>
                 <option>Small Batch Only (10m - 100m)</option>
@@ -1420,10 +1545,10 @@ const handleSubmit = (e: React.FormEvent) => {
               <textarea
                 rows={5}
                 placeholder="Tell us about your project..."
-                className="w-full p-5 rounded-2xl border border-gray-300 outline-none resize-none bg-transparent"
+                className="w-full p-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none resize-none bg-transparent transition-colors duration-300"
               ></textarea>
 
-              <button className="w-full h-16 rounded-2xl bg-black text-white text-lg font-medium">
+              <button className="w-full h-16 rounded-2xl bg-black text-white text-lg font-medium hover:bg-[#D4AF37] transition-colors duration-500">
                 Submit Request
               </button>
                 {submitted && (
@@ -1438,7 +1563,7 @@ const handleSubmit = (e: React.FormEvent) => {
   )}
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
      {/* Popup Form */}

@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { submitInquiry } from "@/lib/submitInquiry";
 import Location from "./location"
 import Image from "next/image";
+import { Tag, MessageCircle } from "lucide-react";
 function ContactContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -89,7 +90,7 @@ function ContactContent() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 lg:gap-16 items-start">
             
             {/* Left: Info Blocks (4 cols) */}
-            <div className="lg:col-span-4 space-y-12 lg:mt-30">
+            <div className="lg:col-span-4 space-y-12 lg:mt-10">
               <div className="space-y-8">
                 <div className="group">
                   <div className="flex items-center gap-4 ">
@@ -146,6 +147,65 @@ function ContactContent() {
              
               </div>
             
+<div className="space-y-4">
+  {/* Indian Users */}
+  <a
+    href="https://wa.me/919361394323"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center gap-5 rounded-2xl bg-[#F9F4E8] p-5 transition-all duration-300 hover:bg-[#F4E8C8] hover:shadow-md"
+  >
+    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F3E8CC] text-[#B88A14] transition-transform duration-300 group-hover:scale-105">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-7 w-7"
+      >
+        <path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .18 5.32.18 11.87c0 2.09.55 4.13 1.59 5.93L0 24l6.39-1.67a11.8 11.8 0 005.65 1.44h.01c6.54 0 11.86-5.32 11.86-11.87 0-3.17-1.24-6.15-3.39-8.42z" />
+      </svg>
+    </div>
+
+    <div>
+      <h4 className="text-2xl font-serif text-[#2F2A24]">
+        Chat on WhatsApp
+      </h4>
+
+      <p className="mt-1 text-[#A67C00] font-medium">
+        For Indian Customers
+      </p>
+    </div>
+  </a>
+
+  {/* International Users */}
+  <a
+    href="https://wa.me/447776698505"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center gap-5 rounded-2xl bg-[#F9F4E8] p-5 transition-all duration-300 hover:bg-[#F4E8C8] hover:shadow-md"
+  >
+    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-[#F3E8CC] text-[#B88A14] transition-transform duration-300 group-hover:scale-105">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-7 w-7"
+      >
+        <path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.5 0 .18 5.32.18 11.87c0 2.09.55 4.13 1.59 5.93L0 24l6.39-1.67a11.8 11.8 0 005.65 1.44h.01c6.54 0 11.86-5.32 11.86-11.87 0-3.17-1.24-6.15-3.39-8.42z" />
+      </svg>
+    </div>
+
+    <div>
+      <h4 className="text-2xl font-serif text-[#2F2A24]">
+        Chat on WhatsApp
+      </h4>
+
+      <p className="mt-1 text-[#A67C00] font-medium">
+        For International Customers
+      </p>
+    </div>
+  </a>
+</div>
             </div>
 
             {/* Right: Form (8 cols) */}

@@ -81,7 +81,12 @@ export default function AboutPage() {
   {/* Content */}
   <div className="relative z-10 container-site py-6 sm:py-8">
 
-    <div className=" max-w-4xl pt-20 md:pt-5">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className=" max-w-4xl pt-20 md:pt-5"
+    >
 
       <h1 className="text-[25px] sm:text-[35px] lg:text-[45px] leading-[1.05] font-semibold mb-4 text-black">
         Custom Fabric Printing,
@@ -143,7 +148,7 @@ export default function AboutPage() {
         blends for brands in India and global markets.
       </p>
 
-    </div>
+    </motion.div>
 
   </div>
 </div>
@@ -273,7 +278,13 @@ export default function AboutPage() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
       {/* Left Image */}
-      <div className="relative">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative group"
+      >
 
         <div className="overflow-hidden rounded-[32px]">
 
@@ -281,13 +292,19 @@ export default function AboutPage() {
             src={aboutusimg}
             alt="Custom Fabric Printing"
              width={700}
-            height={800} className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover"
+            height={800} className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover transition-transform duration-700 group-hover:scale-105"
           />
 
         </div>
 
         {/* Floating Stat */}
-        <div className="absolute -bottom-6 right-6 bg-white rounded-[24px] px-8 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="absolute -bottom-6 right-6 bg-white/90 backdrop-blur-md rounded-[24px] px-8 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-white/20"
+        >
 
           <h3 className="text-4xl font-semibold text-[#D4AF37]">
             75K+
@@ -297,14 +314,19 @@ export default function AboutPage() {
             Meters Monthly Capacity
           </p>
 
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
 
 
 
       {/* Right Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
       <p className="text-[#D4AF37] uppercase tracking-[4px] text-xs sm:text-sm font-medium mb-3">
           About Vastraa Global
         </p>
@@ -377,7 +399,7 @@ export default function AboutPage() {
           </div>
 
     </div>
-    </div>
+    </motion.div>
     </div>
     </div>
      </section>
@@ -408,7 +430,13 @@ export default function AboutPage() {
 
 
       {/* Right Side */}
-      <div className="border-l border-[#D4AF37]/20 pl-0 lg:pl-10">
+      <motion.div 
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="border-l border-[#D4AF37]/20 pl-0 lg:pl-10"
+      >
 
         <div className="space-y-6">
 
@@ -447,7 +475,7 @@ export default function AboutPage() {
             Built on experience. Driven by innovation. Trusted for quality.
           </p>
         </div>
-        </div>
+        </motion.div>
       </div>
     </div>
     </section>
@@ -489,7 +517,14 @@ export default function AboutPage() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {certifications.map((cert, i) => (
         
-      <div className="p-8 rounded-2xl bg-white border border-accent/5 hover:border-secondary/20 transition-all duration-500 h-full flex flex-col items-center text-center hover:shadow-lg hover:shadow-secondary/5 mt-6" key={i}>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: i * 0.1, duration: 0.5 }}
+        className="p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-[#D4AF37]/10 hover:border-[#D4AF37]/40 transition-all duration-500 h-full flex flex-col items-center text-center hover:shadow-[0_10px_40px_rgba(212,175,55,0.1)] mt-6 group" 
+        key={i}
+      >
          
       {/* Image */}
     <div className="w-full h-44 flex items-center justify-center overflow-hidden mb-6 rounded-2xl bg-white">
@@ -521,7 +556,7 @@ export default function AboutPage() {
               className="mt-6 w-8 h-[2px] rounded-full transition-all duration-500 group-hover:w-16"
               style={{ backgroundColor: cert.color }}
             /> */}
-          </div>
+          </motion.div>
        
       ))}
           </div>
@@ -548,7 +583,12 @@ export default function AboutPage() {
     <div className="grid lg:grid-cols-2 gap-12 items-center">
       
       {/* Left Content */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <span className="inline-block text-[#B88A44] font-medium mb-4">
           Global Export Support
         </span>
@@ -588,8 +628,15 @@ export default function AboutPage() {
     "Australia",
     "Singapore"
   ].map((country, index, arr) => (
-    <div key={country} className="flex items-center gap-3">
-      <span className="px-5 py-3 border border-[#D9C9AF] rounded-full bg-white text-[#0F2341] text-sm font-medium">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05, duration: 0.3 }}
+      key={country} 
+      className="flex items-center gap-3"
+    >
+      <span className="px-5 py-3 border border-[#D9C9AF] hover:border-[#D4AF37] hover:bg-[#D4AF37]/5 transition-colors duration-300 rounded-full bg-white text-[#0F2341] text-sm font-medium">
         {country}
       </span>
 
@@ -597,7 +644,7 @@ export default function AboutPage() {
       {index !== arr.length - 1 && (
         <span className="text-[#B88A44] text-lg">→</span>
       )}
-    </div>
+    </motion.div>
   ))}
 </div>
           
@@ -609,14 +656,14 @@ export default function AboutPage() {
           with clarity, care, and dependable timelines.
         </p>
 
-        <div className="border border-[#D9C9AF] rounded-2xl p-8 bg-white">
+        <div className="border border-[#D9C9AF] rounded-2xl p-8 bg-white hover:shadow-[0_10px_40px_rgba(212,175,55,0.08)] transition-shadow duration-500">
           <h3 className="text-3xl font-serif text-[#0F2341] leading-snug">
             Premium printed fabrics,
             <br />
             produced in India for global markets.
           </h3>
         </div>
-      </div>
+      </motion.div>
 
       {/* Right Side Image */}
    <div className="h-full">
@@ -637,7 +684,13 @@ export default function AboutPage() {
 
   <div className="max-w-7xl mx-auto px-4 ">
 
-    <div className="relative overflow-hidden rounded-[40px] bg-white border border-[#D4AF37]/20 p-10 sm:p-14 lg:p-20 text-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-white to-[#fdfbf7] border border-[#D4AF37]/20 p-10 sm:p-14 lg:p-20 text-center shadow-[0_20px_60px_rgba(212,175,55,0.05)] hover:shadow-[0_20px_60px_rgba(212,175,55,0.1)] transition-shadow duration-700"
+    >
 
       {/* Accent */}
       <div className="w-20 h-[3px] bg-[#D4AF37] mx-auto mb-8"></div>
@@ -683,10 +736,9 @@ export default function AboutPage() {
   Get Fabric Samples
 </Button>      
   </div>
-    </div>
+    </motion.div>
     </div>
     </section>
-
 
     <Footer/>
     <QuoteFormModal isOpen={showQuoteForm} onClose={() => setShowQuoteForm(false)} />
