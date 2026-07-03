@@ -61,7 +61,7 @@ export const ProductCategories = () => {
                       `${category.items?.length || 0} premium fabric${(category.items?.length || 0) === 1 ? "" : "s"} available for custom printing.`}
                   </p>
                   <Link
-                    href={`/fabrics?category=${encodeURIComponent(category.slug)}`}
+                    href={`/fabrics/${encodeURIComponent(category.slug)}`}
                     className="inline-flex items-center gap-2 text-secondary text-sm font-medium group/link hover:gap-3 transition-all duration-300"
                   >
                     View Details

@@ -39,7 +39,7 @@ export const FeaturedCategories = () => {
               transition={{ delay: index * 0.1, duration: 0.5 }}
             >
               <Link
-                href={`/fabrics?category=${encodeURIComponent(category.slug)}`}
+                href={`/fabrics/${encodeURIComponent(category.slug)}`}
                 className="group block"
               >
                 <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-6 shadow-sm">

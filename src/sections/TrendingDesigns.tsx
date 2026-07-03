@@ -91,7 +91,10 @@ export const TrendingDesigns = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="relative group"
               >
-                <Link href={designHref(design)} className="block">
+<Link
+  href={`/designs?style=${(design.name || design.title).split(" ")[0]}`}
+  className="block"
+>
                   <div className="relative aspect-square rounded-3xl overflow-hidden shadow-lg">
                     <FabricMedia
                       image={design.image}
