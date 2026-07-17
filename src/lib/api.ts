@@ -29,37 +29,65 @@ export async function subscribeNewsletter(
 }
 
 /** Same-origin /uploads paths — proxied to API via next.config rewrites, or direct API origin when set. */
-const CDN_HOSTS = ["assets.vastraaglobal.com", "imagedelivery.net", "videodelivery.net"];
+const CDN_ORIGIN =
+  process.env.NEXT_PUBLIC_CDN_URL?.replace(/\/$/, "") ||
+  "https://assets.vastraaglobal.com";
 
-function isCdnMediaUrl(url: string): boolean {
+const MEDIA_FALLBACK =
+  process.env.NEXT_PUBLIC_MEDIA_FALLBACK?.replace(/\/$/, "") ||
+  "https://admin.vastraaglobal.com";
+
+function uploadPathname(url: string): string {
+  if (!url) return "";
+  if (url.startsWith("/uploads/")) return url.split("?")[0];
   try {
-    const host = new URL(url).hostname.toLowerCase();
-    return CDN_HOSTS.some((cdn) => host === cdn || host.endsWith(`.${cdn}`));
+    const parsed = new URL(url);
+    if (parsed.pathname.startsWith("/uploads/")) return parsed.pathname;
   } catch {
-    return false;
+    // ignore
   }
+  return "";
+}
+
+/** Ordered URL candidates so missing disk files can still resolve from CDN or API. */
+export function mediaCandidates(url: string): string[] {
+  if (!url?.trim()) return [];
+  const raw = url.trim();
+  const list: string[] = [];
+  const push = (u: string) => {
+    if (u && !list.includes(u)) list.push(u);
+  };
+
+  if (raw.startsWith("blob:")) {
+    push(raw);
+    return list;
+  }
+
+  const path = uploadPathname(raw);
+  if (path) {
+    if (raw.startsWith("http")) push(raw);
+    // Shared production uploads volume (admin nginx) first — API /uploads often 404s
+    if (MEDIA_FALLBACK) push(`${MEDIA_FALLBACK}${path}`);
+    push(`${CDN_ORIGIN}${path}`);
+    if (API_ORIGIN && API_ORIGIN !== MEDIA_FALLBACK) {
+      push(`${API_ORIGIN}${path}`);
+    }
+    push(path);
+    return list;
+  }
+
+  if (raw.startsWith("http")) {
+    push(raw);
+    return list;
+  }
+
+  if (raw.startsWith("/assets/") && API_ORIGIN) {
+    push(`${API_ORIGIN}${raw}`);
+  }
+  push(raw);
+  return list;
 }
 
 export function resolveMediaUrl(url: string): string {
-  if (!url) return "";
-  if (url.startsWith("blob:")) return url;
-
-  if (url.startsWith("http")) {
-    if (isCdnMediaUrl(url)) return url;
-    try {
-      const parsed = new URL(url);
-      if (parsed.pathname.startsWith("/uploads/")) {
-        return API_ORIGIN ? `${API_ORIGIN}${parsed.pathname}` : parsed.pathname;
-      }
-    } catch {
-      return url;
-    }
-    return url;
-  }
-
-  if (url.startsWith("/uploads/") || url.startsWith("/assets/")) {
-    return API_ORIGIN ? `${API_ORIGIN}${url}` : url;
-  }
-
-  return url;
+  return mediaCandidates(url)[0] || "";
 }

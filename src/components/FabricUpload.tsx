@@ -1,14 +1,17 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Upload, FileText, CheckCircle, X, ArrowRight } from "lucide-react";
+import { Upload, CheckCircle, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QuoteModal } from "./QuoteModal";
+import { uploadInquiryFile } from "@/lib/submitInquiry";
 
 export const FabricUpload = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [uploadedUrl, setUploadedUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -18,32 +21,47 @@ export const FabricUpload = () => {
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
       setIsSuccess(false);
-      
-      // Create preview URL
-      const url = URL.createObjectURL(selectedFile);
-      setPreviewUrl(url);
+      setUploadedUrl(null);
+      setUploadError("");
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!file) return;
-    setIsModalOpen(true);
+    setIsUploading(true);
+    setUploadError("");
+    try {
+      const url = await uploadInquiryFile(file);
+      setUploadedUrl(url);
+      setIsModalOpen(true);
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : "Could not upload file.");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const reset = () => {
     setFile(null);
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setPreviewUrl(null);
+    setUploadedUrl(null);
+    setUploadError("");
     setIsSuccess(false);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   return (
     <section className="section-y bg-white overflow-hidden">
-      <QuoteModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        initialImage={previewUrl}
+      <QuoteModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setIsSuccess(true);
+        }}
+        initialImage={uploadedUrl || previewUrl}
         productName="Custom Fabric Submission"
       />
       <div className="container-site">
@@ -74,13 +92,13 @@ export const FabricUpload = () => {
                       <Upload size={32} />
                     )}
                   </div>
-                  
+
                   <h3 className="text-2xl font-serif text-accent mb-4">
                     {file ? file.name : "Drag & Drop your fabric image"}
                   </h3>
                   {previewUrl && (
                     <div className="mb-6 w-full max-w-xs aspect-video relative rounded-2xl overflow-hidden shadow-lg border-2 border-white">
-                       <img src={previewUrl} alt="Large Preview" className="w-full h-full object-cover" />
+                      <img src={previewUrl} alt="Large Preview" className="w-full h-full object-cover" />
                     </div>
                   )}
                   <p className="text-accent/40 mb-10 max-w-sm">
@@ -94,6 +112,8 @@ export const FabricUpload = () => {
                     className="hidden"
                     accept="image/*,.pdf"
                   />
+
+                  {uploadError ? <p className="text-sm text-red-600 mb-4">{uploadError}</p> : null}
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     {!file ? (

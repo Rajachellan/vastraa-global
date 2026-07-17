@@ -37,7 +37,13 @@ function ContactContent() {
     setIsSubmitting(true);
     setError("");
     try {
-      await submitInquiry({ fullName, companyName, email, inquirytype, message });
+      await submitInquiry({
+        fullName,
+        companyName: companyName || fullName,
+        email,
+        inquirytype,
+        message: message.trim() || `${inquirytype} inquiry from contact page`,
+      });
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not submit inquiry.");

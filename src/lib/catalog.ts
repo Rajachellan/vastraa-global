@@ -87,10 +87,17 @@ export async function fetchFabricCatalog(): Promise<FabricCategory[]> {
   const res = await fetch(apiUrl("fabrics/catalog"), { cache: "no-store" });
   if (!res.ok) return getStaticFabricCatalog();
   const data = await res.json();
-  if (!Array.isArray(data)) return [];
-  return data
+  if (!Array.isArray(data) || data.length === 0) return getStaticFabricCatalog();
+
+  const normalized = data
     .map(normalizeFabricCategory)
     .filter((category) => isEnabledFabricSlug(category.slug));
+
+  const withItems = normalized.filter((c) => (c.items?.length || 0) > 0);
+  if (withItems.length > 0) return withItems;
+
+  // API pages enabled but products still on legacy slugs / empty — use static for design studio
+  return getStaticFabricCatalog();
 }
 
 function normalizeFabricItem(raw: FabricItem): FabricItem {

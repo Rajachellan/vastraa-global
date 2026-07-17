@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Upload, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/Button";
-import { submitInquiry } from "@/lib/submitInquiry";
+import { submitInquiry, uploadInquiryFile } from "@/lib/submitInquiry";
 
 export const QuoteForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [fileName, setFileName] = useState("");
+  const [file, setFile] = useState<File | null>(null);
   const [fabricType, setFabricType] = useState("");
   const [quantity, setQuantity] = useState("");
   const [fullName, setFullName] = useState("");
@@ -22,22 +22,33 @@ export const QuoteForm = () => {
     setIsSubmitting(true);
     setError("");
     try {
-      await submitInquiry({
-        fullName,
-        companyName: fullName,
-        email,
-        inquirytype: "Digital Printing Inquiry",
-        message: [
+      let imageUrl = "";
+      if (file) {
+        imageUrl = await uploadInquiryFile(file);
+      }
+
+      const message =
+        [
           fabricType ? `Fabric: ${fabricType}` : "",
           quantity ? `Quantity: ${quantity}` : "",
           notes ? `Notes: ${notes}` : "",
         ]
           .filter(Boolean)
-          .join("\n"),
-        quantity,
-        notes,
+          .join("\n") || "Digital printing inquiry from homepage quote form";
+
+      await submitInquiry({
+        fullName,
+        companyName: fullName,
+        email,
+        inquirytype: "Digital Printing Inquiry",
+        message,
+        quantity: quantity || undefined,
+        notes: notes || undefined,
+        fabricType: fabricType || undefined,
+        image: imageUrl || undefined,
       });
       setIsSubmitted(true);
+      setFile(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not submit your request.");
     } finally {
@@ -46,9 +57,7 @@ export const QuoteForm = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFileName(e.target.files[0].name);
-    }
+    setFile(e.target.files?.[0] || null);
   };
 
   if (isSubmitted) {
@@ -148,7 +157,7 @@ export const QuoteForm = () => {
                     <div className="flex flex-col items-center gap-2">
                       <Upload size={24} className="text-accent/20" />
                       <span className="text-sm text-accent/50">
-                        {fileName || "Drop design files here or click to upload"}
+                        {file?.name || "Drop design files here or click to upload"}
                       </span>
                     </div>
                   </div>

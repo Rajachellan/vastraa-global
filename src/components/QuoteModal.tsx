@@ -52,7 +52,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
         email,
         inquirytype: "Design Studio Quote",
         message: productName || `Design Studio Quote — ${designTitle || "Custom design"}`,
-        image: initialImage || undefined,
+        image:
+          initialImage && !initialImage.startsWith("blob:")
+            ? initialImage
+            : undefined,
         designId,
         designTitle: designTitle || productName,
         quantity,
