@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, User, Heart, ShoppingBag, Menu, ChevronDown } from "lucide-react";
+import { Search, User, Heart, ShoppingBag, Menu, ChevronDown, Mail, Phone, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
@@ -18,6 +18,7 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isPhoneDropdownOpen, setIsPhoneDropdownOpen] = useState(false);
 
   const pathname = usePathname();
   const { cart, wishlist } = useStore();
@@ -101,34 +102,82 @@ export const Navbar = () => {
     <>
     {/* ANNOUNCEMENT BAR */}
 
-   {/* ANNOUNCEMENT BAR */}
-<div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 overflow-hidden h-10 flex items-center">
-  <div className="marquee">
-    <div className="marquee-content">
-      {[
-        "Factory Price Digital Fabric Printing",
-        "Direct From Our Production Unit • No Middleman Margin",
-        "Custom Digital Printed Fabric for Every Order Size",
-        "Premium Quality Prints",
-        "Fast Production Support",
-        "Export Ready Fabric Printed from India",
-      ].map((text, index) => (
-        <span key={index}>{text}</span>
-      ))}
-    </div>
+    {/* ANNOUNCEMENT BAR */}
+<div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 h-10 flex items-center px-4 md:px-8 text-[13px] justify-between">
+  {/* MARQUEE */}
+  <div className="overflow-hidden flex-1 hidden md:flex mr-6">
+    <div className="marquee">
+      <div className="marquee-content">
+        {[
+          "Factory Price Digital Fabric Printing",
+          "Direct From Our Production Unit • No Middleman Margin",
+          "Custom Digital Printed Fabric for Every Order Size",
+          "Premium Quality Prints",
+          "Fast Production Support",
+          "Export Ready Fabric Printed from India",
+        ].map((text, index) => (
+          <span key={index}>{text}</span>
+        ))}
+      </div>
 
-    {/* Duplicate Content */}
-    <div className="marquee-content" aria-hidden="true">
-      {[
-        "Factory Price Digital Fabric Printing",
-        "Direct From Our Production Unit • No Middleman Margin",
-        "Custom Digital Printed Fabric for Every Order Size",
-        "Premium Quality Prints",
-        "Fast Production Support",
-        "Export Ready Fabric Printed from India",
-      ].map((text, index) => (
-        <span key={index}>{text}</span>
-      ))}
+      {/* Duplicate Content */}
+      <div className="marquee-content" aria-hidden="true">
+        {[
+          "Factory Price Digital Fabric Printing",
+          "Direct From Our Production Unit • No Middleman Margin",
+          "Custom Digital Printed Fabric for Every Order Size",
+          "Premium Quality Prints",
+          "Fast Production Support",
+          "Export Ready Fabric Printed from India",
+        ].map((text, index) => (
+          <span key={index}>{text}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* CONTACT INFO */}
+  <div className="flex items-center gap-2.5 md:gap-4 flex-shrink-0 z-10 bg-[#243661]">
+    <a href="mailto:info@vastraaglobal.com" className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition-colors font-semibold border border-white/10">
+      <Mail size={13} className="text-secondary" /> <span className="hidden sm:inline tracking-wide">info@vastraaglobal.com</span>
+    </a>
+    <div className="relative">
+      <button 
+        onClick={() => setIsPhoneDropdownOpen(!isPhoneDropdownOpen)}
+        onBlur={() => setTimeout(() => setIsPhoneDropdownOpen(false), 200)}
+        className="flex items-center gap-1.5 bg-secondary text-white px-3 py-1 rounded-full hover:brightness-110 transition-all font-bold shadow-lg shadow-secondary/30"
+      >
+        <Phone size={13} /> <span className="tracking-wide">+44 7584573793</span>
+        <ChevronDown size={13} className={`transition-transform duration-300 ml-0.5 ${isPhoneDropdownOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {/* DROPDOWN */}
+      <AnimatePresence>
+        {isPhoneDropdownOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full right-0 mt-2 w-48 bg-white text-gray-800 rounded-xl shadow-2xl border border-gray-100 overflow-hidden"
+          >
+            <div className="flex flex-col">
+              <a href="https://wa.me/447584573793" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-4 py-3 hover:bg-green-50 hover:text-green-600 transition-colors border-b border-gray-50">
+                <div className="bg-green-100 p-1.5 rounded-full text-green-600">
+                   <MessageCircle size={14} />
+                </div>
+                <span className="font-semibold text-sm">WhatsApp</span>
+              </a>
+              <a href="tel:+447584573793" className="flex items-center gap-3 px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                <div className="bg-blue-100 p-1.5 rounded-full text-blue-600">
+                  <Phone size={14} />
+                </div>
+                <span className="font-semibold text-sm">Phone Call</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   </div>
 </div>
