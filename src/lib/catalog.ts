@@ -49,9 +49,19 @@ export async function fetchDesignById(idOrSlug: string): Promise<ApiDesign | nul
   // Fallback: fetch all designs and find the match
   try {
     const allDesigns = await fetchDesigns();
+    const decodedId = decodeURIComponent(idOrSlug).toLowerCase();
+    
     const found = allDesigns.find(
-      (d) => d.slug === idOrSlug || d.id === idOrSlug || d._id === idOrSlug
+      (d) => {
+        if (d.id === idOrSlug || d._id === idOrSlug) return true;
+        if (d.slug && d.slug.toLowerCase() === decodedId) return true;
+        if (d.slug && d.slug === idOrSlug) return true;
+        // Fallback to name match just in case slug wasn't strictly populated but generated in the URL
+        if (d.name && d.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === decodedId.replace(/[^a-z0-9-]/g, '')) return true;
+        return false;
+      }
     );
+
     if (found) {
       // Find related designs from the same category
       found.relatedDesigns = allDesigns
