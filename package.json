@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "clean": "node scripts/clean-dev.js",
+    "dev": "node scripts/sync-enabled-fabric-routes.mjs && next dev --webpack",
+    "dev:assets": "node scripts/ensure-lfs-assets.mjs",
+    "dev:fresh": "node scripts/clean-dev.js && node scripts/sync-enabled-fabric-routes.mjs && next dev --webpack",
+    "dev:turbo": "next dev",
+    "prebuild": "node scripts/ensure-lfs-assets.mjs && node scripts/sync-enabled-fabric-routes.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "dompurify": "^3.4.8",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.11.0",
-    "next": "16.2.4",
+    "next": "^16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -20,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vercel/blob": "^2.4.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tailwindcss": "^4",

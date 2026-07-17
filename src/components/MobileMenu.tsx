@@ -13,32 +13,25 @@ import {
 } from "lucide-react";
 
 import { useStore } from "@/context/StoreContext";
+import { FABRIC_NAV_ITEMS } from "@/lib/fabricCategories";
 
 const menuData = [
   { title: "Home", href: "/" },
   {
     title: "Our Fabrics",
     href: "/fabrics",
-    subItems: [
-      { name: "All Fabrics", href: "/fabrics" },
-      { name: "Cotton", href: "/fabrics/cotton" },
-      { name: "Linen", href: "/fabrics/linen" },
-      { name: "Viscose", href: "/fabrics/viscose" },
-      { name: "Blends", href: "/fabrics/blends" },
-      { name: "Silk", href: "/fabrics/silk" },
-      { name: "Sustainable", href: "/fabrics/sustainable" },
-    ],
+    subItems: FABRIC_NAV_ITEMS,
   },
   {
     title: "How We Print",
     href: "/how-we-print",
-    subItems: [
-      { name: "Printing Overview", href: "/how-we-print" },
-      { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
-      { name: "Reactive Printing", href: "/how-we-print/reactive" },
-      { name: "Sublimation", href: "/how-we-print/sublimation" },
-      { name: "Quality Standards", href: "/how-we-print/quality-control" },
-    ],
+    // subItems: [
+    //   { name: "Printing Overview", href: "/how-we-print" },
+    //   { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
+    //   { name: "Reactive Printing", href: "/how-we-print/reactive" },
+    //   { name: "Sublimation", href: "/how-we-print/sublimation" },
+    //   { name: "Quality Standards", href: "/how-we-print/quality-control" },
+    // ],
   },
   { title: "Design Studio", href: "/designs" },
   {
@@ -51,7 +44,7 @@ const menuData = [
     ],
   },
   { title: "About", href: "/about" },
-  { title: "Expert Help", href: "/contact?type=consultation" },
+  { title: "Expert Help", href: "/contact-us?type=consultation" },
 ];
 
 interface MobileMenuProps {

@@ -10,6 +10,7 @@ import global from "../../public/images/globalrecycled.png"
 import { image } from "framer-motion/client";
 import { ok } from "node:assert";
 import Image from "next/image";
+
 const certifications = [
    {
     name: "OEKO-TEX",
@@ -48,8 +49,8 @@ export const Certifications = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="certifications" className="py-24 md:py-32 bg-bg-ivory relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="certifications" className="section-y bg-bg-ivory relative" ref={ref}>
+      <div className="container-site">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -62,7 +63,7 @@ export const Certifications = () => {
             <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Trust & Compliance</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-6">
+          <h2 className="section-title font-serif text-accent mb-6">
             Our <span className="text-secondary">Certifications</span>
           </h2>
           <p className="text-accent/60 text-base md:text-lg leading-relaxed">
@@ -90,7 +91,7 @@ export const Certifications = () => {
     alt={cert.name}
     width={220}
     height={160}
-    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
+    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-95"
   />
 </div>
 
@@ -116,7 +117,7 @@ export const Certifications = () => {
       </div>
     </motion.div>
   ))}
-</div>
+      </div>
       </div>
     </section>
   );

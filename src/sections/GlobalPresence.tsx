@@ -7,11 +7,11 @@ import Image from "next/image";
 
 const offices = [
   {
-    city: "Derby",
+    city: "Lincoln",
     country: "United Kingdom",
-    address: "101 ASTWICK ROAD, LINCOLN, LINCOLNSHIRE, UNITED KINGDOM, LN6 7LL ",
+    address: "101 Astwick Road,Lincoln,Lincolnshire, United Kingdom, LN6 7LL ",
     phone: "+44 7776698505",
-    email: "ramesh85cloud@gmail.com",
+    email: "info@vastraaglobal.com",
     role: "UK Office",
     isMain: false,
   },
@@ -20,7 +20,7 @@ const offices = [
     country: "India",
     address: "74-A, Attayampalayam, East Colony, Gangapuram Post, Chithode, Erode, Tamil Nadu 638107",
     phone: "+91 93613 94323 ",
-    email: "ramesh85cloud@gmail.com",
+    email: "info@vastraaglobal.com",
     role: "India Office",
     isMain: true,
   }
@@ -38,12 +38,12 @@ const globalLocations = [
 
 export const GlobalPresence = () => {
   return (
-    <section id="global-presence" className="py-24 bg-accent text-primary relative overflow-hidden">
+    <section id="global-presence" className="section-y bg-accent text-primary relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary/5 -skew-x-12 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container-site relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -55,7 +55,7 @@ export const GlobalPresence = () => {
               <span className="w-12 h-[1px] bg-secondary" />
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-[10px]">Strategic Footprint</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif mb-8 leading-[1.1]">
+            <h2 className="section-title font-serif mb-8 leading-[1.1]">
               Exporting Excellence <br />
               <span className="text-secondary italic">Worldwide</span>
             </h2>
@@ -113,6 +113,7 @@ export const GlobalPresence = () => {
                 src="/images/world-map.png"
                 alt="Vastraa Global Presence Map"
                 fill
+                sizes="(max-width: 1024px) 100vw, 800px"
                 priority
                 unoptimized
                 className="object-contain"

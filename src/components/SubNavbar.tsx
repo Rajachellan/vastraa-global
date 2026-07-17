@@ -1,23 +1,51 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import type { FabricNavItem } from "@/lib/fabricCategories";
 
 interface SubNavbarProps {
-  items: { name: string; href: string }[];
+  items?: FabricNavItem[];
+  title?: string;
 }
 
-export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
+function isFabricNavItemActive(pathname: string, categoryParam: string | null, item: FabricNavItem) {
+  if (pathname !== "/fabrics") return pathname === item.href;
+
+  if (!item.slug) {
+    return !categoryParam;
+  }
+
+  return categoryParam === item.slug;
+}
+
+function SubNavbarContent({ items, title }: SubNavbarProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
+  if (title) {
+    return (
+      <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[var(--site-header-height)] border-accent/5 sticky top-[var(--site-header-height)] z-[90]">
+        <div className="container-site">
+          <p className="py-3 text-center text-sm font-vollkorn font-semibold tracking-wide text-secondary uppercase">
+            {title}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!items?.length) return null;
 
   return (
-    <div className="bg-bg-ivory/50 backdrop-blur-md border-b mt-24 border-accent/5 sticky top-[98px] z-[90] overflow-hidden">
-      <div className="container mx-auto px-6 overflow-hidden">
+    <div className="bg-bg-ivory/95 backdrop-blur-md border-b mt-[var(--site-header-height)] border-accent/5 sticky top-[var(--site-header-height)] z-[90] overflow-hidden pt-3">
+      <div className="container-site overflow-hidden">
         <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto overflow-y-hidden no-scrollbar">
           {items.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = isFabricNavItemActive(pathname, categoryParam, item);
 
             return (
               <Link
@@ -26,11 +54,10 @@ export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
                 className="relative group whitespace-nowrap flex-shrink-0"
               >
                 <span
-                  className={`text-[14px] font-vollkorn font-semibold transition-colors duration-300 ${
-                    isActive
+                  className={`text-[14px] font-vollkorn font-semibold transition-colors duration-300 ${isActive
                       ? "text-secondary"
                       : "text-accent/50 group-hover:text-accent"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </span>
@@ -47,5 +74,17 @@ export const SubNavbar: React.FC<SubNavbarProps> = ({ items }) => {
         </div>
       </div>
     </div>
+  );
+}
+
+export const SubNavbar: React.FC<SubNavbarProps> = (props) => {
+  if (props.title) {
+    return <SubNavbarContent {...props} />;
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <SubNavbarContent {...props} />
+    </Suspense>
   );
 };

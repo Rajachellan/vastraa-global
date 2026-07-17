@@ -13,10 +13,10 @@ interface SearchOverlayProps {
 
 const recentSearches = ["Organic Cotton", "Silk Satin", "Sustainable Printing", "Bulk Orders"];
 const popularCategories = [
-  { name: "Premium Silk", href: "/fabrics/silk" },
-  { name: "Organic Cotton", href: "/fabrics/cotton" },
+  { name: "Premium Silk", href: "/fabrics/wholesale-silk-fabrics" },
+  { name: "Organic Cotton", href: "/fabrics/wholesale-cotton-fabrics" },
   { name: "Digital Printing", href: "/how-we-print" },
-  { name: "Sustainability", href: "/fabrics/sustainable" },
+  { name: "Sustainability", href: "/fabrics" },
 ];
 
 export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose }) => {

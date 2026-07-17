@@ -18,14 +18,14 @@ import { ExpertConsultation } from "@/sections/ExpertConsultation";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="site-main flex min-h-screen flex-col overflow-x-hidden w-full max-w-full">
       <Navbar />
       <B2BHero />
       <B2BAbout />
       <FabricUpload />
       <FeaturedCategories />
       <TrendingDesigns />
-      <ExpertConsultation />
+      {/* <ExpertConsultation /> */}
       <Certifications />
       <ProductCategories />
       <ManufacturingCapabilities />

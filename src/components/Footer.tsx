@@ -3,43 +3,73 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, MapPin, Send, Globe, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Mail, Phone, MapPin } from "lucide-react";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
+
+function FooterLink({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <Link href={href} className={className} onClick={handleClick}>
+      {children}
+    </Link>
+  );
+}
 
 export const Footer = () => {
   return (
-    <footer className="bg-accent text-primary pt-24 pb-12 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-          <div className="space-y-8">
-           <div className="grid grid-cols-2 items-center gap-3">
-  <div className="flex justify-center sm:justify-start">
-    <Link href="/" className="inline-block">
-        <Image
-                        src="/images/logo.png"
-                        alt="Vastraa Global"
-                        width={70}
-                        height={70}
-                        priority
-                        unoptimized
-                      />
-    </Link>
-  </div>
+    <footer className="bg-accent text-primary pt-20 3xl:pt-24 pb-12 relative overflow-hidden">
+      <div className="container-site relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
+          <div className="space-y-2">
+<div className="grid grid-cols-[auto_1fr] items-center gap-4">
+  {/* Logo */}
+  <FooterLink
+    href="/"
+    className="flex items-center justify-center"
+  >
+    <Image
+      src="/images/logo.png"
+      alt="Vastraa Global"
+      width={50}
+      height={50}
+      priority
+      unoptimized
+      className="h-[50px] w-auto object-contain"
+    />
+  </FooterLink>
 
-  <div className="flex items-center h-full">
-    <p className="text-xl md:text-2xl font-bold leading-tight font-serif tracking-wide text-primary/70">
+  {/* Brand Name */}
+  <div className="flex items-center">
+    <h2 className="font-serif text-2xl md:text-3xl font-semibold leading-none tracking-wide text-primary/70">
       Vastraa <br />
-      Global
-    </p>
+      <span className="text-primary">Global</span>
+    </h2>
   </div>
 </div>
-            
-            <p className="text-sm text-primary/50 leading-relaxed max-w-xs">
+            <p className="text-sm text-primary/50 text-justify leading-relaxed max-w-xs">
               Custom Fabric Printing for Every Brand. Premium Textile Solutions Tailored for You. Decades of expertise in digital printing and fabric consultation.
             </p>
          <div className="flex gap-4">
   {/* Instagram */}
   <Link
-    href="https://instagram.com"
+    href="https://www.instagram.com/vastraa_global/"
     target="_blank"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary/40 hover:bg-secondary hover:text-white transition-all duration-300"
   >
@@ -79,7 +109,7 @@ export const Footer = () => {
 
   {/* Facebook */}
   <Link
-    href="https://facebook.com"
+    href="https://www.facebook.com/profile.php?id=61591124932718"
     target="_blank"
     className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-primary/40 hover:bg-secondary hover:text-white transition-all duration-300"
   >
@@ -116,22 +146,37 @@ export const Footer = () => {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-secondary">Services</h4>
             <ul className="space-y-4 text-sm text-primary/50">
-              <li><Link href="/how-we-print" className="hover:text-secondary transition-colors">Custom Printing Solutions</Link></li>
-              <li><Link href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</Link></li>
-              <li><Link href="/contact" className="hover:text-secondary transition-colors">Tailored Textile Services</Link></li>
-              <li><Link href="/contact" className="hover:text-secondary transition-colors">Bulk & Brand Orders</Link></li>
-              <li><Link href="/designs" className="hover:text-secondary transition-colors">Design Studio</Link></li>
+              <li><FooterLink href="/how-we-print" className="hover:text-secondary transition-colors">Custom Printing Solutions</FooterLink></li>
+              {/* <li><FooterLink href="/how-we-print/digital-pigment" className="hover:text-secondary transition-colors">Premium Fabric Consultation</FooterLink></li> */}
+              <li><FooterLink href="/contact-us" className="hover:text-secondary transition-colors">Tailored Textile Services</FooterLink></li>
+              <li><a
+  href="https://wa.me/919361394323"
+  target="_blank"
+  rel="noopener noreferrer"
+ className="hover:text-secondary transition-colors"
+>
+  Contact Fabric Export
+</a></li>
+              <li><FooterLink href="/designs" className="hover:text-secondary transition-colors">Design Studio</FooterLink></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-8 text-secondary">Policies</h4>
             <ul className="space-y-4 text-sm text-primary/50">
-              <li><Link href="/terms-conditions" className="hover:text-secondary transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/cookie-policy" className="hover:text-secondary transition-colors">Cookie Policy</Link></li>
-              <li><Link href="/security-policy" className="hover:text-secondary transition-colors">Security Policy</Link></li>
+              <li><FooterLink href="/terms-conditions" className="hover:text-secondary transition-colors">Terms & Conditions</FooterLink></li>
+              <li><FooterLink href="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</FooterLink></li>
+              <li><FooterLink href="/cookie-policy" className="hover:text-secondary transition-colors">Cookie Policy</FooterLink></li>
+              <li><FooterLink href="/security-policy" className="hover:text-secondary transition-colors">Security Policy</FooterLink></li>
             </ul>
+          </div>
+
+          <div>
+            <NewsletterSignup
+              source="footer"
+              variant="footer"
+              description="Monthly fabric trends, B2B pricing updates, and technical reports."
+            />
           </div>
 
           <div>
@@ -140,7 +185,7 @@ export const Footer = () => {
               <li className="flex gap-4">
                 <MapPin size={18} className="text-secondary shrink-0" />
                 <span>
-                  <strong>UK:</strong> 101 ASTWICK ROAD, LINCOLN, LINCOLNSHIRE, UNITED KINGDOM, LN6 7LL  <br />
+                  <strong>UK:</strong> 101 Astwick Road, Lincoln, Lincolnshire, United Kingdom , LN6 7LL  <br />
                   <strong>India:</strong> 74A, Attayampalayam, Chithode, Erode 638102
                 </span>
               </li>
@@ -150,21 +195,23 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-4">
                 <Mail size={18} className="text-secondary shrink-0" />
-                <span>ramesh85cloud@gmail.com</span>
+                <span>info@vastraaglobal.com</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] uppercase tracking-widest text-primary/30">
-            © {new Date().getFullYear()} Vastraa Global. All rights reserved.
-          </p>
-          <div className="flex gap-8 text-[10px] uppercase tracking-widest text-primary/30">
-            <span>Designed for Excellence</span>
-            <span className="text-secondary">Export Focused</span>
-          </div>
-        </div>
+      <div className="border-t border-white/5 pt-12 flex flex-col items-center justify-center text-center gap-6">
+  <p className="text-[10px] uppercase tracking-widest text-primary/30">
+    © {new Date().getFullYear()} Vastraa Global. All rights reserved by{" "}
+    <Link
+      href="https://rankraze.com/"
+      className="font-bold underline"
+    >
+      @RankRaze
+    </Link>
+  </p>
+</div>
       </div>
     </footer>
   );

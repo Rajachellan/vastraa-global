@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MobileMenu } from "./MobileMenu";
 import { SubNavbar } from "./SubNavbar";
 import { SearchOverlay } from "./SearchOverlay";
+import { FABRIC_NAV_ITEMS } from "@/lib/fabricCategories";
 import { useStore } from "@/context/StoreContext";
 import Image from "next/image";
 
@@ -50,41 +51,31 @@ export const Navbar = () => {
     {
       name: "How We Print",
       href: "/how-we-print",
-      subItems: [
-        { name: "Printing Overview", href: "/how-we-print" },
-        { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
-        { name: "Reactive Printing", href: "/how-we-print/reactive" },
-        { name: "Sublimation", href: "/how-we-print/sublimation" },
-        { name: "Quality Standards", href: "/how-we-print/quality-control" },
-      ],
+      // subItems: [
+      //   { name: "Printing Overview", href: "/how-we-print" },
+      //   { name: "Digital Pigment", href: "/how-we-print/digital-pigment" },
+      //   { name: "Reactive Printing", href: "/how-we-print/reactive" },
+      //   { name: "Sublimation", href: "/how-we-print/sublimation" },
+      //   { name: "Quality Standards", href: "/how-we-print/quality-control" },
+      // ],
     },
     {
       name: "Our Fabrics",
       href: "/fabrics",
-      subItems: [
-        { name: "All Fabrics", href: "/fabrics" },
-        { name: "Cotton", href: "/fabrics/cotton" },
-        { name: "Linen", href: "/fabrics/linen" },
-        { name: "Viscose", href: "/fabrics/viscose" },
-        { name: "Blends", href: "/fabrics/blends" },
-        { name: "Silk", href: "/fabrics/silk" },
-        { name: "Sustainable", href: "/fabrics/sustainable" },
-      ],
+      subItems: FABRIC_NAV_ITEMS,
     },
-
 
     { name: "Design Studio", href: "/designs" },
     {
       name: "Blogs",
       href: "/blogs",
-      subItems: [
-        { name: "Textile Trends", href: "/blogs?cat=trends" },
-        { name: "Printing Guides", href: "/blogs?cat=guides" },
-        { name: "Case Studies", href: "/blogs?cat=case-studies" },
-      ],
+      // subItems: [
+      //   { name: "Textile Trends", href: "/blogs?cat=trends" },
+      //   { name: "Printing Guides", href: "/blogs?cat=guides" },
+      //   { name: "Case Studies", href: "/blogs?cat=case-studies" },
+      // ],
     },
-    // { name: "Bulk Orders", href: "/contact?type=bulk" },
-    { name: "Expert Help", href: "/contact?type=consultation" },
+    { name: "Expert Help", href: "/contact-us" },
   ];
 
   const getSubNavItems = () => {
@@ -92,7 +83,7 @@ export const Navbar = () => {
       return menuItems.find((i) => i.name === "Our Fabrics")?.subItems || null;
     }
     if (pathname.startsWith("/how-we-print")) {
-      return menuItems.find((i) => i.name === "Custom Printing")?.subItems || null;
+      return menuItems.find((i) => i.name === "How We Print")?.subItems || null;
     }
     if (pathname.startsWith("/blogs")) {
       return menuItems.find((i) => i.name === "Blogs")?.subItems || null;
@@ -104,9 +95,43 @@ export const Navbar = () => {
   };
 
   const subNavItems = getSubNavItems();
+  const pagePathTitle = pathname.startsWith("/designs") ? "Designs" : null;
 
   return (
     <>
+    {/* ANNOUNCEMENT BAR */}
+
+   {/* ANNOUNCEMENT BAR */}
+<div className="fixed top-0 left-0 w-full z-[120] bg-[#243661] text-white border-b border-white/10 overflow-hidden h-10 flex items-center">
+  <div className="marquee">
+    <div className="marquee-content">
+      {[
+        "Factory Price Digital Fabric Printing",
+        "Direct From Our Production Unit • No Middleman Margin",
+        "Custom Digital Printed Fabric for Every Order Size",
+        "Premium Quality Prints",
+        "Fast Production Support",
+        "Export Ready Fabric Printed from India",
+      ].map((text, index) => (
+        <span key={index}>{text}</span>
+      ))}
+    </div>
+
+    {/* Duplicate Content */}
+    <div className="marquee-content" aria-hidden="true">
+      {[
+        "Factory Price Digital Fabric Printing",
+        "Direct From Our Production Unit • No Middleman Margin",
+        "Custom Digital Printed Fabric for Every Order Size",
+        "Premium Quality Prints",
+        "Fast Production Support",
+        "Export Ready Fabric Printed from India",
+      ].map((text, index) => (
+        <span key={index}>{text}</span>
+      ))}
+    </div>
+  </div>
+</div>
       <nav
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
@@ -118,7 +143,7 @@ export const Navbar = () => {
             : "bg-transparent py-5"
           }`}
       >
-        <div className="max-w-[1600px] mx-auto px-6 xl:px-10">
+        <div className="container-site mt-10">
           <div className="flex items-center justify-between">
 
             {/* LEFT */}
@@ -135,19 +160,20 @@ export const Navbar = () => {
                 <Image
                   src="/images/logo.png"
                   alt="Vastraa Global"
-                  width={70}
-                  height={70}
+                  width={40}
+                  height={40}
                   priority
                   unoptimized
+                  style={{ width: "auto", height: "auto", maxHeight: 25 }}
                 />
-                <span className={`text-[7px] md:text-[9px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
-                  Global Print Experts
+                <span className={`text-[7px] md:text-[8px] uppercase tracking-[0.2em] font-bold mt-1 ${isSolid ? "text-gray/50" : "text-white/60"}`}>
+                  Printed with Passion
                 </span>
               </Link>
             </div>
 
             {/* CENTER MENU */}
-            <div className="hidden lg:flex items-center justify-center flex-1 gap-8 xl:gap-12">
+            <div className="hidden lg:flex items-center gap-8 xl:gap-10 2xl:gap-14 3xl:gap-16">
               {menuItems.map((item) => (
                 <div
                   key={item.name}
@@ -160,7 +186,7 @@ export const Navbar = () => {
                 >
                   <Link
                     href={item.href}
-                    className={`relative text-[20px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${pathname === item.href ||
+                    className={`relative text-[17px]  font-vollkorn font-medium tracking-tight transition-all duration-300 flex items-center gap-1.5 ${pathname === item.href ||
                         (item.subItems && pathname.startsWith(item.href))
                         ? "text-secondary"
                         : isSolid
@@ -227,9 +253,9 @@ export const Navbar = () => {
                 <Search size={21} />
               </button>
 
-              <Link href="/signin" className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110">
+              {/* <Link href="/signin" className="p-2.5 hover:text-secondary transition-all duration-300 hover:scale-110">
                 <User size={21} />
-              </Link>
+              </Link> */}
 
               <Link href="/wishlist" className="p-2.5 relative hover:text-secondary transition-all duration-300 hover:scale-110">
                 <Heart size={21} />
@@ -253,8 +279,12 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* SUB NAV */}
-      {subNavItems && <SubNavbar items={subNavItems} />}
+      {/* SUB NAV / PAGE PATH */}
+      {pagePathTitle ? (
+        <SubNavbar title={pagePathTitle} />
+      ) : (
+        subNavItems && <SubNavbar items={subNavItems} />
+      )}
 
       {/* MOBILE MENU */}
       <MobileMenu
@@ -262,6 +292,43 @@ export const Navbar = () => {
         onClose={() => setIsMobileMenuOpen(false)}
       />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* MARQUEE ANIMATION */}
+
+      <style jsx>{`
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .marquee-content span {
+    white-space: nowrap;
+    padding: 0 3rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+`}</style>
     </>
   );
 };

@@ -4,82 +4,58 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Upload, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/Button";
+import { submitInquiry } from "@/lib/submitInquiry";
 
 export const QuoteForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [fileName, setFileName] = useState("");
-  const [file, setFile] = useState<File | null>(null);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    companyName: "",
-    email: "",
-    inquirytype: "Custom Fabric Development",
-    message: ""
-  });
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [fabricType, setFabricType] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [notes, setNotes] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setErrorMessage("");
-
+    setIsSubmitting(true);
+    setError("");
     try {
-      let uploadedImageUrl = "";
-
-      // 1. Upload file if selected
-      if (file) {
-        const uploadData = new FormData();
-        uploadData.append("image", file);
-        const uploadRes = await fetch("http://localhost:3000/api/upload", {
-          method: "POST",
-          body: uploadData
-        });
-        if (uploadRes.ok) {
-          const uploadResult = await uploadRes.json();
-          uploadedImageUrl = uploadResult.url;
-        } else {
-          console.warn("Upload failed, submitting form without image");
-        }
-      }
-
-      // 2. Submit form details
-      const res = await fetch("http://localhost:3000/api/form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          ...formData,
-          image: uploadedImageUrl
-        })
+      await submitInquiry({
+        fullName,
+        companyName: fullName,
+        email,
+        inquirytype: "Digital Printing Inquiry",
+        message: [
+          fabricType ? `Fabric: ${fabricType}` : "",
+          quantity ? `Quantity: ${quantity}` : "",
+          notes ? `Notes: ${notes}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+        quantity,
+        notes,
       });
-
-      if (res.ok) {
-        setIsSubmitted(true);
-      } else {
-        const errorData = await res.json();
-        setErrorMessage(errorData.message || "Failed to submit quote request. Please try again.");
-      }
+      setIsSubmitted(true);
     } catch (err) {
-      setErrorMessage("Network error connecting to quote service.");
+      setError(err instanceof Error ? err.message : "Could not submit your request.");
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
       setFileName(e.target.files[0].name);
     }
   };
 
   if (isSubmitted) {
     return (
-      <section id="quote" className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <motion.div 
+      <section id="quote" className="section-y bg-white">
+        <div className="container-site">
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="max-w-2xl mx-auto text-center p-12 rounded-3xl bg-bg-ivory border border-secondary/20 shadow-xl shadow-secondary/5"
@@ -89,14 +65,9 @@ export const QuoteForm = () => {
             </div>
             <h2 className="text-3xl md:text-4xl font-serif text-accent mb-4">Quote Request Received</h2>
             <p className="text-accent/60 text-lg mb-8">
-              Thank you for reaching out to VastraaGlobal. Our team will review your requirements and get back to you with a custom quote within 24 hours.
+              Thank you for reaching out to VastraaGlobal. Our team will review your requirements and get back to you within 24 hours.
             </p>
-            <Button variant="outline" onClick={() => {
-              setIsSubmitted(false);
-              setFileName("");
-              setFile(null);
-              setFormData({ fullName: "", companyName: "", email: "", inquirytype: "Custom Fabric Development", message: "" });
-            }}>
+            <Button variant="outline" onClick={() => setIsSubmitted(false)}>
               Send Another Request
             </Button>
           </motion.div>
@@ -106,11 +77,10 @@ export const QuoteForm = () => {
   }
 
   return (
-    <section id="quote" className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative element */}
+    <section id="quote" className="section-y-lg bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/30 to-transparent" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+
+      <div className="container-site relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -122,28 +92,12 @@ export const QuoteForm = () => {
               <span className="w-12 h-[1px] bg-secondary" />
               <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Partner With Us</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-accent mb-8 leading-tight">
+            <h2 className="section-title font-serif text-accent mb-8 leading-tight">
               Request a <span className="text-secondary">Custom Quote</span>
             </h2>
-            <p className="text-accent/60 text-base md:text-lg mb-10 leading-relaxed">
+            <p className="text-accent/60 text-base md:text-lg md:mb-10 leading-relaxed">
               Ready to bring your fabric designs to life? Fill out the form with your project details and our export specialists will provide a tailored solution for your brand.
             </p>
-            
-            <ul className="space-y-6">
-              {[
-                "Bulk discounts for 1000+ meters",
-                "Custom fabric sourcing options",
-                "International door-to-door shipping",
-                "Complimentary design audit",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-accent/80">
-                  <div className="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
-                    <CheckCircle2 size={14} />
-                  </div>
-                  {item}
-                </li>
-              ))}
-            </ul>
           </motion.div>
 
           <motion.div
@@ -156,49 +110,46 @@ export const QuoteForm = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Inquiry Type</label>
-                  <select 
-                    value={formData.inquirytype}
-                    onChange={(e) => setFormData({ ...formData, inquirytype: e.target.value })}
+                  <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Fabric Type</label>
+                  <select
+                    value={fabricType}
+                    onChange={(e) => setFabricType(e.target.value)}
                     className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary appearance-none"
                   >
-                    <option value="Custom Fabric Development">Custom Fabric Development</option>
-                    <option value="Bulk Fabric Sourcing">Bulk Fabric Sourcing</option>
-                    <option value="Digital Printing Inquiry">Digital Printing Inquiry</option>
-                    <option value="Sample Yardage Request">Sample Yardage Request</option>
-                    <option value="Other">Other / Custom Sourcing</option>
+                    <option value="">Select Fabric</option>
+                    <option>Organic Cotton</option>
+                    <option>Premium Linen</option>
+                    <option>Viscose Rayon</option>
+                    <option>Cotton-Linen Blend</option>
+                    <option>Other / Custom Sourcing</option>
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Estimated Quantity</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. 500 meters"
-                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary" 
-                    onChange={(e) => {
-                      const val = e.target.value;
-                      // Add quantity info dynamically to message body prefix or local state
-                    }}
+                  <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Quantity (Meters)</label>
+                  <input
+                    type="text"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    placeholder="Min 300m"
+                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Design Reference Upload</label>
+                <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Design Upload</label>
                 <div className="relative">
-                  <input 
-                    type="file" 
+                  <input
+                    type="file"
                     onChange={handleFileChange}
-                    accept="image/*"
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                   />
-                  <div className="w-full bg-white border-2 border-dashed border-accent/10 rounded-xl py-6 px-4 text-center hover:border-secondary transition-colors">
+                  <div className="w-full bg-white border-2 border-dashed border-accent/10 rounded-xl py-6 px-4 text-center">
                     <div className="flex flex-col items-center gap-2">
                       <Upload size={24} className="text-accent/20" />
                       <span className="text-sm text-accent/50">
-                        {fileName || "Drop sample image here or click to upload"}
+                        {fileName || "Drop design files here or click to upload"}
                       </span>
-                      <span className="text-[10px] text-accent/30 uppercase tracking-tighter">PNG, JPG, JPEG (Max 10MB)</span>
                     </div>
                   </div>
                 </div>
@@ -206,52 +157,41 @@ export const QuoteForm = () => {
 
               <div className="space-y-2">
                 <label className="text-xs font-bold uppercase tracking-widest text-accent/40">Company Details</label>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <input 
-                    type="text" 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
                     placeholder="Full Name"
-                    required
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary" 
+                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary"
                   />
-                  <input 
-                    type="text" 
-                    placeholder="Company Name"
+                  <input
+                    type="email"
                     required
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary" 
-                  />
-                  <input 
-                    type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Work Email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary" 
+                    className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <textarea 
+                <textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
                   placeholder="Additional requirements or special instructions..."
                   rows={4}
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full bg-white border border-accent/10 rounded-xl py-4 px-4 text-accent focus:outline-none focus:border-secondary resize-none"
-                ></textarea>
+                />
               </div>
 
-              {errorMessage && (
-                <p className="text-xs text-red-500 font-bold">{errorMessage}</p>
-              )}
+              {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
-              <Button type="submit" variant="primary" size="lg" className="w-full group" disabled={loading}>
-                {loading ? "Submitting Request..." : "Get Custom Quote"}
-                {!loading && <Send size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+              <Button type="submit" variant="primary" size="lg" className="w-full group" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting…" : "Get Custom Quote"}
+                <Send size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Button>
             </form>
           </motion.div>
@@ -260,4 +200,3 @@ export const QuoteForm = () => {
     </section>
   );
 };
-
