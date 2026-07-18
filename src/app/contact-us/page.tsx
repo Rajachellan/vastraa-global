@@ -120,7 +120,7 @@ function ContactContent() {
                     <h3 className="text-xl font-serif text-accent">Direct Hotline</h3>
                   </div>
                   <p className="text-accent/50 text-sm pl-16">+91 93613 94323 (Erode)</p>
-                  <p className="text-accent/50 text-sm pl-16">+44 777 669 8505  (London)</p>
+                  <p className="text-accent/50 text-sm pl-16">+44 758 457 3793  (London)</p>
                 </div>
 
                 <div className="group">

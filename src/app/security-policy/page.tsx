@@ -63,7 +63,7 @@ For any questions about this Security Policy, please contact us:
               </tr>
               <tr>
                 <td className="font-bold">Phone:</td>
-                <td className="text-accent/70">+44 7776698505 / +91 93613 94323</td>
+                <td className="text-accent/70">+44 7584573793 / +91 93613 94323</td>
               </tr><tr>
                 <td className="font-bold pr-5">Location:</td>
                 <td className="text-accent/70"> India-74A, Attayampalayam, Chithode, Erode 638102</td>

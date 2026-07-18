@@ -10,7 +10,7 @@ const offices = [
     city: "Lincoln",
     country: "United Kingdom",
     address: "101 Astwick Road,Lincoln,Lincolnshire, United Kingdom, LN6 7LL ",
-    phone: "+44 7776698505",
+    phone: "+44 7584573793",
     email: "info@vastraaglobal.com",
     role: "UK Office",
     isMain: false,
