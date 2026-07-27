@@ -41,13 +41,11 @@ export const B2BAbout = () => {
             </h2>
             <div className="space-y-6 text-accent/60 text-base md:text-lg leading-relaxed">
               <p>
-                Established in 1975, Vastraa Global began with traditional screen printing and evolved into a leader in digital textile printing.
+              Established in 1975, Vastra Global has grown into a trusted digital fabric printing company serving fashion brands, designers, exporters, and textile businesses worldwide. We combine decades of expertise with advanced digital fabric printing technology to create premium custom printed fabrics. 
               </p>
+             
               <p>
-                In 2018, we adopted advanced digital printing technologies, delivering precision, vibrant colors and intricate designs across diverse fabrics.
-              </p>
-              <p>
-                We transform creative ideas into reality with innovation, sustainability and craftsmanship.
+              From fabric sourcing and custom fabric printing to quality inspection and global delivery, we   provide end-to-end fabric printing solutions with a strong focus on quality, innovation, and customer satisfaction. 
               </p>
             </div>
           </motion.div>

@@ -185,7 +185,7 @@ function ContactContent() {
 
   {/* International Users */}
   <a
-    href="https://wa.me/447776698505"
+    href="https://wa.me/447584573793"
     target="_blank"
     rel="noopener noreferrer"
     className="group flex items-center gap-5 rounded-2xl bg-[#F9F4E8] p-5 transition-all duration-300 hover:bg-[#F4E8C8] hover:shadow-md"

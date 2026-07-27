@@ -65,16 +65,14 @@ export const B2BHero = () => {
 
           {/* Heading */}
           <h1 className="hero-heading font-serif text-white mb-5 sm:mb-6 md:mb-7 lg:mb-5 break-words">
-            Premium Textile
-            <span className="text-secondary"> Manufacturing</span>{" "}
-            for Global Fashion Brands
+           Premium 
+            <span className="text-secondary"> Digital Manufacturing Fabric </span>{" "}
+             Printing for Global Fashion Brands
           </h1>
 
           {/* Description */}
           <p className="hero-subtext text-white/90 mb-6 sm:mb-8 md:mb-10 lg:mb-8 max-w-2xl break-words">
-            Precision in Print, Excellence in Fabric. Elevating global brands with
-            40+ years of textile heritage, advanced manufacturing capabilities, and
-            state-of-the-art digital printing technology.
+          Transform your designs into vibrant, high-quality printed fabrics with our advanced digital     printing    technology. Choose from a wide range of premium fabrics, enjoy expert support, and benefit from reliable worldwide delivery.
           </p>
 
           {/* CTA Buttons */}
