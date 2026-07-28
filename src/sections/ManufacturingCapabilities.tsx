@@ -70,7 +70,7 @@ export const ManufacturingCapabilities = () => {
         >
           <div className="flex items-center justify-center gap-3 mb-6">
             <span className="w-12 h-[1px] bg-secondary" />
-            <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Services</span>
+            <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Digital Fabric Printing Services</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
           <h2 className="section-title font-serif text-primary mb-6">

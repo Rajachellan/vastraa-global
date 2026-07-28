@@ -66,8 +66,9 @@ export const B2BHero = () => {
           {/* Heading */}
           <h1 className="hero-heading font-serif text-white mb-5 sm:mb-6 md:mb-7 lg:mb-5 break-words">
            Premium 
-            <span className="text-secondary"> Digital Manufacturing Fabric </span>{" "}
-             Printing for Global Fashion Brands
+            <span className="text-secondary">  Digital Fabric Printing 
+            </span>{" "}
+            for Global Fashion Brands
           </h1>
 
           {/* Description */}
