@@ -1,13 +1,13 @@
 /**
  * Hero background video source.
- * - Production: set NEXT_PUBLIC_HERO_VIDEO_URL to Cloudflare Stream MP4 URL.
- * - Local: /vastraa_home_banner.mp4 (Git LFS — run `npm run prebuild` to fetch).
- * - Dev fallback: first uploaded hero clip on the API (/uploads/…).
+ * - Production override: set NEXT_PUBLIC_HERO_VIDEO_URL (CDN/Blob URL).
+ * - Default: /vastraa_banner_video.mp4 (committed to git, works on Vercel).
+ * - Optional local HQ clip: /vastraa_home_banner.mp4 (Git LFS — `npm run dev:assets`).
  */
 export function getHeroVideoSrc(): string {
   const fromEnv = process.env.NEXT_PUBLIC_HERO_VIDEO_URL?.trim();
   if (fromEnv) return fromEnv;
-  return "/vastraa_home_banner.mp4";
+  return "/vastraa_banner_video.mp4";
 }
 
 /** Poster while hero video loads (or if MP4 is missing locally). */

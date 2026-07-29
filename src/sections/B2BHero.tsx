@@ -21,6 +21,10 @@ export const B2BHero = () => {
     <section className="relative hero-viewport flex items-start lg:items-center overflow-hidden w-full max-w-full">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
+
+
+
+        
         {!videoFailed ? (
           <video
             autoPlay
@@ -32,7 +36,7 @@ export const B2BHero = () => {
             onError={() => setVideoFailed(true)}
             className="absolute inset-0 w-full h-full object-cover object-center"
           >
-            <source src="/vastraa_banner_video.mp4" type="video/mp4" />
+            <source src={heroVideoSrc} type="video/mp4" />
           </video>
         ) : (
           <div
