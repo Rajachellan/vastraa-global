@@ -15,7 +15,7 @@ const offices = [
     role: "UK Office",
     isMain: false,
   },
-  
+   
 ];
 
 const globalLocations = [
