@@ -17,7 +17,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/447776698505?text=Hello%20I%20want%20to%20know%20about%20your%20services"
+      href="https://wa.me/447584573793?text=Hello%20I%20want%20to%20know%20about%20your%20services"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Get in touch with top digital marketing agency"

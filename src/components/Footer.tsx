@@ -186,12 +186,12 @@ export const Footer = () => {
                 <MapPin size={18} className="text-secondary shrink-0" />
                 <span>
                   <strong>UK:</strong> 101 Astwick Road, Lincoln, Lincolnshire, United Kingdom , LN6 7LL  <br />
-                  <strong>India:</strong> 74A, Attayampalayam, Chithode, Erode 638102
+                  {/* <strong>India:</strong> 74A, Attayampalayam, Chithode, Erode 638102 */}
                 </span>
               </li>
               <li className="flex items-center gap-4">
                 <Phone size={18} className="text-secondary shrink-0" />
-                <span>+44 7776698505 / +91 93613 94323</span>
+                <span>+44 7584573793 / +91 93613 94323</span>
               </li>
               <li className="flex items-center gap-4">
                 <Mail size={18} className="text-secondary shrink-0" />

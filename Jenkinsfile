@@ -14,6 +14,8 @@ pipeline {
 
         NEXT_PUBLIC_API_URL    = 'https://api.vastraaglobal.com/api'
         NEXT_PUBLIC_API_ORIGIN = 'https://api.vastraaglobal.com'
+        NEXT_PUBLIC_CDN_URL = 'https://assets.vastraaglobal.com'
+        NEXT_PUBLIC_MEDIA_FALLBACK = 'https://admin.vastraaglobal.com'
     }
 
     stages {
@@ -109,6 +111,8 @@ pipeline {
                     sh '''
                     export NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api
                     export NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com
+                    export NEXT_PUBLIC_CDN_URL=https://assets.vastraaglobal.com
+                    export NEXT_PUBLIC_MEDIA_FALLBACK=https://admin.vastraaglobal.com
                     npm ci
                     npm run build
                     '''
@@ -123,6 +127,8 @@ pipeline {
                     docker build \
                       --build-arg NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api \
                       --build-arg NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com \
+                      --build-arg NEXT_PUBLIC_CDN_URL=https://assets.vastraaglobal.com \
+                      --build-arg NEXT_PUBLIC_MEDIA_FALLBACK=https://admin.vastraaglobal.com \
                       -t $DOCKER_IMAGE:$IMAGE_TAG \
                       -t $DOCKER_IMAGE:latest .
                     '''
@@ -163,6 +169,8 @@ pipeline {
                       -e PORT=$APP_PORT \
                       -e NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api \
                       -e NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com \
+                      -e NEXT_PUBLIC_CDN_URL=https://assets.vastraaglobal.com \
+                      -e NEXT_PUBLIC_MEDIA_FALLBACK=https://admin.vastraaglobal.com \
                       -p $APP_PORT:$APP_PORT \
                       -v $HOST_UPLOADS:/app/uploads \
                       -v $HOST_LOGS:/app/logs \

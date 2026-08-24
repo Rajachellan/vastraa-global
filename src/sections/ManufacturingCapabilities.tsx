@@ -8,44 +8,44 @@ import { Palette, Printer, Scissors, Home, Shirt, ShoppingBag, Fingerprint } fro
 const services = [
   {
     icon: Fingerprint,
-    title: "Sampling",
-    description: "Rapid prototyping and sample development for perfect color and design accuracy.",
+    title: "Digital Fabric Printing ",
+    description: "Advanced printing technology for vibrant and durable fabric prints. ",
     image: "/images/service-sampling.png"
   },
   {
     icon: Printer,
-    title: "Fabric Printing",
-    description: "High-definition digital pigment printing on a wide variety of premium fabrics.",
+    title: "Custom Fabric Printing ",
+    description: "Personalized printing solutions for fashion brands and designers.",
     image: "/images/service-printing.png"
   },
   {
     icon: Palette,
-    title: "Textile Studio",
-    description: "In-house design and consultation to bring your creative vision to reality.",
+    title: "Fabric Sourcing ",
+    description: "Premium fabrics carefully selected for digital fabric printing.",
     image: "/images/service-studio.png"
   },
   {
     icon: Scissors,
-    title: "Scarf Manufacturing",
-    description: "End-to-end production of luxury scarves with precision hemming.",
+    title: "Design Support ",
+    description: "Expert assistance to prepare artwork for the best printing results. ",
     image: "/images/service-scarf.png"
   },
   {
     icon: ShoppingBag,
-    title: "Accessory Manufacturing",
-    description: "Bespoke production of textile accessories including bags and pouches.",
+    title: "Color Matching ",
+    description: "Precise color reproduction for consistent print quality. ",
     image: "/images/service-accessory.png"
   },
   {
     icon: Home,
-    title: "Homeware Manufacturing",
-    description: "Custom printing and finishing for premium home decor and textiles.",
+    title: "Quality Inspection ",
+    description: "Every order is inspected to ensure high-quality printed fabrics. ",
     image: "/images/service-homeware.png"
   },
   {
     icon: Shirt,
-    title: "Garment Production",
-    description: "Full-scale apparel manufacturing tailored to your exact specifications.",
+    title: "Global Shipping ",
+    description: "Fast and reliable delivery to customers across the world. ",
     image: "/images/service-garment.png"
   },
 ];
@@ -70,14 +70,14 @@ export const ManufacturingCapabilities = () => {
         >
           <div className="flex items-center justify-center gap-3 mb-6">
             <span className="w-12 h-[1px] bg-secondary" />
-            <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Services</span>
+            <span className="text-secondary font-medium tracking-[0.25em] uppercase text-xs">Our Digital Fabric Printing Services</span>
             <span className="w-12 h-[1px] bg-secondary" />
           </div>
           <h2 className="section-title font-serif text-primary mb-6">
-            Comprehensive <span className="text-secondary">Capabilities</span>
+          Our <span className="text-secondary"> Digital Fabric Printing </span> Services
           </h2>
           <p className="text-primary/50 text-base md:text-lg leading-relaxed">
-            From initial sampling to full-scale garment production, we offer end-to-end solutions.
+          Discover our end-to-end digital fabric printing solutions and expert services. 
           </p>
         </motion.div>
 

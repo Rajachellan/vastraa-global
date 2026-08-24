@@ -37,7 +37,13 @@ function ContactContent() {
     setIsSubmitting(true);
     setError("");
     try {
-      await submitInquiry({ fullName, companyName, email, inquirytype, message });
+      await submitInquiry({
+        fullName,
+        companyName: companyName || fullName,
+        email,
+        inquirytype,
+        message: message.trim() || `${inquirytype} inquiry from contact page`,
+      });
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not submit inquiry.");
@@ -113,21 +119,8 @@ function ContactContent() {
                     </div>
                     <h3 className="text-xl font-serif text-accent">Direct Hotline</h3>
                   </div>
-                  <p className="text-accent/50 text-sm pl-16">+91 93613 94323 (Erode)</p>
-                  <p className="text-accent/50 text-sm pl-16">+44 777 669 8505  (London)</p>
-                </div>
-
-                <div className="group">
-                  <div className="flex items-center gap-4 ">
-                    <div className="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all duration-300">
-                      <MapPin size={24} />
-                    </div>
-                    <h3 className="text-xl font-serif text-accent">Headquarters</h3>
-                  </div>
-                  <p className="text-accent/50 text-sm pl-16 leading-relaxed">
-                    VastraaGlobal Industrial Park,<br />
-                    Erode, Tamil Nadu 638001, India
-                  </p>
+                  {/* <p className="text-accent/50 text-sm pl-16">+91 93613 94323 (Erode)</p> */}
+                  <p className="text-accent/50 text-sm pl-16">+44 758 457 3793  (London)</p>
                 </div>
               </div>
 
@@ -179,7 +172,7 @@ function ContactContent() {
 
   {/* International Users */}
   <a
-    href="https://wa.me/447776698505"
+    href="https://wa.me/447584573793"
     target="_blank"
     rel="noopener noreferrer"
     className="group flex items-center gap-5 rounded-2xl bg-[#F9F4E8] p-5 transition-all duration-300 hover:bg-[#F4E8C8] hover:shadow-md"

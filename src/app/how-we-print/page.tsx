@@ -39,6 +39,8 @@ import {
   Route,
 } from "lucide-react";
 import HowWePrintFaqs from "@/components/HowWePrintFaqs";
+import { QuoteFormModal } from "@/components/QuoteFormModal";
+import { submitInquiry } from "@/lib/submitInquiry";
 // const steps = [
 //   {
 //     icon: FileText,
@@ -80,12 +82,49 @@ import HowWePrintFaqs from "@/components/HowWePrintFaqs";
 export default function HowWePrintPage() {
 const [showQuoteForm, setShowQuoteForm] = useState(false);
 const [submitted, setSubmitted] = useState(false);
-const handleSubmit = (e: React.FormEvent) => {
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [formError, setFormError] = useState("");
+const [inlineForm, setInlineForm] = useState({
+  fullName: "",
+  email: "",
+  companyName: "",
+  quantity: "",
+  notes: "",
+});
+
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+  setIsSubmitting(true);
+  setFormError("");
+  try {
+    const message =
+      inlineForm.notes.trim() ||
+      [
+        inlineForm.companyName && `Company: ${inlineForm.companyName}`,
+        inlineForm.quantity && `Volume: ${inlineForm.quantity}`,
+      ]
+        .filter(Boolean)
+        .join("\n") ||
+      "Custom print quote from How We Print page";
 
-  // API call can be added here later
-
-  setSubmitted(true);
+    await submitInquiry({
+      fullName: inlineForm.fullName.trim(),
+      companyName: inlineForm.companyName.trim() || inlineForm.fullName.trim(),
+      email: inlineForm.email.trim(),
+      inquirytype: "Digital Printing Inquiry",
+      message,
+      quantity:
+        inlineForm.quantity && inlineForm.quantity !== "Estimated Monthly Volume"
+          ? inlineForm.quantity
+          : undefined,
+      notes: inlineForm.notes.trim() || undefined,
+    });
+    setSubmitted(true);
+  } catch (err) {
+    setFormError(err instanceof Error ? err.message : "Could not submit your request.");
+  } finally {
+    setIsSubmitting(false);
+  }
 };
   const highlights = [
   {
@@ -1514,16 +1553,22 @@ const handleSubmit = (e: React.FormEvent) => {
               Get Your Custom Quote
             </h2>
 
-            <form onSubmit={handleSubmit}  className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <input
                   type="text"
+                  required
+                  value={inlineForm.fullName}
+                  onChange={(e) => setInlineForm((p) => ({ ...p, fullName: e.target.value }))}
                   placeholder="Full Name"
                   className="h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent transition-colors duration-300"
                 />
 
                 <input
                   type="email"
+                  required
+                  value={inlineForm.email}
+                  onChange={(e) => setInlineForm((p) => ({ ...p, email: e.target.value }))}
                   placeholder="Business Email"
                   className="h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent transition-colors duration-300"
                 />
@@ -1531,289 +1576,57 @@ const handleSubmit = (e: React.FormEvent) => {
 
               <input
                 type="text"
+                value={inlineForm.companyName}
+                onChange={(e) => setInlineForm((p) => ({ ...p, companyName: e.target.value }))}
                 placeholder="Company Name"
                 className="w-full h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent transition-colors duration-300"
               />
 
-              <select className="w-full h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent text-gray-700 transition-colors duration-300">
-                <option>Estimated Monthly Volume</option>
+              <select
+                value={inlineForm.quantity}
+                onChange={(e) => setInlineForm((p) => ({ ...p, quantity: e.target.value }))}
+                className="w-full h-16 px-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none bg-transparent text-gray-700 transition-colors duration-300"
+              >
+                <option value="">Estimated Monthly Volume</option>
                 <option>Sample Only (Under 10m)</option>
                 <option>Small Batch Only (10m - 100m)</option>
                 <option>Bulk Order (100m - 100m+)</option>
-                </select>
+              </select>
 
               <textarea
                 rows={5}
+                required
+                value={inlineForm.notes}
+                onChange={(e) => setInlineForm((p) => ({ ...p, notes: e.target.value }))}
                 placeholder="Tell us about your project..."
                 className="w-full p-5 rounded-2xl border border-[#D4AF37]/30 hover:border-[#D4AF37]/60 focus:border-[#D4AF37] outline-none resize-none bg-transparent transition-colors duration-300"
               ></textarea>
 
-              <button className="w-full h-16 rounded-2xl bg-black text-white text-lg font-medium hover:bg-[#D4AF37] transition-colors duration-500">
-                Submit Request
+              {formError ? <p className="text-sm text-red-600">{formError}</p> : null}
+
+              <button
+                type="submit"
+                disabled={isSubmitting || submitted}
+                className="w-full h-16 rounded-2xl bg-black text-white text-lg font-medium hover:bg-[#D4AF37] transition-colors duration-500 disabled:opacity-60"
+              >
+                {isSubmitting ? "Submitting…" : submitted ? "Submitted" : "Submit Request"}
               </button>
-                {submitted && (
-    <div className="mt-4 rounded-xl border border-green-200 bg-green-50 p-4 text-center">
-      <p className="font-medium text-green-700">
-        ✓ Successfully Submitted!
-      </p>
-      <p className="text-sm text-green-600 mt-1">
-        Our team will contact you shortly.
-      </p>
-    </div>
-  )}
+              {submitted && (
+                <div className="mt-4 rounded-xl border border-green-200 bg-green-50 p-4 text-center">
+                  <p className="font-medium text-green-700">
+                    ✓ Successfully Submitted!
+                  </p>
+                  <p className="text-sm text-green-600 mt-1">
+                    Our team will contact you shortly.
+                  </p>
+                </div>
+              )}
             </form>
           </div>
         </motion.div>
       </div>
     </section>
-     {/* Popup Form */}
-      {showQuoteForm && (
-     <div
-  className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-hidden"
-  onClick={() => setShowQuoteForm(false)}
->
-         <div
-  className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[32px] bg-[#F8F5F0] p-8 md:p-12 shadow-2xl overflow-hidden"
-  onClick={(e) => e.stopPropagation()}
->
-            {/* Close */}
-            <button
-              onClick={() => setShowQuoteForm(false)}
-              className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md hover:bg-gray-100"
-            >
-              ✕
-            </button>
-
-            {/* Header */}
-            <div className="text-center mb-8">
-               <img
-                    src="/images/logo.png"
-                    alt="Vastraa Global"
-                    className="w-24 sm:w-32 h-auto object-contain mx-auto mb-4"
-                  />
-              <h2 className="text-4xl font-serif font-bold text-[#0A2342]">
-                Request a Custom Quote
-              </h2>
-
-              <div className="flex items-center justify-center gap-4 my-5">
-                <div className="w-16 h-px bg-[#D4AF37]" />
-                <div className="text-[#D4AF37]">✦</div>
-                <div className="w-16 h-px bg-[#D4AF37]" />
-              </div>
-
-              <p className="text-gray-600">
-                Share your requirements and our team will contact you shortly.
-              </p>
-            </div>
-
-            {/* Form */}
-         <form className="space-y-6">
-
-  {/* Row 1 */}
-  <div className="grid md:grid-cols-2 gap-5">
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Full Name *
-      </label>
-      <input
-        type="text"
-        placeholder="Enter your full name"
-        className="w-full h-14 rounded-xl px-4 border border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
-      />
-    </div>
-
-   
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Email Address *
-      </label>
-      <input
-        type="email"
-        placeholder="Enter your email"
-        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
-      />
-    </div>
-  </div>
-
-  {/* Row 2 */}
-  <div className="grid md:grid-cols-2 gap-5">
-    
-
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Phone / WhatsApp *
-      </label>
-      <input
-        type="tel"
-        placeholder="+91 XXXXX XXXXX"
-        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
-      />
-    </div>
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Fabric Type
-      </label>
-
-      <input
-        type="text"
-        placeholder="Cotton, Silk, Linen..."
-        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-      />
-    </div>
-  </div>
-
-  {/* Row 3 */}
-  <div className="grid md:grid-cols-2 gap-5">
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Product Category
-      </label>
-
-      <select className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]">
-        <option>Select Category</option>
-        <option>Printed Fabrics</option>
-        <option>Home Textiles</option>
-        <option>Fashion Fabrics</option>
-        <option>Custom Textile Design</option>
-      </select>
-    </div>
- <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Fabric GSM
-      </label>
-      <input
-        type="text"
-        placeholder="Enter fabric GSM"
-       className="w-full h-14 rounded-xl px-4 border border-[#D4AF37] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-      />
-    </div>
-    
-  </div>
-
-  {/* Row 4 */}
-  <div className="grid md:grid-cols-2 gap-5">
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Quantity Required
-      </label>
-
-      <input
-        type="text"
-        placeholder="500 Meters/pieces"
-        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-      />
-    </div>
-
-    <div>
-      <label className="block text-sm font-medium text-[#0A2342] mb-2">
-        Delivery Timeline
-      </label>
-
-      <input
-        type="text"
-        placeholder="Within 30 Days"
-        className="w-full h-14 rounded-xl border border-[#D4AF37] px-4 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-      />
-    </div>
-  </div>
-
-  {/* Description */}
-  <div>
-    <label className="block text-sm font-medium text-[#0A2342] mb-2">
-      Query *
-    </label>
-
-    <textarea
-      rows={6}
-      placeholder="Describe your requirements, design ideas, printing preferences, colors, dimensions, quantity and any special instructions..."
-      className="w-full rounded-xl border border-[#D4AF37] px-4 py-4 resize-none focus:outline-none focus:ring-2 focus:ring-[#D4AF37] required"
-    />
-  </div>
-
-  {/* Upload */}
-  <div>
-    <label className="block text-sm font-medium text-[#0A2342] mb-3">
-      Upload Design / Artwork
-    </label>
-
-    <div
-      className="
-        border-2
-        border-dashed
-        border-[#D4AF37]
-        rounded-3xl
-        p-10
-        text-center
-        bg-white
-        cursor-pointer
-        hover:bg-[#FFFDF8]
-        transition-all
-      "
-    >
-      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#D4AF37]/10 flex items-center justify-center">
-        <Upload size={32} className="text-[#D4AF37]" />
-      </div>
-
-      <h4 className="text-lg font-semibold text-[#0A2342]">
-        Upload Your Design Files
-      </h4>
-
-      <p className="text-sm text-gray-500 mt-2">
-        Drag & Drop or Click to Upload
-      </p>
-
-      <p className="text-xs text-gray-400 mt-3">
-        JPG, PNG, PDF, AI, PSD (Max 20MB)
-      </p>
-<div className="flex justify-center mt-5">
-  <input
-    type="file"
-    className="
-      text-sm
-      text-gray-500
-      file:py-2
-      file:px-6
-      file:mx-5
-      file:rounded-full
-      file:border-0
-      file:text-sm
-      file:font-semibold
-      file:bg-[#D4AF37]
-      file:text-white
-      hover:file:bg-[#C99A2E]
-      cursor-pointer
-    "
-  />
-</div>
-    </div>
-  </div>
-
-  {/* Submit */}
-  <button
-    type="submit"
-    className="
-      w-full
-      h-16
-      rounded-2xl
-      bg-gradient-to-r
-      from-[#C99A2E]
-      to-[#D4AF37]
-      text-white
-      text-lg
-      font-semibold
-      shadow-lg
-      hover:opacity-90
-      transition-all 
-    "
-  >
-    Request Custom Quote
-  </button>
-
-</form>
-          </div>
-        </div>
-      )}
-
+      <QuoteFormModal isOpen={showQuoteForm} onClose={() => setShowQuoteForm(false)} />
 
     <HowWePrintFaqs/>
 

@@ -95,10 +95,21 @@ if (repo && fs.existsSync(videoPath)) {
   }
 }
 
+const isVercel = process.env.VERCEL === "1";
+
+if (isVercel) {
+  console.warn(
+    "[ensure-lfs-assets] Could not fetch hero video on Vercel (Git LFS is not available in this build).\n" +
+      "The site will use the hero poster image until you set NEXT_PUBLIC_HERO_VIDEO_URL.\n" +
+      "Recommended: upload with `node scripts/upload-hero-video-blob.mjs`, add the URL in Vercel → Settings → Environment Variables, then redeploy.",
+  );
+  process.exit(0);
+}
+
 console.error(
   "[ensure-lfs-assets] Could not resolve hero video for this build.\n" +
-    "Option A (Vercel): enable Git LFS in Project → Settings → Git, then redeploy.\n" +
-    "Option B: set NEXT_PUBLIC_HERO_VIDEO_URL to a CDN/Blob URL (see .env.example).\n" +
+    "Option A (Vercel): set NEXT_PUBLIC_HERO_VIDEO_URL to a CDN/Blob URL.\n" +
+    "Option B: run `git lfs pull` locally, or `npm run dev:assets`.\n" +
     "Option C: add GITHUB_TOKEN if the repository is private.",
 );
 process.exit(1);

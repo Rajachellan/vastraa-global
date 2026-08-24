@@ -10,8 +10,12 @@ COPY . .
 
 ARG NEXT_PUBLIC_API_URL=https://api.vastraaglobal.com/api
 ARG NEXT_PUBLIC_API_ORIGIN=https://api.vastraaglobal.com
+ARG NEXT_PUBLIC_CDN_URL=https://assets.vastraaglobal.com
+ARG NEXT_PUBLIC_MEDIA_FALLBACK=https://admin.vastraaglobal.com
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_ORIGIN=$NEXT_PUBLIC_API_ORIGIN
+ENV NEXT_PUBLIC_CDN_URL=$NEXT_PUBLIC_CDN_URL
+ENV NEXT_PUBLIC_MEDIA_FALLBACK=$NEXT_PUBLIC_MEDIA_FALLBACK
 
 # Fail fast if Jenkins did not pull the LFS video (pointer files are ~130 bytes).
 RUN VIDEO="public/vastraa_home_banner.mp4" && \

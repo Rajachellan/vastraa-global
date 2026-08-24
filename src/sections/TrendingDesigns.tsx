@@ -134,6 +134,7 @@ export const TrendingDesigns = () => {
                     </div>
                   </div>
                 </Link>
+                
               </motion.div>
             ))}
           </div>

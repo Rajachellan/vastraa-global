@@ -10,20 +10,12 @@ const offices = [
     city: "Lincoln",
     country: "United Kingdom",
     address: "101 Astwick Road,Lincoln,Lincolnshire, United Kingdom, LN6 7LL ",
-    phone: "+44 7776698505",
+    phone: "+44 7584573793",
     email: "info@vastraaglobal.com",
     role: "UK Office",
     isMain: false,
   },
-  {
-    city: "Erode",
-    country: "India",
-    address: "74-A, Attayampalayam, East Colony, Gangapuram Post, Chithode, Erode, Tamil Nadu 638107",
-    phone: "+91 93613 94323 ",
-    email: "info@vastraaglobal.com",
-    role: "India Office",
-    isMain: true,
-  }
+  
 ];
 
 const globalLocations = [

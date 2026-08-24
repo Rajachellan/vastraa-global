@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FabricMedia } from "@/components/FabricMedia";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Heart, ChevronDown, Check, Info, FileCode, Layers, ShieldCheck, ChevronRight } from "lucide-react";
 import { useStore } from "@/context/StoreContext";
 import { Toast } from "@/components/Toast";
@@ -81,13 +81,32 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
   }
 
   if (!design) {
-    notFound();
-    return null;
+    return (
+      <main className="flex min-h-screen flex-col bg-bg-ivory">
+        <Navbar />
+        <div className="flex-1 flex flex-col items-center justify-center gap-4 pt-40 px-6 text-center">
+          <h1 className="text-2xl font-serif text-accent">Design not found</h1>
+          <p className="text-accent/50 text-sm">This pattern may have been removed or the link is incorrect.</p>
+          <Link href="/designs" className="text-secondary text-xs font-bold uppercase tracking-widest border-b border-secondary pb-1">
+            Back to Design Studio
+          </Link>
+        </div>
+        <Footer />
+      </main>
+    );
   }
 
   const selectedFabric = allFabrics.find((f) => f.id === selectedFabricId) || allFabrics[0];
-  const galleryImages = design.images && design.images.length > 0 ? design.images : [design.image];
-  const designName = design.name || design.title;
+  const galleryImages = (design.images && design.images.length > 0 ? design.images : [design.image]).filter(Boolean);
+  const designName = design.name || design.title || "Design";
+
+  const fabricName = selectedFabric?.name || "Selected fabric";
+  const fabricSpecs = selectedFabric?.specs || design.printSpecs || "-";
+  const fabricGsm = selectedFabric?.gsm || design.gsm || "-";
+  const fabricUsage = selectedFabric?.usage || design.usage || "Contact us for recommended applications for this pattern.";
+  const fabricCare = selectedFabric?.care || design.care || "Follow care instructions for the selected base fabric.";
+  const fabricMoq = selectedFabric?.moq || design.moq || "-";
+  const fabricPrinting = selectedFabric?.printing || design.printing || "-";
 
   const showToast = (msg: string) => setToast({ show: true, message: msg });
 
@@ -121,7 +140,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
       <QuoteModal 
         isOpen={isQuoteModalOpen} 
         onClose={() => setIsQuoteModalOpen(false)} 
-        productName={`${designName} Pattern printed on ${selectedFabric?.name || "fabric"}`}
+        productName={`${designName} Pattern printed on ${fabricName}`}
         initialImage={design.image}
         designId={design.id}
         designTitle={designName}
@@ -136,7 +155,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
             <div className="relative aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden shadow-xl border border-accent/5 bg-white group">
               <FabricMedia
                 image={galleryImages[activeImageIdx]}
-                alt={`${design.name} Pattern Print`}
+                alt={`${designName} Pattern Print`}
                 priority
                 imageClassName="object-cover transition-transform duration-1000 group-hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 60vw"
@@ -191,10 +210,10 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                 Design Studio / Curated Pattern
               </div>
               <h1 className="text-4xl md:text-5xl font-serif text-accent mb-3 leading-tight">
-                {design.name}
+                {designName}
               </h1>
               <div className="text-xs text-accent/40 font-bold uppercase tracking-widest mb-6">
-                Designed by <span className="text-secondary">{design.designer}</span>
+                Designed by <span className="text-secondary">{design.designer || "Vastraa Global"}</span>
               </div>
               <p className="text-accent/60 text-lg leading-relaxed font-light">
                 {design.description}
@@ -202,6 +221,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
             </div>
 
             {/* Fabric Selector Area */}
+            {allFabrics.length > 0 && (
             <div className="border-y border-accent/5 py-8">
               <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
                 <Layers size={14} className="text-secondary" />
@@ -232,6 +252,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                 ))}
               </div>
             </div>
+            )}
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
@@ -277,11 +298,26 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                       className="border-t border-accent/5 bg-bg-ivory/35"
                     >
                       <div className="p-6 text-sm text-accent/70 space-y-3">
-                        <div className="flex justify-between py-1 border-b border-accent/5"><strong className="text-accent/60">Selected Base:</strong> <span>{selectedFabric.name}</span></div>
-                        <div className="flex justify-between py-1 border-b border-accent/5"><strong className="text-accent/60">Composition:</strong> <span>{selectedFabric.specs}</span></div>
-                        <div className="flex justify-between py-1 border-b border-accent/5"><strong className="text-accent/60">Density / Weight:</strong> <span>{selectedFabric.gsm}</span></div>
-                        <div className="flex justify-between py-1 border-b border-accent/5"><strong className="text-accent/60">Resolution Available:</strong> <span>{design.resolution}</span></div>
-                        <div className="flex justify-between py-1"><strong className="text-accent/60">Digital File Format:</strong> <span>{design.format}</span></div>
+                        <div className="flex justify-between py-1 border-b border-accent/5">
+                          <strong className="text-accent/60">Selected Base:</strong>
+                          <span>{fabricName}</span>
+                        </div>
+                        <div className="flex justify-between py-1 border-b border-accent/5">
+                          <strong className="text-accent/60">Composition:</strong>
+                          <span>{fabricSpecs}</span>
+                        </div>
+                        <div className="flex justify-between py-1 border-b border-accent/5">
+                          <strong className="text-accent/60">Density / Weight:</strong>
+                          <span>{fabricGsm}</span>
+                        </div>
+                        <div className="flex justify-between py-1 border-b border-accent/5">
+                          <strong className="text-accent/60">Resolution Available:</strong>
+                          <span>{design.resolution || "-"}</span>
+                        </div>
+                        <div className="flex justify-between py-1">
+                          <strong className="text-accent/60">Digital File Format:</strong>
+                          <span>{design.format || "-"}</span>
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -313,8 +349,8 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                       className="border-t border-accent/5 bg-bg-ivory/35"
                     >
                       <div className="p-6 text-sm text-accent/70 leading-relaxed">
-                        <h4 className="font-bold text-accent mb-2">Recommended Application for {selectedFabric.name}:</h4>
-                        <p>{selectedFabric.usage}</p>
+                        <h4 className="font-bold text-accent mb-2">Recommended Application for {fabricName}:</h4>
+                        <p>{fabricUsage}</p>
                       </div>
                     </motion.div>
                   )}
@@ -346,7 +382,7 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                       className="border-t border-accent/5 bg-bg-ivory/35"
                     >
                       <div className="p-6 text-sm text-accent/70 leading-relaxed">
-                        <p>{selectedFabric.care}</p>
+                        <p>{fabricCare}</p>
                       </div>
                     </motion.div>
                   )}
@@ -378,8 +414,8 @@ export default function DesignDetailPage({ params }: { params: Promise<{ id: str
                       className="border-t border-accent/5 bg-bg-ivory/35"
                     >
                       <div className="p-6 text-sm text-accent/70 space-y-3">
-                        <div className="flex justify-between py-1 border-b border-accent/5"><strong className="text-accent/60">Minimum Order:</strong> <span>{selectedFabric.moq}</span></div>
-                        <div className="flex justify-between py-1"><strong className="text-accent/60">Printing Method:</strong> <span>{selectedFabric.printing}</span></div>
+                        <div className="flex justify-between py-1 border-b border-accent/5"><strong className="text-accent/60">Minimum Order:</strong> <span>{fabricMoq}</span></div>
+                        <div className="flex justify-between py-1"><strong className="text-accent/60">Printing Method:</strong> <span>{fabricPrinting}</span></div>
                       </div>
                     </motion.div>
                   )}

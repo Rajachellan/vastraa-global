@@ -49,9 +49,19 @@ export async function fetchDesignById(idOrSlug: string): Promise<ApiDesign | nul
   // Fallback: fetch all designs and find the match
   try {
     const allDesigns = await fetchDesigns();
+    const decodedId = decodeURIComponent(idOrSlug).toLowerCase();
+    
     const found = allDesigns.find(
-      (d) => d.slug === idOrSlug || d.id === idOrSlug || d._id === idOrSlug
+      (d) => {
+        if (d.id === idOrSlug || d._id === idOrSlug) return true;
+        if (d.slug && d.slug.toLowerCase() === decodedId) return true;
+        if (d.slug && d.slug === idOrSlug) return true;
+        // Fallback to name match just in case slug wasn't strictly populated but generated in the URL
+        if (d.name && d.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === decodedId.replace(/[^a-z0-9-]/g, '')) return true;
+        return false;
+      }
     );
+
     if (found) {
       // Find related designs from the same category
       found.relatedDesigns = allDesigns
@@ -77,10 +87,17 @@ export async function fetchFabricCatalog(): Promise<FabricCategory[]> {
   const res = await fetch(apiUrl("fabrics/catalog"), { cache: "no-store" });
   if (!res.ok) return getStaticFabricCatalog();
   const data = await res.json();
-  if (!Array.isArray(data)) return [];
-  return data
+  if (!Array.isArray(data) || data.length === 0) return getStaticFabricCatalog();
+
+  const normalized = data
     .map(normalizeFabricCategory)
     .filter((category) => isEnabledFabricSlug(category.slug));
+
+  const withItems = normalized.filter((c) => (c.items?.length || 0) > 0);
+  if (withItems.length > 0) return withItems;
+
+  // API pages enabled but products still on legacy slugs / empty — use static for design studio
+  return getStaticFabricCatalog();
 }
 
 function normalizeFabricItem(raw: FabricItem): FabricItem {

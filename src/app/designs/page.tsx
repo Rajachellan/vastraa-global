@@ -118,7 +118,7 @@ function DesignsPageContent() {
               transition={{ delay: 0.1 }}
               className="text-xl text-accent/60 leading-relaxed max-w-2xl"
             >
-              Upload your design or choose from our curated patterns. Premium textile solutions tailored for your unique brand requirements.
+              Choose from our curated patterns and premium textile designs tailored to your brand.
             </motion.p>
           </div>
         </div>
@@ -148,7 +148,7 @@ function DesignsPageContent() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-accent/20" size={18} />
               <input
                 type="text"
-                placeholder="Search designs or designers..."
+                placeholder="Search designs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-white border border-accent/10 rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 transition-all shadow-sm"

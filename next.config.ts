@@ -45,6 +45,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "admin.vastraaglobal.com",
+        pathname: "/uploads/**",
+      },
+      {
+        protocol: "https",
         hostname: "imagedelivery.net",
         pathname: "/**",
       },
